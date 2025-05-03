@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,34 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Student Travel Buddy custom colors
+				stb: {
+					yellow: {
+						DEFAULT: "#fffd402",
+						light: "#fff715",
+						dark: "#fdad32"
+					},
+					pink: {
+						DEFAULT: "#ff77a0",
+						light: "#ffacda",
+						dark: "#ff6b6b"
+					},
+					blue: {
+						DEFAULT: "#7b88fa",
+						light: "#c5e0f3",
+						dark: "#3a67ca"
+					},
+					orange: {
+						DEFAULT: "#fdad32",
+						light: "#ffeea6",
+						dark: "#fe4c02"
+					}
 				}
+			},
+			fontFamily: {
+				sans: ["Satoshi", "sans-serif"],
+				display: ["Anton", "sans-serif"]
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +112,21 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				'bounce-light': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 3s ease-in-out infinite',
+				'bounce-light': 'bounce-light 2s ease-in-out infinite'
 			}
 		}
 	},
