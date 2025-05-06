@@ -146,6 +146,11 @@
     animation: sun-blink 1.5s ease-in-out infinite;
   }
 
+  /* Add a specific class for the font-handwritten to ensure it's applied */
+  .font-handwritten {
+    font-family: 'Caveat', cursive;
+  }
+
   /* Modern sunshine design system */
   .sunshine-card {
     @apply bg-white rounded-xl shadow-sm border border-[#FEC6A1]/10 p-6 transition-all hover:shadow-md;
