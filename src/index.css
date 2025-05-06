@@ -107,4 +107,36 @@
     opacity: 0.3;
     pointer-events: none;
   }
+
+  /* New sun glow animation */
+  @keyframes sun-glow {
+    0%, 100% { 
+      box-shadow: 0 0 15px 5px rgba(253, 173, 50, 0.6); 
+      transform: scale(1);
+    }
+    50% { 
+      box-shadow: 0 0 25px 8px rgba(253, 173, 50, 0.8); 
+      transform: scale(1.05);
+    }
+  }
+
+  .sun-glow {
+    animation: sun-glow 8s infinite ease-in-out;
+  }
+
+  /* Add a slow pulse animation */
+  @keyframes slow-pulse {
+    0%, 100% { 
+      opacity: 0.6; 
+      transform: scale(1);
+    }
+    50% { 
+      opacity: 0.9;
+      transform: scale(1.1);
+    }
+  }
+
+  .animate-slow-pulse {
+    animation: slow-pulse 8s infinite ease-in-out;
+  }
 }

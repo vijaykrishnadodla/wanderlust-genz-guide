@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Sun, UserRound, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video, LoaderCircle } from 'lucide-react';
+import { Sun, UserRound, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
@@ -57,18 +56,18 @@ const SunshineClub = () => {
   }, []);
 
   return <section id="sunshine-club" className="py-16 relative overflow-hidden">
-      {/* Sun-themed background */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#FDE1D3] to-white">
-        <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+      {/* Sun-themed background - more subtle now */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#FDE1D3]/80 to-white">
+        <div className="absolute inset-0 opacity-5 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
         
-        {/* Stylized sun pattern background */}
-        <div className="absolute inset-0 opacity-10">
-          {[...Array(20)].map((_, i) => <div key={i} className="absolute rounded-full bg-[#FEC6A1] opacity-40" style={{
-          width: `${Math.random() * 60 + 40}px`,
-          height: `${Math.random() * 60 + 40}px`,
-          top: `${Math.random() * 100}%`,
-          left: `${Math.random() * 100}%`
-        }} />)}
+        {/* Reduced number of stylized sun patterns in background */}
+        <div className="absolute inset-0 opacity-5">
+          {[...Array(8)].map((_, i) => <div key={i} className="absolute rounded-full bg-[#FEC6A1] opacity-30" style={{
+            width: `${Math.random() * 60 + 40}px`,
+            height: `${Math.random() * 60 + 40}px`,
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`
+          }} />)}
         </div>
       </div>
       
@@ -152,47 +151,47 @@ const SunshineClub = () => {
           </Table>
         </div>
 
-        {/* Pricing Section with Sun animation */}
+        {/* Pricing Section with Improved Sun animation */}
         <div className="max-w-3xl mx-auto mb-16 relative">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Fulltimer Pricing */}
+            {/* Fulltimer Pricing - Enhanced sun animation */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-[#F97316] relative">
-              {/* Animation of suns and sun rays */}
+              {/* More focused sun rays and light waves */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {/* Sun rays - larger background elements */}
-                {[...Array(20)].map((_, i) => (
+                {/* Reduced number of sun rays - larger background elements */}
+                {[...Array(8)].map((_, i) => (
                   <div 
                     key={i} 
                     className="absolute bg-[#FEC6A1] rounded-full"
                     style={{
-                      width: `${Math.random() * 15 + 60}px`,
-                      height: `${Math.random() * 15 + 60}px`,
+                      width: `${Math.random() * 20 + 50}px`,
+                      height: `${Math.random() * 20 + 50}px`,
                       top: `${Math.random() * 100}%`,
                       left: `${Math.random() * 100}%`,
-                      opacity: '0.2',
+                      opacity: '0.15',
                     }}
                   ></div>
                 ))}
                 
-                {/* Sun light waves - smaller animated elements */}
-                {[...Array(20)].map((_, i) => (
+                {/* Reduced number of sun light waves with slower animations */}
+                {[...Array(10)].map((_, i) => (
                   <div 
                     key={i + 100} 
-                    className="absolute bg-[#FEC6A1] rounded-full animate-float"
+                    className="absolute bg-[#FEC6A1] rounded-full"
                     style={{
                       width: `${Math.random() * 15 + 10}px`,
                       height: `${Math.random() * 15 + 10}px`,
                       top: `${Math.random() * 100}%`,
                       left: `${Math.random() * 100}%`,
-                      animationDelay: `${Math.random() * 3}s`,
-                      animationDuration: `${Math.random() * 3 + 3}s`, // Slower animation
-                      boxShadow: '0 0 5px rgba(253, 173, 50, 0.7)'
+                      animation: `pulse ${Math.random() * 4 + 6}s infinite ease-in-out`,
+                      boxShadow: '0 0 8px rgba(253, 173, 50, 0.6)'
                     }}
                   >
-                    {/* Sun rays */}
+                    {/* Subtle sun glow */}
                     <div className="absolute inset-0 animate-pulse" style={{ 
-                      background: 'radial-gradient(circle, rgba(253, 173, 50, 0.7) 0%, rgba(253, 173, 50, 0) 70%)',
-                      transform: 'scale(1.5)'
+                      background: 'radial-gradient(circle, rgba(253, 173, 50, 0.6) 0%, rgba(253, 173, 50, 0) 70%)',
+                      transform: 'scale(1.8)',
+                      animationDuration: '8s'
                     }}></div>
                   </div>
                 ))}
@@ -210,11 +209,18 @@ const SunshineClub = () => {
                   </div>
                 </div>
                 
-                {/* Special offer badge and timer */}
+                {/* Special offer badge and timer with sun icon */}
                 <div className="mb-6">
                   <Badge variant="outline" className="mb-2 bg-red-100 text-red-600 border-red-600 font-bold">SPECIAL OFFER</Badge>
                   <div className="flex items-center gap-1 text-sm text-red-600">
-                    <LoaderCircle className="h-4 w-4 animate-spin" />
+                    {/* Replaced loading icon with rotating sun */}
+                    <div className="relative h-5 w-5 flex items-center justify-center">
+                      <Sun className="h-4 w-4 animate-spin" style={{ animationDuration: '4s' }} />
+                      <div className="absolute inset-0 rounded-full" style={{ 
+                        background: 'radial-gradient(circle, rgba(253, 96, 50, 0.3) 0%, rgba(253, 96, 50, 0) 70%)',
+                        animation: 'pulse 4s infinite'
+                      }}></div>
+                    </div>
                     <span>LIMITED TIME: </span>
                     <div className="flex bg-red-50 p-1 rounded-md">
                       <div className="bg-red-600 text-white px-1 rounded">
