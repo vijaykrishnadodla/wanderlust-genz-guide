@@ -20,13 +20,13 @@ export default {
 		},
 		extend: {
 			contrast: {
-				105: '1.05',
+				'105': '1.05',
 			},
 			brightness: {
-				95: '.95',
+				'95': '.95',
 			},
 			saturate: {
-				105: '1.05',
+				'105': '1.05',
 			},
 			colors: {
 				border: 'hsl(var(--border))',

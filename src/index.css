@@ -82,7 +82,7 @@
   }
   
   .retro-filter {
-    @apply brightness-95 saturate-105;
+    filter: brightness(0.95) saturate(1.05) contrast(1.05);
   }
   
   .polaroid {

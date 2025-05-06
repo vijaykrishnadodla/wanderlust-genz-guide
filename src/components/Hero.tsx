@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Earth, Camera } from 'lucide-react';
+import MiniSignUpForm from './MiniSignUpForm';
 
 const Hero = () => {
   return (
@@ -26,6 +27,12 @@ const Hero = () => {
               <Button variant="outline" className="rounded-full border-[#FEC6A1] text-[#F97316] hover:bg-[#FEC6A1]/20 transform -rotate-1">
                 <Camera className="mr-2 h-4 w-4" /> Learn More
               </Button>
+            </div>
+
+            <div className="mt-4 bg-[#FEF7CD]/40 p-3 rounded-lg inline-block md:max-w-md">
+              <p className="font-handwritten text-center text-[#F97316]">
+                "A smarter, more soulful way to travel — with a real plan, real perks, and a real buddy by your side."
+              </p>
             </div>
           </div>
           <div className="relative h-[300px] md:h-[450px]">
@@ -60,7 +67,7 @@ const Hero = () => {
             {/* Additional decorative elements */}
             <div className="absolute top-28 left-24 transform -rotate-6">
               <div className="bg-white p-1 shadow-sm">
-                <p className="font-handwritten text-xs text-[#F97316]">Summer '25 ☀️</p>
+                <p className="font-handwritten text-xs text-[#F97316]">"You pack the snacks, I'll plan the vibe" ☀️</p>
               </div>
             </div>
           </div>

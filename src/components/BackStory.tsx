@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BookOpen } from 'lucide-react';
 const BackStory = () => {
@@ -20,17 +21,20 @@ const BackStory = () => {
             <div className="space-y-4">
               <h3 className="text-2xl font-display text-[#F97316]">MEET DOMINIKA</h3>
               <p className="text-lg">
-                I was just like you – a student with big travel dreams but a tiny budget. During my 
-                exchange semester in Barcelona, I made <span className="text-[#F97316] font-medium">all the classic travel mistakes</span>...
+                I didn't just grow up traveling — I grew up learning how to <span className="text-[#F97316] font-medium">live anywhere</span>. From exploring cultures at 15 in Australia to studying in the U.S. and Norway, travel became part of who I am.
               </p>
               <p className="font-handwritten text-xl text-[#F97316]">
-                "I spent too much on tourist traps and missed the authentic experiences that 
-                were right around the corner."
+                "I've now visited more than 30 countries — from Iceland to India, South Africa to Sri Lanka."
               </p>
               <p className="text-lg">
-                After countless travel fails and wins, I created a <span className="font-bold">system that helps students 
-                travel smarter, spend less, and enjoy more</span>. Now I'm sharing it with you!
+                But I never traveled just for the photos. I traveled to learn how to live smarter, discover new perspectives, and find the <span className="font-bold">authentic moments most tourists miss</span>. And now, I pass that knowledge on to you.
               </p>
+              
+              <div className="bg-[#FEF7CD]/40 p-3 rounded-lg mt-2 transform -rotate-1">
+                <p className="font-handwritten text-center text-[#F97316]">
+                  Most students don't need more travel blogs. They need a friend who gets it.
+                </p>
+              </div>
             </div>
           </div>
         </div>

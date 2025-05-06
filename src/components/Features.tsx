@@ -7,42 +7,48 @@ const Features = () => {
   const features = [
     {
       title: "Spontaneous but Smart",
-      description: "Discover last-minute flights and hidden gems. Vibe with going off-plan, but always have a backup.",
+      description: "Knows how to find last-minute flights and hidden gems. Can vibe with going off-plan — but still has a backup.",
+      quote: ""Let's ditch the tourist trap and go where locals hang. But like... also not miss our train."",
       icon: <Compass className="h-10 w-10 text-[#F97316]" />,
       color: "bg-[#FEC6A1]/30",
       rotation: "rotate-1"
     },
     {
       title: "Plugged In",
-      description: "Get TikTok travel hacks, Google Maps tips, and always have the Wi-Fi password.",
+      description: "Shares TikToks, uses Google Maps hacks, and always has the Wi-Fi password. Helps document the trip in an aesthetic way.",
+      quote: "Think: "Let's make a Reel AND a memory."",
       icon: <Map className="h-10 w-10 text-[#fdad32]" />,
       color: "bg-[#FEF7CD]/40",
       rotation: "-rotate-1"
     },
     {
-      title: "Socially Aware",
-      description: "Respect local cultures, understand climate impact, and support ethical travel experiences.",
+      title: "Respectful + Socially Aware",
+      description: "Doesn't treat cultures like props. Understands climate impact, local customs, and supports ethical travel.",
+      quote: ""Let's stay somewhere cute and eco-conscious."",
       icon: <User className="h-10 w-10 text-[#ff77a0]" />,
       color: "bg-[#FDE1D3]/40",
       rotation: "rotate-2"
     },
     {
-      title: "Budget-Savvy",
-      description: "Find student discounts, Airbnb codes, rail passes, and cheap eats everywhere you go.",
+      title: "Budget-Savvy, Deal Hunter",
+      description: "Knows where the student discounts are. Finds Airbnb codes, rail passes, cheap eats.",
+      quote: ""We'll splurge once, but we'll eat amazing food always."",
       icon: <Calendar className="h-10 w-10 text-[#fe4c02]" />,
       color: "bg-[#FEC6A1]/30",
       rotation: "-rotate-2"
     },
     {
-      title: "Adventure-Ready",
-      description: "Hike a volcano or nap on a beach with coconut water. Stay open-minded without complaints.",
+      title: "Adventure-Ready but Chill",
+      description: "Will hike a volcano with you or just nap on a beach with coconut water. Open-minded. Doesn't complain.",
+      quote: "",
       icon: <Flag className="h-10 w-10 text-[#F97316]" />,
       color: "bg-[#FEF7CD]/40",
       rotation: "rotate-1"
     },
     {
       title: "Aesthetic-Aware",
-      description: "Capture perfect golden hour photos and enjoy sunset picnics at rooftop cafés.",
+      description: "Down for golden hour photos. Doesn't take 100 selfies, just gets the shot. Loves a good sunset picnic or rooftop café.",
+      quote: "",
       icon: <MapPin className="h-10 w-10 text-[#ff77a0]" />,
       color: "bg-[#FDE1D3]/40",
       rotation: "-rotate-1"
@@ -57,7 +63,7 @@ const Features = () => {
       <div className="container px-4 md:px-6 relative z-10">
         <div className="flex flex-col gap-2 text-center mb-12">
           <div className="inline-block transform rotate-1 bg-[#FEC6A1]/60 px-6 py-2 rounded-lg mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display">WHAT MAKES THE IDEAL GEN Z TRAVEL BUDDY</h2>
+            <h2 className="text-3xl md:text-4xl font-display">CORE TRAITS OF THE IDEAL GEN Z TRAVEL BUDDY</h2>
           </div>
           <p className="text-[#F97316] md:text-lg font-handwritten mt-2">It's not just someone to split a hostel with — it's a whole vibe</p>
         </div>
@@ -75,10 +81,23 @@ const Features = () => {
               </CardHeader>
               <CardContent className="pt-6 bg-white">
                 <CardTitle className="text-xl mb-2 text-center">{feature.title}</CardTitle>
-                <p className="text-gray-600 text-center">{feature.description}</p>
+                <p className="text-gray-600 text-center mb-3">{feature.description}</p>
+                {feature.quote && (
+                  <div className="bg-[#FEF7CD]/50 p-3 rounded-lg mt-2">
+                    <p className="font-handwritten text-center text-[#F97316] text-sm">{feature.quote}</p>
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
+        </div>
+        
+        <div className="mt-8 text-center">
+          <div className="bg-[#FDE1D3]/40 p-4 rounded-lg inline-block transform -rotate-1">
+            <p className="font-handwritten text-lg text-[#F97316]">
+              "Let's go. You pack the snacks, I'll plan the vibe."
+            </p>
+          </div>
         </div>
         
         {/* Decorative elements */}

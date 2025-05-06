@@ -16,7 +16,7 @@ const SunshineClub = () => {
             <h2 className="text-3xl md:text-4xl font-display mb-0">THE SUNSHINE CLUB</h2>
           </div>
           <p className="text-xl italic text-[#F97316] max-w-2xl mx-auto">
-            Join a community of student travelers who know how to find warm sunny vibes anywhere they go ☀️
+            Join a community of student travelers with your unproblematic, worldly bestie ☀️
           </p>
         </div>
 
@@ -34,7 +34,7 @@ const SunshineClub = () => {
           <div className="bg-white p-6 rounded-lg shadow-md transform rotate-1 border border-[#FEC6A1]/30">
             <h3 className="font-display text-xl mb-3 text-[#F97316]">AUTHENTIC EXPERIENCES</h3>
             <p className="text-lg mb-4">
-              Skip the tourist traps and discover hidden gems recommended by local students around the world
+              Skip the tourist traps and discover hidden gems. Not just for photos or passport stamps, but for real connections.
             </p>
             <div className="polaroid transform -rotate-2 w-full h-40 flex items-center justify-center">
               <span className="text-5xl">🌎</span>
@@ -42,9 +42,9 @@ const SunshineClub = () => {
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-md transform -rotate-1 border border-[#FEC6A1]/30">
-            <h3 className="font-display text-xl mb-3 text-[#F97316]">24/7 SUPPORT</h3>
+            <h3 className="font-display text-xl mb-3 text-[#F97316]">EMOTIONAL SUPPORT</h3>
             <p className="text-lg mb-4">
-              Never feel lost with Sunny by your side - get help with travel emergencies anytime, anywhere
+              The buddy who says "Let's take a break" or "You're good — we're in this together." Down to party or just talk life.
             </p>
             <div className="polaroid transform rotate-2 w-full h-40 flex items-center justify-center">
               <span className="text-5xl">🌞</span>
@@ -55,7 +55,7 @@ const SunshineClub = () => {
         <div className="text-center mt-12">
           <Button className="stb-button text-lg">Join The Sunshine Club</Button>
           <p className="mt-4 text-sm text-gray-600 max-w-xl mx-auto">
-            <span className="font-handwritten text-base">Limited time offer:</span> Get 30% off your first year when you join today
+            <span className="font-handwritten text-base">With Sunny by your side:</span> you'll never just go somewhere — you'll own it, love it, and come back changed
           </p>
         </div>
       </div>
