@@ -1,11 +1,12 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Avatar } from '@/components/ui/avatar';
 import { AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Instagram, TikTok, Mail, ArrowRight, Check, MessageSquare } from 'lucide-react';
+import { Instagram, Mail, ArrowRight, Check, MessageSquare } from 'lucide-react';
+import TravelQuiz from '@/components/TravelQuiz';
 
 const FunnelLandingPage = () => {
   return (
@@ -25,7 +26,15 @@ const FunnelLandingPage = () => {
               <p className="text-xl md:text-2xl mb-8 font-handwritten text-[#F97316]">
                 Get your ISIC card + personalized travel guide + discounts. Just answer 4 quick questions.
               </p>
-              <Button className="stb-button text-lg px-8 py-6 flex items-center gap-2 mx-auto">
+              <Button 
+                className="stb-button text-lg px-8 py-6 flex items-center gap-2 mx-auto"
+                onClick={() => {
+                  const quizElement = document.getElementById('quiz');
+                  if (quizElement) {
+                    quizElement.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
                 🎒 Take the Quiz <ArrowRight className="h-5 w-5" />
               </Button>
             </div>
@@ -43,6 +52,9 @@ const FunnelLandingPage = () => {
             </div>
           </div>
         </section>
+        
+        {/* Embedded Quiz Section */}
+        <TravelQuiz />
         
         {/* SECTION 2: WHAT YOU GET */}
         <section className="py-16 bg-white relative">
