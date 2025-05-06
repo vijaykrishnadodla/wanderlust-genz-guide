@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Earth } from 'lucide-react';
-
 const Hero = () => {
-  return (
-    <section className="pt-24 pb-16 md:pt-32 md:pb-24">
+  return <section className="pt-24 pb-16 md:pt-32 md:pb-24">
       <div className="container px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col gap-6 text-center md:text-left">
@@ -25,11 +22,7 @@ const Hero = () => {
           </div>
           <div className="relative h-[300px] md:h-[400px]">
             <div className="absolute inset-0 flex items-center justify-center">
-              <img 
-                src="/lovable-uploads/9be5c67d-a70a-437f-923a-3610cc73fa3b.png" 
-                alt="Sunny - Your Travel Buddy" 
-                className="w-48 h-48 animate-float object-contain"
-              />
+              <img alt="Sunny - Your Travel Buddy" className="w-48 h-48 animate-float object-contain" src="/lovable-uploads/6babe884-a973-49d2-9125-fad3e4a98f6e.jpg" />
             </div>
             <div className="absolute top-10 right-10">
               <div className="bg-stb-pink p-3 rounded-full rotate-12 animate-bounce-light">
@@ -49,8 +42,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
