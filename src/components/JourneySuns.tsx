@@ -13,7 +13,7 @@ const JourneySuns = () => {
         <div className="flex flex-col items-center text-center max-w-xs">
           <div className="journey-sun mb-4">
             <div className="journey-sun-icon flex items-center justify-center">
-              <span className="text-white text-lg">you already have what it takes</span>
+              <span className="text-white text-lg">Find</span>
             </div>
           </div>
           <p className="text-gray-700">Student travelers who are also going</p>
@@ -26,7 +26,7 @@ const JourneySuns = () => {
         <div className="flex flex-col items-center text-center max-w-xs">
           <div className="journey-sun mb-4">
             <div className="journey-sun-icon flex items-center justify-center">
-              <span className="text-white text-lg">soul full of sunshine</span>
+              <span className="text-white text-lg">Connect</span>
             </div>
           </div>
           <p className="text-gray-700">Message them to share costs on rides or stays</p>
@@ -39,7 +39,7 @@ const JourneySuns = () => {
         <div className="flex flex-col items-center text-center max-w-xs">
           <div className="journey-sun mb-4">
             <div className="journey-sun-icon flex items-center justify-center">
-              <span className="text-white text-lg">SHINE ON!</span>
+              <span className="text-white text-lg">Save</span>
             </div>
           </div>
           <p className="text-gray-700">Save money, travel more, experience authentic places</p>
