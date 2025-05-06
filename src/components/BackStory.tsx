@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { BookOpen } from 'lucide-react';
+
 const BackStory = () => {
   return <section id="backstory" className="py-16 bg-gradient-to-b from-white to-[#FEF7CD]/40 relative">
       {/* Film grain texture overlay */}
@@ -8,7 +10,27 @@ const BackStory = () => {
       <div className="container px-4 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div>
+            <div className="relative">
+              {/* Flags decorating the polaroid */}
+              <div className="absolute -top-4 -left-4 rotate-[-15deg] text-xl">🇦🇺</div>
+              <div className="absolute -top-4 left-1/4 rotate-[-5deg] text-xl">🇳🇴</div>
+              <div className="absolute -top-4 left-2/4 rotate-[5deg] text-xl">🇸🇰</div>
+              <div className="absolute -top-4 -right-4 rotate-[15deg] text-xl">🇩🇰</div>
+              
+              <div className="absolute top-1/4 -left-4 rotate-[-10deg] text-xl">🇸🇪</div>
+              <div className="absolute top-1/4 -right-4 rotate-[10deg] text-xl">🇫🇷</div>
+              
+              <div className="absolute top-2/4 -left-4 rotate-[-5deg] text-xl">🇩🇪</div>
+              <div className="absolute top-2/4 -right-4 rotate-[5deg] text-xl">🇮🇹</div>
+              
+              <div className="absolute bottom-1/4 -left-4 text-xl">🇪🇸</div>
+              <div className="absolute bottom-1/4 -right-4 text-xl">🇬🇷</div>
+              
+              <div className="absolute -bottom-4 -left-4 rotate-[15deg] text-xl">🇨🇿</div>
+              <div className="absolute -bottom-4 left-1/4 rotate-[5deg] text-xl">🇭🇷</div>
+              <div className="absolute -bottom-4 left-2/4 rotate-[-5deg] text-xl">🇵🇱</div>
+              <div className="absolute -bottom-4 -right-4 rotate-[-15deg] text-xl">🇬🇧</div>
+              
               <div className="polaroid transform rotate-3">
                 <img alt="Dominika traveling" className="w-full h-auto object-cover retro-filter" src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" />
                 <p className="text-center font-handwritten mt-2">Exploring new horizons!</p>
@@ -45,4 +67,5 @@ const BackStory = () => {
       </div>
     </section>;
 };
+
 export default BackStory;
