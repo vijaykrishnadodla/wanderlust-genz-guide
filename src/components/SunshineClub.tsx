@@ -1,32 +1,23 @@
-
 import React from 'react';
 import { Sun, UserRound, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Card, CardContent } from "@/components/ui/card";
-
 const SunshineClub = () => {
-  return (
-    <section id="sunshine-club" className="py-16 relative overflow-hidden">
+  return <section id="sunshine-club" className="py-16 relative overflow-hidden">
       {/* Sun-themed background */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#FDE1D3] to-white">
         <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
         
         {/* Stylized sun pattern background */}
         <div className="absolute inset-0 opacity-10">
-          {[...Array(20)].map((_, i) => (
-            <div 
-              key={i}
-              className="absolute rounded-full bg-[#FEC6A1] opacity-40"
-              style={{
-                width: `${Math.random() * 60 + 40}px`,
-                height: `${Math.random() * 60 + 40}px`,
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
+          {[...Array(20)].map((_, i) => <div key={i} className="absolute rounded-full bg-[#FEC6A1] opacity-40" style={{
+          width: `${Math.random() * 60 + 40}px`,
+          height: `${Math.random() * 60 + 40}px`,
+          top: `${Math.random() * 100}%`,
+          left: `${Math.random() * 100}%`
+        }} />)}
         </div>
       </div>
       
@@ -43,7 +34,7 @@ const SunshineClub = () => {
         </div>
 
         <div className="mb-10 relative">
-          <img alt="Sunshine mascot with heart sunglasses and pink hat" className="mx-auto max-w-sm md:max-w-md" src="/lovable-uploads/2f0c4da4-6e39-4a7b-be74-64aa968d3eca.jpg" />
+          
           <p className="text-center font-handwritten text-xl text-[#F97316] mt-4">
             Warm sunny glow ✨ anywhere you go
           </p>
@@ -119,18 +110,12 @@ const SunshineClub = () => {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-[#F97316] relative">
               {/* Animation of watermelon seeds */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {[...Array(20)].map((_, i) => (
-                  <div 
-                    key={i}
-                    className="absolute w-2 h-4 bg-black rounded-full animate-float"
-                    style={{
-                      top: `${Math.random() * 100}%`,
-                      left: `${Math.random() * 100}%`,
-                      animationDelay: `${Math.random() * 3}s`,
-                      animationDuration: `${Math.random() * 2 + 2}s`
-                    }}
-                  />
-                ))}
+                {[...Array(20)].map((_, i) => <div key={i} className="absolute w-2 h-4 bg-black rounded-full animate-float" style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${Math.random() * 2 + 2}s`
+              }} />)}
               </div>
               
               <div className="p-8 relative z-10">
@@ -371,8 +356,6 @@ const SunshineClub = () => {
           </p>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default SunshineClub;
