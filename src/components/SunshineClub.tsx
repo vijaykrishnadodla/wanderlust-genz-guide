@@ -11,9 +11,12 @@ const SunshineClub = () => {
       
       <div className="container px-4 md:px-6 relative z-10">
         <div className="text-center mb-10">
-          <div className="inline-block bg-[#FEC6A1] px-6 py-2 rounded-lg transform -rotate-1 mb-4 flex items-center justify-center">
-            <Sun className="h-6 w-6 text-[#F97316] mr-2" />
-            <h2 className="text-3xl md:text-4xl font-display mb-0">THE SUNSHINE CLUB</h2>
+          <div className="inline-block bg-[#FEC6A1] px-6 py-2 rounded-lg transform -rotate-1 mb-4 flex flex-col items-center justify-center">
+            <span className="font-handwritten text-2xl font-bold text-[#F97316] -mb-1 transform -rotate-2">JOIN</span>
+            <div className="flex items-center justify-center">
+              <Sun className="h-6 w-6 text-[#F97316] mr-2" />
+              <h2 className="text-3xl md:text-4xl font-display mb-0">THE SUNSHINE CLUB</h2>
+            </div>
           </div>
           <p className="text-xl italic text-[#F97316] max-w-2xl mx-auto">
             Join a community of student travelers with your unproblematic, worldly bestie ☀️
