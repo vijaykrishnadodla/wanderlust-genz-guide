@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Earth, Camera, ArrowRight, Globe } from 'lucide-react';
@@ -44,7 +43,7 @@ const Hero = () => {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="polaroid transform rotate-3 shadow-lg">
                 <img alt="Sunny - Your Travel Buddy" className="w-48 h-48 object-contain retro-filter" src="/lovable-uploads/6babe884-a973-49d2-9125-fad3e4a98f6e.jpg" />
-                <p className="text-center font-handwritten mt-1">Your travel bestie!</p>
+                <p className="text-center font-handwritten mt-1">meet SUNNY your travel BESTIE!</p>
               </div>
             </div>
             
