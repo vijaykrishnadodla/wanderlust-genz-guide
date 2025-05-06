@@ -1,9 +1,12 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Earth, Camera, ArrowRight, Globe } from 'lucide-react';
+import { Earth, ArrowRight, Users } from 'lucide-react';
 import MiniSignUpForm from './MiniSignUpForm';
+
 const Hero = () => {
-  return <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-[#FEF7CD]/60 to-white relative overflow-hidden">
+  return (
+    <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-[#FEF7CD]/60 to-white relative overflow-hidden">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
@@ -17,17 +20,36 @@ const Hero = () => {
             <p className="text-lg text-[#ea384c] font-handwritten md:text-2xl">
               The ultimate travel companion for students - with perks, plans, and Sunny by your side.
             </p>
+            
+            <p className="text-gray-700 text-lg">
+              Join thousands of students saving <span className="font-bold text-[#F97316]">$200+ per week</span> on travel with our exclusive membership perks and ISIC card benefits.
+            </p>
+            
             <div className="flex flex-col sm:flex-row gap-4 md:justify-start justify-center">
               <Button className="stb-button transform rotate-1 group">
                 Find Your Travel Style
                 <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="outline" className="rounded-full border-[#FEC6A1] text-[#F97316] hover:bg-[#FEC6A1]/20 transform -rotate-1">
-                <span>💸</span> Ready to travel smart & save BIG?
+              <Button 
+                variant="outline" 
+                className="rounded-full border-[#FEC6A1] text-[#F97316] hover:bg-[#FEC6A1]/20 transform -rotate-1"
+                onClick={() => {
+                  const offeringSection = document.getElementById('offering');
+                  if (offeringSection) offeringSection.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                <Users className="mr-2 h-4 w-4" /> Join The Sunshine Club Now
               </Button>
             </div>
 
-            
+            <div className="flex justify-center md:justify-start items-center gap-2 mt-2">
+              <div className="flex -space-x-2">
+                <div className="w-8 h-8 rounded-full bg-[#FEC6A1] flex items-center justify-center text-xs">👋</div>
+                <div className="w-8 h-8 rounded-full bg-[#FEF7CD] flex items-center justify-center text-xs">✈️</div>
+                <div className="w-8 h-8 rounded-full bg-[#FDE1D3] flex items-center justify-center text-xs">🌞</div>
+              </div>
+              <p className="text-sm text-gray-600">Joined by <span className="font-bold text-[#F97316]">5,000+</span> student travelers</p>
+            </div>
           </div>
           
           <div className="relative h-[300px] md:h-[450px]">
@@ -64,6 +86,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;
