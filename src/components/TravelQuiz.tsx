@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { Plane, Map, Ticket, Calendar, Compass } from 'lucide-react';
+import { Plane, Map, Ticket, Calendar, Compass, Check } from 'lucide-react';
 
 type QuizStep = 'name' | 'destination' | 'email' | 'holidayType' | 'result';
 
