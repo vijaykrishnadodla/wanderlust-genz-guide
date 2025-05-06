@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from '@/components/ui/separator';
+import JourneySuns from './JourneySuns';
 
 const SunshineClub = () => {
   // State for the countdown timer
@@ -74,6 +75,9 @@ const SunshineClub = () => {
             Community of student travelers who save money and experience more authentic travel
           </p>
         </div>
+
+        {/* Add Journey Suns Component Here */}
+        <JourneySuns />
 
         {/* Key Benefits - Modern Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">

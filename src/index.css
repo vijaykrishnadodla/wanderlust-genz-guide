@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
@@ -107,6 +106,34 @@
     mix-blend-mode: soft-light;
     opacity: 0.3;
     pointer-events: none;
+  }
+
+  /* Journey Suns styles */
+  .journey-sun {
+    @apply relative flex items-center justify-center;
+    width: 130px;
+    height: 130px;
+  }
+
+  .journey-sun-icon {
+    @apply h-full w-full bg-gradient-to-br from-[#FFDD6C] to-[#F97316] rounded-full shadow-md flex items-center justify-center;
+    box-shadow: 0 0 30px 0 rgba(249, 115, 22, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .journey-sun:after {
+    content: '';
+    position: absolute;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(255,221,108,0.2) 0%, rgba(249,115,22,0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  .journey-sun:hover .journey-sun-icon {
+    box-shadow: 0 0 40px 5px rgba(249, 115, 22, 0.4);
+    transform: scale(1.05);
   }
 
   /* Modern sunshine design system */
