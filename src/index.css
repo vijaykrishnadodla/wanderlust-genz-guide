@@ -111,8 +111,6 @@
   /* Journey Suns styles */
   .journey-sun {
     @apply relative flex items-center justify-center;
-    width: 130px;
-    height: 130px;
     transition: all 0.3s ease;
   }
 
@@ -123,7 +121,7 @@
   }
 
   .shine-bigger {
-    box-shadow: 0 0 35px 0 rgba(249, 115, 22, 0.4);
+    box-shadow: 0 0 40px 8px rgba(249, 115, 22, 0.5);
   }
 
   .journey-sun:after {
@@ -137,7 +135,7 @@
   }
 
   .journey-sun:hover .journey-sun-icon {
-    box-shadow: 0 0 40px 5px rgba(249, 115, 22, 0.4);
+    box-shadow: 0 0 50px 10px rgba(249, 115, 22, 0.5);
     transform: scale(1.05);
   }
 
@@ -151,16 +149,17 @@
     animation: sun-blink 1.5s ease-in-out infinite;
   }
 
-  /* Animation for curved arrow paths */
-  @keyframes draw-path {
-    0% { stroke-dashoffset: 100; }
-    100% { stroke-dashoffset: 0; }
+  /* Animation for sun rays */
+  @keyframes flow-ray {
+    0% { stroke-dashoffset: 200; opacity: 0.3; }
+    50% { opacity: 0.8; }
+    100% { stroke-dashoffset: 0; opacity: 0.3; }
   }
 
-  .path-arrow {
-    stroke-dasharray: 100;
+  .sun-ray {
+    stroke-dasharray: 200;
     stroke-dashoffset: 0;
-    animation: draw-path 2s ease-in-out forwards;
+    animation: flow-ray 4s ease-in-out infinite alternate;
   }
 
   /* Add a specific class for the font-handwritten to ensure it's applied */

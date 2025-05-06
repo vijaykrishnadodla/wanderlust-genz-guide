@@ -9,47 +9,42 @@ const JourneySuns = () => {
       </h3>
       
       {/* Journey Suns Section */}
-      <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-        {/* First Sun - Smaller */}
-        <div className="journey-sun" style={{ width: '110px', height: '110px' }}>
+      <div className="flex flex-wrap items-center justify-center gap-8 md:gap-10 relative">
+        {/* Connecting Sun Rays - These go behind the suns */}
+        <div className="absolute w-full h-full overflow-hidden pointer-events-none">
+          {/* First connecting ray */}
+          <svg className="absolute w-full h-10 top-1/3" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 20 Q 150 -20 280 20" stroke="#FFD700" strokeWidth="3" strokeLinecap="round" opacity="0.6" className="sun-ray" />
+          </svg>
+          
+          {/* Second connecting ray */}
+          <svg className="absolute w-full h-10 top-1/2" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 20 Q 220 50 350 20" stroke="#FFD700" strokeWidth="2" strokeLinecap="round" opacity="0.5" className="sun-ray" />
+          </svg>
+        </div>
+        
+        {/* First Sun - Smaller but still big */}
+        <div className="journey-sun" style={{ width: '200px', height: '200px' }}>
           <div className="journey-sun-icon">
-            <p className="font-handwritten text-white text-center px-3">
+            <p className="font-handwritten text-white text-center px-3 text-xl">
               you already have<br />what it takes
             </p>
           </div>
         </div>
         
-        {/* First Arrow - Handwritten Style */}
-        <div className="transform rotate-6 hidden md:block">
-          <svg width="60" height="30" viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 15C12 8 22 25 35 15C48 5 58 15 58 15" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" className="path-arrow" />
-            <path d="M48 6C48 6 54 10 58 15" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" />
-            <path d="M48 24C48 24 54 20 58 15" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" />
-          </svg>
-        </div>
-        
         {/* Second Sun - Medium */}
-        <div className="journey-sun" style={{ width: '125px', height: '125px' }}>
+        <div className="journey-sun" style={{ width: '220px', height: '220px' }}>
           <div className="journey-sun-icon">
-            <p className="font-handwritten text-white text-center px-3">
+            <p className="font-handwritten text-white text-center px-3 text-xl">
               soul full of<br />sunshine
             </p>
           </div>
         </div>
         
-        {/* Second Arrow - More Abstract */}
-        <div className="transform -rotate-6 hidden md:block">
-          <svg width="60" height="35" viewBox="0 0 60 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 18C8 8 18 28 30 18C42 8 58 18 58 18" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="1 4" className="path-arrow" />
-            <path d="M46 8C46 8 52 12 58 18" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" />
-            <path d="M46 28C46 28 52 24 58 18" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" />
-          </svg>
-        </div>
-        
         {/* Third Sun - Largest */}
-        <div className="journey-sun" style={{ width: '150px', height: '150px' }}>
+        <div className="journey-sun" style={{ width: '240px', height: '240px' }}>
           <div className="journey-sun-icon shine-bigger">
-            <p className="font-handwritten text-white text-center px-3 text-xl sun-blink">
+            <p className="font-handwritten text-white text-center px-3 text-2xl sun-blink">
               SHINE ON!
             </p>
           </div>
