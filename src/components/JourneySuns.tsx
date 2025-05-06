@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
 
 const JourneySuns = () => {
   return (
@@ -20,11 +19,12 @@ const JourneySuns = () => {
           </div>
         </div>
         
-        {/* First Arrow - Curvy */}
-        <div className="transform rotate-12 hidden md:block">
-          <svg width="60" height="28" viewBox="0 0 60 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 14C0 14 30 0 45 14C60 28 60 14 60 14" stroke="#F97316" strokeWidth="2" className="path-arrow" />
-            <path d="M50 5L60 14L50 23" stroke="#F97316" strokeWidth="2" />
+        {/* First Arrow - Handwritten Style */}
+        <div className="transform rotate-6 hidden md:block">
+          <svg width="60" height="30" viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 15C12 8 22 25 35 15C48 5 58 15 58 15" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" className="path-arrow" />
+            <path d="M48 6C48 6 54 10 58 15" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M48 24C48 24 54 20 58 15" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" />
           </svg>
         </div>
         
@@ -37,11 +37,12 @@ const JourneySuns = () => {
           </div>
         </div>
         
-        {/* Second Arrow - More Curvy */}
-        <div className="transform -rotate-12 hidden md:block">
-          <svg width="60" height="32" viewBox="0 0 60 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 16C0 8 20 24 35 16C50 8 60 16 60 16" stroke="#F97316" strokeWidth="2" className="path-arrow" />
-            <path d="M50 7L60 16L50 25" stroke="#F97316" strokeWidth="2" />
+        {/* Second Arrow - More Abstract */}
+        <div className="transform -rotate-6 hidden md:block">
+          <svg width="60" height="35" viewBox="0 0 60 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 18C8 8 18 28 30 18C42 8 58 18 58 18" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="1 4" className="path-arrow" />
+            <path d="M46 8C46 8 52 12 58 18" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M46 28C46 28 52 24 58 18" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" />
           </svg>
         </div>
         
