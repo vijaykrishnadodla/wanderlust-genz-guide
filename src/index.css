@@ -108,31 +108,29 @@
     pointer-events: none;
   }
 
-  /* New sun glow animation */
+  /* Sunshine effect animations */
   @keyframes sun-glow {
     0%, 100% { 
-      box-shadow: 0 0 15px 5px rgba(253, 173, 50, 0.6); 
-      transform: scale(1);
+      box-shadow: 0 0 20px 10px rgba(253, 173, 50, 0.6); 
     }
     50% { 
-      box-shadow: 0 0 25px 8px rgba(253, 173, 50, 0.8); 
-      transform: scale(1.05);
+      box-shadow: 0 0 35px 15px rgba(253, 173, 50, 0.8); 
     }
   }
 
   .sun-glow {
-    animation: sun-glow 8s infinite ease-in-out;
+    animation: sun-glow 6s infinite ease-in-out;
   }
 
   /* Add a slow pulse animation */
   @keyframes slow-pulse {
     0%, 100% { 
-      opacity: 0.6; 
+      opacity: 0.7; 
       transform: scale(1);
     }
     50% { 
-      opacity: 0.9;
-      transform: scale(1.1);
+      opacity: 1;
+      transform: scale(1.05);
     }
   }
 
@@ -140,7 +138,7 @@
     animation: slow-pulse 8s infinite ease-in-out;
   }
 
-  /* New sun ray animations */
+  /* Sun ray animations */
   @keyframes ray-rotate {
     0% {
       transform: rotate(0deg);
@@ -152,56 +150,89 @@
 
   /* Gradient sun background */
   .sunshine-gradient {
-    background: linear-gradient(135deg, #fdad32 0%, #F97316 100%);
+    background: linear-gradient(135deg, #FFDD6C 0%, #F97316 100%);
+    position: relative;
+    z-index: 1;
   }
   
-  /* Enhanced sun with rays */
-  .sun-with-rays {
-    position: relative;
-    overflow: visible;
+  /* Sun rays - redesigned for more natural look */
+  .sun-rays {
+    position: absolute;
+    inset: -50%;
+    z-index: -1;
   }
-
-  .sun-with-rays::before {
+  
+  .sun-rays::before {
     content: '';
     position: absolute;
-    top: -20%;
-    left: -20%;
-    width: 140%;
-    height: 140%;
-    background-image: radial-gradient(
+    inset: 0;
+    background: radial-gradient(
       circle at center,
-      rgba(0,0,0,0) 40%, 
-      rgba(253, 173, 50, 0) 40%, 
-      rgba(253, 173, 50, 0.3) 50%,
-      rgba(253, 173, 50, 0) 60%
+      rgba(255, 221, 108, 0.8) 0%,
+      rgba(249, 115, 22, 0.5) 20%,
+      rgba(249, 115, 22, 0) 70%
     );
-    animation: ray-rotate 20s linear infinite;
     z-index: -1;
   }
 
-  .sun-with-rays::after {
+  /* Individual rays positioning */
+  .sun-rays::after {
     content: '';
     position: absolute;
-    top: -30%;
-    left: -30%;
-    width: 160%;
-    height: 160%;
+    inset: 0;
     background-image: 
-      repeating-conic-gradient(
-        rgba(253, 173, 50, 0) 0deg, 
-        rgba(253, 173, 50, 0) 18deg, 
-        rgba(253, 173, 50, 0.3) 20deg, 
-        rgba(253, 173, 50, 0) 22deg,
-        rgba(253, 173, 50, 0) 40deg
-      );
-    animation: ray-rotate 30s linear infinite reverse;
-    z-index: -1;
+      linear-gradient(0deg, transparent 45%, rgba(255, 221, 108, 0.8) 50%, transparent 55%),
+      linear-gradient(30deg, transparent 45%, rgba(255, 221, 108, 0.8) 50%, transparent 55%),
+      linear-gradient(60deg, transparent 45%, rgba(255, 221, 108, 0.8) 50%, transparent 55%),
+      linear-gradient(90deg, transparent 45%, rgba(255, 221, 108, 0.8) 50%, transparent 55%),
+      linear-gradient(120deg, transparent 45%, rgba(255, 221, 108, 0.8) 50%, transparent 55%),
+      linear-gradient(150deg, transparent 45%, rgba(255, 221, 108, 0.8) 50%, transparent 55%);
+    transform-origin: center;
+    animation: ray-rotate 60s linear infinite;
+    z-index: -2;
   }
 
-  .sun-with-rays:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 35px 15px rgba(253, 173, 50, 0.7);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  /* Large sun burst effect */
+  .sun-burst {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .sun-burst::before {
+    content: '';
+    position: absolute;
+    inset: -100%;
+    background: 
+      repeating-conic-gradient(
+        from 0deg,
+        rgba(255, 221, 108, 0) 0deg,
+        rgba(255, 221, 108, 0) 10deg,
+        rgba(255, 221, 108, 0.5) 12deg,
+        rgba(255, 221, 108, 0) 14deg,
+        rgba(255, 221, 108, 0) 30deg
+      );
+    animation: ray-rotate 180s linear infinite;
+    z-index: -1;
+  }
+  
+  /* Long distance rays */
+  .long-rays {
+    position: absolute;
+    inset: -150%;
+    z-index: -2;
+  }
+  
+  .long-rays::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(0deg, transparent 47%, rgba(255, 221, 108, 0.4) 49%, rgba(255, 221, 108, 0.4) 51%, transparent 53%),
+      linear-gradient(45deg, transparent 47%, rgba(255, 221, 108, 0.4) 49%, rgba(255, 221, 108, 0.4) 51%, transparent 53%),
+      linear-gradient(90deg, transparent 47%, rgba(255, 221, 108, 0.4) 49%, rgba(255, 221, 108, 0.4) 51%, transparent 53%),
+      linear-gradient(135deg, transparent 47%, rgba(255, 221, 108, 0.4) 49%, rgba(255, 221, 108, 0.4) 51%, transparent 53%);
+    transform-origin: center;
+    animation: ray-rotate 120s linear infinite reverse;
   }
 
   .sunshine-arrow {
@@ -226,3 +257,4 @@
     pointer-events: none;
   }
 }
+
