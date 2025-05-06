@@ -35,9 +35,7 @@ const SunshineClub = () => {
 
         <div className="mb-10 relative">
           
-          <p className="text-center font-handwritten text-xl text-[#F97316] mt-4">
-            Warm sunny glow ✨ anywhere you go
-          </p>
+          
         </div>
 
         {/* Inspirational Yellow Sun Elements */}
@@ -123,7 +121,7 @@ const SunshineClub = () => {
                   <h3 className="font-handwritten text-2xl text-white m-0">Fulltimer</h3>
                 </div>
                 <div className="flex items-end gap-1 mb-4">
-                  <span className="text-4xl font-bold">$2</span>
+                  <span className="text-4xl font-bold">$19</span>
                   <span className="text-lg text-gray-600">/month</span>
                 </div>
                 <Badge variant="outline" className="mb-6 bg-yellow-100 text-[#F97316] border-[#F97316]">BEST VALUE</Badge>
