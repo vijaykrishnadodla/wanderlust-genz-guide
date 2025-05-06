@@ -15,9 +15,7 @@ const SunshineClub = () => {
               <h2 className="text-3xl md:text-4xl font-display mb-0">THE SUNSHINE CLUB</h2>
             </div>
           </div>
-          <p className="text-xl italic text-[#F97316] max-w-2xl mx-auto">
-            Join a community of student travelers with your unproblematic, worldly bestie ☀️
-          </p>
+          <p className="text-xl italic text-[#F97316] max-w-2xl mx-auto">Community of student travelers ☀️Warm sunny glow ✨ Anywhere you go</p>
         </div>
 
         <div className="mb-10 relative">
