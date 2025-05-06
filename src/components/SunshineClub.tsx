@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { Sun, UserRound, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video, Clock } from 'lucide-react';
+import { Sun, UserRound, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video, LoaderCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
@@ -156,11 +157,27 @@ const SunshineClub = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Fulltimer Pricing */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-[#F97316] relative">
-              {/* Animation of suns */}
+              {/* Animation of suns and sun rays */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {/* Sun rays - larger background elements */}
                 {[...Array(20)].map((_, i) => (
                   <div 
                     key={i} 
+                    className="absolute bg-[#FEC6A1] rounded-full"
+                    style={{
+                      width: `${Math.random() * 15 + 60}px`,
+                      height: `${Math.random() * 15 + 60}px`,
+                      top: `${Math.random() * 100}%`,
+                      left: `${Math.random() * 100}%`,
+                      opacity: '0.2',
+                    }}
+                  ></div>
+                ))}
+                
+                {/* Sun light waves - smaller animated elements */}
+                {[...Array(20)].map((_, i) => (
+                  <div 
+                    key={i + 100} 
                     className="absolute bg-[#FEC6A1] rounded-full animate-float"
                     style={{
                       width: `${Math.random() * 15 + 10}px`,
@@ -168,7 +185,7 @@ const SunshineClub = () => {
                       top: `${Math.random() * 100}%`,
                       left: `${Math.random() * 100}%`,
                       animationDelay: `${Math.random() * 3}s`,
-                      animationDuration: `${Math.random() * 2 + 2}s`,
+                      animationDuration: `${Math.random() * 3 + 3}s`, // Slower animation
                       boxShadow: '0 0 5px rgba(253, 173, 50, 0.7)'
                     }}
                   >
@@ -197,7 +214,7 @@ const SunshineClub = () => {
                 <div className="mb-6">
                   <Badge variant="outline" className="mb-2 bg-red-100 text-red-600 border-red-600 font-bold">SPECIAL OFFER</Badge>
                   <div className="flex items-center gap-1 text-sm text-red-600">
-                    <Clock className="h-4 w-4" />
+                    <LoaderCircle className="h-4 w-4 animate-spin" />
                     <span>LIMITED TIME: </span>
                     <div className="flex bg-red-50 p-1 rounded-md">
                       <div className="bg-red-600 text-white px-1 rounded">
