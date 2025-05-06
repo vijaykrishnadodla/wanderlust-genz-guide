@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Earth, Camera, ArrowRight, Globe } from 'lucide-react';
@@ -10,9 +11,9 @@ const Hero = () => {
       <div className="container px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col gap-6 text-center md:text-left">
-            <div className="inline-block bg-[#FEC6A1]/40 text-sm px-4 py-1 rounded-full transform rotate-1 self-start md:self-auto mx-auto md:mx-0">
-              <span className="font-bold text-[#F97316] flex items-center gap-1">
-                Created with <span className="font-bold">ISIC</span>, the globally recognized student ID.
+            <div className="w-full bg-[#FEC6A1]/40 text-sm px-6 py-2 rounded-full transform rotate-1 self-start md:self-auto mx-auto md:mx-0">
+              <span className="font-bold text-[#F97316] flex items-center gap-1 flex-wrap md:flex-nowrap">
+                Created in cooperation with <span className="font-bold">ISIC</span> — the only globally recognized student ID, trusted by over 120 million students worldwide throughout their studies.
               </span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display transform -rotate-1">
