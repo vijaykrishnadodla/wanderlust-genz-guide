@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BookOpen } from 'lucide-react';
 
@@ -11,43 +10,43 @@ const BackStory = () => {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div className="relative">
-              {/* Flags decorating around the polaroid - top side */}
-              <div className="absolute -top-8 -left-10 rotate-[-25deg] text-lg">🇦🇺</div>
-              <div className="absolute -top-8 -left-2 rotate-[-15deg] text-lg">🇳🇴</div>
-              <div className="absolute -top-8 left-6 rotate-[-5deg] text-lg">🇸🇰</div>
-              <div className="absolute -top-8 left-14 rotate-[5deg] text-lg">🇩🇰</div>
-              <div className="absolute -top-8 left-22 rotate-[15deg] text-lg">🇸🇪</div>
-              <div className="absolute -top-8 right-22 rotate-[25deg] text-lg">🇫🇷</div>
+              {/* Top edge flags */}
+              <div className="absolute -top-6 -left-10 rotate-[-25deg] text-lg">🇦🇺</div>
+              <div className="absolute -top-6 -left-2 rotate-[-15deg] text-lg">🇳🇴</div>
+              <div className="absolute -top-6 left-12 rotate-[-5deg] text-lg">🇸🇰</div>
+              <div className="absolute -top-6 left-26 rotate-[0deg] text-lg">🇩🇰</div>
+              <div className="absolute -top-6 left-40 rotate-[5deg] text-lg">🇸🇪</div>
+              <div className="absolute -top-6 left-54 rotate-[15deg] text-lg">🇫🇷</div>
+              <div className="absolute -top-6 right-40 rotate-[0deg] text-lg">🇩🇪</div>
+              <div className="absolute -top-6 right-26 rotate-[-5deg] text-lg">🇮🇹</div>
+              <div className="absolute -top-6 right-12 rotate-[-15deg] text-lg">🇪🇸</div>
+              <div className="absolute -top-6 right-0 rotate-[-25deg] text-lg">🇬🇷</div>
               
-              {/* Left side flags */}
-              <div className="absolute top-0 -left-8 rotate-[-35deg] text-lg">🇩🇪</div>
-              <div className="absolute top-10 -left-8 rotate-[-40deg] text-lg">🇮🇹</div>
-              <div className="absolute top-20 -left-8 rotate-[-45deg] text-lg">🇪🇸</div>
-              <div className="absolute top-30 -left-8 rotate-[-50deg] text-lg">🇬🇷</div>
-              <div className="absolute top-40 -left-8 rotate-[-55deg] text-lg">🇨🇿</div>
-              <div className="absolute top-50 -left-8 rotate-[-60deg] text-lg">🇭🇷</div>
+              {/* Left edge flags */}
+              <div className="absolute top-0 -left-8 rotate-[-90deg] text-lg">🇨🇿</div>
+              <div className="absolute top-24 -left-8 rotate-[-90deg] text-lg">🇭🇷</div>
+              <div className="absolute top-48 -left-8 rotate-[-90deg] text-lg">🇵🇱</div>
+              <div className="absolute top-72 -left-8 rotate-[-90deg] text-lg">🇬🇧</div>
+              <div className="absolute top-96 -left-8 rotate-[-90deg] text-lg">🇺🇸</div>
               
-              {/* Bottom side flags */}
-              <div className="absolute -bottom-8 -left-10 rotate-[25deg] text-lg">🇵🇱</div>
-              <div className="absolute -bottom-8 -left-2 rotate-[15deg] text-lg">🇬🇧</div>
-              <div className="absolute -bottom-8 left-6 rotate-[5deg] text-lg">🇺🇸</div>
-              <div className="absolute -bottom-8 left-14 rotate-[-5deg] text-lg">🇮🇳</div>
-              <div className="absolute -bottom-8 left-22 rotate-[-15deg] text-lg">🇮🇩</div>
-              <div className="absolute -bottom-8 right-22 rotate-[-25deg] text-lg">🇹🇭</div>
+              {/* Right edge flags */}
+              <div className="absolute top-0 -right-8 rotate-[90deg] text-lg">🇮🇳</div>
+              <div className="absolute top-24 -right-8 rotate-[90deg] text-lg">🇮🇩</div>
+              <div className="absolute top-48 -right-8 rotate-[90deg] text-lg">🇹🇭</div>
+              <div className="absolute top-72 -right-8 rotate-[90deg] text-lg">🇰🇭</div>
+              <div className="absolute top-96 -right-8 rotate-[90deg] text-lg">🇹🇿</div>
               
-              {/* Right side flags */}
-              <div className="absolute top-0 -right-8 rotate-[35deg] text-lg">🇰🇭</div>
-              <div className="absolute top-10 -right-8 rotate-[40deg] text-lg">🇹🇿</div>
-              <div className="absolute top-20 -right-8 rotate-[45deg] text-lg">🇿🇦</div>
-              <div className="absolute top-30 -right-8 rotate-[50deg] text-lg">🇦🇪</div>
-              <div className="absolute top-40 -right-8 rotate-[55deg] text-lg">🇪🇬</div>
-              <div className="absolute top-50 -right-8 rotate-[60deg] text-lg">🇮🇸</div>
-              
-              {/* Additional flags in corners */}
-              <div className="absolute -top-10 -left-10 rotate-[-30deg] text-lg">🇨🇾</div>
-              <div className="absolute -top-10 -right-10 rotate-[30deg] text-lg">🇱🇰</div>
-              <div className="absolute -bottom-10 -left-10 rotate-[30deg] text-lg">🇦🇹</div>
-              <div className="absolute -bottom-10 -right-10 rotate-[-30deg] text-lg">🇦🇼</div>
+              {/* Bottom edge flags */}
+              <div className="absolute -bottom-6 -left-10 rotate-[25deg] text-lg">🇿🇦</div>
+              <div className="absolute -bottom-6 -left-2 rotate-[15deg] text-lg">🇦🇪</div>
+              <div className="absolute -bottom-6 left-12 rotate-[5deg] text-lg">🇪🇬</div>
+              <div className="absolute -bottom-6 left-26 rotate-[0deg] text-lg">🇮🇸</div>
+              <div className="absolute -bottom-6 left-40 rotate-[-5deg] text-lg">🇨🇾</div>
+              <div className="absolute -bottom-6 left-54 rotate-[-15deg] text-lg">🇱🇰</div>
+              <div className="absolute -bottom-6 right-40 rotate-[0deg] text-lg">🇦🇹</div>
+              <div className="absolute -bottom-6 right-26 rotate-[5deg] text-lg">🇦🇼</div>
+              <div className="absolute -bottom-6 right-12 rotate-[15deg] text-lg">🇨🇼</div>
+              <div className="absolute -bottom-6 right-0 rotate-[25deg] text-lg">🇸🇮</div>
               
               <div className="polaroid transform rotate-3">
                 <img alt="Dominika traveling" className="w-full h-auto object-cover retro-filter" src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" />
