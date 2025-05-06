@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Earth, Camera, ArrowRight } from 'lucide-react';
+import { Earth, Camera, ArrowRight, Globe } from 'lucide-react';
 import MiniSignUpForm from './MiniSignUpForm';
 const Hero = () => {
   return <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-[#FEF7CD]/60 to-white relative overflow-hidden">
@@ -29,7 +29,7 @@ const Hero = () => {
                 <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button variant="outline" className="rounded-full border-[#FEC6A1] text-[#F97316] hover:bg-[#FEC6A1]/20 transform -rotate-1">
-                <Camera className="mr-2 h-4 w-4" /> Ready to travel smart & save BIG?
+                <Globe className="mr-2 h-4 w-4" /> <span>💸</span> Ready to travel smart & save BIG?
               </Button>
             </div>
 
