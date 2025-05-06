@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BookOpen } from 'lucide-react';
 
@@ -11,25 +10,43 @@ const BackStory = () => {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div className="relative">
-              {/* Flags decorating the polaroid */}
-              <div className="absolute -top-4 -left-4 rotate-[-15deg] text-xl">🇦🇺</div>
-              <div className="absolute -top-4 left-1/4 rotate-[-5deg] text-xl">🇳🇴</div>
-              <div className="absolute -top-4 left-2/4 rotate-[5deg] text-xl">🇸🇰</div>
-              <div className="absolute -top-4 -right-4 rotate-[15deg] text-xl">🇩🇰</div>
+              {/* Top edge flags */}
+              <div className="absolute -top-6 -left-10 rotate-[-25deg] text-lg">🇦🇺</div>
+              <div className="absolute -top-6 -left-2 rotate-[-15deg] text-lg">🇳🇴</div>
+              <div className="absolute -top-6 left-12 rotate-[-5deg] text-lg">🇸🇰</div>
+              <div className="absolute -top-6 left-26 rotate-[0deg] text-lg">🇩🇰</div>
+              <div className="absolute -top-6 left-40 rotate-[5deg] text-lg">🇸🇪</div>
+              <div className="absolute -top-6 left-54 rotate-[15deg] text-lg">🇫🇷</div>
+              <div className="absolute -top-6 right-40 rotate-[0deg] text-lg">🇩🇪</div>
+              <div className="absolute -top-6 right-26 rotate-[-5deg] text-lg">🇮🇹</div>
+              <div className="absolute -top-6 right-12 rotate-[-15deg] text-lg">🇪🇸</div>
+              <div className="absolute -top-6 right-0 rotate-[-25deg] text-lg">🇬🇷</div>
               
-              <div className="absolute top-1/4 -left-4 rotate-[-10deg] text-xl">🇸🇪</div>
-              <div className="absolute top-1/4 -right-4 rotate-[10deg] text-xl">🇫🇷</div>
+              {/* Left edge flags */}
+              <div className="absolute top-0 -left-8 rotate-[-90deg] text-lg">🇨🇿</div>
+              <div className="absolute top-24 -left-8 rotate-[-90deg] text-lg">🇭🇷</div>
+              <div className="absolute top-48 -left-8 rotate-[-90deg] text-lg">🇵🇱</div>
+              <div className="absolute top-72 -left-8 rotate-[-90deg] text-lg">🇬🇧</div>
+              <div className="absolute top-96 -left-8 rotate-[-90deg] text-lg">🇺🇸</div>
               
-              <div className="absolute top-2/4 -left-4 rotate-[-5deg] text-xl">🇩🇪</div>
-              <div className="absolute top-2/4 -right-4 rotate-[5deg] text-xl">🇮🇹</div>
+              {/* Right edge flags */}
+              <div className="absolute top-0 -right-8 rotate-[90deg] text-lg">🇮🇳</div>
+              <div className="absolute top-24 -right-8 rotate-[90deg] text-lg">🇮🇩</div>
+              <div className="absolute top-48 -right-8 rotate-[90deg] text-lg">🇹🇭</div>
+              <div className="absolute top-72 -right-8 rotate-[90deg] text-lg">🇰🇭</div>
+              <div className="absolute top-96 -right-8 rotate-[90deg] text-lg">🇹🇿</div>
               
-              <div className="absolute bottom-1/4 -left-4 text-xl">🇪🇸</div>
-              <div className="absolute bottom-1/4 -right-4 text-xl">🇬🇷</div>
-              
-              <div className="absolute -bottom-4 -left-4 rotate-[15deg] text-xl">🇨🇿</div>
-              <div className="absolute -bottom-4 left-1/4 rotate-[5deg] text-xl">🇭🇷</div>
-              <div className="absolute -bottom-4 left-2/4 rotate-[-5deg] text-xl">🇵🇱</div>
-              <div className="absolute -bottom-4 -right-4 rotate-[-15deg] text-xl">🇬🇧</div>
+              {/* Bottom edge flags */}
+              <div className="absolute -bottom-6 -left-10 rotate-[25deg] text-lg">🇿🇦</div>
+              <div className="absolute -bottom-6 -left-2 rotate-[15deg] text-lg">🇦🇪</div>
+              <div className="absolute -bottom-6 left-12 rotate-[5deg] text-lg">🇪🇬</div>
+              <div className="absolute -bottom-6 left-26 rotate-[0deg] text-lg">🇮🇸</div>
+              <div className="absolute -bottom-6 left-40 rotate-[-5deg] text-lg">🇨🇾</div>
+              <div className="absolute -bottom-6 left-54 rotate-[-15deg] text-lg">🇱🇰</div>
+              <div className="absolute -bottom-6 right-40 rotate-[0deg] text-lg">🇦🇹</div>
+              <div className="absolute -bottom-6 right-26 rotate-[5deg] text-lg">🇦🇼</div>
+              <div className="absolute -bottom-6 right-12 rotate-[15deg] text-lg">🇨🇼</div>
+              <div className="absolute -bottom-6 right-0 rotate-[25deg] text-lg">🇸🇮</div>
               
               <div className="polaroid transform rotate-3">
                 <img alt="Dominika traveling" className="w-full h-auto object-cover retro-filter" src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" />
