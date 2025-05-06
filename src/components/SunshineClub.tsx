@@ -122,7 +122,7 @@ const SunshineClub = () => {
                 </div>
                 <div className="flex items-end gap-1 mb-4">
                   <span className="text-4xl font-bold">$19</span>
-                  <span className="text-lg text-gray-600">/month</span>
+                  <span className="text-lg text-gray-600">/year</span>
                 </div>
                 <Badge variant="outline" className="mb-6 bg-yellow-100 text-[#F97316] border-[#F97316]">BEST VALUE</Badge>
                 <p className="text-sm italic mb-6">
