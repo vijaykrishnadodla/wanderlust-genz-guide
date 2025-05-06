@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -108,153 +109,99 @@
     pointer-events: none;
   }
 
-  /* Sunshine effect animations */
-  @keyframes sun-glow {
-    0%, 100% { 
-      box-shadow: 0 0 20px 10px rgba(253, 173, 50, 0.6); 
-    }
-    50% { 
-      box-shadow: 0 0 35px 15px rgba(253, 173, 50, 0.8); 
-    }
+  /* Modern sunshine design system */
+  .sunshine-card {
+    @apply bg-white rounded-xl shadow-sm border border-[#FEC6A1]/10 p-6 transition-all hover:shadow-md;
   }
 
-  .sun-glow {
-    animation: sun-glow 6s infinite ease-in-out;
+  .sunshine-accent {
+    @apply bg-[#F97316]/10 text-[#F97316] px-3 py-1 rounded-full text-sm font-medium inline-flex items-center gap-1;
   }
 
-  /* Add a slow pulse animation */
-  @keyframes slow-pulse {
-    0%, 100% { 
-      opacity: 0.7; 
-      transform: scale(1);
-    }
-    50% { 
-      opacity: 1;
-      transform: scale(1.05);
-    }
+  .sunshine-badge {
+    @apply inline-flex items-center justify-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#FEC6A1]/20 text-[#F97316];
   }
 
-  .animate-slow-pulse {
-    animation: slow-pulse 8s infinite ease-in-out;
+  /* Modern sun icon */
+  .modern-sun {
+    @apply relative flex items-center justify-center;
   }
 
-  /* Sun ray animations */
-  @keyframes ray-rotate {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  .modern-sun-icon {
+    @apply h-full w-full bg-gradient-to-br from-[#FFDD6C] to-[#F97316] rounded-full shadow-sm;
+    box-shadow: 0 0 12px 0 rgba(249, 115, 22, 0.2);
+    transition: all 0.3s ease;
   }
 
-  /* Gradient sun background */
-  .sunshine-gradient {
-    background: linear-gradient(135deg, #FFDD6C 0%, #F97316 100%);
-    position: relative;
-    z-index: 1;
-  }
-  
-  /* Sun rays - redesigned for more natural look */
-  .sun-rays {
-    position: absolute;
-    inset: -50%;
-    z-index: -1;
-  }
-  
-  .sun-rays::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle at center,
-      rgba(255, 221, 108, 0.8) 0%,
-      rgba(249, 115, 22, 0.5) 20%,
-      rgba(249, 115, 22, 0) 70%
-    );
-    z-index: -1;
+  .modern-sun:hover .modern-sun-icon {
+    box-shadow: 0 0 15px 0 rgba(249, 115, 22, 0.3);
+    transform: scale(1.05);
   }
 
-  /* Individual rays positioning */
-  .sun-rays::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: 
-      linear-gradient(0deg, transparent 45%, rgba(255, 221, 108, 0.8) 50%, transparent 55%),
-      linear-gradient(30deg, transparent 45%, rgba(255, 221, 108, 0.8) 50%, transparent 55%),
-      linear-gradient(60deg, transparent 45%, rgba(255, 221, 108, 0.8) 50%, transparent 55%),
-      linear-gradient(90deg, transparent 45%, rgba(255, 221, 108, 0.8) 50%, transparent 55%),
-      linear-gradient(120deg, transparent 45%, rgba(255, 221, 108, 0.8) 50%, transparent 55%),
-      linear-gradient(150deg, transparent 45%, rgba(255, 221, 108, 0.8) 50%, transparent 55%);
-    transform-origin: center;
-    animation: ray-rotate 60s linear infinite;
-    z-index: -2;
+  /* Simplified pricing cards */
+  .pricing-card {
+    @apply bg-white rounded-xl shadow-sm border border-[#FEC6A1]/20 p-6 transition-all hover:shadow-md hover:-translate-y-1 relative overflow-hidden;
   }
 
-  /* Large sun burst effect */
-  .sun-burst {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .sun-burst::before {
-    content: '';
-    position: absolute;
-    inset: -100%;
-    background: 
-      repeating-conic-gradient(
-        from 0deg,
-        rgba(255, 221, 108, 0) 0deg,
-        rgba(255, 221, 108, 0) 10deg,
-        rgba(255, 221, 108, 0.5) 12deg,
-        rgba(255, 221, 108, 0) 14deg,
-        rgba(255, 221, 108, 0) 30deg
-      );
-    animation: ray-rotate 180s linear infinite;
-    z-index: -1;
-  }
-  
-  /* Long distance rays */
-  .long-rays {
-    position: absolute;
-    inset: -150%;
-    z-index: -2;
-  }
-  
-  .long-rays::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: 
-      linear-gradient(0deg, transparent 47%, rgba(255, 221, 108, 0.4) 49%, rgba(255, 221, 108, 0.4) 51%, transparent 53%),
-      linear-gradient(45deg, transparent 47%, rgba(255, 221, 108, 0.4) 49%, rgba(255, 221, 108, 0.4) 51%, transparent 53%),
-      linear-gradient(90deg, transparent 47%, rgba(255, 221, 108, 0.4) 49%, rgba(255, 221, 108, 0.4) 51%, transparent 53%),
-      linear-gradient(135deg, transparent 47%, rgba(255, 221, 108, 0.4) 49%, rgba(255, 221, 108, 0.4) 51%, transparent 53%);
-    transform-origin: center;
-    animation: ray-rotate 120s linear infinite reverse;
+  .pricing-card-highlight {
+    @apply border-[#F97316];
   }
 
-  .sunshine-arrow {
-    position: relative;
-    transition: transform 0.3s ease;
+  .pricing-card-accent {
+    @apply absolute top-0 right-0 w-24 h-24 -mt-8 -mr-8 bg-[#F97316]/10 rounded-full;
   }
-  
-  .sunshine-arrow:hover {
-    transform: translateX(5px) scale(1.1);
+
+  /* Modern feature highlight */
+  .feature-item {
+    @apply flex gap-4 items-start py-2 transition-all duration-200 hover:translate-x-1;
   }
-  
-  .sunshine-arrow::before {
-    content: '';
-    position: absolute;
-    top: -100%;
-    left: -100%;
-    width: 300%;
-    height: 300%;
-    background: radial-gradient(circle at center, rgba(253, 173, 50, 0.3) 0%, rgba(253, 173, 50, 0) 70%);
-    z-index: -1;
-    animation: slow-pulse 6s infinite ease-in-out;
-    pointer-events: none;
+
+  .feature-icon {
+    @apply flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-[#FFDD6C]/80 to-[#F97316]/80 flex items-center justify-center shadow-sm transition-all;
+  }
+
+  .feature-item:hover .feature-icon {
+    @apply scale-110;
+  }
+
+  /* Simplified countdown timer */
+  .countdown-digit {
+    @apply bg-[#F97316] text-white px-2 py-0.5 rounded text-sm font-mono;
+  }
+
+  /* Simplified table styles */
+  .modern-table {
+    @apply w-full border-collapse;
+  }
+
+  .modern-table th {
+    @apply py-3 px-4 text-left font-medium text-gray-600 border-b border-gray-100;
+  }
+
+  .modern-table td {
+    @apply py-3 px-4 border-b border-gray-100;
+  }
+
+  /* For brands/logos section */
+  .brand-logo {
+    @apply h-12 flex items-center justify-center p-2 bg-white rounded-lg shadow-sm border border-gray-100;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+  }
+
+  .brand-logo:hover {
+    filter: grayscale(0%);
+    transform: translateY(-2px);
+  }
+
+  /* Animation keyframes */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes bounce-light {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
   }
 }
-
