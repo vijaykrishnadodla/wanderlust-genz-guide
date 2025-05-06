@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Sun, UserRound, Globe } from 'lucide-react';
+import { Sun, UserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const SunshineClub = () => {
@@ -23,15 +23,44 @@ const SunshineClub = () => {
           </p>
         </div>
 
-        <div className="mb-10">
+        <div className="mb-10 relative">
           <img 
-            src="/lovable-uploads/9aa14dc9-3d1b-4cd1-9028-93d4a960f2b2.png" 
-            alt="Join The Sunshine Club" 
-            className="mx-auto max-w-sm md:max-w-md rounded-lg shadow-lg transform -rotate-2"
+            src="/lovable-uploads/1919aa02-ee8c-4a23-b76a-79325b03daad.png" 
+            alt="Sunshine mascot with heart sunglasses and pink hat" 
+            className="mx-auto max-w-sm md:max-w-md"
           />
           <p className="text-center font-handwritten text-xl text-[#F97316] mt-4">
             Warm sunny glow ✨ anywhere you go
           </p>
+        </div>
+
+        {/* Membership comparison table */}
+        <div className="max-w-3xl mx-auto mb-12 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="border-b border-[#FEC6A1]">
+                <th className="py-4 px-6 text-left"></th>
+                <th className="py-4 px-6 text-left">
+                  <span className="font-handwritten text-2xl text-[#C75D4D]">Fulltimer</span>
+                </th>
+                <th className="py-4 px-6 text-left">
+                  <span className="font-handwritten text-2xl text-[#C75D4D]">Part timer</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-[#FEC6A1]/30">
+                <td className="py-3 px-6 font-handwritten text-lg text-[#C75D4D]">10 top secret spot-specific student travel rules</td>
+                <td className="py-3 px-6">✓</td>
+                <td className="py-3 px-6"></td>
+              </tr>
+              <tr className="border-b border-[#FEC6A1]/30">
+                <td className="py-3 px-6 font-handwritten text-lg text-[#C75D4D]">City guides</td>
+                <td className="py-3 px-6">✓</td>
+                <td className="py-3 px-6">✓</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
