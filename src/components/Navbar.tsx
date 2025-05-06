@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Compass, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 
@@ -15,9 +15,11 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md">
       <div className="container flex items-center justify-between py-4">
         <a href="/" className="flex items-center gap-2">
-          <div className="bg-black rounded-full p-2">
-            <Compass className="h-5 w-5 text-white" />
-          </div>
+          <img 
+            src="/lovable-uploads/c197ba54-f28d-4bfd-a89c-27c8d21e11c0.png" 
+            alt="Student Travel Buddy Logo" 
+            className="h-9 w-9"
+          />
           <span className="font-display text-xl">STUDENT TRAVEL BUDDY</span>
         </a>
         
