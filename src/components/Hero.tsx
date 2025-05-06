@@ -1,12 +1,9 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Earth, Camera, ArrowRight } from 'lucide-react';
 import MiniSignUpForm from './MiniSignUpForm';
-
 const Hero = () => {
-  return (
-    <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-[#FEF7CD]/60 to-white relative overflow-hidden">
+  return <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-[#FEF7CD]/60 to-white relative overflow-hidden">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
@@ -22,7 +19,7 @@ const Hero = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display transform -rotate-1">
               TRAVEL SMARTER. SPEND LESS. <span className="gradient-text">VIBE MORE.</span>
             </h1>
-            <p className="text-lg md:text-xl text-[#ea384c] font-handwritten">
+            <p className="text-lg text-[#ea384c] font-handwritten md:text-2xl">
               The ultimate travel companion for students - with perks, plans, and Sunny by your side.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 md:justify-start justify-center">
@@ -36,7 +33,7 @@ const Hero = () => {
             </div>
 
             <div className="mt-4 bg-[#FEF7CD]/40 p-3 rounded-lg inline-block md:max-w-md">
-              <p className="font-handwritten text-center text-[#F97316]">
+              <p className="font-handwritten text-center text-[#F97316] text-lg">
                 "A smarter, more soulful way to travel — with a real plan, real perks, and a real buddy by your side."
               </p>
             </div>
@@ -45,11 +42,7 @@ const Hero = () => {
             {/* Polaroid-style main image */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="polaroid transform rotate-3 shadow-lg">
-                <img 
-                  alt="Sunny - Your Travel Buddy" 
-                  className="w-48 h-48 object-contain retro-filter" 
-                  src="/lovable-uploads/6babe884-a973-49d2-9125-fad3e4a98f6e.jpg" 
-                />
+                <img alt="Sunny - Your Travel Buddy" className="w-48 h-48 object-contain retro-filter" src="/lovable-uploads/6babe884-a973-49d2-9125-fad3e4a98f6e.jpg" />
                 <p className="text-center font-handwritten mt-1">Your travel bestie!</p>
               </div>
             </div>
@@ -73,14 +66,12 @@ const Hero = () => {
             {/* Additional decorative elements */}
             <div className="absolute top-28 left-24 transform -rotate-6">
               <div className="bg-white p-1 shadow-sm">
-                <p className="font-handwritten text-xs text-[#F97316]">"You pack the snacks, I'll plan the vibe" ☀️</p>
+                <p className="font-handwritten text-[#F97316] text-sm">"You pack the snacks, I'll plan the vibe" ☀️</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
