@@ -13,7 +13,7 @@ const Navbar = () => {
   return <nav className="bg-white border-b border-gray-200 py-4 fixed w-full top-0 z-50">
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2">
-          <img alt="Student Travel Buddy" className="h-10 w-auto" src="/lovable-uploads/1bfb3ff6-11c2-429e-a525-6350583e6630.png" />
+          <img alt="Student Travel Buddy" className="h-30 w-auto" src="/lovable-uploads/1bfb3ff6-11c2-429e-a525-6350583e6630.png" />
           <span className="font-display text-xl">Student Travel Buddy</span>
         </Link>
         
