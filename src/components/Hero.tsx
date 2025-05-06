@@ -27,9 +27,7 @@ const Hero = () => {
               </Button>
             </div>
 
-            <div className="mt-4 bg-[#FEF7CD]/40 p-3 rounded-lg inline-block md:max-w-md">
-              
-            </div>
+            
           </div>
           
           <div className="relative h-[300px] md:h-[450px]">
