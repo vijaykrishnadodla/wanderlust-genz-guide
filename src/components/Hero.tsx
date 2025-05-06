@@ -13,7 +13,7 @@ const Hero = () => {
           <div className="flex flex-col gap-6 text-center md:text-left">
             <div className="inline-block bg-[#FEC6A1]/40 text-sm px-4 py-1 rounded-full transform rotate-1 self-start md:self-auto mx-auto md:mx-0">
               <span className="font-bold text-[#F97316] flex items-center gap-1">
-                Created in cooperation with <img src="/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png" alt="ISIC Logo" className="h-5 inline-block mx-1" /> — the only globally recognized student ID, trusted by over 120 million students worldwide throughout their studies.
+                Created in cooperation with <span className="font-bold">ISIC</span> — the only globally recognized student ID, trusted by over 120 million students worldwide throughout their studies.
               </span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display transform -rotate-1">
