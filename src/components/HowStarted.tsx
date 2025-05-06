@@ -42,17 +42,25 @@ const HowStarted = () => {
             
             <div className="mt-8 flex justify-center">
               <div className="polaroid transform rotate-2 inline-block relative">
-                {/* Adding flags only at the top and bottom of the polaroid frame */}
-                <div className="absolute top-0 w-full flex justify-around" style={{ transform: 'translateY(-50%)' }}>
+                {/* Adding all flags to the top and bottom of the polaroid frame */}
+                <div className="absolute top-0 w-full flex justify-evenly flex-wrap" style={{ transform: 'translateY(-50%)' }}>
                   <span className="rotate-[-15deg] text-lg">🇳🇴</span>
                   <span className="rotate-[0deg] text-lg">🇩🇰</span>
                   <span className="rotate-[15deg] text-lg">🇫🇷</span>
+                  <span className="rotate-[-10deg] text-lg">🇹🇷</span>
+                  <span className="rotate-[10deg] text-lg">🇯🇵</span>
+                  <span className="rotate-[0deg] text-lg">🇩🇪</span>
+                  <span className="rotate-[-5deg] text-lg">🇮🇹</span>
                 </div>
                 
-                <div className="absolute bottom-0 w-full flex justify-around" style={{ transform: 'translateY(50%)' }}>
+                <div className="absolute bottom-0 w-full flex justify-evenly flex-wrap" style={{ transform: 'translateY(50%)' }}>
                   <span className="rotate-[15deg] text-lg">🇦🇪</span>
                   <span className="rotate-[0deg] text-lg">🇮🇸</span>
                   <span className="rotate-[-15deg] text-lg">🇱🇰</span>
+                  <span className="rotate-[10deg] text-lg">🇨🇦</span>
+                  <span className="rotate-[-5deg] text-lg">🇲🇽</span>
+                  <span className="rotate-[5deg] text-lg">🇧🇷</span>
+                  <span className="rotate-[0deg] text-lg">🇦🇺</span>
                 </div>
                 
                 <img src="/lovable-uploads/6babe884-a973-49d2-9125-fad3e4a98f6e.jpg" alt="Sunny the Travel Buddy" className="w-40 h-40 object-contain retro-filter" />

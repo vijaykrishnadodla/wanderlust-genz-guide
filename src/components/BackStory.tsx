@@ -13,10 +13,10 @@ const BackStory = () => {
             <div className="relative">
               {/* Polaroid wrapper with relative positioning */}
               <div className="relative w-full h-full">
-                {/* The polaroid image with flags only at top and bottom */}
+                {/* The polaroid image with all flags at top and bottom only */}
                 <div className="polaroid transform rotate-3 z-10 relative">
-                  {/* Top edge flags */}
-                  <div className="absolute top-0 w-full flex justify-between" style={{ transform: 'translateY(-50%)' }}>
+                  {/* Top edge flags - including some that were previously on sides */}
+                  <div className="absolute top-0 w-full flex justify-evenly flex-wrap" style={{ transform: 'translateY(-50%)' }}>
                     <span className="rotate-[-25deg] text-lg">🇦🇺</span>
                     <span className="rotate-[-15deg] text-lg">🇳🇴</span>
                     <span className="rotate-[-5deg] text-lg">🇸🇰</span>
@@ -27,10 +27,14 @@ const BackStory = () => {
                     <span className="rotate-[-5deg] text-lg">🇮🇹</span>
                     <span className="rotate-[-15deg] text-lg">🇪🇸</span>
                     <span className="rotate-[-25deg] text-lg">🇬🇷</span>
+                    <span className="rotate-[10deg] text-lg">🇨🇿</span>
+                    <span className="rotate-[0deg] text-lg">🇭🇷</span>
+                    <span className="rotate-[-10deg] text-lg">🇵🇱</span>
+                    <span className="rotate-[15deg] text-lg">🇬🇧</span>
                   </div>
                   
-                  {/* Bottom edge flags */}
-                  <div className="absolute bottom-0 w-full flex justify-between" style={{ transform: 'translateY(50%)' }}>
+                  {/* Bottom edge flags - including some that were previously on sides */}
+                  <div className="absolute bottom-0 w-full flex justify-evenly flex-wrap" style={{ transform: 'translateY(50%)' }}>
                     <span className="rotate-[25deg] text-lg">🇿🇦</span>
                     <span className="rotate-[15deg] text-lg">🇦🇪</span>
                     <span className="rotate-[5deg] text-lg">🇪🇬</span>
@@ -41,6 +45,12 @@ const BackStory = () => {
                     <span className="rotate-[5deg] text-lg">🇦🇼</span>
                     <span className="rotate-[15deg] text-lg">🇨🇼</span>
                     <span className="rotate-[25deg] text-lg">🇸🇮</span>
+                    <span className="rotate-[0deg] text-lg">🇺🇸</span>
+                    <span className="rotate-[-10deg] text-lg">🇮🇳</span>
+                    <span className="rotate-[10deg] text-lg">🇮🇩</span>
+                    <span className="rotate-[0deg] text-lg">🇹🇭</span>
+                    <span className="rotate-[-5deg] text-lg">🇰🇭</span>
+                    <span className="rotate-[5deg] text-lg">🇹🇿</span>
                   </div>
                   
                   <img alt="Dominika traveling" className="w-full h-auto object-cover retro-filter" src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" />
