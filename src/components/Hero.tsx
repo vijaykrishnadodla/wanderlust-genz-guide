@@ -1,9 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Earth, Camera, ArrowRight, Globe } from 'lucide-react';
 import MiniSignUpForm from './MiniSignUpForm';
-
 const Hero = () => {
   return <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-[#FEF7CD]/60 to-white relative overflow-hidden">
       {/* Film grain texture overlay */}
@@ -30,9 +28,7 @@ const Hero = () => {
             </div>
 
             <div className="mt-4 bg-[#FEF7CD]/40 p-3 rounded-lg inline-block md:max-w-md">
-              <p className="font-handwritten text-center text-[#F97316] text-lg">
-                "A smarter, more soulful way to travel — with a real plan, real perks, and a real buddy by your side."
-              </p>
+              
             </div>
           </div>
           
