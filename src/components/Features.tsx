@@ -7,7 +7,10 @@ const Features = () => {
   const features = [
     {
       title: "Spontaneous but Smart",
-      description: "Knows how to find last-minute flights and hidden gems. Can vibe with going off-plan — but still has a backup.",
+      description: [
+        "Knows how to find last-minute flights and hidden gems.",
+        "Can vibe with going off-plan — but still has a backup."
+      ],
       quote: ""Let's ditch the tourist trap and go where locals hang. But like... also not miss our train."",
       icon: <Compass className="h-10 w-10 text-[#F97316]" />,
       color: "bg-[#FEC6A1]/30",
@@ -15,40 +18,55 @@ const Features = () => {
     },
     {
       title: "Plugged In",
-      description: "Shares TikToks, uses Google Maps hacks, and always has the Wi-Fi password. Helps document the trip in an aesthetic way.",
-      quote: "Think: "Let's make a Reel AND a memory."",
+      description: [
+        "Shares TikToks, uses Google Maps hacks, and always has the Wi-Fi password.",
+        "Helps document the trip in an aesthetic way."
+      ],
+      quote: ""Let's make a Reel AND a memory."",
       icon: <Map className="h-10 w-10 text-[#fdad32]" />,
       color: "bg-[#FEF7CD]/40",
       rotation: "-rotate-1"
     },
     {
       title: "Respectful + Socially Aware",
-      description: "Doesn't treat cultures like props. Understands climate impact, local customs, and supports ethical travel.",
+      description: [
+        "Doesn't treat cultures like props.",
+        "Understands climate impact, local customs, and supports ethical travel."
+      ],
       quote: ""Let's stay somewhere cute and eco-conscious."",
       icon: <User className="h-10 w-10 text-[#ff77a0]" />,
       color: "bg-[#FDE1D3]/40",
       rotation: "rotate-2"
     },
     {
-      title: "Budget-Savvy, Deal Hunter",
-      description: "Knows where the student discounts are. Finds Airbnb codes, rail passes, cheap eats.",
-      quote: ""We'll splurge once, but we'll eat amazing food always."",
+      title: "Emotionally Supportive",
+      description: [
+        "The buddy who says, "Let's take a break," or "You're good — we're in this together."",
+        "Down to party but also down to sit under a tree and just talk life."
+      ],
+      quote: ""Just breathe. We'll figure this out together."",
       icon: <Calendar className="h-10 w-10 text-[#fe4c02]" />,
       color: "bg-[#FEC6A1]/30",
       rotation: "-rotate-2"
     },
     {
-      title: "Adventure-Ready but Chill",
-      description: "Will hike a volcano with you or just nap on a beach with coconut water. Open-minded. Doesn't complain.",
-      quote: "",
+      title: "Budget-Savvy, Deal Hunter",
+      description: [
+        "Knows where the student discounts are.",
+        "Finds Airbnb codes, rail passes, cheap eats."
+      ],
+      quote: ""We'll splurge once, but we'll eat amazing food always."",
       icon: <Flag className="h-10 w-10 text-[#F97316]" />,
       color: "bg-[#FEF7CD]/40",
       rotation: "rotate-1"
     },
     {
       title: "Aesthetic-Aware",
-      description: "Down for golden hour photos. Doesn't take 100 selfies, just gets the shot. Loves a good sunset picnic or rooftop café.",
-      quote: "",
+      description: [
+        "Down for golden hour photos. Doesn't take 100 selfies, just gets the shot.",
+        "Loves a good sunset picnic or rooftop café."
+      ],
+      quote: ""This lighting is perfect — one pic and then let's just enjoy this moment."",
       icon: <MapPin className="h-10 w-10 text-[#ff77a0]" />,
       color: "bg-[#FDE1D3]/40",
       rotation: "-rotate-1"
@@ -72,7 +90,7 @@ const Features = () => {
           {features.map((feature, index) => (
             <Card 
               key={index} 
-              className={`border-none shadow-lg hover:shadow-xl transition-shadow transform ${feature.rotation}`}
+              className={`border-none shadow-lg hover:shadow-xl transition-shadow transform ${feature.rotation} hover:-translate-y-1 hover:scale-[1.02] transition-transform`}
             >
               <CardHeader className={`${feature.color} rounded-t-lg`}>
                 <div className="flex justify-center">
@@ -80,10 +98,14 @@ const Features = () => {
                 </div>
               </CardHeader>
               <CardContent className="pt-6 bg-white">
-                <CardTitle className="text-xl mb-2 text-center">{feature.title}</CardTitle>
-                <p className="text-gray-600 text-center mb-3">{feature.description}</p>
+                <CardTitle className="text-xl mb-3 text-center">{feature.title}</CardTitle>
+                <ul className="list-disc pl-5 space-y-2 mb-3">
+                  {feature.description.map((point, i) => (
+                    <li key={i} className="text-gray-600">{point}</li>
+                  ))}
+                </ul>
                 {feature.quote && (
-                  <div className="bg-[#FEF7CD]/50 p-3 rounded-lg mt-2">
+                  <div className="bg-[#FEF7CD]/50 p-3 rounded-lg mt-3">
                     <p className="font-handwritten text-center text-[#F97316] text-sm">{feature.quote}</p>
                   </div>
                 )}

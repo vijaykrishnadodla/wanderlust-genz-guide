@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
-import { CheckCircle, Timer } from 'lucide-react';
+import { CheckCircle, Timer, UserRound, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Offering = () => {
@@ -57,7 +57,7 @@ const Offering = () => {
       localEvents: true
     },
     highlight: true,
-    timer: "30 days"
+    spotsLeft: "24"
   }];
   
   const featureLabels = {
@@ -147,7 +147,7 @@ const Offering = () => {
             <div className="absolute top-0 left-0 right-0 bg-[#ea384c] text-white text-center py-2">
               <div className="flex items-center justify-center gap-1">
                 <Timer className="h-4 w-4" />
-                <span className="font-bold">LIMITED OFFER: {plans[2].timer} REMAINING</span>
+                <span className="font-bold">ONLY {plans[2].spotsLeft} SPOTS LEFT</span>
               </div>
             </div>
             
@@ -165,7 +165,7 @@ const Offering = () => {
                 Unlock <span className="text-[#F97316]">ALL student travel perks</span> plus exclusive access to special events & VIP support
               </p>
               
-              <ul className="space-y-3 mb-8 bg-white p-4 rounded-lg border border-[#FEC6A1]/30">
+              <ul className="space-y-3 mb-6 bg-white p-4 rounded-lg border border-[#FEC6A1]/30">
                 {Object.entries(plans[2].features).map(([key, enabled]) => 
                   enabled ? (
                     <li key={key} className="flex items-start gap-2">
@@ -180,9 +180,19 @@ const Offering = () => {
                 </li>
               </ul>
               
-              <Button className="w-full bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-lg py-6">
+              <div className="flex items-center justify-center mb-6">
+                <img 
+                  src="/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png" 
+                  alt="ISIC Logo" 
+                  className="h-20 object-contain"
+                />
+              </div>
+              
+              <Button className="w-full bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-lg py-6 flex items-center justify-center gap-2">
+                <UserRound className="h-5 w-5" />
                 GET FULLTIMER NOW
               </Button>
+              
               <p className="text-center text-sm mt-2 text-gray-600 font-handwritten text-base">
                 30-day money back guarantee
               </p>
@@ -228,6 +238,75 @@ const Offering = () => {
                 </TableRow>
               </TableBody>
             </Table>
+          </div>
+        </div>
+
+        {/* ISIC Verification Information */}
+        <div className="mt-12 bg-white p-6 rounded-lg shadow-lg border border-[#FEC6A1]/30">
+          <h3 className="text-2xl font-bold mb-4 text-[#F97316]">Student Verification Process</h3>
+          <p className="mb-4 text-lg">After purchase, you'll need to verify your full-time student status for your ISIC card:</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div className="bg-[#FEF7CD]/30 p-4 rounded-lg">
+              <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                <span className="bg-[#F97316] text-white rounded-full h-6 w-6 flex items-center justify-center">1</span> 
+                Document Upload
+              </h4>
+              <p>Upload your student ID or enrollment certificate through our secure ISIC verification portal.</p>
+            </div>
+            
+            <div className="bg-[#FEF7CD]/30 p-4 rounded-lg">
+              <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                <span className="bg-[#F97316] text-white rounded-full h-6 w-6 flex items-center justify-center">2</span> 
+                Self-Declaration
+              </h4>
+              <p>Agree to our Terms & Conditions confirming your full-time status. We'll contact you for any additional verification.</p>
+            </div>
+            
+            <div className="bg-[#FEF7CD]/30 p-4 rounded-lg">
+              <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                <span className="bg-[#F97316] text-white rounded-full h-6 w-6 flex items-center justify-center">3</span> 
+                Card Activation
+              </h4>
+              <p>Once verified, access your digital ISIC card through the ISIC app and start enjoying discounts immediately!</p>
+            </div>
+          </div>
+          
+          <div className="flex items-center justify-center gap-4 flex-wrap mt-8">
+            <img src="/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png" alt="ISIC Logo" className="h-12 object-contain" />
+            <img src="/lovable-uploads/43eabef1-8bb9-46f7-b153-0a0c02087110.png" alt="UNESCO Logo" className="h-12 object-contain" />
+            <img src="/lovable-uploads/6d788043-5bb0-4bd1-aee1-41c5cedd3162.png" alt="University Partners" className="h-12 object-contain" />
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-12 max-w-3xl mx-auto">
+          <h3 className="text-2xl font-bold mb-6 text-center">Frequently Asked Questions</h3>
+          
+          <div className="space-y-4">
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <h4 className="font-bold flex items-center gap-2">
+                <HelpCircle className="h-5 w-5 text-[#F97316]" />
+                How do I verify my student status?
+              </h4>
+              <p className="mt-2 text-gray-700">After purchase, you'll receive instructions to upload your student ID or enrollment certificate. We also accept self-declaration with follow-up verification.</p>
+            </div>
+            
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <h4 className="font-bold flex items-center gap-2">
+                <HelpCircle className="h-5 w-5 text-[#F97316]" />
+                What if I'm not a full-time student?
+              </h4>
+              <p className="mt-2 text-gray-700">Part-time students can still get our PartTimer plan with many great benefits. Only the ISIC card requires full-time status.</p>
+            </div>
+            
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <h4 className="font-bold flex items-center gap-2">
+                <HelpCircle className="h-5 w-5 text-[#F97316]" />
+                How quickly will I get my ISIC card?
+              </h4>
+              <p className="mt-2 text-gray-700">Digital cards are usually available within 24-48 hours after verification. Physical cards (optional) take 1-2 weeks to arrive.</p>
+            </div>
           </div>
         </div>
       </div>

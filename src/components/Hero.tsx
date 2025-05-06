@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Earth, Camera } from 'lucide-react';
+import { Earth, Camera, ArrowRight } from 'lucide-react';
 import MiniSignUpForm from './MiniSignUpForm';
 
 const Hero = () => {
@@ -14,7 +14,10 @@ const Hero = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col gap-6 text-center md:text-left">
             <div className="inline-block bg-[#FEC6A1]/40 text-sm px-4 py-1 rounded-full transform rotate-1 self-start md:self-auto mx-auto md:mx-0">
-              <span className="font-bold text-[#F97316]">Your Official Student Travel Buddy</span>
+              <span className="font-bold text-[#F97316] flex items-center gap-1">
+                <span className="text-xs bg-[#F97316] text-white px-2 py-0.5 rounded-full">New</span> 
+                Trusted by 5,000+ students worldwide
+              </span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display transform -rotate-1">
               TRAVEL SMARTER. SPEND LESS. <span className="gradient-text">VIBE MORE.</span>
@@ -23,7 +26,10 @@ const Hero = () => {
               The ultimate travel companion for students - with perks, plans, and Sunny by your side.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 md:justify-start justify-center">
-              <Button className="stb-button transform rotate-1">Take the Quiz</Button>
+              <Button className="stb-button transform rotate-1 group">
+                Find Your Travel Style
+                <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
               <Button variant="outline" className="rounded-full border-[#FEC6A1] text-[#F97316] hover:bg-[#FEC6A1]/20 transform -rotate-1">
                 <Camera className="mr-2 h-4 w-4" /> Learn More
               </Button>
