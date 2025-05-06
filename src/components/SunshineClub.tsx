@@ -140,7 +140,7 @@ const SunshineClub = () => {
                   <h3 className="font-handwritten text-2xl text-gray-700 m-0">Part Timer</h3>
                 </div>
                 <div className="flex items-end gap-1 mb-4">
-                  <span className="text-4xl font-bold">$5</span>
+                  <span className="text-4xl font-bold">$19</span>
                   <span className="text-lg text-gray-600">/month</span>
                 </div>
                 <Badge variant="outline" className="mb-6 bg-gray-100">STANDARD</Badge>
