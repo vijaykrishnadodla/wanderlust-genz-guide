@@ -11,7 +11,7 @@ const Features = () => {
         "Knows how to find last-minute flights and hidden gems.",
         "Can vibe with going off-plan — but still has a backup."
       ],
-      quote: ""Let's ditch the tourist trap and go where locals hang. But like... also not miss our train."",
+      quote: "Let's ditch the tourist trap and go where locals hang. But like... also not miss our train.",
       icon: <Compass className="h-10 w-10 text-[#F97316]" />,
       color: "bg-[#FEC6A1]/30",
       rotation: "rotate-1"
@@ -22,7 +22,7 @@ const Features = () => {
         "Shares TikToks, uses Google Maps hacks, and always has the Wi-Fi password.",
         "Helps document the trip in an aesthetic way."
       ],
-      quote: ""Let's make a Reel AND a memory."",
+      quote: "Let's make a Reel AND a memory.",
       icon: <Map className="h-10 w-10 text-[#fdad32]" />,
       color: "bg-[#FEF7CD]/40",
       rotation: "-rotate-1"
@@ -33,7 +33,7 @@ const Features = () => {
         "Doesn't treat cultures like props.",
         "Understands climate impact, local customs, and supports ethical travel."
       ],
-      quote: ""Let's stay somewhere cute and eco-conscious."",
+      quote: "Let's stay somewhere cute and eco-conscious.",
       icon: <User className="h-10 w-10 text-[#ff77a0]" />,
       color: "bg-[#FDE1D3]/40",
       rotation: "rotate-2"
@@ -41,10 +41,10 @@ const Features = () => {
     {
       title: "Emotionally Supportive",
       description: [
-        "The buddy who says, "Let's take a break," or "You're good — we're in this together."",
+        "The buddy who says, \"Let's take a break,\" or \"You're good — we're in this together.\"",
         "Down to party but also down to sit under a tree and just talk life."
       ],
-      quote: ""Just breathe. We'll figure this out together."",
+      quote: "Just breathe. We'll figure this out together.",
       icon: <Calendar className="h-10 w-10 text-[#fe4c02]" />,
       color: "bg-[#FEC6A1]/30",
       rotation: "-rotate-2"
@@ -55,7 +55,7 @@ const Features = () => {
         "Knows where the student discounts are.",
         "Finds Airbnb codes, rail passes, cheap eats."
       ],
-      quote: ""We'll splurge once, but we'll eat amazing food always."",
+      quote: "We'll splurge once, but we'll eat amazing food always.",
       icon: <Flag className="h-10 w-10 text-[#F97316]" />,
       color: "bg-[#FEF7CD]/40",
       rotation: "rotate-1"
@@ -66,7 +66,7 @@ const Features = () => {
         "Down for golden hour photos. Doesn't take 100 selfies, just gets the shot.",
         "Loves a good sunset picnic or rooftop café."
       ],
-      quote: ""This lighting is perfect — one pic and then let's just enjoy this moment."",
+      quote: "This lighting is perfect — one pic and then let's just enjoy this moment.",
       icon: <MapPin className="h-10 w-10 text-[#ff77a0]" />,
       color: "bg-[#FDE1D3]/40",
       rotation: "-rotate-1"
@@ -106,7 +106,7 @@ const Features = () => {
                 </ul>
                 {feature.quote && (
                   <div className="bg-[#FEF7CD]/50 p-3 rounded-lg mt-3">
-                    <p className="font-handwritten text-center text-[#F97316] text-sm">{feature.quote}</p>
+                    <p className="font-handwritten text-center text-[#F97316] text-sm">"{feature.quote}"</p>
                   </div>
                 )}
               </CardContent>
