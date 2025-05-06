@@ -35,7 +35,7 @@ const BackStory = () => {
               </p>
               
               <div className="bg-[#FEF7CD]/40 p-3 rounded-lg mt-2 transform -rotate-1">
-                <p className="font-handwritten text-center text-[#F97316]">
+                <p className="font-handwritten text-center text-[#F97316] text-3xl">
                   Most students don't need more travel blogs. They need a friend who gets it.
                 </p>
               </div>
