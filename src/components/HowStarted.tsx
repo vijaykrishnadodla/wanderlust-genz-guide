@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Clock } from 'lucide-react';
+
 const HowStarted = () => {
   return <section id="how-started" className="py-16 bg-white relative">
       {/* Film grain texture overlay */}
@@ -41,7 +42,7 @@ const HowStarted = () => {
             
             <div className="mt-8 flex justify-center">
               <div className="polaroid transform rotate-2 inline-block relative">
-                {/* Adding flags inside the polaroid frame here as well */}
+                {/* Adding flags only at the top and bottom of the polaroid frame */}
                 <div className="absolute top-0 w-full flex justify-around" style={{ transform: 'translateY(-50%)' }}>
                   <span className="rotate-[-15deg] text-lg">🇳🇴</span>
                   <span className="rotate-[0deg] text-lg">🇩🇰</span>
@@ -63,4 +64,5 @@ const HowStarted = () => {
       </div>
     </section>;
 };
+
 export default HowStarted;

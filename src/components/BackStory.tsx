@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BookOpen } from 'lucide-react';
 
@@ -12,7 +13,7 @@ const BackStory = () => {
             <div className="relative">
               {/* Polaroid wrapper with relative positioning */}
               <div className="relative w-full h-full">
-                {/* The polaroid image with flags inside */}
+                {/* The polaroid image with flags only at top and bottom */}
                 <div className="polaroid transform rotate-3 z-10 relative">
                   {/* Top edge flags */}
                   <div className="absolute top-0 w-full flex justify-between" style={{ transform: 'translateY(-50%)' }}>
@@ -26,24 +27,6 @@ const BackStory = () => {
                     <span className="rotate-[-5deg] text-lg">🇮🇹</span>
                     <span className="rotate-[-15deg] text-lg">🇪🇸</span>
                     <span className="rotate-[-25deg] text-lg">🇬🇷</span>
-                  </div>
-                  
-                  {/* Left edge flags - positioned vertically */}
-                  <div className="absolute left-0 h-full flex flex-col justify-between" style={{ transform: 'translateX(-50%)' }}>
-                    <span className="rotate-[-90deg] text-lg">🇨🇿</span>
-                    <span className="rotate-[-90deg] text-lg">🇭🇷</span>
-                    <span className="rotate-[-90deg] text-lg">🇵🇱</span>
-                    <span className="rotate-[-90deg] text-lg">🇬🇧</span>
-                    <span className="rotate-[-90deg] text-lg">🇺🇸</span>
-                  </div>
-                  
-                  {/* Right edge flags - positioned vertically */}
-                  <div className="absolute right-0 h-full flex flex-col justify-between" style={{ transform: 'translateX(50%)' }}>
-                    <span className="rotate-[90deg] text-lg">🇮🇳</span>
-                    <span className="rotate-[90deg] text-lg">🇮🇩</span>
-                    <span className="rotate-[90deg] text-lg">🇹🇭</span>
-                    <span className="rotate-[90deg] text-lg">🇰🇭</span>
-                    <span className="rotate-[90deg] text-lg">🇹🇿</span>
                   </div>
                   
                   {/* Bottom edge flags */}
