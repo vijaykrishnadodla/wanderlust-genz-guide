@@ -2,12 +2,13 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import Features from '@/components/Features';
-import Quiz from '@/components/Quiz';
+import BackStory from '@/components/BackStory';
+import HowStarted from '@/components/HowStarted';
+import SunshineClub from '@/components/SunshineClub';
 import Offering from '@/components/Offering';
-import Ambassadors from '@/components/Ambassadors';
-import About from '@/components/About';
+import Quiz from '@/components/Quiz';
 import Testimonials from '@/components/Testimonials';
+import SignUp from '@/components/SignUp';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -15,12 +16,13 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       <Hero />
-      <Features />
-      <Quiz />
+      <BackStory />
+      <HowStarted />
+      <SunshineClub />
       <Offering />
-      <Ambassadors />
-      <About />
+      <Quiz />
       <Testimonials />
+      <SignUp />
       <Footer />
     </div>
   );

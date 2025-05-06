@@ -1,8 +1,9 @@
 
 import React from 'react';
-import { Menu, X, Camera } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import MiniSignUpForm from './MiniSignUpForm';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,13 +27,16 @@ const Navbar = () => {
         </a>
         
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-6">
-          <a href="#features" className="font-medium hover:text-[#F97316] transform hover:scale-105 transition-transform">Features</a>
-          <a href="#quiz" className="font-medium hover:text-[#F97316] transform hover:scale-105 transition-transform">Quiz</a>
-          <a href="#about" className="font-medium hover:text-[#F97316] transform hover:scale-105 transition-transform">About</a>
-          <Button className="bg-[#FEC6A1] hover:bg-[#F97316] text-black font-bold rounded-full px-6 py-2 transform rotate-1 flex items-center gap-2">
-            <Camera className="h-4 w-4" /> Get Started
-          </Button>
+        <div className="hidden lg:flex items-center gap-6">
+          <a href="#backstory" className="font-medium hover:text-[#F97316] transform hover:scale-105 transition-transform">Story</a>
+          <a href="#sunshine-club" className="font-medium hover:text-[#F97316] transform hover:scale-105 transition-transform">Sunshine Club</a>
+          <a href="#offering" className="font-medium hover:text-[#F97316] transform hover:scale-105 transition-transform">Membership</a>
+          <a href="#testimonials" className="font-medium hover:text-[#F97316] transform hover:scale-105 transition-transform">Reviews</a>
+        </div>
+
+        {/* Mini Signup Form - Desktop */}
+        <div className="hidden md:block">
+          <MiniSignUpForm />
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -45,12 +49,15 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-white py-4 px-6 shadow-lg border-t border-[#FEC6A1]/30">
           <div className="flex flex-col gap-4">
-            <a href="#features" className="font-medium hover:text-[#F97316] py-2 transform hover:translate-x-2 transition-transform" onClick={toggleMenu}>Features</a>
-            <a href="#quiz" className="font-medium hover:text-[#F97316] py-2 transform hover:translate-x-2 transition-transform" onClick={toggleMenu}>Quiz</a>
-            <a href="#about" className="font-medium hover:text-[#F97316] py-2 transform hover:translate-x-2 transition-transform" onClick={toggleMenu}>About</a>
-            <Button className="bg-[#FEC6A1] hover:bg-[#F97316] text-black font-bold w-full rounded-full flex items-center justify-center gap-2">
-              <Camera className="h-4 w-4" /> Get Started
-            </Button>
+            <a href="#backstory" className="font-medium hover:text-[#F97316] py-2 transform hover:translate-x-2 transition-transform" onClick={toggleMenu}>Story</a>
+            <a href="#sunshine-club" className="font-medium hover:text-[#F97316] py-2 transform hover:translate-x-2 transition-transform" onClick={toggleMenu}>Sunshine Club</a>
+            <a href="#offering" className="font-medium hover:text-[#F97316] py-2 transform hover:translate-x-2 transition-transform" onClick={toggleMenu}>Membership</a>
+            <a href="#testimonials" className="font-medium hover:text-[#F97316] py-2 transform hover:translate-x-2 transition-transform" onClick={toggleMenu}>Reviews</a>
+            
+            {/* Mini Signup Form - Mobile */}
+            <div className="pt-4">
+              <MiniSignUpForm />
+            </div>
           </div>
         </div>
       )}

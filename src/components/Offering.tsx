@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Timer } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Offering = () => {
@@ -80,52 +80,114 @@ const Offering = () => {
       
       <div className="container px-4 md:px-6 relative z-10">
         <div className="text-center mb-12">
-          <div className="inline-block bg-[#FEC6A1] px-6 py-2 rounded-lg transform -rotate-1 mb-4">
-            <h2 className="text-3xl md:text-4xl font-display mb-0">JOIN THE SUNSHINE CLUB</h2>
+          <div className="inline-block bg-[#FEC6A1] px-6 py-2 rounded-lg transform -rotate-1 mb-4 flex items-center justify-center">
+            <Timer className="h-6 w-6 text-[#F97316] mr-2" />
+            <h2 className="text-3xl md:text-4xl font-display mb-0">MEMBERSHIP DETAILS</h2>
           </div>
-          <p className="text-xl italic text-[#F97316]">Warm sunny glow ✨ anywhere you go</p>
+          <p className="text-xl italic text-[#F97316]">Choose the perfect plan for your student adventures</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {plans.map((plan, index) => (
-            <Card key={index} className={`border ${plan.highlight ? 'border-[#FEC6A1] shadow-xl' : 'border-gray-200'} relative overflow-hidden transform ${index === 1 ? 'rotate-1' : index === 2 ? '-rotate-1' : ''}`}>
-              {plan.highlight && (
-                <div className="absolute top-0 right-0 bg-[#FEC6A1] text-black font-bold px-3 py-1 rounded-bl-md">
-                  BEST VALUE
+          {/* FreeTimer & PartTimer shown smaller */}
+          <Card className="border border-gray-200 relative overflow-hidden transform -rotate-1 opacity-80 hover:opacity-100 transition-opacity">
+            <CardContent className="p-6">
+              <h3 className="text-xl font-display mb-2">{plans[0].name}</h3>
+              <div className="mb-4">
+                <span className="text-2xl font-bold">{plans[0].price}</span>
+              </div>
+              <p className="text-gray-600 mb-6 text-sm">{plans[0].description}</p>
+              
+              <ul className="space-y-2 mb-8 text-sm">
+                {Object.entries(plans[0].features).map(([key, enabled]) => 
+                  enabled ? (
+                    <li key={key} className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 text-[#F97316] shrink-0 mt-0.5" />
+                      <span>{featureLabels[key]}</span>
+                    </li>
+                  ) : null
+                )}
+              </ul>
+              
+              <Button className="w-full bg-[#FEF7CD] hover:bg-[#FEC6A1] text-black font-bold text-sm">
+                Choose Plan
+              </Button>
+            </CardContent>
+          </Card>
+          
+          <Card className="border border-gray-200 relative overflow-hidden transform rotate-1 opacity-80 hover:opacity-100 transition-opacity">
+            <CardContent className="p-6">
+              <h3 className="text-xl font-display mb-2">{plans[1].name}</h3>
+              <div className="mb-4">
+                <span className="text-2xl font-bold">{plans[1].price}</span>
+              </div>
+              <p className="text-gray-600 mb-6 text-sm">{plans[1].description}</p>
+              
+              <ul className="space-y-2 mb-8 text-sm">
+                {Object.entries(plans[1].features).filter(([_, enabled]) => enabled).slice(0, 5).map(([key]) => (
+                  <li key={key} className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-[#F97316] shrink-0 mt-0.5" />
+                    <span>{featureLabels[key]}</span>
+                  </li>
+                ))}
+                <li className="text-gray-500 text-sm">+ 5 more features</li>
+              </ul>
+              
+              <Button className="w-full bg-[#FEF7CD] hover:bg-[#FEC6A1] text-black font-bold text-sm">
+                Choose Plan
+              </Button>
+            </CardContent>
+          </Card>
+          
+          {/* FullTimer highlighted prominently */}
+          <Card className="border-2 border-[#F97316] shadow-xl relative overflow-hidden transform -rotate-1 scale-105 z-10">
+            <div className="absolute top-0 right-0 bg-[#F97316] text-white font-bold px-4 py-2 rounded-bl-md">
+              BEST VALUE
+            </div>
+            
+            <div className="absolute top-0 left-0 right-0 bg-[#ea384c] text-white text-center py-2">
+              <div className="flex items-center justify-center gap-1">
+                <Timer className="h-4 w-4" />
+                <span className="font-bold">LIMITED OFFER: {plans[2].timer} REMAINING</span>
+              </div>
+            </div>
+            
+            <div className="pt-12 px-6 pb-6 bg-gradient-to-b from-[#FEF7CD]/30 to-white">
+              <div className="bg-white p-4 rounded-lg border border-[#FEC6A1]/30 mb-6">
+                <h3 className="font-display text-3xl text-[#F97316] mb-1">FULLTIMER</h3>
+                <p className="text-gray-800 font-medium mb-2">The Complete Student Travel Experience</p>
+                <div className="flex items-baseline justify-center">
+                  <span className="text-4xl font-bold text-[#F97316]">{plans[2].price}</span>
+                  <span className="ml-2 text-gray-500 line-through">{plans[2].originalPrice}</span>
                 </div>
-              )}
-              {plan.timer && (
-                <div className="absolute top-0 left-0 right-0 bg-[#ea384c] text-white text-center py-1 text-sm">
-                  Limited offer: {plan.timer} remaining
-                </div>
-              )}
-              <CardContent className="p-6">
-                <h3 className="text-2xl font-display mb-2">{plan.name}</h3>
-                <div className="mb-4">
-                  <span className="text-3xl font-bold">{plan.price}</span>
-                  {plan.originalPrice && (
-                    <span className="ml-2 text-gray-500 line-through">{plan.originalPrice}</span>
-                  )}
-                </div>
-                <p className="text-gray-600 mb-6">{plan.description}</p>
-                
-                <ul className="space-y-2 mb-8">
-                  {Object.entries(plan.features).map(([key, enabled]) => 
-                    enabled ? (
-                      <li key={key} className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-[#F97316] shrink-0 mt-0.5" />
-                        <span>{featureLabels[key as keyof typeof featureLabels]}</span>
-                      </li>
-                    ) : null
-                  )}
-                </ul>
-                
-                <Button className={`w-full ${plan.highlight ? 'bg-[#FEC6A1] hover:bg-[#F97316]' : 'bg-[#FEF7CD] hover:bg-[#FEC6A1]'} text-black font-bold`}>
-                  Choose Plan
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+              
+              <p className="text-gray-700 mb-6 font-medium">
+                Unlock <span className="text-[#F97316]">ALL student travel perks</span> plus exclusive access to special events & VIP support
+              </p>
+              
+              <ul className="space-y-3 mb-8 bg-white p-4 rounded-lg border border-[#FEC6A1]/30">
+                {Object.entries(plans[2].features).map(([key, enabled]) => 
+                  enabled ? (
+                    <li key={key} className="flex items-start gap-2">
+                      <CheckCircle className="h-5 w-5 text-[#F97316] shrink-0 mt-0.5" />
+                      <span className="font-medium">{featureLabels[key]}</span>
+                    </li>
+                  ) : null
+                )}
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-[#F97316] shrink-0 mt-0.5" />
+                  <span className="font-medium text-[#F97316]">30% OFF for limited time!</span>
+                </li>
+              </ul>
+              
+              <Button className="w-full bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-lg py-6">
+                GET FULLTIMER NOW
+              </Button>
+              <p className="text-center text-sm mt-2 text-gray-600 font-handwritten text-base">
+                30-day money back guarantee
+              </p>
+            </div>
+          </Card>
         </div>
 
         <div className="mt-12 bg-[#FEF7CD]/40 rounded-lg p-6 transform -rotate-1 border border-[#FEC6A1]">
@@ -137,7 +199,7 @@ const Offering = () => {
                   <TableHead className="w-[250px]">Benefits</TableHead>
                   <TableHead>FreeTimer</TableHead>
                   <TableHead>PartTimer</TableHead>
-                  <TableHead>FullTimer</TableHead>
+                  <TableHead className="bg-[#FEC6A1]/30">FullTimer</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -145,9 +207,9 @@ const Offering = () => {
                   <TableRow key={key}>
                     <TableCell className="font-medium">{label}</TableCell>
                     {plans.map((plan, i) => (
-                      <TableCell key={i} className="text-center">
-                        {plan.features[key as keyof typeof plan.features] ? (
-                          <CheckCircle className="h-5 w-5 text-[#F97316] mx-auto" />
+                      <TableCell key={i} className={`text-center ${i === 2 ? 'bg-[#FEC6A1]/10' : ''}`}>
+                        {plan.features[key] ? (
+                          <CheckCircle className={`h-5 w-5 mx-auto ${i === 2 ? 'text-[#F97316]' : 'text-[#F97316]/70'}`} />
                         ) : (
                           <span className="text-gray-300">—</span>
                         )}
@@ -159,7 +221,7 @@ const Offering = () => {
                   <TableCell className="font-medium">Price</TableCell>
                   <TableCell className="text-center">Free</TableCell>
                   <TableCell className="text-center">$19</TableCell>
-                  <TableCell className="text-center">
+                  <TableCell className="text-center bg-[#FEC6A1]/10">
                     <span className="line-through text-gray-400">$29</span>{" "}
                     <span className="font-bold">$19</span>
                   </TableCell>
