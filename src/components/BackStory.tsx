@@ -7,12 +7,7 @@ const BackStory = () => {
       
       <div className="container px-4 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center mb-6">
-            <div className="bg-[#FEC6A1] p-2 rounded-lg rotate-2">
-              <BookOpen className="h-6 w-6 text-[#F97316]" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-display ml-3 transform -rotate-1">THE BACKSTORY</h2>
-          </div>
+          
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
