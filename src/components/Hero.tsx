@@ -1,9 +1,16 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Earth, Camera, ArrowRight, Globe } from 'lucide-react';
+import { Textarea } from '@/components/ui/textarea';
 import MiniSignUpForm from './MiniSignUpForm';
+
 const Hero = () => {
+  const [bubbleText, setBubbleText] = useState("Created in cooperation with ISIC — the only globally recognized student ID, trusted by over 120 million students worldwide throughout their studies.");
+  
+  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setBubbleText(e.target.value);
+  };
+  
   return <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-[#FEF7CD]/60 to-white relative overflow-hidden">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
@@ -11,14 +18,30 @@ const Hero = () => {
       <div className="container px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col gap-6 text-center md:text-left">
-            <div className="w-full bg-[#FEC6A1]/40 text-sm px-6 py-2 rounded-full transform rotate-1 self-start md:self-auto mx-auto md:mx-0">
-              <span className="font-bold text-[#F97316] flex items-center gap-1 flex-wrap md:flex-nowrap">
-                Created in cooperation with <span className="font-bold">ISIC</span> — the only globally recognized student ID, trusted by over 120 million students worldwide throughout their studies.
-              </span>
+            <div className="w-full bg-[#FEC6A1]/40 rounded-full transform rotate-1 self-start md:self-auto mx-auto md:mx-0 overflow-hidden">
+              <div className="p-2">
+                <Textarea 
+                  value={bubbleText}
+                  onChange={handleTextChange}
+                  className="w-full border-none bg-transparent resize-none font-bold text-[#F97316] min-h-[40px] p-1 focus:ring-0 focus:outline-none"
+                  style={{ 
+                    overflow: 'hidden',
+                    height: 'auto'
+                  }}
+                  onInput={(e) => {
+                    // Auto-resize the textarea
+                    const target = e.target as HTMLTextAreaElement;
+                    target.style.height = 'auto';
+                    target.style.height = `${target.scrollHeight}px`;
+                  }}
+                />
+              </div>
             </div>
+            
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display transform -rotate-1">
               TRAVEL SMARTER. SPEND LESS. <span className="gradient-text">VIBE MORE.</span>
             </h1>
+            
             <p className="text-lg text-[#ea384c] font-handwritten md:text-2xl">
               The ultimate travel companion for students - with perks, plans, and Sunny by your side.
             </p>
@@ -38,6 +61,7 @@ const Hero = () => {
               </p>
             </div>
           </div>
+          
           <div className="relative h-[300px] md:h-[450px]">
             {/* Polaroid-style main image */}
             <div className="absolute inset-0 flex items-center justify-center">
