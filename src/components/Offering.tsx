@@ -1,8 +1,10 @@
+
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
 import { CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
 const Offering = () => {
   const plans = [{
     name: "FreeTimer",
@@ -57,6 +59,7 @@ const Offering = () => {
     highlight: true,
     timer: "30 days"
   }];
+  
   const featureLabels = {
     newsletter: "Curated Newsletter",
     travelRules: "10 Top Secret Non-Negotiable Student Travel Rules",
@@ -69,47 +72,63 @@ const Offering = () => {
     community: "Local Student Community Groups",
     localEvents: "Local Events"
   };
-  return <section id="offering" className="py-16 bg-white">
-      <div className="container px-4 md:px-6">
+  
+  return (
+    <section id="offering" className="py-16 bg-gradient-to-t from-[#FDE1D3] to-white relative">
+      {/* Film grain overlay */}
+      <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+      
+      <div className="container px-4 md:px-6 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-display mb-4">JOIN THE SUNSHINE CLUB</h2>
-          <p className="text-xl">Warm sunny glow ✨ anywhere you go</p>
-          <div className="flex justify-center">
-            
+          <div className="inline-block bg-[#FEC6A1] px-6 py-2 rounded-lg transform -rotate-1 mb-4">
+            <h2 className="text-3xl md:text-4xl font-display mb-0">JOIN THE SUNSHINE CLUB</h2>
           </div>
+          <p className="text-xl italic text-[#F97316]">Warm sunny glow ✨ anywhere you go</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {plans.map((plan, index) => <Card key={index} className={`border ${plan.highlight ? 'border-stb-yellow shadow-xl' : 'border-gray-200'} relative overflow-hidden`}>
-              {plan.highlight && <div className="absolute top-0 right-0 bg-stb-yellow text-black font-bold px-3 py-1 rounded-bl-md">
+          {plans.map((plan, index) => (
+            <Card key={index} className={`border ${plan.highlight ? 'border-[#FEC6A1] shadow-xl' : 'border-gray-200'} relative overflow-hidden transform ${index === 1 ? 'rotate-1' : index === 2 ? '-rotate-1' : ''}`}>
+              {plan.highlight && (
+                <div className="absolute top-0 right-0 bg-[#FEC6A1] text-black font-bold px-3 py-1 rounded-bl-md">
                   BEST VALUE
-                </div>}
-              {plan.timer && <div className="absolute top-0 left-0 right-0 bg-stb-pink text-white text-center py-1 text-sm">
+                </div>
+              )}
+              {plan.timer && (
+                <div className="absolute top-0 left-0 right-0 bg-[#ea384c] text-white text-center py-1 text-sm">
                   Limited offer: {plan.timer} remaining
-                </div>}
+                </div>
+              )}
               <CardContent className="p-6">
                 <h3 className="text-2xl font-display mb-2">{plan.name}</h3>
                 <div className="mb-4">
                   <span className="text-3xl font-bold">{plan.price}</span>
-                  {plan.originalPrice && <span className="ml-2 text-gray-500 line-through">{plan.originalPrice}</span>}
+                  {plan.originalPrice && (
+                    <span className="ml-2 text-gray-500 line-through">{plan.originalPrice}</span>
+                  )}
                 </div>
                 <p className="text-gray-600 mb-6">{plan.description}</p>
                 
                 <ul className="space-y-2 mb-8">
-                  {Object.entries(plan.features).map(([key, enabled]) => enabled ? <li key={key} className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-stb-blue shrink-0 mt-0.5" />
+                  {Object.entries(plan.features).map(([key, enabled]) => 
+                    enabled ? (
+                      <li key={key} className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-[#F97316] shrink-0 mt-0.5" />
                         <span>{featureLabels[key as keyof typeof featureLabels]}</span>
-                      </li> : null)}
+                      </li>
+                    ) : null
+                  )}
                 </ul>
                 
-                <Button className={`w-full ${plan.highlight ? 'bg-stb-yellow hover:bg-stb-yellow-dark' : 'bg-stb-blue hover:bg-stb-blue-dark'} text-black font-bold`}>
+                <Button className={`w-full ${plan.highlight ? 'bg-[#FEC6A1] hover:bg-[#F97316]' : 'bg-[#FEF7CD] hover:bg-[#FEC6A1]'} text-black font-bold`}>
                   Choose Plan
                 </Button>
               </CardContent>
-            </Card>)}
+            </Card>
+          ))}
         </div>
 
-        <div className="mt-12 bg-gray-50 rounded-lg p-6">
+        <div className="mt-12 bg-[#FEF7CD]/40 rounded-lg p-6 transform -rotate-1 border border-[#FEC6A1]">
           <h3 className="text-xl font-bold mb-4">Compare All Features</h3>
           <div className="overflow-x-auto">
             <Table>
@@ -122,12 +141,20 @@ const Offering = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {Object.entries(featureLabels).map(([key, label]) => <TableRow key={key}>
+                {Object.entries(featureLabels).map(([key, label]) => (
+                  <TableRow key={key}>
                     <TableCell className="font-medium">{label}</TableCell>
-                    {plans.map((plan, i) => <TableCell key={i} className="text-center">
-                        {plan.features[key as keyof typeof plan.features] ? <CheckCircle className="h-5 w-5 text-green-500 mx-auto" /> : <span className="text-gray-300">—</span>}
-                      </TableCell>)}
-                  </TableRow>)}
+                    {plans.map((plan, i) => (
+                      <TableCell key={i} className="text-center">
+                        {plan.features[key as keyof typeof plan.features] ? (
+                          <CheckCircle className="h-5 w-5 text-[#F97316] mx-auto" />
+                        ) : (
+                          <span className="text-gray-300">—</span>
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))}
                 <TableRow>
                   <TableCell className="font-medium">Price</TableCell>
                   <TableCell className="text-center">Free</TableCell>
@@ -142,6 +169,8 @@ const Offering = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Offering;

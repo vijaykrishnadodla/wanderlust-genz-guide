@@ -63,11 +63,11 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Student Travel Buddy custom colors
+				// Student Travel Buddy custom colors with warm tones
 				stb: {
 					yellow: {
-						DEFAULT: "#fffd402",
-						light: "#fff715",
+						DEFAULT: "#fff715",
+						light: "#FEF7CD",
 						dark: "#fdad32"
 					},
 					pink: {
@@ -81,15 +81,16 @@ export default {
 						dark: "#3a67ca"
 					},
 					orange: {
-						DEFAULT: "#fdad32",
-						light: "#ffeea6",
+						DEFAULT: "#F97316",
+						light: "#FEC6A1",
 						dark: "#fe4c02"
 					}
 				}
 			},
 			fontFamily: {
 				sans: ["Satoshi", "sans-serif"],
-				display: ["Anton", "sans-serif"]
+				display: ["Anton", "sans-serif"],
+				handwritten: ["Caveat", "cursive"]
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -114,12 +115,12 @@ export default {
 					}
 				},
 				'float': {
-					'0%, 100%': { transform: 'translateY(0)' },
-					'50%': { transform: 'translateY(-10px)' }
+					'0%, 100%': { transform: 'translateY(0) rotate(-1deg)' },
+					'50%': { transform: 'translateY(-10px) rotate(1deg)' }
 				},
 				'bounce-light': {
-					'0%, 100%': { transform: 'translateY(0)' },
-					'50%': { transform: 'translateY(-5px)' }
+					'0%, 100%': { transform: 'translateY(0) rotate(-1deg)' },
+					'50%': { transform: 'translateY(-5px) rotate(1deg)' }
 				}
 			},
 			animation: {
@@ -127,6 +128,9 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'float': 'float 3s ease-in-out infinite',
 				'bounce-light': 'bounce-light 2s ease-in-out infinite'
+			},
+			backgroundImage: {
+				'film-grain': "url('https://grainy-gradients.vercel.app/noise.svg')"
 			}
 		}
 	},

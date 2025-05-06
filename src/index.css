@@ -1,6 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,33 +9,33 @@
 
 @layer base {
   :root {
-    --background: 50 100% 97%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 40 100% 97%;
+    --foreground: 22 84% 4.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 22 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 22 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 20 96% 65%;
+    --primary-foreground: 24 9.8% 10%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 30 90% 92%;
+    --secondary-foreground: 24 9.8% 10%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 30 40% 96.1%;
+    --muted-foreground: 25 5.3% 44.7%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 30 40% 96.1%;
+    --accent-foreground: 24 9.8% 10%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 24 5.9% 90%;
+    --input: 24 5.9% 90%;
+    --ring: 24 5.9% 10%;
 
     --radius: 0.75rem;
 
@@ -54,15 +55,18 @@
 
   body {
     @apply bg-background text-foreground font-sans;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    background-repeat: repeat;
+    background-size: 200px;
   }
   
   /* Custom component styles */
   .gradient-text {
-    @apply bg-gradient-to-r from-stb-pink to-stb-yellow bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#F97316] to-[#fdad32] bg-clip-text text-transparent;
   }
 
   .stb-button {
-    @apply rounded-full bg-stb-yellow hover:bg-stb-yellow-dark text-black font-bold transition-all px-8 py-3 hover:shadow-lg hover:-translate-y-1;
+    @apply rounded-full bg-[#FEC6A1] hover:bg-[#F97316] text-black font-bold transition-all px-8 py-3 hover:shadow-lg hover:-translate-y-1;
   }
 
   .floating-element {
@@ -71,5 +75,36 @@
 
   .bounce-element {
     @apply animate-bounce-light;
+  }
+  
+  .handwritten {
+    @apply font-['Caveat'] text-lg;
+  }
+  
+  .retro-filter {
+    @apply brightness-95 contrast-105 saturate-105;
+  }
+  
+  .polaroid {
+    @apply p-2 bg-white border-4 border-white shadow-md rotate-1;
+  }
+  
+  .film-grain {
+    position: relative;
+  }
+  
+  .film-grain::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    background-repeat: repeat;
+    background-size: 100px;
+    mix-blend-mode: soft-light;
+    opacity: 0.3;
+    pointer-events: none;
   }
 }

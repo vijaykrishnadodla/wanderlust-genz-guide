@@ -1,48 +1,73 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Earth } from 'lucide-react';
+import { Earth, Camera } from 'lucide-react';
+
 const Hero = () => {
-  return <section className="pt-24 pb-16 md:pt-32 md:pb-24">
-      <div className="container px-4 md:px-6">
+  return (
+    <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-[#FEF7CD]/60 to-white relative overflow-hidden">
+      {/* Film grain texture overlay */}
+      <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+      
+      <div className="container px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col gap-6 text-center md:text-left">
-            <div className="inline-block bg-stb-yellow/20 text-sm px-4 py-1 rounded-full">
-              <span className="font-bold">Your Official Student Travel Buddy</span>
+            <div className="inline-block bg-[#FEC6A1]/40 text-sm px-4 py-1 rounded-full transform rotate-1 self-start md:self-auto mx-auto md:mx-0">
+              <span className="font-bold text-[#F97316]">Your Official Student Travel Buddy</span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display transform -rotate-1">
               TRAVEL SMARTER. SPEND LESS. <span className="gradient-text">VIBE MORE.</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600">
+            <p className="text-lg md:text-xl text-[#ea384c] font-handwritten">
               The ultimate travel companion for students - with perks, plans, and Sunny by your side.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 md:justify-start justify-center">
-              <Button className="stb-button">Take the Quiz</Button>
-              <Button variant="outline" className="rounded-full">Learn More</Button>
+              <Button className="stb-button transform rotate-1">Take the Quiz</Button>
+              <Button variant="outline" className="rounded-full border-[#FEC6A1] text-[#F97316] hover:bg-[#FEC6A1]/20 transform -rotate-1">
+                <Camera className="mr-2 h-4 w-4" /> Learn More
+              </Button>
             </div>
           </div>
-          <div className="relative h-[300px] md:h-[400px]">
+          <div className="relative h-[300px] md:h-[450px]">
+            {/* Polaroid-style main image */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <img alt="Sunny - Your Travel Buddy" className="w-48 h-48 animate-float object-contain" src="/lovable-uploads/6babe884-a973-49d2-9125-fad3e4a98f6e.jpg" />
+              <div className="polaroid transform rotate-3 shadow-lg">
+                <img 
+                  alt="Sunny - Your Travel Buddy" 
+                  className="w-48 h-48 object-contain retro-filter" 
+                  src="/lovable-uploads/6babe884-a973-49d2-9125-fad3e4a98f6e.jpg" 
+                />
+                <p className="text-center font-handwritten mt-1">Your travel bestie!</p>
+              </div>
             </div>
+            
             <div className="absolute top-10 right-10">
-              <div className="bg-stb-pink p-3 rounded-full rotate-12 animate-bounce-light">
+              <div className="bg-[#F97316] p-3 rounded-full rotate-12 animate-bounce-light">
                 <Earth className="h-5 w-5 text-white" />
               </div>
             </div>
             <div className="absolute bottom-10 left-10">
-              <div className="bg-stb-blue p-3 rounded-full -rotate-12 animate-bounce-light">
-                <span className="text-white font-bold">✈️</span>
+              <div className="bg-[#FEC6A1] p-3 rounded-full -rotate-12 animate-bounce-light polaroid">
+                <span className="text-[#F97316] font-bold">✈️</span>
               </div>
             </div>
             <div className="absolute bottom-20 right-20">
-              <div className="bg-stb-yellow p-3 rounded-full rotate-6 animate-bounce-light">
-                <span className="text-black font-bold">💯</span>
+              <div className="bg-[#FEF7CD] p-3 rounded-full rotate-6 animate-bounce-light">
+                <span className="text-[#F97316] font-bold">💯</span>
+              </div>
+            </div>
+            
+            {/* Additional decorative elements */}
+            <div className="absolute top-28 left-24 transform -rotate-6">
+              <div className="bg-white p-1 shadow-sm">
+                <p className="font-handwritten text-xs text-[#F97316]">Summer '25 ☀️</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;
