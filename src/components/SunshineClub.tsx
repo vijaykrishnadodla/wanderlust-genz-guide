@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Sun, UserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
 const SunshineClub = () => {
-  return (
-    <section id="sunshine-club" className="py-16 bg-gradient-to-t from-[#FDE1D3] to-white relative">
+  return <section id="sunshine-club" className="py-16 bg-gradient-to-t from-[#FDE1D3] to-white relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
@@ -24,11 +21,7 @@ const SunshineClub = () => {
         </div>
 
         <div className="mb-10 relative">
-          <img 
-            src="/lovable-uploads/1919aa02-ee8c-4a23-b76a-79325b03daad.png" 
-            alt="Sunshine mascot with heart sunglasses and pink hat" 
-            className="mx-auto max-w-sm md:max-w-md"
-          />
+          <img alt="Sunshine mascot with heart sunglasses and pink hat" className="mx-auto max-w-sm md:max-w-md" src="/lovable-uploads/2f0c4da4-6e39-4a7b-be74-64aa968d3eca.jpg" />
           <p className="text-center font-handwritten text-xl text-[#F97316] mt-4">
             Warm sunny glow ✨ anywhere you go
           </p>
@@ -120,8 +113,6 @@ const SunshineClub = () => {
           </p>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default SunshineClub;
