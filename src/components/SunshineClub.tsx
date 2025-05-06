@@ -1,10 +1,60 @@
-import React from 'react';
-import { Sun, UserRound, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Sun, UserRound, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Card, CardContent } from "@/components/ui/card";
+
 const SunshineClub = () => {
+  // State for the countdown timer
+  const [timeLeft, setTimeLeft] = useState({
+    days: 30,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  // Effect for countdown timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prevTime => {
+        if (prevTime.days === 0 && prevTime.hours === 0 && prevTime.minutes === 0 && prevTime.seconds === 0) {
+          clearInterval(timer);
+          return prevTime;
+        }
+        
+        let newSeconds = prevTime.seconds - 1;
+        let newMinutes = prevTime.minutes;
+        let newHours = prevTime.hours;
+        let newDays = prevTime.days;
+        
+        if (newSeconds < 0) {
+          newSeconds = 59;
+          newMinutes -= 1;
+        }
+        
+        if (newMinutes < 0) {
+          newMinutes = 59;
+          newHours -= 1;
+        }
+        
+        if (newHours < 0) {
+          newHours = 23;
+          newDays -= 1;
+        }
+        
+        return {
+          days: newDays,
+          hours: newHours,
+          minutes: newMinutes,
+          seconds: newSeconds
+        };
+      });
+    }, 1000);
+    
+    return () => clearInterval(timer);
+  }, []);
+
   return <section id="sunshine-club" className="py-16 relative overflow-hidden">
       {/* Sun-themed background */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#FDE1D3] to-white">
@@ -101,30 +151,74 @@ const SunshineClub = () => {
           </Table>
         </div>
 
-        {/* Pricing Section with Watermelon Seed animation */}
+        {/* Pricing Section with Sun animation */}
         <div className="max-w-3xl mx-auto mb-16 relative">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Fulltimer Pricing */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-[#F97316] relative">
-              {/* Animation of watermelon seeds */}
+              {/* Animation of suns */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {[...Array(20)].map((_, i) => <div key={i} className="absolute w-2 h-4 bg-black rounded-full animate-float" style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${Math.random() * 2 + 2}s`
-              }} />)}
+                {[...Array(20)].map((_, i) => (
+                  <div 
+                    key={i} 
+                    className="absolute bg-[#FEC6A1] rounded-full animate-float"
+                    style={{
+                      width: `${Math.random() * 15 + 10}px`,
+                      height: `${Math.random() * 15 + 10}px`,
+                      top: `${Math.random() * 100}%`,
+                      left: `${Math.random() * 100}%`,
+                      animationDelay: `${Math.random() * 3}s`,
+                      animationDuration: `${Math.random() * 2 + 2}s`,
+                      boxShadow: '0 0 5px rgba(253, 173, 50, 0.7)'
+                    }}
+                  >
+                    {/* Sun rays */}
+                    <div className="absolute inset-0 animate-pulse" style={{ 
+                      background: 'radial-gradient(circle, rgba(253, 173, 50, 0.7) 0%, rgba(253, 173, 50, 0) 70%)',
+                      transform: 'scale(1.5)'
+                    }}></div>
+                  </div>
+                ))}
               </div>
               
               <div className="p-8 relative z-10">
                 <div className="bg-[#F97316] transform -rotate-2 p-2 rounded-md inline-block mb-4">
                   <h3 className="font-handwritten text-2xl text-white m-0">Fulltimer</h3>
                 </div>
-                <div className="flex items-end gap-1 mb-4">
-                  <span className="text-4xl font-bold">$19</span>
-                  <span className="text-lg text-gray-600">/year</span>
+                <div className="flex flex-col gap-1 mb-2">
+                  <div className="flex items-center">
+                    <span className="text-lg text-gray-500 line-through">$29</span>
+                    <span className="text-4xl font-bold ml-2">$19</span>
+                    <span className="text-lg text-gray-600 ml-1">/year</span>
+                  </div>
                 </div>
-                <Badge variant="outline" className="mb-6 bg-yellow-100 text-[#F97316] border-[#F97316]">BEST VALUE</Badge>
+                
+                {/* Special offer badge and timer */}
+                <div className="mb-6">
+                  <Badge variant="outline" className="mb-2 bg-red-100 text-red-600 border-red-600 font-bold">SPECIAL OFFER</Badge>
+                  <div className="flex items-center gap-1 text-sm text-red-600">
+                    <Clock className="h-4 w-4" />
+                    <span>LIMITED TIME: </span>
+                    <div className="flex bg-red-50 p-1 rounded-md">
+                      <div className="bg-red-600 text-white px-1 rounded">
+                        {timeLeft.days.toString().padStart(2, '0')}
+                      </div>
+                      <span className="px-1">:</span>
+                      <div className="bg-red-600 text-white px-1 rounded">
+                        {timeLeft.hours.toString().padStart(2, '0')}
+                      </div>
+                      <span className="px-1">:</span>
+                      <div className="bg-red-600 text-white px-1 rounded">
+                        {timeLeft.minutes.toString().padStart(2, '0')}
+                      </div>
+                      <span className="px-1">:</span>
+                      <div className="bg-red-600 text-white px-1 rounded">
+                        {timeLeft.seconds.toString().padStart(2, '0')}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
                 <p className="text-sm italic mb-6">
                   *** Verification of full time student status necessary via email/SMS after purchase. 
                   If can't be verified automatically, gets partimer deal.
