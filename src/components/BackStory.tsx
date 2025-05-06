@@ -12,54 +12,54 @@ const BackStory = () => {
             <div className="relative">
               {/* Polaroid wrapper with relative positioning */}
               <div className="relative w-full h-full">
-                {/* Top edge flags */}
-                <div className="absolute top-0 w-full flex justify-between" style={{ transform: 'translateY(-50%)' }}>
-                  <span className="rotate-[-25deg] text-lg">🇦🇺</span>
-                  <span className="rotate-[-15deg] text-lg">🇳🇴</span>
-                  <span className="rotate-[-5deg] text-lg">🇸🇰</span>
-                  <span className="rotate-[0deg] text-lg">🇩🇰</span>
-                  <span className="rotate-[5deg] text-lg">🇸🇪</span>
-                  <span className="rotate-[15deg] text-lg">🇫🇷</span>
-                  <span className="rotate-[0deg] text-lg">🇩🇪</span>
-                  <span className="rotate-[-5deg] text-lg">🇮🇹</span>
-                  <span className="rotate-[-15deg] text-lg">🇪🇸</span>
-                  <span className="rotate-[-25deg] text-lg">🇬🇷</span>
-                </div>
-                
-                {/* Left edge flags - positioned vertically */}
-                <div className="absolute left-0 h-full flex flex-col justify-between" style={{ transform: 'translateX(-50%)' }}>
-                  <span className="rotate-[-90deg] text-lg">🇨🇿</span>
-                  <span className="rotate-[-90deg] text-lg">🇭🇷</span>
-                  <span className="rotate-[-90deg] text-lg">🇵🇱</span>
-                  <span className="rotate-[-90deg] text-lg">🇬🇧</span>
-                  <span className="rotate-[-90deg] text-lg">🇺🇸</span>
-                </div>
-                
-                {/* Right edge flags - positioned vertically */}
-                <div className="absolute right-0 h-full flex flex-col justify-between" style={{ transform: 'translateX(50%)' }}>
-                  <span className="rotate-[90deg] text-lg">🇮🇳</span>
-                  <span className="rotate-[90deg] text-lg">🇮🇩</span>
-                  <span className="rotate-[90deg] text-lg">🇹🇭</span>
-                  <span className="rotate-[90deg] text-lg">🇰🇭</span>
-                  <span className="rotate-[90deg] text-lg">🇹🇿</span>
-                </div>
-                
-                {/* Bottom edge flags */}
-                <div className="absolute bottom-0 w-full flex justify-between" style={{ transform: 'translateY(50%)' }}>
-                  <span className="rotate-[25deg] text-lg">🇿🇦</span>
-                  <span className="rotate-[15deg] text-lg">🇦🇪</span>
-                  <span className="rotate-[5deg] text-lg">🇪🇬</span>
-                  <span className="rotate-[0deg] text-lg">🇮🇸</span>
-                  <span className="rotate-[-5deg] text-lg">🇨🇾</span>
-                  <span className="rotate-[-15deg] text-lg">🇱🇰</span>
-                  <span className="rotate-[0deg] text-lg">🇦🇹</span>
-                  <span className="rotate-[5deg] text-lg">🇦🇼</span>
-                  <span className="rotate-[15deg] text-lg">🇨🇼</span>
-                  <span className="rotate-[25deg] text-lg">🇸🇮</span>
-                </div>
-                
-                {/* The polaroid image */}
-                <div className="polaroid transform rotate-3 z-10">
+                {/* The polaroid image with flags inside */}
+                <div className="polaroid transform rotate-3 z-10 relative">
+                  {/* Top edge flags */}
+                  <div className="absolute top-0 w-full flex justify-between" style={{ transform: 'translateY(-50%)' }}>
+                    <span className="rotate-[-25deg] text-lg">🇦🇺</span>
+                    <span className="rotate-[-15deg] text-lg">🇳🇴</span>
+                    <span className="rotate-[-5deg] text-lg">🇸🇰</span>
+                    <span className="rotate-[0deg] text-lg">🇩🇰</span>
+                    <span className="rotate-[5deg] text-lg">🇸🇪</span>
+                    <span className="rotate-[15deg] text-lg">🇫🇷</span>
+                    <span className="rotate-[0deg] text-lg">🇩🇪</span>
+                    <span className="rotate-[-5deg] text-lg">🇮🇹</span>
+                    <span className="rotate-[-15deg] text-lg">🇪🇸</span>
+                    <span className="rotate-[-25deg] text-lg">🇬🇷</span>
+                  </div>
+                  
+                  {/* Left edge flags - positioned vertically */}
+                  <div className="absolute left-0 h-full flex flex-col justify-between" style={{ transform: 'translateX(-50%)' }}>
+                    <span className="rotate-[-90deg] text-lg">🇨🇿</span>
+                    <span className="rotate-[-90deg] text-lg">🇭🇷</span>
+                    <span className="rotate-[-90deg] text-lg">🇵🇱</span>
+                    <span className="rotate-[-90deg] text-lg">🇬🇧</span>
+                    <span className="rotate-[-90deg] text-lg">🇺🇸</span>
+                  </div>
+                  
+                  {/* Right edge flags - positioned vertically */}
+                  <div className="absolute right-0 h-full flex flex-col justify-between" style={{ transform: 'translateX(50%)' }}>
+                    <span className="rotate-[90deg] text-lg">🇮🇳</span>
+                    <span className="rotate-[90deg] text-lg">🇮🇩</span>
+                    <span className="rotate-[90deg] text-lg">🇹🇭</span>
+                    <span className="rotate-[90deg] text-lg">🇰🇭</span>
+                    <span className="rotate-[90deg] text-lg">🇹🇿</span>
+                  </div>
+                  
+                  {/* Bottom edge flags */}
+                  <div className="absolute bottom-0 w-full flex justify-between" style={{ transform: 'translateY(50%)' }}>
+                    <span className="rotate-[25deg] text-lg">🇿🇦</span>
+                    <span className="rotate-[15deg] text-lg">🇦🇪</span>
+                    <span className="rotate-[5deg] text-lg">🇪🇬</span>
+                    <span className="rotate-[0deg] text-lg">🇮🇸</span>
+                    <span className="rotate-[-5deg] text-lg">🇨🇾</span>
+                    <span className="rotate-[-15deg] text-lg">🇱🇰</span>
+                    <span className="rotate-[0deg] text-lg">🇦🇹</span>
+                    <span className="rotate-[5deg] text-lg">🇦🇼</span>
+                    <span className="rotate-[15deg] text-lg">🇨🇼</span>
+                    <span className="rotate-[25deg] text-lg">🇸🇮</span>
+                  </div>
+                  
                   <img alt="Dominika traveling" className="w-full h-auto object-cover retro-filter" src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" />
                   <p className="text-center font-handwritten mt-2">Exploring new horizons!</p>
                 </div>

@@ -40,7 +40,20 @@ const HowStarted = () => {
             <p className="text-lg">Student Travel Buddy was created in 2025 when Dominika realized students were missing out on the best parts of travel because they didn't have access to insider knowledge. Now we're a community of thousands helping each other explore the world on a student budget.</p>
             
             <div className="mt-8 flex justify-center">
-              <div className="polaroid transform rotate-2 inline-block">
+              <div className="polaroid transform rotate-2 inline-block relative">
+                {/* Adding flags inside the polaroid frame here as well */}
+                <div className="absolute top-0 w-full flex justify-around" style={{ transform: 'translateY(-50%)' }}>
+                  <span className="rotate-[-15deg] text-lg">🇳🇴</span>
+                  <span className="rotate-[0deg] text-lg">🇩🇰</span>
+                  <span className="rotate-[15deg] text-lg">🇫🇷</span>
+                </div>
+                
+                <div className="absolute bottom-0 w-full flex justify-around" style={{ transform: 'translateY(50%)' }}>
+                  <span className="rotate-[15deg] text-lg">🇦🇪</span>
+                  <span className="rotate-[0deg] text-lg">🇮🇸</span>
+                  <span className="rotate-[-15deg] text-lg">🇱🇰</span>
+                </div>
+                
                 <img src="/lovable-uploads/6babe884-a973-49d2-9125-fad3e4a98f6e.jpg" alt="Sunny the Travel Buddy" className="w-40 h-40 object-contain retro-filter" />
                 <p className="text-center font-handwritten mt-1">Sunny was born!</p>
               </div>
