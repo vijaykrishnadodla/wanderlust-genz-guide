@@ -1,8 +1,15 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Clock } from 'lucide-react';
+import { Textarea } from '@/components/ui/textarea';
 
 const HowStarted = () => {
+  const [bubbleText, setBubbleText] = useState("Created in cooperation with ISIC — the only globally recognized student ID, trusted by over 120 million students worldwide throughout their studies.");
+  
+  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setBubbleText(e.target.value);
+  };
+  
   return <section id="how-started" className="py-16 bg-white relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
@@ -14,6 +21,26 @@ const HowStarted = () => {
               <Clock className="h-6 w-6 text-[#F97316]" />
             </div>
             <h2 className="text-3xl md:text-4xl font-display ml-3 transform -rotate-1">HOW STB STARTED</h2>
+          </div>
+          
+          <div className="w-full bg-[#FEC6A1]/40 rounded-full transform rotate-1 mx-auto mb-8 overflow-hidden max-w-3xl">
+            <div className="p-2">
+              <Textarea 
+                value={bubbleText}
+                onChange={handleTextChange}
+                className="w-full border-none bg-transparent resize-none font-bold text-[#F97316] min-h-[40px] p-1 focus:ring-0 focus:outline-none"
+                style={{ 
+                  overflow: 'hidden',
+                  height: 'auto'
+                }}
+                onInput={(e) => {
+                  // Auto-resize the textarea
+                  const target = e.target as HTMLTextAreaElement;
+                  target.style.height = 'auto';
+                  target.style.height = `${target.scrollHeight}px`;
+                }}
+              />
+            </div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
