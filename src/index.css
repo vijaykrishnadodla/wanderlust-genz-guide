@@ -3,6 +3,8 @@
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -78,10 +80,122 @@
     @apply animate-bounce-light;
   }
   
+  /* Updated Typography Classes */
   .handwritten {
-    @apply font-['Caveat'] text-lg;
+    @apply font-['Dancing_Script'] text-lg;
   }
   
+  .script-heading {
+    @apply font-['Dancing_Script'] font-bold;
+  }
+  
+  .display-heading {
+    @apply font-sans font-bold;
+  }
+  
+  /* Social media tag styles */
+  .social-tag {
+    @apply bg-[#F97316] text-white px-4 py-1 rounded-full text-sm font-bold uppercase;
+  }
+  
+  /* New warm gradient backgrounds */
+  .warm-gradient {
+    @apply bg-gradient-to-br from-[#FEC6A1] to-[#fdad32];
+  }
+  
+  .warm-gradient-soft {
+    @apply bg-gradient-to-br from-[#FEF7CD] to-[#FEC6A1]/40;
+  }
+  
+  .peach-gradient {
+    @apply bg-gradient-to-br from-[#ff77a0]/20 via-[#FEC6A1]/30 to-[#FEF7CD]/50;
+  }
+  
+  /* Question and answer components */
+  .question-bubble {
+    @apply bg-[#F97316] text-white p-4 rounded-3xl font-medium;
+  }
+  
+  .answer-bubble {
+    @apply bg-white p-4 rounded-3xl border border-[#FEC6A1]/30;
+  }
+  
+  /* Swipe indicator */
+  .swipe-indicator {
+    @apply bg-[#F97316] text-white px-4 py-1 rounded-full text-sm font-medium flex items-center gap-1;
+  }
+  
+  /* Circle overlays for design */
+  .circle-overlay {
+    @apply rounded-full absolute;
+  }
+  
+  .circle-peach {
+    @apply bg-[#FEC6A1]/70;
+  }
+  
+  .circle-orange {
+    @apply bg-[#F97316]/70;
+  }
+  
+  .circle-yellow {
+    @apply bg-[#FEF7CD];
+  }
+  
+  /* FAQ styling */
+  .faq-question {
+    @apply font-['Dancing_Script'] text-2xl font-bold text-[#F97316] mb-2;
+  }
+  
+  .faq-answer {
+    @apply text-lg text-gray-700;
+  }
+  
+  /* Travel persona cards */
+  .persona-card {
+    @apply bg-white rounded-3xl p-6 shadow-sm;
+  }
+  
+  .persona-title {
+    @apply flex items-center gap-2 mb-4;
+  }
+  
+  .persona-title-prefix {
+    @apply text-black font-bold text-xl;
+  }
+  
+  .persona-title-main {
+    @apply font-['Dancing_Script'] text-[#F97316] text-2xl font-bold;
+  }
+  
+  .persona-title-suffix {
+    @apply text-black font-bold text-xl;
+  }
+  
+  .persona-feature {
+    @apply flex items-start gap-2 mb-2;
+  }
+  
+  .persona-bullet {
+    @apply text-[#F97316] text-xl mt-0.5;
+  }
+  
+  .persona-text {
+    @apply text-lg;
+  }
+  
+  .persona-highlight {
+    @apply text-[#F97316] font-medium;
+  }
+  
+  .persona-footer {
+    @apply mt-4 text-lg;
+  }
+  
+  .persona-footer-highlight {
+    @apply text-[#F97316] font-medium;
+  }
+
   .retro-filter {
     filter: brightness(0.95) saturate(1.05) contrast(1.05);
   }
@@ -173,7 +287,7 @@
 
   /* Add a specific class for the font-handwritten to ensure it's applied */
   .font-handwritten {
-    font-family: 'Caveat', cursive;
+    font-family: 'Dancing Script', cursive;
   }
 
   /* Modern sunshine design system */

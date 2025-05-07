@@ -93,13 +93,29 @@ export default {
 						DEFAULT: "#F97316",
 						light: "#FEC6A1",
 						dark: "#fe4c02"
+					},
+					peach: {
+						DEFAULT: "#FFCBB6",
+						light: "#FFE5D9",
+						dark: "#FF9E7D"
+					},
+					cream: {
+						DEFAULT: "#FFF8E8",
+						dark: "#FFF1D0"
+					},
+					coral: {
+						DEFAULT: "#FF6B6B",
+						light: "#FF9F9F",
+						dark: "#FF4747"
 					}
 				}
 			},
 			fontFamily: {
-				sans: ["Satoshi", "sans-serif"],
+				sans: ["Montserrat", "Satoshi", "sans-serif"],
 				display: ["Anton", "sans-serif"],
-				handwritten: ["Caveat", "cursive"]
+				handwritten: ["Dancing Script", "Caveat", "cursive"],
+				script: ["Dancing Script", "cursive"],
+				body: ["Montserrat", "Inter", "sans-serif"]
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -139,7 +155,11 @@ export default {
 				'bounce-light': 'bounce-light 2s ease-in-out infinite'
 			},
 			backgroundImage: {
-				'film-grain': "url('https://grainy-gradients.vercel.app/noise.svg')"
+				'film-grain': "url('https://grainy-gradients.vercel.app/noise.svg')",
+				'stb-gradient': "linear-gradient(90deg, #ff9e7d 0%, #ffcbb6 50%, #fdad32 100%)",
+				'stb-gradient-soft': "linear-gradient(90deg, #FEF7CD 0%, #FFF8E8 100%)",
+				'stb-gradient-peach': "linear-gradient(135deg, #FFE5D9 0%, #FEC6A1 100%)",
+				'stb-gradient-orange': "linear-gradient(90deg, #fdad32 0%, #fe4c02 100%)"
 			}
 		}
 	},

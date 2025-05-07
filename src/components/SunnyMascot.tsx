@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Sunglasses, Backpack, Camera, Book, Map } from 'lucide-react';
+import { Backpack, Camera, Book, Map } from 'lucide-react';
 
 interface SunnyMascotProps {
   size?: 'sm' | 'md' | 'lg';
