@@ -1,67 +1,92 @@
 
 import React, { useState } from 'react';
-import { Menu, X, Users } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-  
-  const handleJoinNowClick = () => {
-    const offeringSection = document.getElementById('offering');
-    if (offeringSection) offeringSection.scrollIntoView({ behavior: 'smooth' });
-  };
-  
+  const navigation = [
+    { name: 'Home', href: '/' },
+    { name: 'Sales Page', href: '/sales' },
+    { name: 'Funnel', href: '/funnel' }
+  ];
+
   return (
-    <nav className="bg-white border-b border-gray-200 py-4 fixed w-full top-0 z-50">
-      <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-2">
-          <img alt="Student Travel Buddy" src="/lovable-uploads/1bfb3ff6-11c2-429e-a525-6350583e6630.png" className="h-12 w-auto" />
-          <span className="font-display text-xl">Student Travel Buddy</span>
-        </Link>
-        
-        <div className="hidden md:flex items-center gap-6">
-          <a href="#sunshine-club" className="text-gray-600 hover:text-[#F97316]">The Sunshine Club</a>
-          <a href="#offering" className="text-gray-600 hover:text-[#F97316]">Membership</a>
-          <a href="#quiz" className="text-gray-600 hover:text-[#F97316]">Savings Quiz</a>
-          <Button className="stb-button" onClick={handleJoinNowClick}>
-            <Users className="mr-1 h-4 w-4" /> Join Now
-          </Button>
-        </div>
-        
-        <div className="md:hidden">
-          <Button variant="ghost" size="icon" onClick={toggleMenu}>
-            {isMenuOpen ? <X /> : <Menu />}
-          </Button>
-        </div>
-      </div>
-      
-      {isMenuOpen && (
-        <div className="md:hidden bg-white absolute w-full left-0 py-4 px-4 border-b border-gray-200">
-          <div className="flex flex-col space-y-4">
-            <a href="#sunshine-club" className="text-gray-600 hover:text-[#F97316] px-4 py-2" onClick={() => setIsMenuOpen(false)}>
-              The Sunshine Club
-            </a>
-            <a href="#offering" className="text-gray-600 hover:text-[#F97316] px-4 py-2" onClick={() => setIsMenuOpen(false)}>
-              Membership
-            </a>
-            <a href="#quiz" className="text-gray-600 hover:text-[#F97316] px-4 py-2" onClick={() => setIsMenuOpen(false)}>
-              Savings Quiz
-            </a>
-            <Button className="stb-button w-full" onClick={() => {
-              setIsMenuOpen(false);
-              handleJoinNowClick();
-            }}>
-              <Users className="mr-1 h-4 w-4" /> Join Now
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 px-4">
+      <div className="container mx-auto">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center">
+            <Link to="/" className="flex-shrink-0">
+              <span className="text-xl font-bold text-[#F97316]">StudentTravelBuddy</span>
+            </Link>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:block">
+            <NavigationMenu>
+              <NavigationMenuList>
+                {navigation.map((item) => (
+                  <NavigationMenuItem key={item.name}>
+                    <Link to={item.href}>
+                      <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                        {item.name}
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+                ))}
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
+
+          <div className="hidden md:block">
+            <Button variant="default" className="bg-[#F97316] text-white hover:bg-[#F97316]/90">
+              Join Now
             </Button>
           </div>
+
+          {/* Mobile Navigation */}
+          <div className="md:hidden">
+            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <nav className="flex flex-col gap-4 mt-8">
+                  {navigation.map((item) => (
+                    <Link 
+                      key={item.name} 
+                      to={item.href}
+                      className="text-lg font-medium hover:text-[#F97316]"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  <Button className="mt-4 bg-[#F97316] text-white hover:bg-[#F97316]/90">
+                    Join Now
+                  </Button>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
-      )}
-    </nav>
+      </div>
+    </header>
   );
 };
 
