@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Backpack, Camera, Book, Map } from 'lucide-react';
+import { Backpack, Camera, Book, Map, Sparkles } from 'lucide-react';
 
 interface SunnyMascotProps {
   size?: 'sm' | 'md' | 'lg';
@@ -19,68 +19,91 @@ const SunnyMascot = ({
 }: SunnyMascotProps) => {
   // Size mappings
   const sizeClasses = {
-    sm: 'h-8 w-8',
-    md: 'h-12 w-12',
-    lg: 'h-16 w-16',
+    sm: 'h-10 w-10',
+    md: 'h-16 w-16',
+    lg: 'h-24 w-24',
   };
   
-  // Travel style accessory
+  // Travel style accessory with updated Gen Z design
   const renderAccessory = () => {
     switch(travelStyle) {
       case 'beach':
         return (
-          <div className="absolute -top-3 -right-1 transform rotate-6">
-            <div className="bg-[#ff3b81] h-3 w-8 rounded-full"></div>
-            <div className="bg-[#ff3b81] h-6 w-12 rounded-t-full -mt-1"></div>
+          <div className="absolute -top-2 -right-1 transform rotate-6 z-10">
+            <div className="bg-sunny-orange-light h-3 w-7 rounded-full"></div>
+            <div className="bg-sunny-orange-light h-5 w-10 rounded-t-full -mt-1"></div>
           </div>
         );
       case 'cultural':
         return (
-          <div className="absolute -top-1 -right-1">
-            <Camera className="h-5 w-5 text-[#fe4c02]" />
+          <div className="absolute -top-1 -right-1 z-10">
+            <div className="bg-sunny-yellow-light rounded-full p-1">
+              <Camera className="h-4 w-4 text-sunny-orange" />
+            </div>
           </div>
         );
       case 'educational':
         return (
-          <div className="absolute -top-1 -right-1">
-            <Book className="h-5 w-5 text-[#fe4c02]" />
+          <div className="absolute -top-1 -right-1 z-10">
+            <div className="bg-sunny-yellow-light rounded-full p-1">
+              <Book className="h-4 w-4 text-sunny-orange" />
+            </div>
           </div>
         );
       case 'adventure':
         return (
-          <div className="absolute -top-1 -right-1">
-            <Backpack className="h-5 w-5 text-[#fe4c02]" />
+          <div className="absolute -top-1 -right-1 z-10">
+            <div className="bg-sunny-yellow-light rounded-full p-1">
+              <Backpack className="h-4 w-4 text-sunny-orange" />
+            </div>
           </div>
         );
       default:
         return (
-          <div className="absolute -top-3 -right-1 transform rotate-6">
-            <div className="bg-[#ff3b81] h-3 w-8 rounded-full"></div>
-            <div className="bg-[#ff3b81] h-6 w-12 rounded-t-full -mt-1"></div>
+          <div className="absolute -top-2 -right-1 transform rotate-6 z-10">
+            <div className="bg-sunny-orange-light h-3 w-7 rounded-full"></div>
+            <div className="bg-sunny-orange-light h-5 w-10 rounded-t-full -mt-1"></div>
           </div>
         );
     }
   };
   
+  // Add sparkle effect for Gen Z dynamic feel
+  const renderSparkles = () => {
+    return (
+      <>
+        <div className="absolute -top-1 -left-1 sunny-pulse" style={{ animationDelay: '0.5s' }}>
+          <Sparkles className="h-4 w-4 text-sunny-yellow" />
+        </div>
+        <div className="absolute -bottom-1 -right-1 sunny-pulse" style={{ animationDelay: '1s' }}>
+          <Sparkles className="h-3 w-3 text-sunny-orange" />
+        </div>
+      </>
+    );
+  };
+  
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       <div className="relative">
-        {/* Updated Sunny image */}
+        {/* Updated Sunny image with glow effect */}
         <div className={`relative ${sizeClasses[size]}`}>
+          <div className="absolute inset-0 bg-sunny-yellow/50 rounded-full blur-md sunny-pulse"></div>
           <img
             src="/lovable-uploads/2a26224f-3d4d-45a2-b5f7-850369f9cc52.png"
             alt="Sunny mascot"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain relative z-0"
           />
           
-          {/* Only show travel style accessories for non-beach styles since beach is default in the image */}
-          {travelStyle !== 'default' && travelStyle !== 'beach' && renderAccessory()}
+          {/* Only show travel style accessories for non-default styles */}
+          {travelStyle !== 'default' && renderAccessory()}
+          
+          {/* Add sparkle effect */}
+          {renderSparkles()}
         </div>
       </div>
       
       {withText && message && (
-        <div className="bg-white px-3 py-2 rounded-lg relative max-w-xs font-handwritten text-[#fe4c02] shadow-sm">
-          <div className="absolute top-2 -left-2 h-3 w-3 bg-white transform rotate-45"></div>
+        <div className="sunny-speech-bubble sunny-speech-bubble-left max-w-xs font-handwritten text-sunny-orange">
           {message}
         </div>
       )}
