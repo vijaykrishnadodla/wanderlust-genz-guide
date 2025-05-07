@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Backpack, Camera, Book, Map, Sparkles } from 'lucide-react';
+import { Sun, Compass, Book, Coffee, Mountain } from 'lucide-react';
 
 interface SunnyMascotProps {
   size?: 'sm' | 'md' | 'lg';
@@ -19,91 +19,73 @@ const SunnyMascot = ({
 }: SunnyMascotProps) => {
   // Size mappings
   const sizeClasses = {
-    sm: 'h-10 w-10',
-    md: 'h-16 w-16',
-    lg: 'h-24 w-24',
+    sm: 'h-8 w-8',
+    md: 'h-12 w-12',
+    lg: 'h-16 w-16',
   };
   
-  // Travel style accessory with updated Gen Z design
-  const renderAccessory = () => {
+  // Travel style variations
+  const getAccessory = () => {
     switch(travelStyle) {
       case 'beach':
-        return (
-          <div className="absolute -top-2 -right-1 transform rotate-6 z-10">
-            <div className="bg-sunny-orange-light h-3 w-7 rounded-full"></div>
-            <div className="bg-sunny-orange-light h-5 w-10 rounded-t-full -mt-1"></div>
-          </div>
-        );
+        return <span className="text-xs">🕶️</span>;
       case 'cultural':
-        return (
-          <div className="absolute -top-1 -right-1 z-10">
-            <div className="bg-sunny-yellow-light rounded-full p-1">
-              <Camera className="h-4 w-4 text-sunny-orange" />
-            </div>
-          </div>
-        );
+        return <span className="text-xs">🎭</span>;
       case 'educational':
-        return (
-          <div className="absolute -top-1 -right-1 z-10">
-            <div className="bg-sunny-yellow-light rounded-full p-1">
-              <Book className="h-4 w-4 text-sunny-orange" />
-            </div>
-          </div>
-        );
+        return <span className="text-xs">🎓</span>;
       case 'adventure':
-        return (
-          <div className="absolute -top-1 -right-1 z-10">
-            <div className="bg-sunny-yellow-light rounded-full p-1">
-              <Backpack className="h-4 w-4 text-sunny-orange" />
-            </div>
-          </div>
-        );
+        return <span className="text-xs">🧗</span>;
       default:
-        return (
-          <div className="absolute -top-2 -right-1 transform rotate-6 z-10">
-            <div className="bg-sunny-orange-light h-3 w-7 rounded-full"></div>
-            <div className="bg-sunny-orange-light h-5 w-10 rounded-t-full -mt-1"></div>
-          </div>
-        );
+        return <span className="text-xs">😎</span>;
     }
   };
   
-  // Add sparkle effect for Gen Z dynamic feel
-  const renderSparkles = () => {
-    return (
-      <>
-        <div className="absolute -top-1 -left-1 sunny-pulse" style={{ animationDelay: '0.5s' }}>
-          <Sparkles className="h-4 w-4 text-sunny-yellow" />
-        </div>
-        <div className="absolute -bottom-1 -right-1 sunny-pulse" style={{ animationDelay: '1s' }}>
-          <Sparkles className="h-3 w-3 text-sunny-orange" />
-        </div>
-      </>
-    );
+  // Travel style color variations
+  const getSunGradient = () => {
+    switch(travelStyle) {
+      case 'beach':
+        return 'from-[#fdad32] to-[#fe8c02]';
+      case 'cultural':
+        return 'from-[#fdad32] to-[#fc6d34]';
+      case 'educational':
+        return 'from-[#fdad32] to-[#fe4c02]';
+      case 'adventure':
+        return 'from-[#ffbd32] to-[#fe7502]';
+      default:
+        return 'from-[#fdad32] to-[#fe4c02]';
+    }
+  };
+
+  // Travel style icon
+  const getTravelIcon = () => {
+    switch(travelStyle) {
+      case 'beach':
+        return <Coffee className="h-3/5 w-3/5 text-white" />;
+      case 'cultural':
+        return <Compass className="h-3/5 w-3/5 text-white" />;
+      case 'educational':
+        return <Book className="h-3/5 w-3/5 text-white" />;
+      case 'adventure':
+        return <Mountain className="h-3/5 w-3/5 text-white" />;
+      default:
+        return <Sun className="h-3/5 w-3/5 text-white" />;
+    }
   };
   
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       <div className="relative">
-        {/* Updated Sunny image with glow effect */}
-        <div className={`relative ${sizeClasses[size]}`}>
-          <div className="absolute inset-0 bg-sunny-yellow/50 rounded-full blur-md sunny-pulse"></div>
-          <img
-            src="/lovable-uploads/2a26224f-3d4d-45a2-b5f7-850369f9cc52.png"
-            alt="Sunny mascot"
-            className="w-full h-full object-contain relative z-0"
-          />
-          
-          {/* Only show travel style accessories for non-default styles */}
-          {travelStyle !== 'default' && renderAccessory()}
-          
-          {/* Add sparkle effect */}
-          {renderSparkles()}
+        <div className={`bg-gradient-to-br ${getSunGradient()} rounded-full flex items-center justify-center ${sizeClasses[size]}`}>
+          {getTravelIcon()}
+        </div>
+        <div className="absolute -bottom-1 -right-1 bg-white rounded-full border-2 border-[#fdad32] h-1/2 w-1/2 flex items-center justify-center">
+          {getAccessory()}
         </div>
       </div>
       
       {withText && message && (
-        <div className="sunny-speech-bubble sunny-speech-bubble-left max-w-xs font-handwritten text-sunny-orange">
+        <div className="bg-white px-3 py-2 rounded-lg relative max-w-xs font-handwritten text-[#fe4c02] shadow-sm">
+          <div className="absolute top-2 -left-2 h-3 w-3 bg-white transform rotate-45"></div>
           {message}
         </div>
       )}
