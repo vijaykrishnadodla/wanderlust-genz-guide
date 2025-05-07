@@ -18,7 +18,7 @@ const Index = () => {
     <div className="stb-page-container min-h-screen">
       <Navbar />
 
-      {/* Add film grain texture to the entire page */}
+      {/* Clean minimal film grain texture to the page */}
       <div className="stb-film-grain">
         <div className="relative">
           {/* Hero section with base gradient */}

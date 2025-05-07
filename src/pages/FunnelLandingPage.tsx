@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -7,7 +8,7 @@ const FunnelLandingPage = () => {
     <div className="stb-page-container min-h-screen">
       <Navbar />
 
-      {/* Add film grain texture to the entire page */}
+      {/* Clean minimal film grain texture */}
       <div className="stb-film-grain">
         <div className="relative">
           {/* Main funnel content */}

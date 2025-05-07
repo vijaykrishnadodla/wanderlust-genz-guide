@@ -12,7 +12,7 @@ const NotFound = () => {
     <div className="stb-page-container min-h-screen">
       <Navbar />
       
-      {/* Add film grain texture */}
+      {/* Clean minimal film grain texture */}
       <div className="stb-film-grain">
         <div className="relative stb-section-gradient-1 py-24">
           <div className="container px-4 h-[60vh] flex flex-col items-center justify-center">
