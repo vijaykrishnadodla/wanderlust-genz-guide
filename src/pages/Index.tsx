@@ -71,7 +71,7 @@ const Index = () => {
         
         {/* SignUp section with gradient 1 */}
         <div className="relative stb-section-gradient-1">
-          <div className="stb-wave-divider stb-wave-divider-top"></div>
+          
           <SignUp />
         </div>
         
