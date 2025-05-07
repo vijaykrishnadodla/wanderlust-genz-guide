@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
@@ -159,7 +160,15 @@
   .sun-ray {
     stroke-dasharray: 200;
     stroke-dashoffset: 0;
-    animation: flow-ray 4s ease-in-out infinite alternate;
+    animation: flow-ray 8s ease-in-out infinite alternate;
+  }
+
+  .sun-ray-delay-1 {
+    animation-delay: 2s;
+  }
+
+  .sun-ray-delay-2 {
+    animation-delay: 4s;
   }
 
   /* Add a specific class for the font-handwritten to ensure it's applied */
