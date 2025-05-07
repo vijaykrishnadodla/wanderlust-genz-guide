@@ -88,9 +88,11 @@ const Hero = () => {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="bg-white p-6 rounded-xl shadow-lg border border-[#fdad32]/20">
                 <div className="relative">
-                  <SunnyMascot size="lg" />
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                    <h3 className="text-2xl font-bold mt-20 text-[#fe4c02]">Meet Sunny</h3>
+                  <div className="flex justify-center" style={{ width: '200px', height: '200px' }}>
+                    <SunnyMascot size="lg" />
+                  </div>
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 -translate-y-12 flex flex-col items-center">
+                    <h3 className="text-2xl font-bold text-[#fe4c02]">Meet Sunny</h3>
                     <p className="font-handwritten text-[#fdad32]">Your travel bestie!</p>
                   </div>
                 </div>

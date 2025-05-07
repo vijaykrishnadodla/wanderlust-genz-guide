@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Sun, Compass, Book, Coffee, Mountain } from 'lucide-react';
+import { Sunglasses, Backpack, Camera, Book, Map } from 'lucide-react';
 
 interface SunnyMascotProps {
   size?: 'sm' | 'md' | 'lg';
@@ -24,62 +24,57 @@ const SunnyMascot = ({
     lg: 'h-16 w-16',
   };
   
-  // Travel style variations
-  const getAccessory = () => {
+  // Travel style accessory
+  const renderAccessory = () => {
     switch(travelStyle) {
       case 'beach':
-        return <span className="text-xs">🕶️</span>;
+        return (
+          <div className="absolute -top-3 -right-1 transform rotate-6">
+            <div className="bg-[#ff3b81] h-3 w-8 rounded-full"></div>
+            <div className="bg-[#ff3b81] h-6 w-12 rounded-t-full -mt-1"></div>
+          </div>
+        );
       case 'cultural':
-        return <span className="text-xs">🎭</span>;
+        return (
+          <div className="absolute -top-1 -right-1">
+            <Camera className="h-5 w-5 text-[#fe4c02]" />
+          </div>
+        );
       case 'educational':
-        return <span className="text-xs">🎓</span>;
+        return (
+          <div className="absolute -top-1 -right-1">
+            <Book className="h-5 w-5 text-[#fe4c02]" />
+          </div>
+        );
       case 'adventure':
-        return <span className="text-xs">🧗</span>;
+        return (
+          <div className="absolute -top-1 -right-1">
+            <Backpack className="h-5 w-5 text-[#fe4c02]" />
+          </div>
+        );
       default:
-        return <span className="text-xs">😎</span>;
-    }
-  };
-  
-  // Travel style color variations
-  const getSunGradient = () => {
-    switch(travelStyle) {
-      case 'beach':
-        return 'from-[#fdad32] to-[#fe8c02]';
-      case 'cultural':
-        return 'from-[#fdad32] to-[#fc6d34]';
-      case 'educational':
-        return 'from-[#fdad32] to-[#fe4c02]';
-      case 'adventure':
-        return 'from-[#ffbd32] to-[#fe7502]';
-      default:
-        return 'from-[#fdad32] to-[#fe4c02]';
-    }
-  };
-
-  // Travel style icon
-  const getTravelIcon = () => {
-    switch(travelStyle) {
-      case 'beach':
-        return <Coffee className="h-3/5 w-3/5 text-white" />;
-      case 'cultural':
-        return <Compass className="h-3/5 w-3/5 text-white" />;
-      case 'educational':
-        return <Book className="h-3/5 w-3/5 text-white" />;
-      case 'adventure':
-        return <Mountain className="h-3/5 w-3/5 text-white" />;
-      default:
-        return <Sun className="h-3/5 w-3/5 text-white" />;
+        return (
+          <div className="absolute -top-3 -right-1 transform rotate-6">
+            <div className="bg-[#ff3b81] h-3 w-8 rounded-full"></div>
+            <div className="bg-[#ff3b81] h-6 w-12 rounded-t-full -mt-1"></div>
+          </div>
+        );
     }
   };
   
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       <div className="relative">
-        <div className={`bg-gradient-to-br ${getSunGradient()} rounded-full flex items-center justify-center ${sizeClasses[size]}`}>
-          {getTravelIcon()}
-        </div>
-        <div className="absolute -bottom-1 -right-1 bg-white rounded-full border-2 border-[#fdad32] h-1/2 w-1/2 flex items-center justify-center">
-          {getAccessory()}
+        {/* Updated Sunny image */}
+        <div className={`relative ${sizeClasses[size]}`}>
+          <img
+            src="/lovable-uploads/2a26224f-3d4d-45a2-b5f7-850369f9cc52.png"
+            alt="Sunny mascot"
+            className="w-full h-full object-contain"
+          />
+          
+          {/* Only show travel style accessories for non-beach styles since beach is default in the image */}
+          {travelStyle !== 'default' && travelStyle !== 'beach' && renderAccessory()}
         </div>
       </div>
       
