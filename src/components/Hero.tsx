@@ -47,7 +47,7 @@ const Hero = () => {
                   if (offeringSection) offeringSection.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                <Users className="mr-2 h-4 w-4" /> Join Student Travel Buddy
+                <Users className="mr-2 h-4 w-4" /> Join The Sunshine Club
               </Button>
             </div>
 
