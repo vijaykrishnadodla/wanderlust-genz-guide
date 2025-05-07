@@ -1,10 +1,8 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
 import { CheckCircle, Timer, UserRound, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
 const Offering = () => {
   const plans = [{
     name: "FreeTimer",
@@ -59,7 +57,6 @@ const Offering = () => {
     highlight: true,
     spotsLeft: "24"
   }];
-  
   const featureLabels = {
     newsletter: "Curated Newsletter",
     travelRules: "10 Top Secret Non-Negotiable Student Travel Rules",
@@ -72,9 +69,7 @@ const Offering = () => {
     community: "Local Student Community Groups",
     localEvents: "Local Events"
   };
-  
-  return (
-    <section id="offering" className="py-16 bg-gradient-to-t from-[#FDE1D3] to-white relative">
+  return <section id="offering" className="py-16 bg-gradient-to-t from-[#FDE1D3] to-white relative">
       {/* Film grain overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
@@ -98,14 +93,10 @@ const Offering = () => {
               <p className="text-gray-600 mb-6 text-sm">{plans[0].description}</p>
               
               <ul className="space-y-2 mb-8 text-sm">
-                {Object.entries(plans[0].features).map(([key, enabled]) => 
-                  enabled ? (
-                    <li key={key} className="flex items-start gap-2">
+                {Object.entries(plans[0].features).map(([key, enabled]) => enabled ? <li key={key} className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-[#F97316] shrink-0 mt-0.5" />
                       <span>{featureLabels[key]}</span>
-                    </li>
-                  ) : null
-                )}
+                    </li> : null)}
               </ul>
               
               <Button className="w-full bg-[#FEF7CD] hover:bg-[#FEC6A1] text-black font-bold text-sm">
@@ -123,12 +114,10 @@ const Offering = () => {
               <p className="text-gray-600 mb-6 text-sm">{plans[1].description}</p>
               
               <ul className="space-y-2 mb-8 text-sm">
-                {Object.entries(plans[1].features).filter(([_, enabled]) => enabled).slice(0, 5).map(([key]) => (
-                  <li key={key} className="flex items-start gap-2">
+                {Object.entries(plans[1].features).filter(([_, enabled]) => enabled).slice(0, 5).map(([key]) => <li key={key} className="flex items-start gap-2">
                     <CheckCircle className="h-4 w-4 text-[#F97316] shrink-0 mt-0.5" />
                     <span>{featureLabels[key]}</span>
-                  </li>
-                ))}
+                  </li>)}
                 <li className="text-gray-500 text-sm">+ 5 more features</li>
               </ul>
               
@@ -166,14 +155,10 @@ const Offering = () => {
               </p>
               
               <ul className="space-y-3 mb-6 bg-white p-4 rounded-lg border border-[#FEC6A1]/30">
-                {Object.entries(plans[2].features).map(([key, enabled]) => 
-                  enabled ? (
-                    <li key={key} className="flex items-start gap-2">
+                {Object.entries(plans[2].features).map(([key, enabled]) => enabled ? <li key={key} className="flex items-start gap-2">
                       <CheckCircle className="h-5 w-5 text-[#F97316] shrink-0 mt-0.5" />
                       <span className="font-medium">{featureLabels[key]}</span>
-                    </li>
-                  ) : null
-                )}
+                    </li> : null)}
                 <li className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-[#F97316] shrink-0 mt-0.5" />
                   <span className="font-medium text-[#F97316]">30% OFF for limited time!</span>
@@ -181,11 +166,7 @@ const Offering = () => {
               </ul>
               
               <div className="flex items-center justify-center mb-6">
-                <img 
-                  src="/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png" 
-                  alt="ISIC Logo" 
-                  className="h-20 object-contain"
-                />
+                
               </div>
               
               <Button className="w-full bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-lg py-6 flex items-center justify-center gap-2">
@@ -213,20 +194,12 @@ const Offering = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {Object.entries(featureLabels).map(([key, label]) => (
-                  <TableRow key={key}>
+                {Object.entries(featureLabels).map(([key, label]) => <TableRow key={key}>
                     <TableCell className="font-medium">{label}</TableCell>
-                    {plans.map((plan, i) => (
-                      <TableCell key={i} className={`text-center ${i === 2 ? 'bg-[#FEC6A1]/10' : ''}`}>
-                        {plan.features[key] ? (
-                          <CheckCircle className={`h-5 w-5 mx-auto ${i === 2 ? 'text-[#F97316]' : 'text-[#F97316]/70'}`} />
-                        ) : (
-                          <span className="text-gray-300">—</span>
-                        )}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))}
+                    {plans.map((plan, i) => <TableCell key={i} className={`text-center ${i === 2 ? 'bg-[#FEC6A1]/10' : ''}`}>
+                        {plan.features[key] ? <CheckCircle className={`h-5 w-5 mx-auto ${i === 2 ? 'text-[#F97316]' : 'text-[#F97316]/70'}`} /> : <span className="text-gray-300">—</span>}
+                      </TableCell>)}
+                  </TableRow>)}
                 <TableRow>
                   <TableCell className="font-medium">Price</TableCell>
                   <TableCell className="text-center">Free</TableCell>
@@ -310,8 +283,6 @@ const Offering = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Offering;
