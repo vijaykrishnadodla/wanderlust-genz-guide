@@ -54,7 +54,7 @@
   }
 
   body {
-    @apply bg-sunny-pale text-foreground font-sans;
+    @apply bg-sunny-yellow-pale text-foreground font-sans;
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
     background-repeat: repeat;
     background-size: 200px;
