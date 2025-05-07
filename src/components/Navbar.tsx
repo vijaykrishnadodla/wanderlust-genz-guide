@@ -14,7 +14,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2">
             <SunnyMascot size="sm" />
-            <span className="font-display text-xl font-bold">SUNSHINE CLUB</span>
+            <span className="font-display text-xl font-bold">STUDENT TRAVEL BUDDY</span>
           </Link>
 
           {/* Desktop Navigation */}
