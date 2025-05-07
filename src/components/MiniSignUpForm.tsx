@@ -2,7 +2,7 @@
 import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { User } from 'lucide-react';
+import { User, ArrowRight } from 'lucide-react';
 
 const MiniSignUpForm = () => {
   return (
@@ -14,8 +14,9 @@ const MiniSignUpForm = () => {
         />
         <User className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#fdad32] h-4 w-4" />
       </div>
-      <Button className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] text-white font-bold rounded-full w-full md:w-auto">
+      <Button className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] text-white font-bold rounded-full w-full md:w-auto flex items-center gap-2">
         Join Now
+        <ArrowRight className="h-4 w-4" />
       </Button>
     </div>
   );

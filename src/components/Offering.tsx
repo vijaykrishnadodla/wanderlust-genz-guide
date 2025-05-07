@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
@@ -74,8 +73,8 @@ const Offering = () => {
     localEvents: "Local Events"
   };
 
-  return <section id="offering" className="py-16 bg-gradient-to-t from-[#aff3d7]/30 to-white relative">
-      {/* Film grain overlay */}
+  return <section id="offering" className="py-16 bg-gradient-to-t from-[#ffeea6]/30 to-white relative">
+      {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="container px-4 md:px-6 relative z-10">
@@ -146,19 +145,19 @@ const Offering = () => {
             <CardContent className="p-6">
               <h3 className="text-xl font-display mb-2">{plans[1].name}</h3>
               <div className="mb-4">
-                <span className="text-2xl font-bold text-[#3A67CA]">{plans[1].price}</span>
+                <span className="text-2xl font-bold text-[#fdad32]">{plans[1].price}</span>
               </div>
               <p className="text-gray-600 mb-6 text-sm">{plans[1].description}</p>
               
               <ul className="space-y-2 mb-8 text-sm">
                 {Object.entries(plans[1].features).filter(([_, enabled]) => enabled).slice(0, 5).map(([key]) => <li key={key} className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#3A67CA] shrink-0 mt-0.5" />
+                    <CheckCircle className="h-4 w-4 text-[#fdad32] shrink-0 mt-0.5" />
                     <span>{featureLabels[key]}</span>
                   </li>)}
                 <li className="text-gray-500 text-sm">+ 5 more features</li>
               </ul>
               
-              <Button className="w-full bg-[#70d5ff] hover:bg-[#3A67CA] text-white font-bold text-sm rounded-full">
+              <Button className="w-full bg-[#fdad32] hover:bg-[#fe4c02] text-white font-bold text-sm rounded-full">
                 Choose Plan
               </Button>
             </CardContent>
@@ -169,18 +168,18 @@ const Offering = () => {
             <CardContent className="p-6">
               <h3 className="text-xl font-display mb-2">{plans[2].name}</h3>
               <div className="mb-4">
-                <span className="text-2xl font-bold text-green-500">{plans[2].price}</span>
+                <span className="text-2xl font-bold text-[#fdad32]">{plans[2].price}</span>
               </div>
               <p className="text-gray-600 mb-6 text-sm">{plans[2].description}</p>
               
               <ul className="space-y-2 mb-8 text-sm">
                 {Object.entries(plans[2].features).map(([key, enabled]) => enabled ? <li key={key} className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-[#fdad32] shrink-0 mt-0.5" />
                       <span>{featureLabels[key]}</span>
                     </li> : null)}
               </ul>
               
-              <Button className="w-full bg-[#aff3d7] hover:bg-green-400 text-[#1e1e1e] font-bold text-sm rounded-full">
+              <Button className="w-full bg-[#ffeea6] hover:bg-[#fdad32] text-[#fe4c02] font-bold text-sm rounded-full">
                 Choose Plan
               </Button>
             </CardContent>
@@ -206,10 +205,10 @@ const Offering = () => {
                       {plans[0].features[key] ? <CheckCircle className="h-5 w-5 mx-auto text-[#fdad32]" /> : <span className="text-gray-300">—</span>}
                     </TableCell>
                     <TableCell className="text-center">
-                      {plans[1].features[key] ? <CheckCircle className="h-5 w-5 mx-auto text-[#3A67CA]" /> : <span className="text-gray-300">—</span>}
+                      {plans[1].features[key] ? <CheckCircle className="h-5 w-5 mx-auto text-[#fdad32]" /> : <span className="text-gray-300">—</span>}
                     </TableCell>
                     <TableCell className="text-center">
-                      {plans[2].features[key] ? <CheckCircle className="h-5 w-5 mx-auto text-green-500" /> : <span className="text-gray-300">—</span>}
+                      {plans[2].features[key] ? <CheckCircle className="h-5 w-5 mx-auto text-[#fdad32]" /> : <span className="text-gray-300">—</span>}
                     </TableCell>
                   </TableRow>)}
                 <TableRow>
@@ -257,11 +256,38 @@ const Offering = () => {
             </div>
           </div>
           
-          <div className="flex items-center gap-4 bg-[#aff3d7]/30 p-4 rounded-lg mt-6">
+          <div className="flex items-center gap-4 bg-[#ffeea6]/30 p-4 rounded-lg mt-6">
             <SunnyMascot size="sm" />
             <p className="font-handwritten text-lg text-[#1e1e1e]">
               "Our new system verifies most students in seconds! If yours doesn't work, no worries - our team will help or you can enjoy PartTimer benefits instead!" - Sunny
             </p>
+          </div>
+
+          {/* University Partners Section - New addition */}
+          <div className="mt-8">
+            <h3 className="text-xl font-bold mb-4 text-center">Trusted by Students from Top Universities</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center justify-items-center">
+              <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <p className="font-bold text-center">Harvard</p>
+                <p className="text-xs text-gray-500 text-center">United States</p>
+              </div>
+              <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <p className="font-bold text-center">Oxford</p>
+                <p className="text-xs text-gray-500 text-center">United Kingdom</p>
+              </div>
+              <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <p className="font-bold text-center">MIT</p>
+                <p className="text-xs text-gray-500 text-center">United States</p>
+              </div>
+              <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <p className="font-bold text-center">Stanford</p>
+                <p className="text-xs text-gray-500 text-center">United States</p>
+              </div>
+            </div>
+
+            <div className="mt-4 text-center">
+              <p className="text-sm text-gray-600">+ 20 more top universities worldwide</p>
+            </div>
           </div>
           
           <div className="flex items-center justify-center gap-4 flex-wrap mt-8">

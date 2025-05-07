@@ -3,13 +3,14 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import SunnyMascot from '@/components/SunnyMascot';
+import { ArrowLeft } from 'lucide-react';
 
 const NotFound = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#ffeea6]/50 to-white p-4">
       <div className="max-w-md w-full text-center">
         <div className="flex justify-center mb-6">
-          <SunnyMascot size="lg" withText message="Oops! I think we took a wrong turn!" />
+          <SunnyMascot size="lg" withText message="Oops! I think we took a wrong turn!" travelStyle="adventure" />
         </div>
         
         <h1 className="text-4xl font-display font-bold mb-4">Page Not Found</h1>
@@ -21,10 +22,10 @@ const NotFound = () => {
         <div className="space-y-4">
           <Button 
             asChild
-            className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full"
+            className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full flex items-center gap-2"
           >
             <Link to="/">
-              Back to Homepage
+              <ArrowLeft className="h-4 w-4" /> Back to Homepage
             </Link>
           </Button>
           

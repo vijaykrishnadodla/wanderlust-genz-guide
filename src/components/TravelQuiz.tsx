@@ -1,10 +1,11 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { Plane, Map, Ticket, Calendar, Compass, Check } from 'lucide-react';
+import { Plane, Map, Ticket, Calendar, Compass, Check, ArrowRight, Camera } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 
 type QuizStep = 'name' | 'destination' | 'email' | 'holidayType' | 'result';
@@ -208,14 +209,14 @@ const TravelQuiz = () => {
   };
 
   return (
-    <section id="quiz" className="py-16 bg-gradient-to-b from-[#aff3d7]/20 to-white relative">
+    <section id="quiz" className="py-16 bg-gradient-to-b from-[#ffeea6]/30 to-white relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="container px-4 md:px-6 max-w-4xl relative z-10">
         <div className="text-center mb-10">
           <div className="inline-block relative">
-            <h2 className="text-3xl md:text-4xl font-display bg-gradient-to-r from-[#37fbb5] to-[#40b8b8] text-white px-6 py-2 rounded-lg">STUDENT TRAVEL STYLE QUIZ</h2>
+            <h2 className="text-3xl md:text-4xl font-display bg-gradient-to-r from-[#fdad32] to-[#fe4c02] text-white px-6 py-2 rounded-lg">STUDENT TRAVEL STYLE QUIZ</h2>
             <div className="absolute -top-3 -right-3 bg-[#ffeea6] p-2 rounded-lg shadow-sm">
               <Plane className="h-4 w-4 text-[#fdad32]" />
             </div>
@@ -242,7 +243,7 @@ const TravelQuiz = () => {
                     placeholder="Your name" 
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="border-[#37fbb5] rounded-lg"
+                    className="border-[#fdad32] rounded-lg"
                   />
                 </div>
               </CardContent>
@@ -251,12 +252,12 @@ const TravelQuiz = () => {
                   variant="outline" 
                   onClick={handlePrevious} 
                   disabled={true}
-                  className="border-[#37fbb5] text-[#40b8b8] hover:bg-[#37fbb5]/10 rounded-full"
+                  className="border-[#fdad32] text-[#fe4c02] hover:bg-[#fdad32]/10 rounded-full"
                 >
                   Previous
                 </Button>
                 <Button 
-                  className="bg-gradient-to-r from-[#37fbb5] to-[#40b8b8] hover:brightness-105 text-white rounded-full" 
+                  className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full" 
                   onClick={handleNext}
                   disabled={isNextDisabled()}
                 >
@@ -280,7 +281,7 @@ const TravelQuiz = () => {
                     placeholder="Destination city" 
                     value={formData.destination}
                     onChange={handleInputChange}
-                    className="border-[#37fbb5] rounded-lg"
+                    className="border-[#fdad32] rounded-lg"
                   />
                 </div>
               </CardContent>
@@ -288,12 +289,12 @@ const TravelQuiz = () => {
                 <Button 
                   variant="outline" 
                   onClick={handlePrevious} 
-                  className="border-[#37fbb5] text-[#40b8b8] hover:bg-[#37fbb5]/10 rounded-full"
+                  className="border-[#fdad32] text-[#fe4c02] hover:bg-[#fdad32]/10 rounded-full"
                 >
                   Previous
                 </Button>
                 <Button 
-                  className="bg-gradient-to-r from-[#37fbb5] to-[#40b8b8] hover:brightness-105 text-white rounded-full" 
+                  className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full" 
                   onClick={handleNext}
                   disabled={isNextDisabled()}
                 >
@@ -317,7 +318,7 @@ const TravelQuiz = () => {
                     placeholder="Your email" 
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="border-[#37fbb5] rounded-lg"
+                    className="border-[#fdad32] rounded-lg"
                   />
                 </div>
               </CardContent>
@@ -325,12 +326,12 @@ const TravelQuiz = () => {
                 <Button 
                   variant="outline" 
                   onClick={handlePrevious} 
-                  className="border-[#37fbb5] text-[#40b8b8] hover:bg-[#37fbb5]/10 rounded-full"
+                  className="border-[#fdad32] text-[#fe4c02] hover:bg-[#fdad32]/10 rounded-full"
                 >
                   Previous
                 </Button>
                 <Button 
-                  className="bg-gradient-to-r from-[#37fbb5] to-[#40b8b8] hover:brightness-105 text-white rounded-full" 
+                  className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full" 
                   onClick={handleNext}
                   disabled={isNextDisabled()}
                 >
@@ -348,28 +349,28 @@ const TravelQuiz = () => {
               </CardHeader>
               <CardContent>
                 <RadioGroup className="space-y-3" value={formData.holidayType} onValueChange={handleRadioChange}>
-                  <div className="flex items-center space-x-2 border border-[#37fbb5]/30 rounded-lg p-4 hover:bg-[#37fbb5]/10 transition-colors cursor-pointer">
+                  <div className="flex items-center space-x-2 border border-[#fdad32]/30 rounded-lg p-4 hover:bg-[#ffeea6]/20 transition-colors cursor-pointer">
                     <RadioGroupItem value="sun-beach" id="sun-beach" />
                     <Label htmlFor="sun-beach" className="w-full cursor-pointer flex items-center gap-2">
                       <span className="text-xl">🏖️</span> Beach & Relaxation
                     </Label>
                   </div>
                   
-                  <div className="flex items-center space-x-2 border border-[#37fbb5]/30 rounded-lg p-4 hover:bg-[#37fbb5]/10 transition-colors cursor-pointer">
+                  <div className="flex items-center space-x-2 border border-[#fdad32]/30 rounded-lg p-4 hover:bg-[#ffeea6]/20 transition-colors cursor-pointer">
                     <RadioGroupItem value="cultural" id="cultural" />
                     <Label htmlFor="cultural" className="w-full cursor-pointer flex items-center gap-2">
                       <span className="text-xl">🏛️</span> Cultural Exploration
                     </Label>
                   </div>
                   
-                  <div className="flex items-center space-x-2 border border-[#37fbb5]/30 rounded-lg p-4 hover:bg-[#37fbb5]/10 transition-colors cursor-pointer">
+                  <div className="flex items-center space-x-2 border border-[#fdad32]/30 rounded-lg p-4 hover:bg-[#ffeea6]/20 transition-colors cursor-pointer">
                     <RadioGroupItem value="educational" id="educational" />
                     <Label htmlFor="educational" className="w-full cursor-pointer flex items-center gap-2">
                       <span className="text-xl">📚</span> Educational
                     </Label>
                   </div>
                   
-                  <div className="flex items-center space-x-2 border border-[#37fbb5]/30 rounded-lg p-4 hover:bg-[#37fbb5]/10 transition-colors cursor-pointer">
+                  <div className="flex items-center space-x-2 border border-[#fdad32]/30 rounded-lg p-4 hover:bg-[#ffeea6]/20 transition-colors cursor-pointer">
                     <RadioGroupItem value="adventure" id="adventure" />
                     <Label htmlFor="adventure" className="w-full cursor-pointer flex items-center gap-2">
                       <span className="text-xl">🧗‍♀️</span> Adventure & Sports
@@ -381,12 +382,12 @@ const TravelQuiz = () => {
                 <Button 
                   variant="outline" 
                   onClick={handlePrevious} 
-                  className="border-[#37fbb5] text-[#40b8b8] hover:bg-[#37fbb5]/10 rounded-full"
+                  className="border-[#fdad32] text-[#fe4c02] hover:bg-[#fdad32]/10 rounded-full"
                 >
                   Previous
                 </Button>
                 <Button 
-                  className="bg-gradient-to-r from-[#37fbb5] to-[#40b8b8] hover:brightness-105 text-white rounded-full" 
+                  className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full" 
                   onClick={handleNext}
                   disabled={isNextDisabled()}
                 >
@@ -412,7 +413,7 @@ const TravelQuiz = () => {
                 <p className="text-center text-gray-600 mb-6 font-handwritten text-lg">
                   Creative, vibrant, and full of hidden gems - Barcelona matches your spontaneous yet culture-focused travel style!
                 </p>
-                <div className="bg-[#70d5ff]/20 p-4 rounded-lg w-full mb-6 border border-[#70d5ff]/30">
+                <div className="bg-[#ffeea6]/40 p-4 rounded-lg w-full mb-6 border border-[#fdad32]/30">
                   <p className="font-medium text-center">Unlock your personalized Barcelona guide with:</p>
                   <ul className="mt-2 space-y-2">
                     <li className="flex items-center gap-2 justify-center">
