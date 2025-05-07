@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,6 +7,7 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from '@/components/ui/separator';
 import JourneySuns from './JourneySuns';
+
 const SunshineClub = () => {
   // State for the countdown timer
   const [timeLeft, setTimeLeft] = useState({
@@ -49,10 +51,17 @@ const SunshineClub = () => {
     }, 1000);
     return () => clearInterval(timer);
   }, []);
-  return <section id="sunshine-club" className="py-16 bg-gradient-to-b from-[#FEF7CD]/40 to-white relative">
-      {/* Subtle background texture */}
-      <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-      
+  
+  // University logos for trusted by section
+  const universities = [
+    "Harvard", "Oxford", "MIT", "Stanford", "Yale", "Princeton", 
+    "Columbia", "Cambridge", "Berkeley", "UCLA", "NYU", "UPenn", 
+    "Caltech", "Duke", "Cornell", "UChicago", "Imperial", "ETH Zurich", 
+    "Toronto", "McGill", "ANU", "Tokyo", "Seoul", "Singapore"
+  ];
+
+  return (
+    <section id="sunshine-club" className="py-16 relative">
       <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
         {/* Modern Header */}
         <div className="text-center mb-16">
@@ -61,13 +70,12 @@ const SunshineClub = () => {
             <span>Join our community</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-display mb-4">THE SUNSHINE CLUB</h2>
-          
         </div>
 
         {/* Add Journey Suns Component Here */}
         <JourneySuns />
 
-        {/* Key Benefits - Modern Cards */}
+        {/* Key Benefits - Modern Cards with Orange Icons */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           <div className="sunshine-card group">
             <div className="h-12 w-12 modern-sun mb-4">
@@ -101,19 +109,19 @@ const SunshineClub = () => {
         </div>
 
         {/* Membership comparison table - modernized */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mb-16">
-          <div className="p-6 border-b border-gray-100">
-            <h3 className="text-2xl font-bold">Membership Options</h3>
-            <p className="text-gray-600">Choose the plan that works for you</p>
+        <div className="bg-white rounded-xl shadow-md border-2 border-[#FFD600]/30 overflow-hidden mb-16">
+          <div className="p-6 border-b border-gray-100 bg-gradient-to-r from-[#FFE0B2]/50 to-white">
+            <h3 className="text-2xl font-bold text-[#FF7A00]">Membership Options</h3>
+            <p className="text-[#1e1e1e]/70">Choose the plan that works for you</p>
           </div>
           
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow>
+                <TableRow className="bg-[#FEF7CD]/30">
                   <TableHead className="w-1/3">Features</TableHead>
-                  <TableHead className="w-1/3">
-                    <div className="font-bold text-xl mb-1">Fulltimer</div>
+                  <TableHead className="w-1/3 bg-[#FFD600]/20">
+                    <div className="font-bold text-xl mb-1 text-[#FF7A00]">Fulltimer</div>
                     <div className="text-sm text-gray-600">For active students</div>
                   </TableHead>
                   <TableHead className="w-1/3">
@@ -125,43 +133,43 @@ const SunshineClub = () => {
               <TableBody>
                 <TableRow>
                   <TableCell className="font-medium">10 student travel rules</TableCell>
-                  <TableCell><Check className="h-5 w-5 text-green-500" /></TableCell>
+                  <TableCell className="bg-[#FFD600]/10"><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
                   <TableCell className="text-gray-400">-</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="font-medium">City guides</TableCell>
-                  <TableCell><Check className="h-5 w-5 text-green-500" /></TableCell>
-                  <TableCell><Check className="h-5 w-5 text-green-500" /></TableCell>
+                  <TableCell className="bg-[#FFD600]/10"><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
+                  <TableCell><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="font-medium">Live Q&A sessions</TableCell>
-                  <TableCell><Check className="h-5 w-5 text-green-500" /></TableCell>
+                  <TableCell className="bg-[#FFD600]/10"><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
                   <TableCell className="text-gray-400">-</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="font-medium">ISIC discounts</TableCell>
-                  <TableCell><Check className="h-5 w-5 text-green-500" /></TableCell>
+                  <TableCell className="bg-[#FFD600]/10"><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
                   <TableCell className="text-gray-400">-</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="font-medium">Community access</TableCell>
-                  <TableCell><Check className="h-5 w-5 text-green-500" /></TableCell>
-                  <TableCell><Check className="h-5 w-5 text-green-500" /></TableCell>
+                  <TableCell className="bg-[#FFD600]/10"><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
+                  <TableCell><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </div>
         </div>
 
-        {/* Pricing Section - Modern cards */}
+        {/* Pricing Section - Modern cards with better visibility and frames */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
           {/* Fulltimer Pricing */}
-          <div className="pricing-card pricing-card-highlight">
+          <div className="pricing-card pricing-card-highlight border-2">
             <div className="pricing-card-accent"></div>
             
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-2xl font-bold">Fulltimer</h3>
-              <Badge variant="outline" className="bg-red-50 text-red-600 border-red-200">SPECIAL OFFER</Badge>
+              <h3 className="text-2xl font-bold text-[#FF7A00]">Fulltimer</h3>
+              <Badge variant="outline" className="bg-red-50 text-red-600 border-red-200 font-bold">SPECIAL OFFER</Badge>
             </div>
             
             <div className="flex items-baseline mb-2">
@@ -171,7 +179,7 @@ const SunshineClub = () => {
             </div>
             
             {/* Simplified countdown timer */}
-            <div className="flex items-center gap-1 mb-6 text-sm">
+            <div className="flex items-center gap-1 mb-6 text-sm p-2 bg-[#FEF7CD] rounded-lg">
               <Sun className="h-4 w-4 text-[#F97316]" />
               <span>Limited time:</span>
               <span className="countdown-digit">{timeLeft.days.toString().padStart(2, '0')}</span>:
@@ -184,11 +192,11 @@ const SunshineClub = () => {
               Requires verification of full-time student status
             </p>
             
-            <Button className="w-full">Choose Fulltimer</Button>
+            <Button className="w-full bg-gradient-to-r from-[#FFD600] to-[#FF7A00] hover:brightness-105 text-white font-bold text-lg py-6">Choose Fulltimer</Button>
           </div>
           
           {/* Part Timer Pricing */}
-          <div className="pricing-card">
+          <div className="pricing-card border">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-2xl font-bold">Part Timer</h3>
               <Badge variant="outline" className="bg-gray-50 text-gray-600 border-gray-200">STANDARD</Badge>
@@ -203,7 +211,7 @@ const SunshineClub = () => {
               No verification required
             </p>
             
-            <Button variant="outline" className="w-full">Choose Part Timer</Button>
+            <Button variant="outline" className="w-full border-[#FF7A00] text-[#FF7A00] hover:bg-[#FF7A00]/10">Choose Part Timer</Button>
           </div>
         </div>
 
@@ -215,9 +223,9 @@ const SunshineClub = () => {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Card className="border-0 shadow-sm hover:shadow transition-all">
+            <Card className="border-2 border-[#FFD600]/30 shadow-sm hover:shadow-md transition-all">
               <CardContent className="p-5 text-center">
-                <div className="h-10 w-10 bg-[#F97316]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                <div className="h-10 w-10 bg-[#F97316]/20 rounded-full flex items-center justify-center mx-auto mb-3">
                   <span className="text-xl">📱</span>
                 </div>
                 <h3 className="font-bold mb-1">Top Travel Apps</h3>
@@ -225,9 +233,9 @@ const SunshineClub = () => {
               </CardContent>
             </Card>
             
-            <Card className="border-0 shadow-sm hover:shadow transition-all">
+            <Card className="border-2 border-[#FFD600]/30 shadow-sm hover:shadow-md transition-all">
               <CardContent className="p-5 text-center">
-                <div className="h-10 w-10 bg-[#F97316]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                <div className="h-10 w-10 bg-[#F97316]/20 rounded-full flex items-center justify-center mx-auto mb-3">
                   <DollarSign className="h-5 w-5 text-[#F97316]" />
                 </div>
                 <h3 className="font-bold mb-1">Exclusive Deals</h3>
@@ -235,9 +243,9 @@ const SunshineClub = () => {
               </CardContent>
             </Card>
             
-            <Card className="border-0 shadow-sm hover:shadow transition-all">
+            <Card className="border-2 border-[#FFD600]/30 shadow-sm hover:shadow-md transition-all">
               <CardContent className="p-5 text-center">
-                <div className="h-10 w-10 bg-[#F97316]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                <div className="h-10 w-10 bg-[#F97316]/20 rounded-full flex items-center justify-center mx-auto mb-3">
                   <Star className="h-5 w-5 text-[#F97316]" />
                 </div>
                 <h3 className="font-bold mb-1">Travel Confidence</h3>
@@ -245,9 +253,9 @@ const SunshineClub = () => {
               </CardContent>
             </Card>
             
-            <Card className="border-0 shadow-sm hover:shadow transition-all">
+            <Card className="border-2 border-[#FFD600]/30 shadow-sm hover:shadow-md transition-all">
               <CardContent className="p-5 text-center">
-                <div className="h-10 w-10 bg-[#F97316]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                <div className="h-10 w-10 bg-[#F97316]/20 rounded-full flex items-center justify-center mx-auto mb-3">
                   <Video className="h-5 w-5 text-[#F97316]" />
                 </div>
                 <h3 className="font-bold mb-1">Live Webinars</h3>
@@ -257,20 +265,23 @@ const SunshineClub = () => {
           </div>
         </div>
 
-        {/* Trusted By Section - Modern */}
+        {/* Trusted By Section - With University Stamps */}
         <div className="mb-16">
           <h2 className="text-2xl font-bold text-center mb-8">TRUSTED BY</h2>
-          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8">
-            <div className="brand-logo w-28">ISIC</div>
-            <div className="brand-logo w-28">HARVARD</div>
-            <div className="brand-logo w-28">OXFORD</div>
-            <div className="brand-logo w-28">MIT</div>
-            <div className="brand-logo w-28">STANFORD</div>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 justify-center items-center">
+            {universities.slice(0, 12).map((uni, index) => (
+              <div key={index} className="university-stamp mx-auto">
+                <span className="font-bold text-xs text-center">{uni}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 text-center">
+            <p className="text-sm text-gray-600">+ {universities.length - 12} more top universities worldwide</p>
           </div>
         </div>
 
-        {/* This is for you if section - modernized */}
-        <div className="mb-16 bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+        {/* This is for you if section - modernized with icons */}
+        <div className="mb-16 bg-white rounded-xl p-8 shadow-sm border-2 border-[#FFD600]/20">
           <h2 className="text-2xl font-bold text-center mb-8">THIS IS FOR YOU IF...</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -322,19 +333,23 @@ const SunshineClub = () => {
           </div>
         </div>
 
-        {/* CTA Section */}
+        {/* CTA Section - Centered button */}
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to join the club?</h2>
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
             Start your adventure with fellow students who love to travel smarter, not harder.
           </p>
           
-          <Button className="stb-button text-lg flex items-center gap-2 relative">
-            Join The Sunshine Club
-            <ArrowRight className="h-5 w-5" />
-          </Button>
+          <div className="flex justify-center">
+            <Button className="stb-button text-lg flex items-center gap-2 mx-auto">
+              Join The Sunshine Club
+              <ArrowRight className="h-5 w-5" />
+            </Button>
+          </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default SunshineClub;

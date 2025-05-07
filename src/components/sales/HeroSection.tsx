@@ -5,10 +5,7 @@ import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-[#FEF7CD]/60 to-white relative">
-      {/* Film grain texture overlay */}
-      <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-      
+    <section className="py-24 relative">
       <div className="container px-4 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-display mb-6 transform -rotate-1">
@@ -27,10 +24,12 @@ const HeroSection = () => {
             </p>
           </div>
           
-          <Button className="stb-button text-lg flex items-center justify-center gap-2 mx-auto">
-            Join The Sunshine Club
-            <ArrowRight className="h-5 w-5" />
-          </Button>
+          <div className="flex justify-center mb-8">
+            <Button className="stb-button text-lg flex items-center justify-center gap-2 mx-auto">
+              Join The Sunshine Club
+              <ArrowRight className="h-5 w-5" />
+            </Button>
+          </div>
           
           <div className="mt-12 flex flex-wrap justify-center items-center gap-8">
             <div className="text-center">

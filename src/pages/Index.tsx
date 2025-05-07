@@ -18,73 +18,68 @@ const Index = () => {
     <div className="stb-page-container min-h-screen">
       <Navbar />
 
-      {/* Clean minimal film grain texture to the page */}
-      <div className="stb-film-grain">
+      <div className="relative">
+        {/* Hero section with base gradient */}
         <div className="relative">
-          {/* Hero section with base gradient */}
-          <div className="relative">
-            <Hero />
-            {/* Wave divider after Hero */}
-            <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-          </div>
-          
-          {/* Sunshine Club section with gradient 1 */}
-          <div className="relative stb-section-gradient-1">
-            <div className="stb-dot-overlay"></div>
-            <SunshineClub />
-            <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-          </div>
-          
-          {/* Offering section with gradient 2 */}
-          <div className="relative stb-section-gradient-2">
-            <div className="stb-dot-overlay"></div>
-            <Offering />
-          </div>
-          
-          {/* Travel Quiz section with gradient 1 */}
-          <div className="relative stb-section-gradient-1">
-            <div className="stb-wave-divider stb-wave-divider-top"></div>
-            <TravelQuiz />
-            <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-          </div>
-          
-          {/* Testimonials section with gradient 3 */}
-          <div className="relative stb-section-gradient-3">
-            <Testimonials />
-          </div>
-          
-          {/* Features section with gradient 1 */}
-          <div className="relative stb-section-gradient-1">
-            <div className="stb-wave-divider stb-wave-divider-top"></div>
-            <Features />
-          </div>
-          
-          {/* BackStory section with gradient 4 */}
-          <div className="relative stb-section-gradient-4">
-            <div className="stb-wave-divider stb-wave-divider-top"></div>
-            <BackStory />
-          </div>
-          
-          {/* HowStarted section with gradient 1 */}
-          <div className="relative stb-section-gradient-1">
-            <HowStarted />
-            <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-          </div>
-          
-          {/* Ambassador section with gradient 2 */}
-          <div className="relative stb-section-gradient-2">
-            <Ambassador />
-          </div>
-          
-          {/* SignUp section with gradient 1 */}
-          <div className="relative stb-section-gradient-1">
-            <div className="stb-wave-divider stb-wave-divider-top"></div>
-            <SignUp />
-          </div>
-          
-          {/* Footer */}
-          <Footer />
+          <Hero />
+          {/* Wave divider after Hero */}
+          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
         </div>
+        
+        {/* Sunshine Club section with gradient 1 */}
+        <div className="relative stb-section-gradient-1">
+          <SunshineClub />
+          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
+        </div>
+        
+        {/* Offering section with gradient 2 */}
+        <div className="relative stb-section-gradient-2">
+          <Offering />
+        </div>
+        
+        {/* Travel Quiz section with gradient 1 */}
+        <div className="relative stb-section-gradient-1">
+          <div className="stb-wave-divider stb-wave-divider-top"></div>
+          <TravelQuiz />
+          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
+        </div>
+        
+        {/* Testimonials section with gradient 3 */}
+        <div className="relative stb-section-gradient-3">
+          <Testimonials />
+        </div>
+        
+        {/* Features section with gradient 1 */}
+        <div className="relative stb-section-gradient-1">
+          <div className="stb-wave-divider stb-wave-divider-top"></div>
+          <Features />
+        </div>
+        
+        {/* BackStory section with gradient 4 */}
+        <div className="relative stb-section-gradient-4">
+          <div className="stb-wave-divider stb-wave-divider-top"></div>
+          <BackStory />
+        </div>
+        
+        {/* HowStarted section with gradient 1 */}
+        <div className="relative stb-section-gradient-1">
+          <HowStarted />
+          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
+        </div>
+        
+        {/* Ambassador section with gradient 2 */}
+        <div className="relative stb-section-gradient-2">
+          <Ambassador />
+        </div>
+        
+        {/* SignUp section with gradient 1 */}
+        <div className="relative stb-section-gradient-1">
+          <div className="stb-wave-divider stb-wave-divider-top"></div>
+          <SignUp />
+        </div>
+        
+        {/* Footer */}
+        <Footer />
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
@@ -54,7 +55,8 @@
 
   body {
     @apply bg-sunny-yellow-pale text-foreground font-sans;
-    /* Removing the grainy texture effect */
+    /* Removed the grainy texture effect */
+    background: linear-gradient(135deg, #FFFBEB 0%, #FFE0B2 50%, #FFFBEB 100%);
   }
   
   /* Gen Z style components */
@@ -185,12 +187,6 @@
     @apply relative z-10 overflow-hidden;
   }
   
-  .stb-section::before {
-    content: '';
-    @apply absolute inset-0 bg-film-grain opacity-10 mix-blend-overlay z-0;
-    pointer-events: none;
-  }
-  
   .stb-section-1 {
     @apply bg-gradient-to-b from-sunny-yellow-pale via-sunny-orange-light/30 to-sunny-yellow-pale;
   }
@@ -228,17 +224,124 @@
     transform: rotate(180deg);
   }
   
-  .stb-dot-overlay {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(#FF7A00 1px, transparent 1px);
-    background-size: 20px 20px;
-    opacity: 0.1;
-    z-index: 0;
+  /* Journey suns styling */
+  .journey-sun {
+    position: relative;
+    transition: all 0.3s ease;
   }
   
-  /* Cleaner film grain texture */
-  .stb-film-grain {
+  .journey-sun-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 122, 0, 0.2);
+  }
+  
+  .journey-sun-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(255, 122, 0, 0.3);
+  }
+  
+  .shine-bigger {
+    animation: shine 2s infinite;
+  }
+  
+  @keyframes shine {
+    0%, 100% {
+      box-shadow: 0 0 10px 2px rgba(255, 214, 0, 0.7);
+    }
+    50% {
+      box-shadow: 0 0 20px 5px rgba(255, 122, 0, 0.9);
+    }
+  }
+  
+  /* University stamps styling */
+  .university-stamp {
+    background-color: white;
+    border: 2px dashed #FFD600;
+    border-radius: 50%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
     position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .university-stamp:hover {
+    transform: rotate(5deg);
+    border-color: #FF7A00;
+  }
+  
+  .university-stamp::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    border: 1px dotted #FFD600;
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  /* Pricing card styling */
+  .pricing-card {
+    @apply bg-white rounded-xl p-6 border border-gray-100 shadow-sm relative overflow-hidden transition-all duration-300;
+  }
+  
+  .pricing-card:hover {
+    @apply shadow-md transform -translate-y-1;
+  }
+  
+  .pricing-card-highlight {
+    @apply border-[#fdad32];
+    box-shadow: 0 10px 25px -5px rgba(253, 173, 50, 0.2);
+  }
+  
+  .pricing-card-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #fdad32, #fe4c02);
+  }
+  
+  .countdown-digit {
+    @apply bg-white/80 px-2 py-0.5 rounded text-[#F97316] font-mono font-bold;
+  }
+  
+  .feature-item {
+    @apply flex items-start gap-3 border border-[#ffeea6] rounded-lg p-3 bg-white;
+  }
+  
+  .feature-icon {
+    @apply h-6 w-6 rounded-full bg-gradient-to-r from-[#fdad32] to-[#fe4c02] flex items-center justify-center shrink-0;
+  }
+  
+  .brand-logo {
+    @apply bg-white/70 p-3 rounded-lg shadow-sm flex items-center justify-center h-16 text-center font-bold text-[#1e1e1e]/70 border border-[#FFD600]/20;
+  }
+  
+  .sunshine-accent {
+    @apply bg-[#ffeea6] text-[#fe4c02] px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  .modern-sun {
+    @apply rounded-full bg-gradient-to-br from-[#fdad32] to-[#fe4c02] p-3 group-hover:shadow-lg transition-all;
+  }
+  
+  .modern-sun-icon {
+    @apply rounded-full bg-gradient-to-r from-[#fdad32] to-[#fe4c02] h-full w-full;
   }
 }

@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Sun } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 
 const JourneySuns = () => {
@@ -16,31 +16,31 @@ const JourneySuns = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Journey steps
+  // Journey steps with orange/yellow colors
   const steps = [
     {
       title: "JOIN",
       desc: "Sign up and verify your student status",
       emoji: "🎓",
-      color: "bg-gradient-to-br from-[#70d5ff] to-[#1b729d]"
+      color: "bg-gradient-to-br from-[#FFD600] to-[#FF7A00]"
     },
     {
       title: "PLAN",
       desc: "Get personalized itineraries & discounts",
       emoji: "🗺️",
-      color: "bg-gradient-to-br from-[#37fbb5] to-[#40b8b8]"
+      color: "bg-gradient-to-br from-[#FF9900] to-[#FF7A00]"
     },
     {
       title: "TRAVEL",
       desc: "Explore with confidence and savings",
       emoji: "✈️",
-      color: "bg-gradient-to-br from-[#fdad32] to-[#fe4c02]"
+      color: "bg-gradient-to-br from-[#FFCC00] to-[#FF5500]"
     },
     {
       title: "SHARE",
       desc: "Connect with other students worldwide",
       emoji: "👋",
-      color: "bg-gradient-to-br from-[#fe77a0] to-[#f20cfa]"
+      color: "bg-gradient-to-br from-[#FFB347] to-[#FF7A00]"
     }
   ];
   
@@ -53,7 +53,7 @@ const JourneySuns = () => {
       
       <div className="relative">
         {/* Sun path - the connecting line */}
-        <div className="absolute top-14 left-0 right-0 h-1 bg-gradient-to-r from-[#70d5ff] via-[#fdad32] to-[#fe77a0] rounded-full"></div>
+        <div className="absolute top-14 left-0 right-0 h-1 bg-gradient-to-r from-[#FFD600] via-[#FF9900] to-[#FF7A00] rounded-full"></div>
         
         {/* Journey steps */}
         <div className="flex justify-between relative">
@@ -64,7 +64,7 @@ const JourneySuns = () => {
                 onClick={() => setActiveStep(index)}
               >
                 <div className={`journey-sun-icon h-full w-full ${step.color} ${activeStep === index ? 'shine-bigger' : ''} text-lg font-bold text-white flex items-center justify-center`}>
-                  <span className="text-xl">{step.emoji}</span>
+                  <Sun className="h-8 w-8 text-white" />
                 </div>
               </div>
               
@@ -75,7 +75,7 @@ const JourneySuns = () => {
               
               {index < steps.length - 1 && (
                 <div className="hidden md:block absolute -right-3 top-14 transform -translate-y-1/2 z-0">
-                  <ArrowRight className="h-6 w-6 text-[#fdad32]" />
+                  <ArrowRight className="h-6 w-6 text-[#FF7A00]" />
                 </div>
               )}
             </div>
@@ -102,10 +102,10 @@ const JourneySuns = () => {
       {/* Mobile responsive SVG rays (abstract design elements) */}
       <div className="hidden md:block">
         <svg className="absolute left-0 right-0 top-8 w-full" xmlns="http://www.w3.org/2000/svg" height="100" viewBox="0 0 800 100" style={{zIndex:-1}}>
-          <path className="sun-ray sun-ray-delay-1" d="M50,50 C150,20 250,80 350,50" stroke="#fee715" strokeWidth="2" fill="none" />
-          <path className="sun-ray" d="M150,50 C250,10 350,90 450,50" stroke="#fdad32" strokeWidth="2" fill="none" />
-          <path className="sun-ray sun-ray-delay-2" d="M250,50 C350,20 450,80 550,50" stroke="#70d5ff" strokeWidth="2" fill="none" />
-          <path className="sun-ray" d="M350,50 C450,10 550,90 650,50" stroke="#fe77a0" strokeWidth="2" fill="none" />
+          <path className="sun-ray sun-ray-delay-1" d="M50,50 C150,20 250,80 350,50" stroke="#FFD600" strokeWidth="2" fill="none" />
+          <path className="sun-ray" d="M150,50 C250,10 350,90 450,50" stroke="#FF9900" strokeWidth="2" fill="none" />
+          <path className="sun-ray sun-ray-delay-2" d="M250,50 C350,20 450,80 550,50" stroke="#FFB347" strokeWidth="2" fill="none" />
+          <path className="sun-ray" d="M350,50 C450,10 550,90 650,50" stroke="#FF7A00" strokeWidth="2" fill="none" />
         </svg>
       </div>
     </div>
