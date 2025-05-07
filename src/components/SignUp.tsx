@@ -1,14 +1,11 @@
-
 import React from 'react';
 import { UserCheck, Mail, UserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import SunnyMascot from './SunnyMascot';
-
 const SignUp = () => {
-  return (
-    <section id="signup" className="py-16 bg-gradient-to-b from-white to-[#ffeea6]/60 relative">
+  return <section id="signup" className="py-16 bg-gradient-to-b from-white to-[#ffeea6]/60 relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
@@ -72,7 +69,7 @@ const SignUp = () => {
         </div>
 
         {/* Newsletter Section */}
-        <div className="mt-16 max-w-xl mx-auto bg-[#70d5ff]/20 p-6 rounded-lg shadow-md border border-[#70d5ff]/30">
+        <div className="mt-16 max-w-xl mx-auto p-6 rounded-lg shadow-md border border-[ffbf7033]/30 bg-[#ffbf7033]/20">
           <div className="text-center mb-4">
             <h3 className="text-xl font-bold text-[#3A67CA]">Stay Updated</h3>
             <p className="text-gray-700">Get travel tips, exclusive deals, and destination inspiration</p>
@@ -103,8 +100,6 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default SignUp;
