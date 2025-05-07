@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -12,10 +11,8 @@ import HowStarted from '@/components/HowStarted';
 import Ambassador from '@/components/Ambassador';
 import SignUp from '@/components/SignUp';
 import Footer from '@/components/Footer';
-
 const Index = () => {
-  return (
-    <div className="stb-page-container min-h-screen">
+  return <div className="stb-page-container min-h-screen">
       <Navbar />
 
       <div className="relative">
@@ -39,7 +36,7 @@ const Index = () => {
         
         {/* Travel Quiz section with gradient 1 */}
         <div className="relative stb-section-gradient-1">
-          <div className="stb-wave-divider stb-wave-divider-top"></div>
+          
           <TravelQuiz />
           <div className="stb-wave-divider stb-wave-divider-bottom"></div>
         </div>
@@ -81,8 +78,6 @@ const Index = () => {
         {/* Footer */}
         <Footer />
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
