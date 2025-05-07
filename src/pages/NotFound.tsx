@@ -1,40 +1,60 @@
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Home, Map } from 'lucide-react';
 import SunnyMascot from '@/components/SunnyMascot';
-import { ArrowLeft } from 'lucide-react';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#ffeea6]/50 to-white p-4">
-      <div className="max-w-md w-full text-center">
-        <div className="flex justify-center mb-6">
-          <SunnyMascot size="lg" withText message="Oops! I think we took a wrong turn!" travelStyle="adventure" />
-        </div>
-        
-        <h1 className="text-4xl font-display font-bold mb-4">Page Not Found</h1>
-        
-        <p className="text-gray-600 mb-8">
-          The page you're looking for doesn't exist or has been moved. Let's get you back on track!
-        </p>
-        
-        <div className="space-y-4">
-          <Button 
-            asChild
-            className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full flex items-center gap-2"
-          >
-            <Link to="/">
-              <ArrowLeft className="h-4 w-4" /> Back to Homepage
-            </Link>
-          </Button>
-          
-          <div className="pt-8">
-            <p className="text-sm text-gray-500">
-              Need help? <a href="#" className="text-[#fdad32] underline">Contact support</a>
+    <div className="stb-page-container min-h-screen">
+      <Navbar />
+      
+      {/* Add film grain texture */}
+      <div className="stb-film-grain">
+        <div className="relative stb-section-gradient-1 py-24">
+          <div className="container px-4 h-[60vh] flex flex-col items-center justify-center">
+            <div className="mb-6">
+              <SunnyMascot 
+                size="lg" 
+                withText={true} 
+                message="Oops! Looks like we took a wrong turn!" 
+                travelStyle="adventure"
+              />
+            </div>
+            
+            <h1 className="text-4xl md:text-6xl font-display mb-4 text-sunny-orange">404</h1>
+            <h2 className="text-2xl md:text-3xl font-bold mb-8">Page Not Found</h2>
+            
+            <p className="text-lg max-w-md text-center mb-8">
+              The page you're looking for doesn't exist or has been moved to another URL.
             </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button asChild className="bg-sunny-gradient hover:bg-sunny-orange-dark">
+                <Link to="/">
+                  <Home className="mr-2 h-5 w-5" />
+                  Back to Home
+                </Link>
+              </Button>
+              
+              <Button variant="outline" asChild className="border-sunny-orange text-sunny-orange">
+                <Link to="/sales">
+                  <Map className="mr-2 h-5 w-5" />
+                  Explore Our Offerings
+                </Link>
+              </Button>
+            </div>
+            
+            <div className="absolute bottom-0 left-0 w-full">
+              <div className="stb-wave-divider stb-wave-divider-bottom"></div>
+            </div>
           </div>
         </div>
+        
+        <Footer />
       </div>
     </div>
   );

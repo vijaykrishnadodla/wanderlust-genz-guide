@@ -183,4 +183,31 @@
       #FFF1E6 20px
     );
   }
+  
+  /* New consistent section styling */
+  .stb-section {
+    @apply relative z-10 overflow-hidden;
+  }
+  
+  .stb-section::before {
+    content: '';
+    @apply absolute inset-0 bg-film-grain opacity-10 mix-blend-overlay z-0;
+    pointer-events: none;
+  }
+  
+  .stb-section-1 {
+    @apply bg-gradient-to-b from-sunny-yellow-pale via-sunny-orange-light/30 to-sunny-yellow-pale;
+  }
+  
+  .stb-section-2 {
+    @apply bg-gradient-to-r from-sunny-yellow-light/40 to-sunny-orange-light/20;
+  }
+  
+  .stb-section-3 {
+    @apply bg-gradient-to-br from-sunny-yellow/30 to-sunny-orange/10;
+  }
+  
+  .stb-section-4 {
+    @apply bg-sunny-soft;
+  }
 }
