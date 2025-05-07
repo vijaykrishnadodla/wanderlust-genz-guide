@@ -72,73 +72,85 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Student Travel Buddy custom colors with warm tones
-				stb: {
+				// New and updated Gen Z color scheme focused on orange and yellow tones
+				sunny: {
 					yellow: {
-						DEFAULT: "#fff715",
-						light: "#FEF7CD",
-						dark: "#fdad32"
-					},
-					pink: {
-						DEFAULT: "#ff77a0",
-						light: "#ffacda",
-						dark: "#ff6b6b"
-					},
-					blue: {
-						DEFAULT: "#7b88fa",
-						light: "#c5e0f3",
-						dark: "#3a67ca"
+						DEFAULT: "#FFD600", // Bright yellow
+						light: "#FFF0A0",   // Light yellow
+						pale: "#FFFBEB",    // Very light yellow
+						dark: "#FFA800"     // Darker yellow/gold
 					},
 					orange: {
-						DEFAULT: "#F97316",
-						light: "#FEC6A1",
-						dark: "#fe4c02"
-					}
+						DEFAULT: "#FF7A00", // Vibrant orange
+						light: "#FFA64D",   // Light orange
+						pale: "#FFF1E6",    // Very light orange
+						dark: "#E05F00"     // Dark orange
+					},
+					white: "#FFFFFF",
+					cream: "#FFFAF0",
+					peach: "#FFE0B2"
 				}
 			},
 			fontFamily: {
-				sans: ["Satoshi", "sans-serif"],
-				display: ["Anton", "sans-serif"],
-				handwritten: ["Caveat", "cursive"]
+				sans: ["'Poppins'", "sans-serif"],
+				display: ["'Fredoka One'", "cursive"],
+				handwritten: ["'Caveat'", "cursive"],
+				script: ["'Caveat'", "cursive"],
+				body: ["'Poppins'", "sans-serif"]
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: 'calc(var(--radius) - 4px)',
+				xl: '1rem',
+				'2xl': '1.5rem',
+				'3xl': '2rem',
+				'4xl': '3rem'
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				},
 				'float': {
-					'0%, 100%': { transform: 'translateY(0) rotate(-1deg)' },
-					'50%': { transform: 'translateY(-10px) rotate(1deg)' }
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
 				},
-				'bounce-light': {
-					'0%, 100%': { transform: 'translateY(0) rotate(-1deg)' },
-					'50%': { transform: 'translateY(-5px) rotate(1deg)' }
+				'bounce-subtle': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' }
+				},
+				'pulse-gentle': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.8' }
+				},
+				'spin-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'wiggle': {
+					'0%, 100%': { transform: 'rotate(-3deg)' },
+					'50%': { transform: 'rotate(3deg)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'float': 'float 3s ease-in-out infinite',
-				'bounce-light': 'bounce-light 2s ease-in-out infinite'
+				'bounce-subtle': 'bounce-subtle 2s ease-in-out infinite',
+				'pulse-gentle': 'pulse-gentle 2s ease-in-out infinite',
+				'spin-slow': 'spin-slow 12s linear infinite',
+				'wiggle': 'wiggle 1s ease-in-out infinite'
 			},
 			backgroundImage: {
+				'sunny-gradient': "linear-gradient(135deg, #FFD600 0%, #FF7A00 100%)",
+				'sunny-soft': "linear-gradient(135deg, #FFFBEB 0%, #FFF1E6 100%)",
+				'sunny-glow': "radial-gradient(circle, rgba(255, 214, 0, 0.4) 0%, rgba(255, 122, 0, 0.1) 70%)",
+				'sunny-rays': "repeating-conic-gradient(from 0deg, #FFD600 0deg 10deg, transparent 10deg 15deg)",
 				'film-grain': "url('https://grainy-gradients.vercel.app/noise.svg')"
 			}
 		}
