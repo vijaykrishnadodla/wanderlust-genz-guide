@@ -1,43 +1,13 @@
+
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
 import { CheckCircle, Timer, UserRound, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import SunnyMascot from './SunnyMascot';
+
 const Offering = () => {
   const plans = [{
-    name: "FreeTimer",
-    price: "Free",
-    description: "Stay in the loop with our newsletter – updates, offers, and student stories straight to your inbox.",
-    features: {
-      newsletter: true,
-      travelRules: false,
-      cityGuides: false,
-      isicCard: false,
-      chatSupport: false,
-      phoneSupport: false,
-      itineraries: false,
-      webinars: false,
-      community: false,
-      localEvents: false
-    }
-  }, {
-    name: "PartTimer",
-    price: "$19",
-    description: "Great for part-time students – flexible perks and partial access tailored to your schedule.",
-    features: {
-      newsletter: true,
-      travelRules: true,
-      cityGuides: true,
-      isicCard: false,
-      chatSupport: true,
-      phoneSupport: false,
-      itineraries: true,
-      webinars: true,
-      community: true,
-      localEvents: true
-    },
-    highlight: false
-  }, {
     name: "FullTimer",
     price: "$19",
     originalPrice: "$29",
@@ -56,7 +26,41 @@ const Offering = () => {
     },
     highlight: true,
     spotsLeft: "24"
+  }, {
+    name: "PartTimer",
+    price: "$19",
+    description: "Great for part-time students – flexible perks and partial access tailored to your schedule.",
+    features: {
+      newsletter: true,
+      travelRules: true,
+      cityGuides: true,
+      isicCard: false,
+      chatSupport: true,
+      phoneSupport: false,
+      itineraries: true,
+      webinars: true,
+      community: true,
+      localEvents: true
+    },
+    highlight: false
+  }, {
+    name: "FreeTimer",
+    price: "Free",
+    description: "Stay in the loop with our newsletter – updates, offers, and student stories straight to your inbox.",
+    features: {
+      newsletter: true,
+      travelRules: false,
+      cityGuides: false,
+      isicCard: false,
+      chatSupport: false,
+      phoneSupport: false,
+      itineraries: false,
+      webinars: false,
+      community: false,
+      localEvents: false
+    }
   }];
+
   const featureLabels = {
     newsletter: "Curated Newsletter",
     travelRules: "10 Top Secret Non-Negotiable Student Travel Rules",
@@ -69,107 +73,64 @@ const Offering = () => {
     community: "Local Student Community Groups",
     localEvents: "Local Events"
   };
-  return <section id="offering" className="py-16 bg-gradient-to-t from-[#FDE1D3] to-white relative">
+
+  return <section id="offering" className="py-16 bg-gradient-to-t from-[#aff3d7]/30 to-white relative">
       {/* Film grain overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="container px-4 md:px-6 relative z-10">
         <div className="text-center mb-12">
-          <div className="inline-block bg-[#FEC6A1] px-6 py-2 rounded-lg transform -rotate-1 mb-4 flex items-center justify-center">
-            <Timer className="h-6 w-6 text-[#F97316] mr-2" />
-            <h2 className="text-3xl md:text-4xl font-display mb-0">MEMBERSHIP DETAILS</h2>
+          <div className="inline-block bg-gradient-to-r from-[#fdad32] to-[#fe4c02] px-6 py-2 rounded-lg mb-4 flex items-center justify-center">
+            <Timer className="h-6 w-6 text-white mr-2" />
+            <h2 className="text-3xl md:text-4xl font-display mb-0 text-white">MEMBERSHIP DETAILS</h2>
           </div>
-          <p className="text-xl italic text-[#F97316]">Choose the perfect plan for your student adventures</p>
+          <p className="text-xl text-[#fe4c02] font-handwritten">Choose the perfect plan for your student adventures</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* FreeTimer & PartTimer shown smaller */}
-          <Card className="border border-gray-200 relative overflow-hidden transform -rotate-1 opacity-80 hover:opacity-100 transition-opacity">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-display mb-2">{plans[0].name}</h3>
-              <div className="mb-4">
-                <span className="text-2xl font-bold">{plans[0].price}</span>
-              </div>
-              <p className="text-gray-600 mb-6 text-sm">{plans[0].description}</p>
-              
-              <ul className="space-y-2 mb-8 text-sm">
-                {Object.entries(plans[0].features).map(([key, enabled]) => enabled ? <li key={key} className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-[#F97316] shrink-0 mt-0.5" />
-                      <span>{featureLabels[key]}</span>
-                    </li> : null)}
-              </ul>
-              
-              <Button className="w-full bg-[#FEF7CD] hover:bg-[#FEC6A1] text-black font-bold text-sm">
-                Choose Plan
-              </Button>
-            </CardContent>
-          </Card>
-          
-          <Card className="border border-gray-200 relative overflow-hidden transform rotate-1 opacity-80 hover:opacity-100 transition-opacity">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-display mb-2">{plans[1].name}</h3>
-              <div className="mb-4">
-                <span className="text-2xl font-bold">{plans[1].price}</span>
-              </div>
-              <p className="text-gray-600 mb-6 text-sm">{plans[1].description}</p>
-              
-              <ul className="space-y-2 mb-8 text-sm">
-                {Object.entries(plans[1].features).filter(([_, enabled]) => enabled).slice(0, 5).map(([key]) => <li key={key} className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#F97316] shrink-0 mt-0.5" />
-                    <span>{featureLabels[key]}</span>
-                  </li>)}
-                <li className="text-gray-500 text-sm">+ 5 more features</li>
-              </ul>
-              
-              <Button className="w-full bg-[#FEF7CD] hover:bg-[#FEC6A1] text-black font-bold text-sm">
-                Choose Plan
-              </Button>
-            </CardContent>
-          </Card>
-          
           {/* FullTimer highlighted prominently */}
-          <Card className="border-2 border-[#F97316] shadow-xl relative overflow-hidden transform -rotate-1 scale-105 z-10">
-            <div className="absolute top-0 right-0 bg-[#F97316] text-white font-bold px-4 py-2 rounded-bl-md">
+          <Card className="border-2 border-[#fdad32] shadow-xl relative overflow-hidden scale-105 z-10">
+            <div className="absolute top-0 right-0 bg-gradient-to-r from-[#fdad32] to-[#fe4c02] text-white font-bold px-4 py-2 rounded-bl-md">
               BEST VALUE
             </div>
             
-            <div className="absolute top-0 left-0 right-0 bg-[#ea384c] text-white text-center py-2">
+            <div className="absolute top-0 left-0 right-0 bg-[#e93546] text-white text-center py-2">
               <div className="flex items-center justify-center gap-1">
                 <Timer className="h-4 w-4" />
-                <span className="font-bold">ONLY {plans[2].spotsLeft} SPOTS LEFT</span>
+                <span className="font-bold">ONLY {plans[0].spotsLeft} SPOTS LEFT</span>
               </div>
             </div>
             
-            <div className="pt-12 px-6 pb-6 bg-gradient-to-b from-[#FEF7CD]/30 to-white">
-              <div className="bg-white p-4 rounded-lg border border-[#FEC6A1]/30 mb-6">
-                <h3 className="font-display text-3xl text-[#F97316] mb-1">FULLTIMER</h3>
+            <div className="pt-12 px-6 pb-6 bg-gradient-to-b from-[#ffeea6]/30 to-white">
+              <div className="bg-white p-4 rounded-lg border border-[#fdad32]/30 mb-6">
+                <h3 className="font-display text-3xl text-[#fdad32] mb-1">FULLTIMER</h3>
                 <p className="text-gray-800 font-medium mb-2">The Complete Student Travel Experience</p>
                 <div className="flex items-baseline justify-center">
-                  <span className="text-4xl font-bold text-[#F97316]">{plans[2].price}</span>
-                  <span className="ml-2 text-gray-500 line-through">{plans[2].originalPrice}</span>
+                  <span className="text-4xl font-bold text-[#fdad32]">{plans[0].price}</span>
+                  <span className="ml-2 text-gray-500 line-through">{plans[0].originalPrice}</span>
                 </div>
               </div>
               
               <p className="text-gray-700 mb-6 font-medium">
-                Unlock <span className="text-[#F97316]">ALL student travel perks</span> plus exclusive access to special events & VIP support
+                Unlock <span className="text-[#fe4c02]">ALL student travel perks</span> plus exclusive access to special events & VIP support
               </p>
               
-              <ul className="space-y-3 mb-6 bg-white p-4 rounded-lg border border-[#FEC6A1]/30">
-                {Object.entries(plans[2].features).map(([key, enabled]) => enabled ? <li key={key} className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-[#F97316] shrink-0 mt-0.5" />
+              <ul className="space-y-3 mb-6 bg-white p-4 rounded-lg border border-[#fdad32]/30">
+                {Object.entries(plans[0].features).map(([key, enabled]) => enabled ? <li key={key} className="flex items-start gap-2">
+                      <CheckCircle className="h-5 w-5 text-[#fdad32] shrink-0 mt-0.5" />
                       <span className="font-medium">{featureLabels[key]}</span>
                     </li> : null)}
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-[#F97316] shrink-0 mt-0.5" />
-                  <span className="font-medium text-[#F97316]">30% OFF for limited time!</span>
+                  <CheckCircle className="h-5 w-5 text-[#fe4c02] shrink-0 mt-0.5" />
+                  <span className="font-medium text-[#fe4c02]">30% OFF for limited time!</span>
                 </li>
               </ul>
               
               <div className="flex items-center justify-center mb-6">
-                
+                <SunnyMascot withText message="Best choice for most students!" />
               </div>
               
-              <Button className="w-full bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-lg py-6 flex items-center justify-center gap-2">
+              <Button className="w-full bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white font-bold text-lg py-6 flex items-center justify-center gap-2 rounded-full">
                 <UserRound className="h-5 w-5" />
                 GET FULLTIMER NOW
               </Button>
@@ -179,70 +140,128 @@ const Offering = () => {
               </p>
             </div>
           </Card>
+
+          {/* PartTimer shown second */}
+          <Card className="border border-gray-200 relative overflow-hidden">
+            <CardContent className="p-6">
+              <h3 className="text-xl font-display mb-2">{plans[1].name}</h3>
+              <div className="mb-4">
+                <span className="text-2xl font-bold text-[#3A67CA]">{plans[1].price}</span>
+              </div>
+              <p className="text-gray-600 mb-6 text-sm">{plans[1].description}</p>
+              
+              <ul className="space-y-2 mb-8 text-sm">
+                {Object.entries(plans[1].features).filter(([_, enabled]) => enabled).slice(0, 5).map(([key]) => <li key={key} className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-[#3A67CA] shrink-0 mt-0.5" />
+                    <span>{featureLabels[key]}</span>
+                  </li>)}
+                <li className="text-gray-500 text-sm">+ 5 more features</li>
+              </ul>
+              
+              <Button className="w-full bg-[#70d5ff] hover:bg-[#3A67CA] text-white font-bold text-sm rounded-full">
+                Choose Plan
+              </Button>
+            </CardContent>
+          </Card>
+          
+          {/* FreeTimer shown last & smallest */}
+          <Card className="border border-gray-200 relative overflow-hidden opacity-80">
+            <CardContent className="p-6">
+              <h3 className="text-xl font-display mb-2">{plans[2].name}</h3>
+              <div className="mb-4">
+                <span className="text-2xl font-bold text-green-500">{plans[2].price}</span>
+              </div>
+              <p className="text-gray-600 mb-6 text-sm">{plans[2].description}</p>
+              
+              <ul className="space-y-2 mb-8 text-sm">
+                {Object.entries(plans[2].features).map(([key, enabled]) => enabled ? <li key={key} className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
+                      <span>{featureLabels[key]}</span>
+                    </li> : null)}
+              </ul>
+              
+              <Button className="w-full bg-[#aff3d7] hover:bg-green-400 text-[#1e1e1e] font-bold text-sm rounded-full">
+                Choose Plan
+              </Button>
+            </CardContent>
+          </Card>
         </div>
 
-        <div className="mt-12 bg-[#FEF7CD]/40 rounded-lg p-6 transform -rotate-1 border border-[#FEC6A1]">
+        <div className="mt-12 bg-white rounded-lg p-6 border border-[#fdad32]/20 shadow-sm">
           <h3 className="text-xl font-bold mb-4">Compare All Features</h3>
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-[250px]">Benefits</TableHead>
-                  <TableHead>FreeTimer</TableHead>
+                  <TableHead className="bg-gradient-to-r from-[#fdad32]/20 to-[#fe4c02]/20">FullTimer</TableHead>
                   <TableHead>PartTimer</TableHead>
-                  <TableHead className="bg-[#FEC6A1]/30">FullTimer</TableHead>
+                  <TableHead>FreeTimer</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {Object.entries(featureLabels).map(([key, label]) => <TableRow key={key}>
                     <TableCell className="font-medium">{label}</TableCell>
-                    {plans.map((plan, i) => <TableCell key={i} className={`text-center ${i === 2 ? 'bg-[#FEC6A1]/10' : ''}`}>
-                        {plan.features[key] ? <CheckCircle className={`h-5 w-5 mx-auto ${i === 2 ? 'text-[#F97316]' : 'text-[#F97316]/70'}`} /> : <span className="text-gray-300">—</span>}
-                      </TableCell>)}
+                    <TableCell className="text-center bg-[#fdad32]/10">
+                      {plans[0].features[key] ? <CheckCircle className="h-5 w-5 mx-auto text-[#fdad32]" /> : <span className="text-gray-300">—</span>}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      {plans[1].features[key] ? <CheckCircle className="h-5 w-5 mx-auto text-[#3A67CA]" /> : <span className="text-gray-300">—</span>}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      {plans[2].features[key] ? <CheckCircle className="h-5 w-5 mx-auto text-green-500" /> : <span className="text-gray-300">—</span>}
+                    </TableCell>
                   </TableRow>)}
                 <TableRow>
                   <TableCell className="font-medium">Price</TableCell>
-                  <TableCell className="text-center">Free</TableCell>
-                  <TableCell className="text-center">$19</TableCell>
-                  <TableCell className="text-center bg-[#FEC6A1]/10">
+                  <TableCell className="text-center bg-[#fdad32]/10">
                     <span className="line-through text-gray-400">$29</span>{" "}
                     <span className="font-bold">$19</span>
                   </TableCell>
+                  <TableCell className="text-center">$19</TableCell>
+                  <TableCell className="text-center">Free</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </div>
         </div>
 
-        {/* ISIC Verification Information */}
-        <div className="mt-12 bg-white p-6 rounded-lg shadow-lg border border-[#FEC6A1]/30">
-          <h3 className="text-2xl font-bold mb-4 text-[#F97316]">Student Verification Process</h3>
-          <p className="mb-4 text-lg">After purchase, you'll need to verify your full-time student status for your ISIC card:</p>
+        {/* ISIC Verification Information - Updated with automatic verification */}
+        <div className="mt-12 bg-white p-6 rounded-lg shadow-lg border border-[#fdad32]/20">
+          <h3 className="text-2xl font-bold mb-4 text-[#fdad32]">New! Automatic Student Verification</h3>
+          <p className="mb-4 text-lg">After purchase, our system will automatically verify your student status:</p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div className="bg-[#FEF7CD]/30 p-4 rounded-lg">
+            <div className="bg-[#ffeea6]/30 p-4 rounded-lg">
               <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
-                <span className="bg-[#F97316] text-white rounded-full h-6 w-6 flex items-center justify-center">1</span> 
-                Document Upload
+                <span className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] text-white rounded-full h-6 w-6 flex items-center justify-center">1</span> 
+                Instant Verification
               </h4>
-              <p>Upload your student ID or enrollment certificate through our secure ISIC verification portal.</p>
+              <p>Our system automatically checks your student email domain against our global database of 20,000+ educational institutions.</p>
             </div>
             
-            <div className="bg-[#FEF7CD]/30 p-4 rounded-lg">
+            <div className="bg-[#ffeea6]/30 p-4 rounded-lg">
               <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
-                <span className="bg-[#F97316] text-white rounded-full h-6 w-6 flex items-center justify-center">2</span> 
-                Self-Declaration
+                <span className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] text-white rounded-full h-6 w-6 flex items-center justify-center">2</span> 
+                Digital ISIC Card
               </h4>
-              <p>Agree to our Terms & Conditions confirming your full-time status. We'll contact you for any additional verification.</p>
+              <p>Successfully verified students receive their digital ISIC card immediately through the ISIC app.</p>
             </div>
             
-            <div className="bg-[#FEF7CD]/30 p-4 rounded-lg">
+            <div className="bg-[#ffeea6]/30 p-4 rounded-lg">
               <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
-                <span className="bg-[#F97316] text-white rounded-full h-6 w-6 flex items-center justify-center">3</span> 
-                Card Activation
+                <span className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] text-white rounded-full h-6 w-6 flex items-center justify-center">3</span> 
+                Fallback Options
               </h4>
-              <p>Once verified, access your digital ISIC card through the ISIC app and start enjoying discounts immediately!</p>
+              <p>If automatic verification fails, you can either submit manual verification documents or switch to our PartTimer plan.</p>
             </div>
+          </div>
+          
+          <div className="flex items-center gap-4 bg-[#aff3d7]/30 p-4 rounded-lg mt-6">
+            <SunnyMascot size="sm" />
+            <p className="font-handwritten text-lg text-[#1e1e1e]">
+              "Our new system verifies most students in seconds! If yours doesn't work, no worries - our team will help or you can enjoy PartTimer benefits instead!" - Sunny
+            </p>
           </div>
           
           <div className="flex items-center justify-center gap-4 flex-wrap mt-8">
@@ -259,15 +278,15 @@ const Offering = () => {
           <div className="space-y-4">
             <div className="bg-white p-4 rounded-lg shadow-md">
               <h4 className="font-bold flex items-center gap-2">
-                <HelpCircle className="h-5 w-5 text-[#F97316]" />
-                How do I verify my student status?
+                <HelpCircle className="h-5 w-5 text-[#fdad32]" />
+                How does the automatic student verification work?
               </h4>
-              <p className="mt-2 text-gray-700">After purchase, you'll receive instructions to upload your student ID or enrollment certificate. We also accept self-declaration with follow-up verification.</p>
+              <p className="mt-2 text-gray-700">Our system instantly verifies your student status using your .edu email or university domain. Most students are verified in seconds, with no document uploads needed!</p>
             </div>
             
             <div className="bg-white p-4 rounded-lg shadow-md">
               <h4 className="font-bold flex items-center gap-2">
-                <HelpCircle className="h-5 w-5 text-[#F97316]" />
+                <HelpCircle className="h-5 w-5 text-[#fdad32]" />
                 What if I'm not a full-time student?
               </h4>
               <p className="mt-2 text-gray-700">Part-time students can still get our PartTimer plan with many great benefits. Only the ISIC card requires full-time status.</p>
@@ -275,10 +294,10 @@ const Offering = () => {
             
             <div className="bg-white p-4 rounded-lg shadow-md">
               <h4 className="font-bold flex items-center gap-2">
-                <HelpCircle className="h-5 w-5 text-[#F97316]" />
+                <HelpCircle className="h-5 w-5 text-[#fdad32]" />
                 How quickly will I get my ISIC card?
               </h4>
-              <p className="mt-2 text-gray-700">Digital cards are usually available within 24-48 hours after verification. Physical cards (optional) take 1-2 weeks to arrive.</p>
+              <p className="mt-2 text-gray-700">With automatic verification, your digital card is available within minutes. Physical cards (optional) take 1-2 weeks to arrive.</p>
             </div>
           </div>
         </div>

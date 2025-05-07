@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Plane, Map, Ticket, Calendar, Compass, Check } from 'lucide-react';
+import SunnyMascot from './SunnyMascot';
 
 type QuizStep = 'name' | 'destination' | 'email' | 'holidayType' | 'result';
 
@@ -207,27 +208,31 @@ const TravelQuiz = () => {
   };
 
   return (
-    <section id="quiz" className="py-16 bg-gradient-to-b from-[#FDE1D3]/20 to-white relative">
+    <section id="quiz" className="py-16 bg-gradient-to-b from-[#aff3d7]/20 to-white relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="container px-4 md:px-6 max-w-4xl relative z-10">
         <div className="text-center mb-10">
-          <div className="inline-block transform -rotate-1 relative">
-            <h2 className="text-3xl md:text-4xl font-display bg-[#FEC6A1]/60 px-6 py-2 rounded-lg">STUDENT TRAVEL STYLE QUIZ</h2>
-            <div className="absolute -top-3 -right-3 bg-[#FEF7CD] p-2 rounded-lg shadow-sm">
-              <Plane className="h-4 w-4 text-[#F97316]" />
+          <div className="inline-block relative">
+            <h2 className="text-3xl md:text-4xl font-display bg-gradient-to-r from-[#37fbb5] to-[#40b8b8] text-white px-6 py-2 rounded-lg">STUDENT TRAVEL STYLE QUIZ</h2>
+            <div className="absolute -top-3 -right-3 bg-[#ffeea6] p-2 rounded-lg shadow-sm">
+              <Plane className="h-4 w-4 text-[#fdad32]" />
             </div>
           </div>
-          <p className="text-[#F97316] mt-3 font-handwritten text-xl">Discover your travel vibe + unlock exclusive perks!</p>
+          <p className="text-[#fe4c02] mt-3 font-handwritten text-xl">Discover your travel vibe + unlock exclusive perks!</p>
         </div>
 
-        <Card className="border shadow-xl bg-gradient-to-br from-white to-[#FEF7CD]/20 transform rotate-1">
+        <Card className="border shadow-xl bg-gradient-to-br from-white to-[#ffeea6]/20">
+          <div className="absolute -top-8 -right-4 hidden md:block">
+            <SunnyMascot withText message={step === 'result' ? "Wow, perfect match! ✨" : "Let's find your ideal destination! 🌍"} />
+          </div>
+          
           {step === 'name' && (
             <>
               <CardHeader>
                 <CardTitle className="text-xl">What's your name?</CardTitle>
-                <CardDescription className="font-handwritten text-[#F97316]">Question 1 of 4</CardDescription>
+                <CardDescription className="font-handwritten text-[#fe4c02]">Question 1 of 4</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -237,7 +242,7 @@ const TravelQuiz = () => {
                     placeholder="Your name" 
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="border-[#FEC6A1]"
+                    className="border-[#37fbb5] rounded-lg"
                   />
                 </div>
               </CardContent>
@@ -246,12 +251,12 @@ const TravelQuiz = () => {
                   variant="outline" 
                   onClick={handlePrevious} 
                   disabled={true}
-                  className="border-[#FEC6A1] text-[#F97316] hover:bg-[#FEC6A1]/20"
+                  className="border-[#37fbb5] text-[#40b8b8] hover:bg-[#37fbb5]/10 rounded-full"
                 >
                   Previous
                 </Button>
                 <Button 
-                  className="bg-[#F97316] hover:bg-[#fe4c02] text-white" 
+                  className="bg-gradient-to-r from-[#37fbb5] to-[#40b8b8] hover:brightness-105 text-white rounded-full" 
                   onClick={handleNext}
                   disabled={isNextDisabled()}
                 >
@@ -265,7 +270,7 @@ const TravelQuiz = () => {
             <>
               <CardHeader>
                 <CardTitle className="text-xl">What city are you traveling to?</CardTitle>
-                <CardDescription className="font-handwritten text-[#F97316]">Question 2 of 4</CardDescription>
+                <CardDescription className="font-handwritten text-[#fe4c02]">Question 2 of 4</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -275,7 +280,7 @@ const TravelQuiz = () => {
                     placeholder="Destination city" 
                     value={formData.destination}
                     onChange={handleInputChange}
-                    className="border-[#FEC6A1]"
+                    className="border-[#37fbb5] rounded-lg"
                   />
                 </div>
               </CardContent>
@@ -283,12 +288,12 @@ const TravelQuiz = () => {
                 <Button 
                   variant="outline" 
                   onClick={handlePrevious} 
-                  className="border-[#FEC6A1] text-[#F97316] hover:bg-[#FEC6A1]/20"
+                  className="border-[#37fbb5] text-[#40b8b8] hover:bg-[#37fbb5]/10 rounded-full"
                 >
                   Previous
                 </Button>
                 <Button 
-                  className="bg-[#F97316] hover:bg-[#fe4c02] text-white" 
+                  className="bg-gradient-to-r from-[#37fbb5] to-[#40b8b8] hover:brightness-105 text-white rounded-full" 
                   onClick={handleNext}
                   disabled={isNextDisabled()}
                 >
@@ -302,7 +307,7 @@ const TravelQuiz = () => {
             <>
               <CardHeader>
                 <CardTitle className="text-xl">What's your email?</CardTitle>
-                <CardDescription className="font-handwritten text-[#F97316]">Question 3 of 4 (Used to send your ISIC card and travel guide)</CardDescription>
+                <CardDescription className="font-handwritten text-[#fe4c02]">Question 3 of 4 (Used to send your ISIC card and travel guide)</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -312,7 +317,7 @@ const TravelQuiz = () => {
                     placeholder="Your email" 
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="border-[#FEC6A1]"
+                    className="border-[#37fbb5] rounded-lg"
                   />
                 </div>
               </CardContent>
@@ -320,12 +325,12 @@ const TravelQuiz = () => {
                 <Button 
                   variant="outline" 
                   onClick={handlePrevious} 
-                  className="border-[#FEC6A1] text-[#F97316] hover:bg-[#FEC6A1]/20"
+                  className="border-[#37fbb5] text-[#40b8b8] hover:bg-[#37fbb5]/10 rounded-full"
                 >
                   Previous
                 </Button>
                 <Button 
-                  className="bg-[#F97316] hover:bg-[#fe4c02] text-white" 
+                  className="bg-gradient-to-r from-[#37fbb5] to-[#40b8b8] hover:brightness-105 text-white rounded-full" 
                   onClick={handleNext}
                   disabled={isNextDisabled()}
                 >
@@ -338,38 +343,37 @@ const TravelQuiz = () => {
           {step === 'holidayType' && (
             <>
               <CardHeader>
-                <CardTitle className="text-xl">What kind of holiday are you planning?</CardTitle>
-                <CardDescription className="font-handwritten text-[#F97316]">Question 4 of 4</CardDescription>
+                <CardTitle className="text-xl">What's your travel style?</CardTitle>
+                <CardDescription className="font-handwritten text-[#fe4c02]">Question 4 of 4</CardDescription>
               </CardHeader>
               <CardContent>
-                <RadioGroup value={formData.holidayType} className="space-y-3">
-                  <div 
-                    className="flex items-center space-x-2 border border-[#FEC6A1]/30 rounded-lg p-4 hover:bg-[#FEF7CD]/20 transition-colors cursor-pointer"
-                    onClick={() => handleRadioChange('sun-beach')}
-                  >
+                <RadioGroup className="space-y-3" value={formData.holidayType} onValueChange={handleRadioChange}>
+                  <div className="flex items-center space-x-2 border border-[#37fbb5]/30 rounded-lg p-4 hover:bg-[#37fbb5]/10 transition-colors cursor-pointer">
                     <RadioGroupItem value="sun-beach" id="sun-beach" />
-                    <Label htmlFor="sun-beach" className="w-full cursor-pointer">Sun & Beach</Label>
+                    <Label htmlFor="sun-beach" className="w-full cursor-pointer flex items-center gap-2">
+                      <span className="text-xl">🏖️</span> Beach & Relaxation
+                    </Label>
                   </div>
-                  <div 
-                    className="flex items-center space-x-2 border border-[#FEC6A1]/30 rounded-lg p-4 hover:bg-[#FEF7CD]/20 transition-colors cursor-pointer"
-                    onClick={() => handleRadioChange('cultural')}
-                  >
+                  
+                  <div className="flex items-center space-x-2 border border-[#37fbb5]/30 rounded-lg p-4 hover:bg-[#37fbb5]/10 transition-colors cursor-pointer">
                     <RadioGroupItem value="cultural" id="cultural" />
-                    <Label htmlFor="cultural" className="w-full cursor-pointer">Cultural Exploration</Label>
+                    <Label htmlFor="cultural" className="w-full cursor-pointer flex items-center gap-2">
+                      <span className="text-xl">🏛️</span> Cultural Exploration
+                    </Label>
                   </div>
-                  <div 
-                    className="flex items-center space-x-2 border border-[#FEC6A1]/30 rounded-lg p-4 hover:bg-[#FEF7CD]/20 transition-colors cursor-pointer"
-                    onClick={() => handleRadioChange('educational')}
-                  >
+                  
+                  <div className="flex items-center space-x-2 border border-[#37fbb5]/30 rounded-lg p-4 hover:bg-[#37fbb5]/10 transition-colors cursor-pointer">
                     <RadioGroupItem value="educational" id="educational" />
-                    <Label htmlFor="educational" className="w-full cursor-pointer">Educational / Study Abroad</Label>
+                    <Label htmlFor="educational" className="w-full cursor-pointer flex items-center gap-2">
+                      <span className="text-xl">📚</span> Educational
+                    </Label>
                   </div>
-                  <div 
-                    className="flex items-center space-x-2 border border-[#FEC6A1]/30 rounded-lg p-4 hover:bg-[#FEF7CD]/20 transition-colors cursor-pointer"
-                    onClick={() => handleRadioChange('adventure')}
-                  >
+                  
+                  <div className="flex items-center space-x-2 border border-[#37fbb5]/30 rounded-lg p-4 hover:bg-[#37fbb5]/10 transition-colors cursor-pointer">
                     <RadioGroupItem value="adventure" id="adventure" />
-                    <Label htmlFor="adventure" className="w-full cursor-pointer">All-in-One Adventure</Label>
+                    <Label htmlFor="adventure" className="w-full cursor-pointer flex items-center gap-2">
+                      <span className="text-xl">🧗‍♀️</span> Adventure & Sports
+                    </Label>
                   </div>
                 </RadioGroup>
               </CardContent>
@@ -377,12 +381,12 @@ const TravelQuiz = () => {
                 <Button 
                   variant="outline" 
                   onClick={handlePrevious} 
-                  className="border-[#FEC6A1] text-[#F97316] hover:bg-[#FEC6A1]/20"
+                  className="border-[#37fbb5] text-[#40b8b8] hover:bg-[#37fbb5]/10 rounded-full"
                 >
                   Previous
                 </Button>
                 <Button 
-                  className="bg-[#F97316] hover:bg-[#fe4c02] text-white" 
+                  className="bg-gradient-to-r from-[#37fbb5] to-[#40b8b8] hover:brightness-105 text-white rounded-full" 
                   onClick={handleNext}
                   disabled={isNextDisabled()}
                 >
@@ -392,84 +396,57 @@ const TravelQuiz = () => {
             </>
           )}
 
-          {step === 'result' && itinerary && (
+          {step === 'result' && (
             <>
               <CardHeader>
-                <CardTitle className="text-2xl text-[#F97316]">{itinerary.title}</CardTitle>
-                <CardDescription className="font-handwritten text-lg">Here's a sneak peek at what awaits you!</CardDescription>
+                <CardTitle className="text-2xl text-[#fe4c02]">Your Perfect Travel Destination</CardTitle>
+                <CardDescription className="font-handwritten text-lg">Based on your answers, we've found your ideal match!</CardDescription>
               </CardHeader>
-              <CardContent className="flex flex-col items-center space-y-6">
-                <div className="w-full text-center">
-                  <p className="text-lg mb-4">
-                    {itinerary.description}
-                  </p>
-                </div>
-                
-                <div className="w-full bg-[#FDE1D3]/40 p-4 rounded-lg transform -rotate-1 border border-[#FEC6A1]/30">
-                  <h3 className="font-bold text-xl mb-3 flex items-center gap-2 justify-center">
-                    <Ticket className="h-5 w-5 text-[#F97316]" /> ISIC Exclusive Savings
-                  </h3>
-                  <div className="space-y-3">
-                    {itinerary.discounts.map((discount, index) => (
-                      <div key={index} className="flex justify-between items-center p-2 bg-white/60 rounded-md">
-                        <span className="font-medium">{discount.place}</span>
-                        <div className="flex items-center gap-2">
-                          <span className="line-through text-gray-500">{discount.regularPrice}</span>
-                          <span className="font-bold text-[#F97316]">{discount.discountPrice}</span>
-                          <span className="text-green-600 text-sm">Save {discount.savings}</span>
-                        </div>
-                      </div>
-                    ))}
-                    <div className="text-center mt-2 font-bold">
-                      Total savings: €{itinerary.discounts.reduce((sum, item) => {
-                        const savingsValue = parseFloat(item.savings.split(' ')[0].replace('€', ''));
-                        return sum + savingsValue;
-                      }, 0)}
-                    </div>
+              <CardContent className="flex flex-col items-center">
+                <div className="bg-white p-6 rounded-full shadow-md mb-6 border border-[#fdad32]/30">
+                  <div className="bg-gradient-to-br from-[#fdad32]/50 to-[#fe4c02]/50 p-6 rounded-full flex items-center justify-center">
+                    <span className="text-5xl">✈️</span>
                   </div>
                 </div>
-                
-                <div className="w-full">
-                  <h3 className="font-bold text-xl mb-3 flex items-center gap-2">
-                    <Compass className="h-5 w-5 text-[#F97316]" /> Insider Recommendations
-                  </h3>
-                  <ul className="space-y-2">
-                    {itinerary.recommendations.map((rec, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <div className="bg-[#F97316] rounded-full p-1 text-white mt-1 min-w-[20px] min-h-[20px] flex items-center justify-center">
-                          <Check className="h-3 w-3" />
-                        </div>
-                        <span>{rec}</span>
-                      </li>
-                    ))}
+                <h3 className="text-2xl font-bold mb-2 text-[#fdad32]">Barcelona, Spain</h3>
+                <p className="text-center text-gray-600 mb-6 font-handwritten text-lg">
+                  Creative, vibrant, and full of hidden gems - Barcelona matches your spontaneous yet culture-focused travel style!
+                </p>
+                <div className="bg-[#70d5ff]/20 p-4 rounded-lg w-full mb-6 border border-[#70d5ff]/30">
+                  <p className="font-medium text-center">Unlock your personalized Barcelona guide with:</p>
+                  <ul className="mt-2 space-y-2">
+                    <li className="flex items-center gap-2 justify-center">
+                      <span>🎟️</span> Student discount museum passes
+                    </li>
+                    <li className="flex items-center gap-2 justify-center">
+                      <span>🍽️</span> Local budget-friendly tapas routes
+                    </li>
+                    <li className="flex items-center gap-2 justify-center">
+                      <Camera className="h-4 w-4 text-[#fdad32]" /> Instagram-worthy hidden viewpoints
+                    </li>
                   </ul>
                 </div>
                 
-                <div className="w-full bg-[#FEF7CD]/50 p-4 rounded-lg">
-                  <h3 className="font-bold text-xl mb-2 text-center">
-                    Want the complete guide?
-                  </h3>
-                  <p className="text-center mb-4">
-                    Get your full customized itinerary with all the student discounts for {formData.destination}!
-                  </p>
-                  <Button className="stb-button w-full">
-                    Buy Travel Kit ($29)
-                  </Button>
+                <div className="flex items-center">
+                  <div className="bg-[#ffeea6] p-3 rounded-lg">
+                    <p className="font-handwritten text-[#fe4c02]">
+                      Estimated savings with ISIC card: <span className="font-bold">€158</span> on a 7-day trip!
+                    </p>
+                  </div>
                 </div>
               </CardContent>
               <CardFooter className="flex justify-between">
                 <Button 
-                  variant="outline" 
-                  onClick={handlePrevious} 
-                  className="border-[#FEC6A1] text-[#F97316] hover:bg-[#FEC6A1]/20"
-                >
-                  Back
-                </Button>
-                <Button 
-                  className="bg-[#FEC6A1] hover:bg-[#F97316] text-black font-bold" 
+                  className="border-[#fdad32] text-[#fe4c02] hover:bg-[#fdad32]/10 rounded-full" 
+                  variant="outline"
                   onClick={handleReset}
                 >
                   <Map className="mr-2 h-4 w-4" /> Try Another Destination
+                </Button>
+                <Button 
+                  className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full"
+                >
+                  Get Full Guide <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </CardFooter>
             </>

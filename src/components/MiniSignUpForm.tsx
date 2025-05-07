@@ -10,11 +10,11 @@ const MiniSignUpForm = () => {
       <div className="relative w-full md:w-auto">
         <Input 
           placeholder="Your email" 
-          className="pr-10 rounded-full border-[#FEC6A1] bg-white/80"
+          className="pr-10 rounded-full border-[#fdad32] bg-white/80"
         />
-        <User className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#F97316] h-4 w-4" />
+        <User className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#fdad32] h-4 w-4" />
       </div>
-      <Button className="bg-[#FEC6A1] hover:bg-[#F97316] text-black font-bold rounded-full w-full md:w-auto transform rotate-1">
+      <Button className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] text-white font-bold rounded-full w-full md:w-auto">
         Join Now
       </Button>
     </div>

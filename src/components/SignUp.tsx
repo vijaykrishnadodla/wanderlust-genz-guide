@@ -4,79 +4,85 @@ import { UserCheck, Mail, UserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import SunnyMascot from './SunnyMascot';
 
 const SignUp = () => {
   return (
-    <section id="signup" className="py-16 bg-gradient-to-b from-white to-[#FEF7CD]/60 relative">
+    <section id="signup" className="py-16 bg-gradient-to-b from-white to-[#ffeea6]/60 relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="container px-4 md:px-6 relative z-10">
         <div className="max-w-xl mx-auto">
           <div className="text-center mb-8">
-            <div className="inline-block bg-[#FEC6A1] px-6 py-2 rounded-lg transform -rotate-1 mb-4 flex items-center justify-center">
-              <UserCheck className="h-6 w-6 text-[#F97316] mr-2" />
-              <h2 className="text-3xl md:text-4xl font-display mb-0">JOIN NOW</h2>
+            <div className="inline-block bg-gradient-to-r from-[#fdad32] to-[#fe4c02] px-6 py-2 rounded-lg mb-4 flex items-center justify-center">
+              <UserCheck className="h-6 w-6 text-white mr-2" />
+              <h2 className="text-3xl md:text-4xl font-display mb-0 text-white">JOIN NOW</h2>
             </div>
-            <p className="text-xl italic text-[#F97316]">
+            <p className="text-xl text-[#fe4c02] font-handwritten">
               Start your student travel adventure today!
             </p>
           </div>
           
-          <div className="bg-white p-8 rounded-lg shadow-lg border border-[#FEC6A1]/20 transform rotate-1">
+          <div className="bg-white p-8 rounded-lg shadow-lg border border-[#fdad32]/20">
+            <div className="flex justify-center mb-6">
+              <SunnyMascot withText message="Let me be your travel buddy!" />
+            </div>
+            
             <form className="space-y-5">
               <div className="space-y-2">
                 <Label htmlFor="fullName">Full Name</Label>
-                <Input id="fullName" placeholder="Your name" className="border-[#FEC6A1]" />
+                <Input id="fullName" placeholder="Your name" className="border-[#fdad32] rounded-lg" />
               </div>
               
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address</Label>
-                <Input id="email" type="email" placeholder="student@university.edu" className="border-[#FEC6A1]" />
+                <Input id="email" type="email" placeholder="student@university.edu" className="border-[#fdad32] rounded-lg" />
+                <p className="text-xs text-[#fe4c02]">* We'll auto-verify your student status with your .edu email</p>
               </div>
               
               <div className="space-y-2">
                 <Label htmlFor="university">University/College</Label>
-                <Input id="university" placeholder="Your school" className="border-[#FEC6A1]" />
+                <Input id="university" placeholder="Your school" className="border-[#fdad32] rounded-lg" />
               </div>
               
               <div className="space-y-2">
                 <Label htmlFor="graduation">Expected Graduation Year</Label>
-                <Input id="graduation" placeholder="e.g., 2026" className="border-[#FEC6A1]" />
+                <Input id="graduation" placeholder="e.g., 2026" className="border-[#fdad32] rounded-lg" />
               </div>
               
               <div className="pt-2">
-                <Button className="w-full stb-button text-lg flex items-center justify-center gap-2">
+                <Button className="w-full bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white font-bold text-lg flex items-center justify-center gap-2 rounded-full py-6">
                   <UserRound className="h-5 w-5" />
                   Get Started with FullTimer Plan
                 </Button>
               </div>
               
               <p className="text-center text-sm text-gray-600 pt-2">
-                <span className="font-handwritten text-base">Limited offer!</span> Only 24 spots remaining at this price
+                <span className="font-handwritten text-base text-[#fe4c02]">Limited offer!</span> Only 24 spots remaining at this price
               </p>
             </form>
           </div>
           
           <div className="mt-8 text-center">
             <p className="text-sm text-gray-600">
-              Already a member? <a href="#" className="text-[#F97316] font-medium">Sign in here</a>
+              Already a member? <a href="#" className="text-[#fdad32] font-medium">Sign in here</a>
             </p>
           </div>
         </div>
 
         {/* Newsletter Section */}
-        <div className="mt-16 max-w-xl mx-auto bg-[#FDE1D3]/40 p-6 rounded-lg shadow-md border border-[#FEC6A1]/30">
+        <div className="mt-16 max-w-xl mx-auto bg-[#70d5ff]/20 p-6 rounded-lg shadow-md border border-[#70d5ff]/30">
           <div className="text-center mb-4">
-            <h3 className="text-xl font-bold text-[#F97316]">Stay Updated</h3>
+            <h3 className="text-xl font-bold text-[#3A67CA]">Stay Updated</h3>
             <p className="text-gray-700">Get travel tips, exclusive deals, and destination inspiration</p>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-grow">
-              <Input placeholder="Your email address" className="border-[#FEC6A1]" />
+              <Input placeholder="Your email address" className="border-[#3A67CA] rounded-lg" />
             </div>
-            <Button className="bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold flex items-center gap-2">
+            <Button className="bg-gradient-to-r from-[#3A67CA] to-[#5eb8dc] hover:brightness-105 text-white font-bold flex items-center gap-2 rounded-full">
               <Mail className="h-4 w-4" />
               Subscribe
             </Button>
