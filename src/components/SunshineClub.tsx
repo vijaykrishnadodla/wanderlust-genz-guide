@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,7 +6,6 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from '@/components/ui/separator';
 import JourneySuns from './JourneySuns';
-
 const SunshineClub = () => {
   // State for the countdown timer
   const [timeLeft, setTimeLeft] = useState({
@@ -25,27 +23,22 @@ const SunshineClub = () => {
           clearInterval(timer);
           return prevTime;
         }
-        
         let newSeconds = prevTime.seconds - 1;
         let newMinutes = prevTime.minutes;
         let newHours = prevTime.hours;
         let newDays = prevTime.days;
-        
         if (newSeconds < 0) {
           newSeconds = 59;
           newMinutes -= 1;
         }
-        
         if (newMinutes < 0) {
           newMinutes = 59;
           newHours -= 1;
         }
-        
         if (newHours < 0) {
           newHours = 23;
           newDays -= 1;
         }
-        
         return {
           days: newDays,
           hours: newHours,
@@ -54,12 +47,9 @@ const SunshineClub = () => {
         };
       });
     }, 1000);
-    
     return () => clearInterval(timer);
   }, []);
-
-  return (
-    <section id="sunshine-club" className="py-16 bg-gradient-to-b from-[#FEF7CD]/40 to-white relative">
+  return <section id="sunshine-club" className="py-16 bg-gradient-to-b from-[#FEF7CD]/40 to-white relative">
       {/* Subtle background texture */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
@@ -71,9 +61,7 @@ const SunshineClub = () => {
             <span>Join our community</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-display mb-4">THE SUNSHINE CLUB</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Community of student travelers who save money and experience more authentic travel
-          </p>
+          
         </div>
 
         {/* Add Journey Suns Component Here */}
@@ -347,8 +335,6 @@ const SunshineClub = () => {
           </Button>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default SunshineClub;
