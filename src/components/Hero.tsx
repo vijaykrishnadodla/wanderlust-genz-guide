@@ -1,17 +1,19 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles, MapPin, Sun } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 import MiniSignUpForm from './MiniSignUpForm';
+import { useIsMobile } from '@/hooks/use-mobile';
+
 const Hero = () => {
+  const isMobile = useIsMobile();
+  
   return <section className="relative pt-24 pb-16 md:pt-28 md:pb-24 overflow-hidden">
       {/* Sunny background gradients */}
       <div className="absolute inset-0 bg-sunny-soft z-0"></div>
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-sunny-yellow-light/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/4 z-0"></div>
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-sunny-orange-light/20 rounded-full blur-3xl translate-x-1/4 translate-y-1/4 z-0"></div>
-      
-      {/* Subtle pattern overlay */}
-      
       
       <div className="container px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -77,56 +79,31 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="relative h-[350px] md:h-[450px]">
-            {/* Central Sunny character */}
+          <div className="relative h-[400px] md:h-[500px] flex items-center justify-center">
+            {/* Central Sunny character - Updated with Polaroid style frame */}
             <div className="absolute inset-0 flex items-center justify-center z-20">
-              <div className="bg-white p-6 rounded-[2rem] stb-blob shadow-lg border border-sunny-yellow-light/30">
-                <div className="relative">
+              <div className="bg-white p-4 md:p-6 rounded-md shadow-lg transform rotate-2 w-[280px] md:w-[340px]">
+                {/* Polaroid content - Sunny mascot with new fashion style */}
+                <div className="relative mb-10">
                   <div className="flex justify-center" style={{
-                  width: '220px',
-                  height: '220px'
-                }}>
-                    <SunnyMascot size="lg" travelStyle="beach" className="sunny-bounce" />
+                    width: isMobile ? '240px' : '280px',
+                    height: isMobile ? '240px' : '280px'
+                  }}>
+                    <SunnyMascot size="xl" travelStyle="fashion" className="sunny-bounce" />
                   </div>
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 -translate-y-12 flex flex-col items-center">
-                    <h3 className="text-2xl font-bold text-sunny-orange">Meet Sunny</h3>
-                    <p className="font-handwritten text-lg text-sunny-yellow-dark">Your travel bestie!</p>
-                  </div>
+                  
+                  {/* Handwritten caption */}
+                  <p className="absolute bottom-[-30px] left-0 right-0 text-center font-handwritten text-xl text-gray-800">
+                    meet SUNNY your travel BESTIE!
+                  </p>
                 </div>
-              </div>
-            </div>
-            
-            {/* Floating elements */}
-            <div className="absolute top-10 right-10 z-30 sunny-float">
-              <div className="bg-sunny-gradient p-3 rounded-full shadow-md">
-                <span className="text-white font-bold">✈️</span>
-              </div>
-            </div>
-            
-            <div className="absolute bottom-16 left-10 z-30 sunny-bounce" style={{
-            animationDelay: "0.5s"
-          }}>
-              <div className="bg-sunny-yellow p-3 rounded-full shadow-md">
-                <span className="text-white font-bold">🌴</span>
-              </div>
-            </div>
-            
-            <div className="absolute bottom-32 right-12 z-30 sunny-pulse" style={{
-            animationDelay: "1s"
-          }}>
-              <div className="bg-sunny-orange-light p-3 rounded-full shadow-md">
-                <span className="text-white font-bold">📸</span>
-              </div>
-            </div>
-            
-            {/* Speech bubble from Sunny */}
-            <div className="absolute top-24 left-16 z-30 sunny-bounce" style={{
-            animationDelay: "0.7s"
-          }}>
-              <div className="sunny-speech-bubble sunny-speech-bubble-right max-w-[200px]">
-                <p className="font-handwritten text-sunny-orange">
-                  "Ready for adventure? I'll help you save money and find hidden gems!" ☀️
-                </p>
+                
+                {/* Caption text above Polaroid */}
+                <div className="absolute -top-12 -left-4 -right-4 transform -rotate-3">
+                  <p className="font-handwritten text-lg text-sunny-orange text-center bg-white px-4 py-2 rounded shadow-sm">
+                    "You pack the snacks, I'll plan the vibe" ☀️
+                  </p>
+                </div>
               </div>
             </div>
             
@@ -147,4 +124,5 @@ const Hero = () => {
       </div>
     </section>;
 };
+
 export default Hero;
