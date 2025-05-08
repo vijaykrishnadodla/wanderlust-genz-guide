@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Backpack, Camera, Book, Map, Sparkles } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 interface SunnyMascotProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   withText?: boolean;
@@ -10,7 +8,6 @@ interface SunnyMascotProps {
   className?: string;
   travelStyle?: 'default' | 'beach' | 'cultural' | 'educational' | 'adventure' | 'fashion';
 }
-
 const SunnyMascot = ({
   size = 'md',
   withText = false,
@@ -19,7 +16,7 @@ const SunnyMascot = ({
   travelStyle = 'default'
 }: SunnyMascotProps) => {
   const isMobile = useIsMobile();
-  
+
   // Enhanced size mappings for bigger avatar
   const sizeClasses = {
     sm: 'h-12 w-12',
@@ -55,32 +52,22 @@ const SunnyMascot = ({
             </div>
           </div>;
       case 'fashion':
-        return (
-          <>
+        return <>
             {/* Pink Hat */}
             <div className="absolute -top-[30%] left-1/2 transform -translate-x-1/2 z-20">
-              <div className="bg-pink-500 h-12 w-44 rounded-full"></div>
-              <div className="bg-pink-500 h-6 w-52 rounded-full absolute -bottom-2 left-1/2 transform -translate-x-1/2"></div>
+              
+              
               <div className="bg-pink-300 h-2 w-40 rounded-full absolute top-2 left-1/2 transform -translate-x-1/2"></div>
               <div className="bg-pink-300 h-2 w-40 rounded-full absolute top-6 left-1/2 transform -translate-x-1/2"></div>
             </div>
             {/* Heart Glasses */}
             <div className="absolute top-[30%] left-1/2 transform -translate-x-1/2 z-30">
-              <div className="flex items-center">
-                <div className="bg-pink-500 h-10 w-10 rounded-full border-2 border-pink-600 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-pink-400 rounded-full scale-75 translate-y-1 translate-x-1"></div>
-                </div>
-                <div className="bg-pink-600 h-2 w-4"></div>
-                <div className="bg-pink-500 h-10 w-10 rounded-full border-2 border-pink-600 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-pink-400 rounded-full scale-75 translate-y-1 translate-x-1"></div>
-                </div>
-              </div>
+              
             </div>
             {/* Arms */}
             <div className="absolute top-1/2 -left-6 h-1 w-8 bg-amber-700 rounded-full transform rotate-[-30deg]"></div>
             <div className="absolute top-1/2 -right-6 h-1 w-8 bg-amber-700 rounded-full transform rotate-[30deg]"></div>
-          </>
-        );
+          </>;
       default:
         return null;
     }
@@ -90,59 +77,41 @@ const SunnyMascot = ({
   const renderSparkles = () => {
     return <>
         <div className="absolute -top-1 -left-1 sunny-pulse" style={{
-          animationDelay: '0.5s'
-        }}>
+        animationDelay: '0.5s'
+      }}>
           <Sparkles className="h-4 w-4 text-sunny-yellow" />
         </div>
         <div className="absolute -bottom-1 -right-1 sunny-pulse" style={{
-          animationDelay: '1s'
-        }}>
+        animationDelay: '1s'
+      }}>
           <Sparkles className="h-3 w-3 text-sunny-orange" />
         </div>
         {/* Additional pink sparkles to match image */}
         <div className="absolute -left-8 top-1/2 sunny-pulse" style={{
-          animationDelay: '1.5s'
-        }}>
-          <div className="h-3 w-6 bg-pink-500 rounded-full"></div>
+        animationDelay: '1.5s'
+      }}>
+          
         </div>
         <div className="absolute -right-8 top-1/3 sunny-pulse" style={{
-          animationDelay: '0.8s'
-        }}>
+        animationDelay: '0.8s'
+      }}>
           <div className="h-3 w-6 bg-pink-500 rounded-full"></div>
         </div>
       </>;
   };
-
-  return (
-    <div className={`flex flex-col ${isMobile ? 'items-center' : 'items-start'} gap-4 ${className}`}>
+  return <div className={`flex flex-col ${isMobile ? 'items-center' : 'items-start'} gap-4 ${className}`}>
       <div className="relative">
         {/* Updated Sunny image with glow effect */}
         <div className={`relative ${sizeClasses[size]}`}>
           <div className="absolute inset-0 bg-sunny-yellow/50 rounded-full blur-md sunny-pulse"></div>
           
           {/* Base Sun with customized look */}
-          {travelStyle === 'fashion' ? (
-            <div className="w-full h-full relative z-0">
+          {travelStyle === 'fashion' ? <div className="w-full h-full relative z-0">
               {/* Main sun body */}
-              <div className="absolute inset-0 bg-yellow-400 rounded-full border-4 border-yellow-300">
-                {/* Inner sun face */}
-                <div className="absolute inset-[15%] bg-orange-400 rounded-full flex items-center justify-center">
-                  {/* Smile */}
-                  <div className="absolute bottom-[25%] w-[40%] h-[20%] border-b-4 border-amber-700 rounded-full"></div>
-                </div>
-              </div>
+              
               {/* Sun rays */}
-              <div className="absolute inset-[-15%] bg-yellow-300 -z-10" style={{ 
-                clipPath: 'polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)' 
-              }}></div>
-            </div>
-          ) : (
-            <img 
-              alt="Sunny mascot" 
-              className="w-full h-full relative z-0 object-contain"
-              src="/lovable-uploads/b393e5e2-3b2c-4eb4-8c0d-3df4416cc9c6.png" 
-            />
-          )}
+              
+            </div> : <img alt="Sunny mascot" className="w-full h-full relative z-0 object-contain" src="/lovable-uploads/b393e5e2-3b2c-4eb4-8c0d-3df4416cc9c6.png" />}
           
           {/* Travel style accessories */}
           {renderAccessory()}
@@ -152,13 +121,9 @@ const SunnyMascot = ({
         </div>
       </div>
       
-      {withText && message && (
-        <div className="sunny-speech-bubble sunny-speech-bubble-left max-w-xs font-handwritten text-sunny-orange">
+      {withText && message && <div className="sunny-speech-bubble sunny-speech-bubble-left max-w-xs font-handwritten text-sunny-orange">
           {message}
-        </div>
-      )}
-    </div>
-  );
+        </div>}
+    </div>;
 };
-
 export default SunnyMascot;
