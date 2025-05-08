@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Backpack, Camera, Book, Map, Sparkles } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 interface SunnyMascotProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   withText?: boolean;
@@ -8,6 +10,7 @@ interface SunnyMascotProps {
   className?: string;
   travelStyle?: 'default' | 'beach' | 'cultural' | 'educational' | 'adventure' | 'fashion';
 }
+
 const SunnyMascot = ({
   size = 'md',
   withText = false,
@@ -53,17 +56,7 @@ const SunnyMascot = ({
           </div>;
       case 'fashion':
         return <>
-            {/* Pink Hat */}
-            <div className="absolute -top-[30%] left-1/2 transform -translate-x-1/2 z-20">
-              
-              
-              <div className="bg-pink-300 h-2 w-40 rounded-full absolute top-2 left-1/2 transform -translate-x-1/2"></div>
-              <div className="bg-pink-300 h-2 w-40 rounded-full absolute top-6 left-1/2 transform -translate-x-1/2"></div>
-            </div>
-            {/* Heart Glasses */}
-            <div className="absolute top-[30%] left-1/2 transform -translate-x-1/2 z-30">
-              
-            </div>
+            {/* Pink Hat and Heart Glasses are now part of the image */}
             {/* Arms */}
             <div className="absolute top-1/2 -left-6 h-1 w-8 bg-amber-700 rounded-full transform rotate-[-30deg]"></div>
             <div className="absolute top-1/2 -right-6 h-1 w-8 bg-amber-700 rounded-full transform rotate-[30deg]"></div>
@@ -99,19 +92,22 @@ const SunnyMascot = ({
         </div>
       </>;
   };
+
   return <div className={`flex flex-col ${isMobile ? 'items-center' : 'items-start'} gap-4 ${className}`}>
       <div className="relative">
         {/* Updated Sunny image with glow effect */}
         <div className={`relative ${sizeClasses[size]}`}>
           <div className="absolute inset-0 bg-sunny-yellow/50 rounded-full blur-md sunny-pulse"></div>
           
-          {/* Base Sun with customized look */}
-          {travelStyle === 'fashion' ? <div className="w-full h-full relative z-0">
-              {/* Main sun body */}
-              
-              {/* Sun rays */}
-              
-            </div> : <img alt="Sunny mascot" className="w-full h-full relative z-0 object-contain" src="/lovable-uploads/b393e5e2-3b2c-4eb4-8c0d-3df4416cc9c6.png" />}
+          {/* Base Sun with new fashion-style avatar */}
+          <div className="w-full h-full relative z-0">
+            {/* Use the new sunny avatar image with fashion style (hat and heart glasses) */}
+            <img 
+              src="/lovable-uploads/1795a97d-401c-44f0-9fe1-baa9ee21c4b9.png" 
+              alt="Sunny mascot" 
+              className="w-full h-full object-contain"
+            />
+          </div>
           
           {/* Travel style accessories */}
           {renderAccessory()}
@@ -126,4 +122,5 @@ const SunnyMascot = ({
         </div>}
     </div>;
 };
+
 export default SunnyMascot;
