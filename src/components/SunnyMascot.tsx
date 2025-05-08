@@ -75,7 +75,7 @@ const SunnyMascot = ({
         {/* Updated Sunny image with glow effect */}
         <div className={`relative ${sizeClasses[size]}`}>
           <div className="absolute inset-0 bg-sunny-yellow/50 rounded-full blur-md sunny-pulse"></div>
-          <img src="/lovable-uploads/2a26224f-3d4d-45a2-b5f7-850369f9cc52.png" alt="Sunny mascot" className="w-full h-full relative z-0 object-contain" />
+          <img alt="Sunny mascot" className="w-full h-full relative z-0 object-contain" src="/lovable-uploads/b393e5e2-3b2c-4eb4-8c0d-3df4416cc9c6.png" />
           
           {/* Only show travel style accessories for non-default styles */}
           {travelStyle !== 'default' && renderAccessory()}
