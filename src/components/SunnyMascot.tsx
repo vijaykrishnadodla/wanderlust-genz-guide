@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Backpack, Camera, Book, Map, Sparkles } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 interface SunnyMascotProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   withText?: boolean;
@@ -10,7 +8,6 @@ interface SunnyMascotProps {
   className?: string;
   travelStyle?: 'default' | 'beach' | 'cultural' | 'educational' | 'adventure' | 'fashion';
 }
-
 const SunnyMascot = ({
   size = 'md',
   withText = false,
@@ -58,8 +55,8 @@ const SunnyMascot = ({
         return <>
             {/* Pink Hat and Heart Glasses are now part of the image */}
             {/* Arms */}
-            <div className="absolute top-1/2 -left-6 h-1 w-8 bg-amber-700 rounded-full transform rotate-[-30deg]"></div>
-            <div className="absolute top-1/2 -right-6 h-1 w-8 bg-amber-700 rounded-full transform rotate-[30deg]"></div>
+            
+            
           </>;
       default:
         return null;
@@ -88,11 +85,10 @@ const SunnyMascot = ({
         <div className="absolute -right-8 top-1/3 sunny-pulse" style={{
         animationDelay: '0.8s'
       }}>
-          <div className="h-3 w-6 bg-pink-500 rounded-full"></div>
+          
         </div>
       </>;
   };
-
   return <div className={`flex flex-col ${isMobile ? 'items-center' : 'items-start'} gap-4 ${className}`}>
       <div className="relative">
         {/* Updated Sunny image with glow effect */}
@@ -102,11 +98,7 @@ const SunnyMascot = ({
           {/* Base Sun with new fashion-style avatar */}
           <div className="w-full h-full relative z-0">
             {/* Use the new sunny avatar image with fashion style (hat and heart glasses) */}
-            <img 
-              src="/lovable-uploads/1795a97d-401c-44f0-9fe1-baa9ee21c4b9.png" 
-              alt="Sunny mascot" 
-              className="w-full h-full object-contain"
-            />
+            <img src="/lovable-uploads/1795a97d-401c-44f0-9fe1-baa9ee21c4b9.png" alt="Sunny mascot" className="w-full h-full object-contain" />
           </div>
           
           {/* Travel style accessories */}
@@ -122,5 +114,4 @@ const SunnyMascot = ({
         </div>}
     </div>;
 };
-
 export default SunnyMascot;
