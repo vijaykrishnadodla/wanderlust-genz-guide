@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
-import { CheckCircle, Timer, UserRound, HelpCircle } from 'lucide-react';
+import { Check, CheckCircle, Timer, UserRound, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SunnyMascot from './SunnyMascot';
 
