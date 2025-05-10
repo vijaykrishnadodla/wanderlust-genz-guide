@@ -324,44 +324,7 @@ const SunshineClub = () => {
           </div>
 
           {/* Compare All Features Table */}
-          <div className="mt-12 bg-white rounded-lg p-6 border border-[#fdad32]/20 shadow-sm">
-            <h3 className="text-xl font-bold mb-4">Compare All Features</h3>
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[250px]">Benefits</TableHead>
-                    <TableHead className="bg-gradient-to-r from-[#fdad32]/20 to-[#fe4c02]/20">FullTimer</TableHead>
-                    <TableHead>PartTimer</TableHead>
-                    <TableHead>FreeTimer</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {Object.entries(featureLabels).map(([key, label]) => <TableRow key={key}>
-                      <TableCell className="font-medium">{label}</TableCell>
-                      <TableCell className="text-center bg-[#fdad32]/10">
-                        {plans[0].features[key] ? <CheckCircle className="h-5 w-5 mx-auto text-[#fdad32]" /> : <span className="text-gray-300">—</span>}
-                      </TableCell>
-                      <TableCell className="text-center">
-                        {plans[1].features[key] ? <CheckCircle className="h-5 w-5 mx-auto text-[#fdad32]" /> : <span className="text-gray-300">—</span>}
-                      </TableCell>
-                      <TableCell className="text-center">
-                        {plans[2].features[key] ? <CheckCircle className="h-5 w-5 mx-auto text-[#fdad32]" /> : <span className="text-gray-300">—</span>}
-                      </TableCell>
-                    </TableRow>)}
-                  <TableRow>
-                    <TableCell className="font-medium">Price</TableCell>
-                    <TableCell className="text-center bg-[#fdad32]/10">
-                      <span className="line-through text-gray-400">$29</span>{" "}
-                      <span className="font-bold">$20</span>
-                    </TableCell>
-                    <TableCell className="text-center">coming soon</TableCell>
-                    <TableCell className="text-center">Free</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </div>
-          </div>
+          
         </div>
 
         {/* Membership comparison table - modernized */}
