@@ -23,7 +23,7 @@ const Index = () => {
         <div className="relative">
           <Hero />
           {/* Wave divider after Hero */}
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
+          
         </div>
         
         {/* Sunshine Club section with gradient 1 */}
