@@ -8,7 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import JourneySuns from './JourneySuns';
 
 const SunshineClub = () => {
-  // University logos and names mapping - updated with the newly uploaded logos
+  // University logos and names mapping - updated with all the provided logos
   const universityLogos = [
     { name: "Harvard", logo: "/lovable-uploads/2f0c4da4-6e39-4a7b-be74-64aa968d3eca.jpg" },
     { name: "Oxford", logo: "/lovable-uploads/d28c8881-1159-4531-b72a-ceb919332f52.png" },
@@ -32,7 +32,7 @@ const SunshineClub = () => {
   ];
 
   // Keep the full list of universities for the counter
-  const universities = ["Harvard", "Oxford", "MIT", "Stanford", "Yale", "Princeton", "Columbia", "Cambridge", "Berkeley", "UCLA", "NYU", "UPenn", "Caltech", "Duke", "Cornell", "UChicago", "Imperial", "ETH Zurich", "Toronto", "McGill", "ANU", "Tokyo", "Seoul", "Singapore"];
+  const universities = ["Harvard", "Oxford", "MIT", "Stanford", "Yale", "Princeton", "Columbia", "Cambridge", "Berkeley", "Chicago", "UPenn", "Caltech", "Cornell", "Toronto", "NUS", "NTU", "HKUST", "Sydney", "Tsinghua", "UCLA", "NYU", "Duke", "Imperial", "ETH Zurich", "McGill", "ANU", "Tokyo", "Seoul", "Singapore"];
 
   return <section id="sunshine-club" className="py-16 relative">
       <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
@@ -153,11 +153,11 @@ const SunshineClub = () => {
           </div>
         </div>
 
-        {/* Trusted By Section - Now with University Logo Images */}
+        {/* Trusted By Section - Now with University Logo Images - Updated with all logos */}
         <div className="mb-16">
           <h2 className="text-2xl font-bold text-center mb-8">TRUSTED BY</h2>
           <div className="grid grid-cols-3 md:grid-cols-6 gap-4 justify-center items-center">
-            {universityLogos.slice(0, 12).map((uni, index) => (
+            {universityLogos.slice(0, 18).map((uni, index) => (
               <div key={index} className="university-stamp mx-auto">
                 <img 
                   src={uni.logo} 
@@ -168,7 +168,7 @@ const SunshineClub = () => {
             ))}
           </div>
           <div className="mt-4 text-center">
-            <p className="text-sm text-gray-600">+ {universities.length - 12} more top universities worldwide</p>
+            <p className="text-sm text-gray-600">+ {universities.length - 18} more top universities worldwide</p>
           </div>
         </div>
 
