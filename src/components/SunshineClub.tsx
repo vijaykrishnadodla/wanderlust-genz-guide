@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,12 +9,12 @@ import { Separator } from '@/components/ui/separator';
 import JourneySuns from './JourneySuns';
 
 const SunshineClub = () => {
-  // University logos and names mapping
+  // University logos and names mapping - using the correct file paths
   const universityLogos = [
-    { name: "Harvard", logo: "/lovable-uploads/1795a97d-401c-44f0-9fe1-baa9ee21c4b9.png" },
-    { name: "Oxford", logo: "/lovable-uploads/1919aa02-ee8c-4a23-b76a-79325b03daad.png" },
-    { name: "MIT", logo: "/lovable-uploads/1bfb3ff6-11c2-429e-a525-6350583e6630.png" },
-    { name: "Stanford", logo: "/lovable-uploads/1d39cf1b-6f89-4e28-8f7d-accc791146e8.png" },
+    { name: "Harvard", logo: "/lovable-uploads/2f0c4da4-6e39-4a7b-be74-64aa968d3eca.jpg" },
+    { name: "Oxford", logo: "/lovable-uploads/6babe884-a973-49d2-9125-fad3e4a98f6e.jpg" },
+    { name: "MIT", logo: "/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" },
+    { name: "Stanford", logo: "/lovable-uploads/fdf3b767-fc30-44e3-ae82-d41c54820d83.png" },
     { name: "Yale", logo: "/lovable-uploads/2a26224f-3d4d-45a2-b5f7-850369f9cc52.png" },
     { name: "Princeton", logo: "/lovable-uploads/38c8baea-c639-49d2-8de8-d70bfadeee89.png" },
     { name: "Columbia", logo: "/lovable-uploads/45550131-1033-4488-9a9c-81e60cbe7fbb.png" },
