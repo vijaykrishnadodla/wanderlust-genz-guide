@@ -1,13 +1,9 @@
-
 import React from 'react';
 import { Star, TrendingUp, Award } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 const BenefitsSection = () => {
   const isMobile = useIsMobile();
-  
-  return (
-    <section className="py-16 relative">
+  return <section className="py-16 relative">
       <div className="container px-4 md:px-6 max-w-6xl mx-auto text-center">
         <div className="mb-12">
           <div className="inline-flex items-center gap-2 sunshine-accent mb-3">
@@ -66,25 +62,12 @@ const BenefitsSection = () => {
         </div>
         
         <div className="mt-12 flex justify-center">
-          <div className={`inline-flex items-center gap-4 py-3 px-6 bg-white rounded-full shadow-md ${isMobile ? 'flex-col' : 'flex-row'}`}>
-            <div className="text-[#F97316] font-medium">
-              Trusted by {universities.length}+ universities worldwide
-            </div>
-            <div className="flex flex-wrap justify-center gap-2">
-              {["Harvard", "Oxford", "Stanford", "Yale", "MIT"].map((uni, index) => (
-                <span key={index} className="bg-[#FFF1E6] text-[#F97316] px-3 py-1 rounded-full text-sm font-medium">
-                  {uni}
-                </span>
-              ))}
-            </div>
-          </div>
+          
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
 
 // List of universities to show the total count
 const universities = ["Harvard", "Oxford", "MIT", "Stanford", "Yale", "Princeton", "Columbia", "Cambridge", "Berkeley", "Chicago", "UPenn", "Caltech", "Cornell", "Toronto", "NUS", "NTU", "HKUST", "Sydney", "Tsinghua", "UCLA", "NYU", "Duke", "Imperial", "ETH Zurich", "McGill", "ANU", "Tokyo", "Seoul", "Singapore"];
-
 export default BenefitsSection;
