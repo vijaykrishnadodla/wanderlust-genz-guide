@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,20 +8,27 @@ import { Separator } from '@/components/ui/separator';
 import JourneySuns from './JourneySuns';
 
 const SunshineClub = () => {
-  // University logos and names mapping - using the correct file paths
+  // University logos and names mapping - updated with the newly uploaded logos
   const universityLogos = [
     { name: "Harvard", logo: "/lovable-uploads/2f0c4da4-6e39-4a7b-be74-64aa968d3eca.jpg" },
-    { name: "Oxford", logo: "/lovable-uploads/6babe884-a973-49d2-9125-fad3e4a98f6e.jpg" },
+    { name: "Oxford", logo: "/lovable-uploads/d28c8881-1159-4531-b72a-ceb919332f52.png" },
     { name: "MIT", logo: "/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" },
-    { name: "Stanford", logo: "/lovable-uploads/fdf3b767-fc30-44e3-ae82-d41c54820d83.png" },
-    { name: "Yale", logo: "/lovable-uploads/2a26224f-3d4d-45a2-b5f7-850369f9cc52.png" },
-    { name: "Princeton", logo: "/lovable-uploads/38c8baea-c639-49d2-8de8-d70bfadeee89.png" },
-    { name: "Columbia", logo: "/lovable-uploads/45550131-1033-4488-9a9c-81e60cbe7fbb.png" },
-    { name: "Cambridge", logo: "/lovable-uploads/555f4f4b-06a5-40ab-acb4-959a277fc35f.png" },
-    { name: "Berkeley", logo: "/lovable-uploads/9aa14dc9-3d1b-4cd1-9028-93d4a960f2b2.png" },
-    { name: "UCLA", logo: "/lovable-uploads/9be5c67d-a70a-437f-923a-3610cc73fa3b.png" },
-    { name: "NYU", logo: "/lovable-uploads/b393e5e2-3b2c-4eb4-8c0d-3df4416cc9c6.png" },
-    { name: "UPenn", logo: "/lovable-uploads/c197ba54-f28d-4bfd-a89c-27c8d21e11c0.png" }
+    { name: "Stanford", logo: "/lovable-uploads/832dd1b4-4324-40a9-9c84-0a823be50f5a.png" },
+    { name: "Yale", logo: "/lovable-uploads/d3f54b62-f843-4732-8aae-27f9e7d51dda.png" },
+    { name: "Princeton", logo: "/lovable-uploads/c8ee8c54-1ae7-490f-bbb8-75978c486431.png" },
+    { name: "Columbia", logo: "/lovable-uploads/544e57e6-94ce-4b89-b52a-9d1dabf9b0ea.png" },
+    { name: "Cambridge", logo: "/lovable-uploads/6fdda045-a019-489d-87a3-d823664a0cbf.png" },
+    { name: "Berkeley", logo: "/lovable-uploads/b66cce02-8ef6-42d3-8be3-fb538945490c.png" },
+    { name: "Chicago", logo: "/lovable-uploads/5a230154-15a8-46a9-97f3-3d89677f6a3d.png" },
+    { name: "UPenn", logo: "/lovable-uploads/698b81da-180a-47a2-b935-1dd063b0a8dc.png" },
+    { name: "Caltech", logo: "/lovable-uploads/2b49a586-03d5-49ba-855f-dd59e013ea82.png" },
+    { name: "Cornell", logo: "/lovable-uploads/5c2d377d-29d1-42e0-bd60-bd389a75fe7d.png" },
+    { name: "Toronto", logo: "/lovable-uploads/e60195a2-9edf-437e-b71d-99fed66fa308.png" },
+    { name: "NUS", logo: "/lovable-uploads/67c190fc-8292-43b8-8383-b083e9313950.png" },
+    { name: "NTU", logo: "/lovable-uploads/2fd47381-217e-4a1d-b706-a5c716bf326c.png" },
+    { name: "HKUST", logo: "/lovable-uploads/32931c6d-d22e-4947-8eb7-556c36bbdf1f.png" },
+    { name: "Sydney", logo: "/lovable-uploads/befd5591-b9fd-40f1-b35e-1a1af3ef3ef3.png" },
+    { name: "Tsinghua", logo: "/lovable-uploads/6ea74ff7-ba75-4e2b-981f-bb9f813af6ed.png" },
   ];
 
   // Keep the full list of universities for the counter
@@ -76,7 +82,26 @@ const SunshineClub = () => {
         </div>
 
         {/* Membership comparison table - modernized */}
-        
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">Membership</TableHead>
+              <TableHead>Benefits</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell className="font-medium">Basic</TableCell>
+              <TableCell>Access to community forum</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className="font-medium">Premium</TableCell>
+              <TableCell>
+                Everything in Basic, plus exclusive discounts and city guides
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
 
         {/* Bonus Section - Modernized */}
         <div className="mb-16">
