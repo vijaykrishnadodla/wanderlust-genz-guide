@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from "@/components/ui/card";
-import { Sun, ArrowRight, Dollar } from 'lucide-react';
+import { Sun, ArrowRight, DollarSign } from 'lucide-react';
 
 const Templates = () => {
   // Countdown timer state
@@ -137,7 +136,7 @@ const Templates = () => {
         <div className="mb-16">
           <div className="text-center mb-12">
             <div className="inline-block bg-gradient-to-r from-[#fdad32] to-[#fe4c02] px-6 py-2 rounded-lg mb-4 flex items-center justify-center">
-              <Dollar className="h-6 w-6 text-white mr-2" />
+              <DollarSign className="h-6 w-6 text-white mr-2" />
               <h2 className="text-3xl md:text-4xl font-display mb-0 text-white">MEMBERSHIP PLANS</h2>
             </div>
             <p className="text-xl text-[#fe4c02] font-medium">Choose the perfect plan for your student adventures</p>
