@@ -1,22 +1,19 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles, MapPin, Sun } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
-import SunnyAvatar from './SunnyAvatar';
 import MiniSignUpForm from './MiniSignUpForm';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 const Hero = () => {
   const isMobile = useIsMobile();
+  
   return <section className="relative pt-24 pb-16 md:pt-28 md:pb-24 overflow-hidden">
       {/* Sunny background gradients */}
       <div className="absolute inset-0 bg-sunny-soft z-0"></div>
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-sunny-yellow-light/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/4 z-0"></div>
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-sunny-orange-light/20 rounded-full blur-3xl translate-x-1/4 translate-y-1/4 z-0"></div>
-      
-      {/* Add the orange logo as a background element */}
-      <div className="absolute right-10 bottom-10 w-32 h-32 opacity-10 md:opacity-20 z-0">
-        <img src="/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png" alt="Logo background" className="w-full h-full object-contain" />
-      </div>
       
       <div className="container px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -89,10 +86,10 @@ const Hero = () => {
                 {/* Polaroid content - Sunny mascot with new fashion style */}
                 <div className="relative mb-10">
                   <div className="flex justify-center" style={{
-                  width: isMobile ? '240px' : '280px',
-                  height: isMobile ? '240px' : '280px'
-                }}>
-                    <SunnyAvatar size="xl" travelStyle="fashion" className="sunny-bounce" />
+                    width: isMobile ? '240px' : '280px',
+                    height: isMobile ? '240px' : '280px'
+                  }}>
+                    <SunnyMascot size="xl" travelStyle="fashion" className="sunny-bounce" />
                   </div>
                   
                   {/* Handwritten caption */}
@@ -110,9 +107,6 @@ const Hero = () => {
               </div>
             </div>
             
-            {/* ISIC partner logo */}
-            
-            
             {/* Mini signup form for immediate engagement */}
             <div className="absolute bottom-2 inset-x-0 z-30 px-4">
               <MiniSignUpForm />
@@ -128,13 +122,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      
-      {/* Add wavy SVG divider at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full">
-          <path fill="#FFE0B2" fillOpacity="0.4" d="M0,224L48,213.3C96,203,192,181,288,176C384,171,480,181,576,192C672,203,768,213,864,208C960,203,1056,181,1152,181.3C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-        </svg>
-      </div>
     </section>;
 };
+
 export default Hero;
