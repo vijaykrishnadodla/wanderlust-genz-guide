@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video, Sparkles, Timer, UserRound, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from '@/components/ui/separator';
 import JourneySuns from './JourneySuns';
 import { useIsMobile } from '@/hooks/use-mobile';
 import SunnyMascot from './SunnyMascot';
+import { Link } from 'react-router-dom';
 
 // Star animation component
 const StarDust = ({
@@ -22,10 +22,10 @@ const StarDust = ({
 const SunshineClub = () => {
   const isMobile = useIsMobile();
 
-  // Plans data for membership comparison
-  const plans = [{
+  // Plans data for membership comparison - only keeping FullTimer for display
+  const plan = {
     name: "FullTimer",
-    price: "$19",
+    price: "$20",
     originalPrice: "$29",
     description: "All-access pass for verified full-time students – perks, discounts, community events, and more.",
     features: {
@@ -42,40 +42,8 @@ const SunshineClub = () => {
     },
     highlight: true,
     spotsLeft: "24"
-  }, {
-    name: "PartTimer",
-    price: "$19",
-    description: "Great for part-time students – flexible perks and partial access tailored to your schedule.",
-    features: {
-      newsletter: true,
-      travelRules: true,
-      cityGuides: true,
-      isicCard: false,
-      chatSupport: true,
-      phoneSupport: false,
-      itineraries: true,
-      webinars: true,
-      community: true,
-      localEvents: true
-    },
-    highlight: false
-  }, {
-    name: "FreeTimer",
-    price: "Free",
-    description: "Stay in the loop with our newsletter – updates, offers, and student stories straight to your inbox.",
-    features: {
-      newsletter: true,
-      travelRules: false,
-      cityGuides: false,
-      isicCard: false,
-      chatSupport: false,
-      phoneSupport: false,
-      itineraries: false,
-      webinars: false,
-      community: false,
-      localEvents: false
-    }
-  }];
+  };
+  
   const featureLabels = {
     newsletter: "Curated Newsletter",
     travelRules: "10 Top Secret Non-Negotiable Student Travel Rules",
@@ -217,19 +185,19 @@ const SunshineClub = () => {
           </div>
         </div>
         
-        {/* Membership details section - Moved from Offering.tsx */}
+        {/* Membership details section - Only showing FullTimer */}
         <div className="mb-16">
           <div className="text-center mb-12">
             <div className="inline-block bg-gradient-to-r from-[#fdad32] to-[#fe4c02] px-6 py-2 rounded-lg mb-4 flex items-center justify-center">
               <Timer className="h-6 w-6 text-white mr-2" />
               <h2 className="text-3xl md:text-4xl font-display mb-0 text-white">MEMBERSHIP DETAILS</h2>
             </div>
-            <p className="text-xl text-[#fe4c02] font-handwritten">Choose the perfect plan for your student adventures</p>
+            <p className="text-xl text-[#fe4c02] font-handwritten">The perfect plan for your student adventures</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="max-w-md mx-auto mb-8">
             {/* FullTimer highlighted prominently */}
-            <Card className="border-2 border-[#fdad32] shadow-xl relative overflow-hidden scale-105 z-10">
+            <Card className="border-2 border-[#fdad32] shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 bg-gradient-to-r from-[#fdad32] to-[#fe4c02] text-white font-bold px-4 py-2 rounded-bl-md">
                 BEST VALUE
               </div>
@@ -237,7 +205,7 @@ const SunshineClub = () => {
               <div className="absolute top-0 left-0 right-0 bg-[#e93546] text-white text-center py-2">
                 <div className="flex items-center justify-center gap-1">
                   <Timer className="h-4 w-4" />
-                  <span className="font-bold">ONLY {plans[0].spotsLeft} SPOTS LEFT</span>
+                  <span className="font-bold">ONLY {plan.spotsLeft} SPOTS LEFT</span>
                 </div>
               </div>
               
@@ -246,8 +214,8 @@ const SunshineClub = () => {
                   <h3 className="font-display text-3xl text-[#fdad32] mb-1">FULLTIMER</h3>
                   <p className="text-gray-800 font-medium mb-2">The Complete Student Travel Experience</p>
                   <div className="flex items-baseline justify-center">
-                    <span className="text-4xl font-bold text-[#fdad32]">{plans[0].price}</span>
-                    <span className="ml-2 text-gray-500 line-through">{plans[0].originalPrice}</span>
+                    <span className="text-4xl font-bold text-[#fdad32]">{plan.price}</span>
+                    <span className="ml-2 text-gray-500 line-through">{plan.originalPrice}</span>
                   </div>
                 </div>
                 
@@ -256,7 +224,7 @@ const SunshineClub = () => {
                 </p>
                 
                 <ul className="space-y-3 mb-6 bg-white p-4 rounded-lg border border-[#fdad32]/30">
-                  {Object.entries(plans[0].features).map(([key, enabled]) => enabled ? <li key={key} className="flex items-start gap-2">
+                  {Object.entries(plan.features).map(([key, enabled]) => enabled ? <li key={key} className="flex items-start gap-2">
                         <CheckCircle className="h-5 w-5 text-[#fdad32] shrink-0 mt-0.5" />
                         <span className="font-medium">{featureLabels[key]}</span>
                       </li> : null)}
@@ -274,84 +242,24 @@ const SunshineClub = () => {
                   <UserRound className="h-5 w-5" />
                   GET FULLTIMER NOW
                 </Button>
-                
-                
               </div>
             </Card>
-
-            {/* PartTimer shown second */}
-            <Card className="border border-gray-200 relative overflow-hidden">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-display mb-2">{plans[1].name}</h3>
-                <div className="mb-4">
-                  <span className="text-2xl font-bold text-[#fdad32]">{plans[1].price}</span>
-                </div>
-                <p className="text-gray-600 mb-6 text-sm">{plans[1].description}</p>
-                
-                <ul className="space-y-2 mb-8 text-sm">
-                  {Object.entries(plans[1].features).filter(([_, enabled]) => enabled).slice(0, 5).map(([key]) => <li key={key} className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-[#fdad32] shrink-0 mt-0.5" />
-                      <span>{featureLabels[key]}</span>
-                    </li>)}
-                  <li className="text-gray-500 text-sm">+ 5 more features</li>
-                </ul>
-                
-                <Button className="w-full bg-[#fdad32] hover:bg-[#fe4c02] text-white font-bold text-sm rounded-full">Coming soon</Button>
-              </CardContent>
-            </Card>
-            
-            {/* FreeTimer shown last & smallest */}
-            <Card className="border border-gray-200 relative overflow-hidden opacity-80">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-display mb-2">{plans[2].name}</h3>
-                <div className="mb-4">
-                  <span className="text-2xl font-bold text-[#fdad32]">{plans[2].price}</span>
-                </div>
-                <p className="text-gray-600 mb-6 text-sm">{plans[2].description}</p>
-                
-                <ul className="space-y-2 mb-8 text-sm">
-                  {Object.entries(plans[2].features).map(([key, enabled]) => enabled ? <li key={key} className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-[#fdad32] shrink-0 mt-0.5" />
-                        <span>{featureLabels[key]}</span>
-                      </li> : null)}
-                </ul>
-                
-                <Button className="w-full bg-[#ffeea6] hover:bg-[#fdad32] text-[#fe4c02] font-bold text-sm rounded-full">
-                  Choose Plan
-                </Button>
-              </CardContent>
-            </Card>
           </div>
-
-          {/* Compare All Features Table */}
           
+          <div className="text-center mb-4">
+            <Link to="/templates" className="text-[#FF7A00] font-bold hover:underline">
+              View all membership options and comparison →
+            </Link>
+          </div>
         </div>
 
-        {/* Membership comparison table - modernized */}
-        <Table>
-          <TableHeader>
-            <TableRow>
-              
-              
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              
-              
-            </TableRow>
-            <TableRow>
-              
-              
-            </TableRow>
-          </TableBody>
-        </Table>
+        {/* Membership comparison table removed, now appears in Templates.tsx */}
 
         {/* Bonus Section - Modernized */}
         <div className="mb-16">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold">EXTRA BONUSES</h2>
-            <p className="text-gray-600">Included with both membership plans</p>
+            <p className="text-gray-600">Included with your membership</p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
