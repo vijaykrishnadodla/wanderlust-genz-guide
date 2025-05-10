@@ -1,8 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sun } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
-
 const JourneySuns = () => {
   // State to track the active step
   const [activeStep, setActiveStep] = useState(0);
@@ -20,28 +18,23 @@ const JourneySuns = () => {
     title: "JOIN",
     desc: "Sign up and verify your student status",
     emoji: "🎓",
-    color: "bg-gradient-to-br from-[#FFD600] to-[#FF7A00]",
-    travelStyle: "default"
+    color: "bg-gradient-to-br from-[#FFD600] to-[#FF7A00]"
   }, {
     title: "PLAN",
     desc: "Get personalized itineraries & discounts",
     emoji: "🗺️",
-    color: "bg-gradient-to-br from-[#FF9900] to-[#FF7A00]",
-    travelStyle: "cultural"
+    color: "bg-gradient-to-br from-[#FF9900] to-[#FF7A00]"
   }, {
     title: "TRAVEL",
     desc: "Explore with confidence and savings",
     emoji: "✈️",
-    color: "bg-gradient-to-br from-[#FFCC00] to-[#FF5500]",
-    travelStyle: "adventure"
+    color: "bg-gradient-to-br from-[#FFCC00] to-[#FF5500]"
   }, {
     title: "SHARE",
     desc: "Connect with other students worldwide",
     emoji: "👋",
-    color: "bg-gradient-to-br from-[#FFB347] to-[#FF7A00]",
-    travelStyle: "beach"
+    color: "bg-gradient-to-br from-[#FFB347] to-[#FF7A00]"
   }];
-
   return <div className="mb-16 max-w-4xl mx-auto py-0">
       <div className="text-center">
         <h3 className="text-2xl md:text-3xl font-bold mb-3">YOUR TRAVEL JOURNEY</h3>
@@ -72,18 +65,13 @@ const JourneySuns = () => {
             </div>)}
         </div>
         
-        {/* Improved Sunny mascot positioning with smoother transitions */}
+        {/* Sunny mascot positioned at the active step */}
         <div className="absolute transition-all duration-500 ease-in-out" style={{
         left: `calc(${activeStep * 25}% + 8%)`,
         top: '-40px',
         transform: 'translateX(-50%)'
       }}>
-          <SunnyMascot 
-            size="sm" 
-            withText 
-            message={activeStep === 3 ? "You made it! 🎉" : "Let's go! ☀️"} 
-            travelStyle={steps[activeStep].travelStyle as any}
-          />
+          <SunnyMascot size="sm" withText message={activeStep === 3 ? "You made it! 🎉" : "Let's go! ☀️"} />
         </div>
       </div>
       
@@ -100,5 +88,4 @@ const JourneySuns = () => {
       </div>
     </div>;
 };
-
 export default JourneySuns;

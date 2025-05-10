@@ -2,7 +2,6 @@
 import React from 'react';
 import { Backpack, Camera, Book, Map, Sparkles } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 interface SunnyMascotProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   withText?: boolean;
@@ -10,7 +9,6 @@ interface SunnyMascotProps {
   className?: string;
   travelStyle?: 'default' | 'beach' | 'cultural' | 'educational' | 'adventure' | 'fashion';
 }
-
 const SunnyMascot = ({
   size = 'md',
   withText = false,
@@ -28,103 +26,82 @@ const SunnyMascot = ({
     xl: 'h-56 w-56'
   };
 
-  // Improved sizing for accessories and sparkles based on avatar size
-  const accessorySizes = {
-    sm: { top: '-top-1', right: '-right-1', height: 'h-3', width: 'w-3', icon: 'h-3 w-3' },
-    md: { top: '-top-2', right: '-right-2', height: 'h-5', width: 'w-5', icon: 'h-4 w-4' },
-    lg: { top: '-top-3', right: '-right-3', height: 'h-6', width: 'w-6', icon: 'h-5 w-5' },
-    xl: { top: '-top-4', right: '-right-4', height: 'h-8', width: 'w-8', icon: 'h-6 w-6' }
-  };
-
-  // Get the appropriate avatar image based on travel style
-  const getAvatarImage = () => {
-    switch (travelStyle) {
-      case 'beach':
-        return "/lovable-uploads/9aa14dc9-3d1b-4cd1-9028-93d4a960f2b2.png";
-      case 'cultural':
-        return "/lovable-uploads/6ea74ff7-ba75-4e2b-981f-bb9f813af6ed.png";
-      case 'educational':
-        return "/lovable-uploads/6d788043-5bb0-4bd1-aee1-41c5cedd3162.png";
-      case 'adventure':
-        return "/lovable-uploads/5c2d377d-29d1-42e0-bd60-bd389a75fe7d.png";
-      case 'fashion':
-        return "/lovable-uploads/1919aa02-ee8c-4a23-b76a-79325b03daad.png";
-      default:
-        return "/lovable-uploads/1795a97d-401c-44f0-9fe1-baa9ee21c4b9.png";
-    }
-  };
-
-  // Fixed and improved travel style accessory with proper sizing relative to avatar
+  // Travel style accessory with updated Gen Z design
   const renderAccessory = () => {
-    const { top, right, height, width, icon } = accessorySizes[size];
-    
     switch (travelStyle) {
       case 'beach':
-        return <div className={`absolute ${top} ${right} transform rotate-6 z-10`}>
-            <div className={`bg-sunny-orange-light ${height} ${width} rounded-full`}></div>
-            <div className={`bg-sunny-orange-light ${height} ${width} rounded-t-full -mt-1`}></div>
+        return <div className="absolute -top-2 -right-1 transform rotate-6 z-10">
+            <div className="bg-sunny-orange-light h-3 w-7 rounded-full"></div>
+            <div className="bg-sunny-orange-light h-5 w-10 rounded-t-full -mt-1"></div>
           </div>;
       case 'cultural':
-        return <div className={`absolute ${top} ${right} z-10`}>
+        return <div className="absolute -top-1 -right-1 z-10">
             <div className="bg-sunny-yellow-light rounded-full p-1">
-              <Camera className={icon + " text-sunny-orange"} />
+              <Camera className="h-4 w-4 text-sunny-orange" />
             </div>
           </div>;
       case 'educational':
-        return <div className={`absolute ${top} ${right} z-10`}>
+        return <div className="absolute -top-1 -right-1 z-10">
             <div className="bg-sunny-yellow-light rounded-full p-1">
-              <Book className={icon + " text-sunny-orange"} />
+              <Book className="h-4 w-4 text-sunny-orange" />
             </div>
           </div>;
       case 'adventure':
-        return <div className={`absolute ${top} ${right} z-10`}>
+        return <div className="absolute -top-1 -right-1 z-10">
             <div className="bg-sunny-yellow-light rounded-full p-1">
-              <Backpack className={icon + " text-sunny-orange"} />
+              <Backpack className="h-4 w-4 text-sunny-orange" />
             </div>
           </div>;
+      case 'fashion':
+        return <>
+            {/* Pink Hat and Heart Glasses are now part of the image */}
+            {/* Arms */}
+            
+            
+          </>;
       default:
         return null;
     }
   };
 
-  // Fixed sparkle effect with proper sizing and positioning
+  // Add sparkle effect for Gen Z dynamic feel
   const renderSparkles = () => {
-    const { top, right, icon } = accessorySizes[size];
-    
     return <>
-        <div className={`absolute ${top} -left-1 sunny-pulse`} style={{
+        <div className="absolute -top-1 -left-1 sunny-pulse" style={{
         animationDelay: '0.5s'
       }}>
-          <Sparkles className={icon + " text-sunny-yellow"} />
+          <Sparkles className="h-4 w-4 text-sunny-yellow" />
         </div>
-        <div className={`absolute -bottom-1 ${right} sunny-pulse`} style={{
+        <div className="absolute -bottom-1 -right-1 sunny-pulse" style={{
         animationDelay: '1s'
       }}>
-          <Sparkles className={icon + " text-sunny-orange"} />
+          <Sparkles className="h-3 w-3 text-sunny-orange" />
         </div>
-        <div className={`absolute top-1/2 ${right} sunny-pulse`} style={{
+        {/* Additional pink sparkles to match image */}
+        <div className="absolute -left-8 top-1/2 sunny-pulse" style={{
         animationDelay: '1.5s'
       }}>
-          <Sparkles className={icon + " text-sunny-orange-light"} />
+          
+        </div>
+        <div className="absolute -right-8 top-1/3 sunny-pulse" style={{
+        animationDelay: '0.8s'
+      }}>
+          
         </div>
       </>;
   };
 
-  // Updated layout with improved responsive behavior and transitions
-  return <div className={`flex ${withText ? 'flex-row items-center' : 'flex-col'} ${isMobile ? (withText ? 'flex-col items-center' : 'items-center') : 'items-start'} gap-4 transition-all duration-300 ${className}`}>
+  // Changed: Updated the container to use row layout when there's text
+  return <div className={`flex ${withText ? 'flex-row items-center' : 'flex-col'} ${isMobile ? (withText ? 'flex-col items-center' : 'items-center') : 'items-start'} gap-4 ${className}`}>
       <div className="relative">
         {/* Updated Sunny image with glow effect */}
-        <div className={`relative ${sizeClasses[size]} sunny-float`}>
+        <div className={`relative ${sizeClasses[size]}`}>
           <div className="absolute inset-0 bg-sunny-yellow/50 rounded-full blur-md sunny-pulse"></div>
           
-          {/* Base Sun with avatar image */}
+          {/* Base Sun with new fashion-style avatar */}
           <div className="w-full h-full relative z-0">
-            {/* Use the sunny avatar image */}
-            <img 
-              src={getAvatarImage()} 
-              alt="Sunny mascot" 
-              className="w-full h-full object-contain transform transition-transform hover:scale-105 duration-500" 
-            />
+            {/* Use the new sunny avatar image with fashion style (hat and heart glasses) */}
+            <img src="/lovable-uploads/1795a97d-401c-44f0-9fe1-baa9ee21c4b9.png" alt="Sunny mascot" className="w-full h-full object-contain" />
           </div>
           
           {/* Travel style accessories */}
@@ -135,11 +112,10 @@ const SunnyMascot = ({
         </div>
       </div>
       
-      {/* Fixed speech bubble with proper positioning and animation */}
-      {withText && message && <div className={`sunny-speech-bubble ${isMobile ? 'sunny-speech-bubble-top mt-2' : 'sunny-speech-bubble-left ml-2'} max-w-xs font-handwritten text-sunny-orange-dark animate-fade-in p-3`}>
+      {/* Changed: Updated speech bubble positioning to be on the right side of the avatar */}
+      {withText && message && <div className={`sunny-speech-bubble ${isMobile ? 'sunny-speech-bubble-top' : 'sunny-speech-bubble-left'} max-w-xs font-handwritten text-sunny-orange`}>
           {message}
         </div>}
     </div>;
 };
-
 export default SunnyMascot;
