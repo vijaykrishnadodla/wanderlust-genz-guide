@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -219,18 +218,36 @@ const SunshineClub = () => {
           </div>
         </div>
 
-        {/* Trusted By Section - Optimized for mobile */}
+        {/* Trusted By Section - Optimized for mobile and styled like the main header */}
         <div className="mb-16">
           <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} items-center justify-center ${isMobile ? 'gap-2' : 'gap-4'} mb-8 py-4 border-y-2 border-[#FFD600]/50`}>
-            <h2 className="text-2xl font-bold font-display text-[#F97316] text-center">IN COOPERATION WITH</h2>
+            <div className="relative inline-block">
+              <h2 className="text-2xl font-bold font-display text-center bg-clip-text bg-gradient-to-r from-[#F97316] to-[#FDAD32] text-transparent drop-shadow-sm animate-pulse-gentle">
+                IN COOPERATION WITH
+              </h2>
+              {/* Star dust animations for the heading */}
+              <StarDust className="-top-2 -left-1" />
+              <StarDust className="bottom-0 left-1/3" />
+              {/* Extra star decoration */}
+              <span className="absolute -top-4 right-0 text-yellow-300 animate-float">✨</span>
+            </div>
+            
             <img 
               alt="ISIC Logo" 
               className={`${isMobile ? 'w-4/5 my-2' : 'h-16'} object-contain`} 
               src="/lovable-uploads/c0f8247c-d5d1-4768-9367-f6ba825e44ce.png" 
             />
-            <h2 className="text-2xl font-bold font-display text-[#F97316] text-center">
-              TRUSTED BY THE TOP GLOBAL UNIVERSITIES
-            </h2>
+            
+            <div className="relative inline-block">
+              <h2 className="text-2xl font-bold font-display text-center bg-clip-text bg-gradient-to-r from-[#F97316] to-[#FDAD32] text-transparent drop-shadow-sm animate-pulse-gentle">
+                TRUSTED BY THE TOP GLOBAL UNIVERSITIES
+              </h2>
+              {/* Star dust animations for the heading */}
+              <StarDust className="-top-2 -right-1" />
+              <StarDust className="bottom-0 right-1/3" />
+              {/* Extra star decoration */}
+              <span className="absolute -bottom-4 left-2 text-yellow-400 animate-bounce-subtle">⭐</span>
+            </div>
           </div>
           
           <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-4 justify-center items-center">
