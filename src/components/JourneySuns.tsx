@@ -1,6 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sun } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
+
 const JourneySuns = () => {
   // State to track the active step
   const [activeStep, setActiveStep] = useState(0);
@@ -18,23 +20,28 @@ const JourneySuns = () => {
     title: "JOIN",
     desc: "Sign up and verify your student status",
     emoji: "🎓",
-    color: "bg-gradient-to-br from-[#FFD600] to-[#FF7A00]"
+    color: "bg-gradient-to-br from-[#FFD600] to-[#FF7A00]",
+    travelStyle: "default"
   }, {
     title: "PLAN",
     desc: "Get personalized itineraries & discounts",
     emoji: "🗺️",
-    color: "bg-gradient-to-br from-[#FF9900] to-[#FF7A00]"
+    color: "bg-gradient-to-br from-[#FF9900] to-[#FF7A00]",
+    travelStyle: "cultural"
   }, {
     title: "TRAVEL",
     desc: "Explore with confidence and savings",
     emoji: "✈️",
-    color: "bg-gradient-to-br from-[#FFCC00] to-[#FF5500]"
+    color: "bg-gradient-to-br from-[#FFCC00] to-[#FF5500]",
+    travelStyle: "adventure"
   }, {
     title: "SHARE",
     desc: "Connect with other students worldwide",
     emoji: "👋",
-    color: "bg-gradient-to-br from-[#FFB347] to-[#FF7A00]"
+    color: "bg-gradient-to-br from-[#FFB347] to-[#FF7A00]",
+    travelStyle: "beach"
   }];
+
   return <div className="mb-16 max-w-4xl mx-auto py-0">
       <div className="text-center">
         <h3 className="text-2xl md:text-3xl font-bold mb-3">YOUR TRAVEL JOURNEY</h3>
@@ -71,7 +78,12 @@ const JourneySuns = () => {
         top: '-40px',
         transform: 'translateX(-50%)'
       }}>
-          <SunnyMascot size="sm" withText message={activeStep === 3 ? "You made it! 🎉" : "Let's go! ☀️"} />
+          <SunnyMascot 
+            size="sm" 
+            withText 
+            message={activeStep === 3 ? "You made it! 🎉" : "Let's go! ☀️"} 
+            travelStyle={steps[activeStep].travelStyle as any}
+          />
         </div>
       </div>
       
@@ -88,4 +100,5 @@ const JourneySuns = () => {
       </div>
     </div>;
 };
+
 export default JourneySuns;
