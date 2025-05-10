@@ -30,7 +30,7 @@ const Index = () => {
         {/* Benefits Section - new section above Sunshine Club */}
         <div className="relative stb-section-gradient-3">
           <BenefitsSection />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
+          
         </div>
         
         {/* Sunshine Club section with gradient 1 */}
