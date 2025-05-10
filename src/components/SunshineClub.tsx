@@ -187,16 +187,26 @@ const SunshineClub = () => {
           </div>
         </div>
 
-        {/* Trusted By Section - Now with University Logo Images - Updated with all logos */}
+        {/* Trusted By Section - Updated with ISIC partnership */}
         <div className="mb-16">
-          <h2 className="text-2xl font-bold text-center mb-8">TRUSTED BY</h2>
+          <div className="flex flex-col items-center text-center mb-8">
+            <h2 className="text-2xl font-bold mb-6">IN COOPERATION WITH</h2>
+            <div className="mb-4">
+              <img 
+                src="/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png" 
+                alt="ISIC Logo" 
+                className="h-16 object-contain" 
+              />
+            </div>
+            <p className="text-gray-600 max-w-2xl mx-auto mb-8">
+              TRUSTED BY THE TOP GLOBAL UNIVERSITIES
+            </p>
+          </div>
+          
           <div className="grid grid-cols-3 md:grid-cols-6 gap-4 justify-center items-center">
             {universityLogos.slice(0, 18).map((uni, index) => <div key={index} className="university-stamp mx-auto">
                 <img src={uni.logo} alt={`${uni.name} University`} className="w-full h-full object-contain p-1" />
               </div>)}
-          </div>
-          <div className="mt-4 text-center">
-            
           </div>
         </div>
 
