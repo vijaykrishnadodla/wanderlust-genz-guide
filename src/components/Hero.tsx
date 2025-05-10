@@ -83,7 +83,7 @@ const Hero = () => {
             {/* Central Sunny character - Updated with Polaroid style frame */}
             <div className="absolute inset-0 flex items-center justify-center z-20">
               <div className="bg-white p-4 md:p-6 rounded-md shadow-lg transform rotate-2 w-[280px] md:w-[340px]">
-                {/* Polaroid content - Sunny mascot with new fashion style */}
+                {/* Polaroid content - Sunny mascot with fashion style */}
                 <div className="relative mb-10">
                   <div className="flex justify-center" style={{
                     width: isMobile ? '240px' : '280px',

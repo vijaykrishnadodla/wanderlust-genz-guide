@@ -1,7 +1,8 @@
-
 import React from 'react';
 import { Backpack, Camera, Book, Map, Sparkles } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import SunnyAvatar from './SunnyAvatar';
+
 interface SunnyMascotProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   withText?: boolean;
@@ -9,6 +10,7 @@ interface SunnyMascotProps {
   className?: string;
   travelStyle?: 'default' | 'beach' | 'cultural' | 'educational' | 'adventure' | 'fashion';
 }
+
 const SunnyMascot = ({
   size = 'md',
   withText = false,
