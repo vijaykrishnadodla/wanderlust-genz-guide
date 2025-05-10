@@ -6,9 +6,27 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from '@/components/ui/separator';
 import JourneySuns from './JourneySuns';
+
 const SunshineClub = () => {
-  // University logos for trusted by section
+  // University logos and names mapping
+  const universityLogos = [
+    { name: "Harvard", logo: "/lovable-uploads/1795a97d-401c-44f0-9fe1-baa9ee21c4b9.png" },
+    { name: "Oxford", logo: "/lovable-uploads/1919aa02-ee8c-4a23-b76a-79325b03daad.png" },
+    { name: "MIT", logo: "/lovable-uploads/1bfb3ff6-11c2-429e-a525-6350583e6630.png" },
+    { name: "Stanford", logo: "/lovable-uploads/1d39cf1b-6f89-4e28-8f7d-accc791146e8.png" },
+    { name: "Yale", logo: "/lovable-uploads/2a26224f-3d4d-45a2-b5f7-850369f9cc52.png" },
+    { name: "Princeton", logo: "/lovable-uploads/38c8baea-c639-49d2-8de8-d70bfadeee89.png" },
+    { name: "Columbia", logo: "/lovable-uploads/45550131-1033-4488-9a9c-81e60cbe7fbb.png" },
+    { name: "Cambridge", logo: "/lovable-uploads/555f4f4b-06a5-40ab-acb4-959a277fc35f.png" },
+    { name: "Berkeley", logo: "/lovable-uploads/9aa14dc9-3d1b-4cd1-9028-93d4a960f2b2.png" },
+    { name: "UCLA", logo: "/lovable-uploads/9be5c67d-a70a-437f-923a-3610cc73fa3b.png" },
+    { name: "NYU", logo: "/lovable-uploads/b393e5e2-3b2c-4eb4-8c0d-3df4416cc9c6.png" },
+    { name: "UPenn", logo: "/lovable-uploads/c197ba54-f28d-4bfd-a89c-27c8d21e11c0.png" }
+  ];
+
+  // Keep the full list of universities for the counter
   const universities = ["Harvard", "Oxford", "MIT", "Stanford", "Yale", "Princeton", "Columbia", "Cambridge", "Berkeley", "UCLA", "NYU", "UPenn", "Caltech", "Duke", "Cornell", "UChicago", "Imperial", "ETH Zurich", "Toronto", "McGill", "ANU", "Tokyo", "Seoul", "Singapore"];
+
   return <section id="sunshine-club" className="py-16 relative">
       <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
         {/* Modern Header */}
@@ -109,13 +127,19 @@ const SunshineClub = () => {
           </div>
         </div>
 
-        {/* Trusted By Section - With University Stamps */}
+        {/* Trusted By Section - Now with University Logo Images */}
         <div className="mb-16">
           <h2 className="text-2xl font-bold text-center mb-8">TRUSTED BY</h2>
           <div className="grid grid-cols-3 md:grid-cols-6 gap-4 justify-center items-center">
-            {universities.slice(0, 12).map((uni, index) => <div key={index} className="university-stamp mx-auto">
-                <span className="font-bold text-xs text-center">{uni}</span>
-              </div>)}
+            {universityLogos.slice(0, 12).map((uni, index) => (
+              <div key={index} className="university-stamp mx-auto">
+                <img 
+                  src={uni.logo} 
+                  alt={`${uni.name} University`} 
+                  className="w-full h-full object-contain p-1"
+                />
+              </div>
+            ))}
           </div>
           <div className="mt-4 text-center">
             <p className="text-sm text-gray-600">+ {universities.length - 12} more top universities worldwide</p>
