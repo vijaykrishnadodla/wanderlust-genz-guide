@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -11,6 +12,8 @@ import HowStarted from '@/components/HowStarted';
 import Ambassador from '@/components/Ambassador';
 import SignUp from '@/components/SignUp';
 import Footer from '@/components/Footer';
+import PricingSection from '@/components/PricingSection';
+
 const Index = () => {
   return <div className="stb-page-container min-h-screen">
       <Navbar />
@@ -71,8 +74,12 @@ const Index = () => {
         
         {/* SignUp section with gradient 1 */}
         <div className="relative stb-section-gradient-1">
-          
           <SignUp />
+        </div>
+        
+        {/* Pricing Section with gradient 3 */}
+        <div className="relative stb-section-gradient-3">
+          <PricingSection />
         </div>
         
         {/* Footer */}
