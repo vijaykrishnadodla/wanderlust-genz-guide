@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video } from 'lucide-react';
+import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
@@ -7,6 +8,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from '@/components/ui/separator';
 import JourneySuns from './JourneySuns';
 import { useIsMobile } from '@/hooks/use-mobile';
+
+// Star animation component
+const StarDust = ({ className }: { className?: string }) => {
+  return (
+    <div className={`absolute pointer-events-none ${className}`}>
+      <Sparkles className="h-4 w-4 text-yellow-300 animate-pulse-gentle" />
+    </div>
+  );
+};
 
 const SunshineClub = () => {
   const isMobile = useIsMobile();
@@ -75,13 +85,32 @@ const SunshineClub = () => {
   const universities = ["Harvard", "Oxford", "MIT", "Stanford", "Yale", "Princeton", "Columbia", "Cambridge", "Berkeley", "Chicago", "UPenn", "Caltech", "Cornell", "Toronto", "NUS", "NTU", "HKUST", "Sydney", "Tsinghua", "UCLA", "NYU", "Duke", "Imperial", "ETH Zurich", "McGill", "ANU", "Tokyo", "Seoul", "Singapore"];
   return <section id="sunshine-club" className="py-16 relative">
       <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
-        {/* Modern Header */}
+        {/* Modern Header with sparkly effects */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 sunshine-accent mb-3">
             <Sun className="h-4 w-4" />
             <span>Join our community</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-display mb-4">THE SUNSHINE CLUB</h2>
+          <div className="relative inline-block">
+            <h2 className="text-4xl md:text-5xl font-display mb-4 relative z-10 bg-clip-text bg-gradient-to-r from-[#F97316] to-[#FDAD32] text-transparent drop-shadow-sm animate-pulse-gentle">
+              THE SUNSHINE CLUB
+            </h2>
+            
+            {/* Star dust animations positioned around the title */}
+            <StarDust className="-top-4 -left-2" />
+            <StarDust className="-top-2 -right-3" />
+            <StarDust className="bottom-0 left-1/4" />
+            <StarDust className="top-1/2 right-1/4" />
+            <StarDust className="bottom-2 right-10" />
+            
+            {/* Extra star decoration */}
+            <span className="absolute -top-6 right-0 text-yellow-300 animate-float">✨</span>
+            <span className="absolute -bottom-4 left-4 text-yellow-400 animate-bounce-subtle">⭐</span>
+            <span className="absolute top-1/3 -right-8 text-yellow-300 animate-spin-slow text-sm">✨</span>
+            
+            {/* Sun glow effect behind text */}
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-200/20 to-orange-300/20 blur-lg -z-10 transform scale-110"></div>
+          </div>
         </div>
 
         {/* Add Journey Suns Component Here */}
