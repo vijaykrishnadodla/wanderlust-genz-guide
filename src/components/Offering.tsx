@@ -226,6 +226,39 @@ const Offering = () => {
           </div>
         </div>
 
+        {/* University Partners Section - Moved before Extra Bonuses */}
+        <div className="mt-12">
+          <h3 className="text-xl font-bold mb-4 text-center">Trusted by Students from Top Universities</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center justify-items-center">
+            <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <p className="font-bold text-center">Harvard</p>
+              <p className="text-xs text-gray-500 text-center">United States</p>
+            </div>
+            <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <p className="font-bold text-center">Oxford</p>
+              <p className="text-xs text-gray-500 text-center">United Kingdom</p>
+            </div>
+            <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <p className="font-bold text-center">MIT</p>
+              <p className="text-xs text-gray-500 text-center">United States</p>
+            </div>
+            <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <p className="font-bold text-center">Stanford</p>
+              <p className="text-xs text-gray-500 text-center">United States</p>
+            </div>
+          </div>
+
+          <div className="mt-4 text-center">
+            <p className="text-sm text-gray-600">+ 20 more top universities worldwide</p>
+          </div>
+          
+          <div className="flex items-center justify-center gap-4 flex-wrap mt-8">
+            <img src="/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png" alt="ISIC Logo" className="h-12 object-contain" />
+            <img src="/lovable-uploads/43eabef1-8bb9-46f7-b153-0a0c02087110.png" alt="UNESCO Logo" className="h-12 object-contain" />
+            <img src="/lovable-uploads/6d788043-5bb0-4bd1-aee1-41c5cedd3162.png" alt="University Partners" className="h-12 object-contain" />
+          </div>
+        </div>
+
         {/* ISIC Verification Information - Updated with automatic verification */}
         <div className="mt-12 bg-white p-6 rounded-lg shadow-lg border border-[#fdad32]/20">
           <h3 className="text-2xl font-bold mb-4 text-[#fdad32]">New! Automatic Student Verification</h3>
@@ -262,39 +295,6 @@ const Offering = () => {
             <p className="font-handwritten text-lg text-[#1e1e1e]">
               "Our new system verifies most students in seconds! If yours doesn't work, no worries - our team will help or you can enjoy PartTimer benefits instead!" - Sunny
             </p>
-          </div>
-
-          {/* University Partners Section - Moved before Bonus Section */}
-          <div className="mt-8">
-            <h3 className="text-xl font-bold mb-4 text-center">Trusted by Students from Top Universities</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center justify-items-center">
-              <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <p className="font-bold text-center">Harvard</p>
-                <p className="text-xs text-gray-500 text-center">United States</p>
-              </div>
-              <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <p className="font-bold text-center">Oxford</p>
-                <p className="text-xs text-gray-500 text-center">United Kingdom</p>
-              </div>
-              <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <p className="font-bold text-center">MIT</p>
-                <p className="text-xs text-gray-500 text-center">United States</p>
-              </div>
-              <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <p className="font-bold text-center">Stanford</p>
-                <p className="text-xs text-gray-500 text-center">United States</p>
-              </div>
-            </div>
-
-            <div className="mt-4 text-center">
-              <p className="text-sm text-gray-600">+ 20 more top universities worldwide</p>
-            </div>
-          </div>
-          
-          <div className="flex items-center justify-center gap-4 flex-wrap mt-8">
-            <img src="/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png" alt="ISIC Logo" className="h-12 object-contain" />
-            <img src="/lovable-uploads/43eabef1-8bb9-46f7-b153-0a0c02087110.png" alt="UNESCO Logo" className="h-12 object-contain" />
-            <img src="/lovable-uploads/6d788043-5bb0-4bd1-aee1-41c5cedd3162.png" alt="University Partners" className="h-12 object-contain" />
           </div>
         </div>
 
