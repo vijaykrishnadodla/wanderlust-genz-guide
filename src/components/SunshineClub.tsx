@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,11 +6,9 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from '@/components/ui/separator';
 import JourneySuns from './JourneySuns';
-
 const SunshineClub = () => {
   // University logos for trusted by section
   const universities = ["Harvard", "Oxford", "MIT", "Stanford", "Yale", "Princeton", "Columbia", "Cambridge", "Berkeley", "UCLA", "NYU", "UPenn", "Caltech", "Duke", "Cornell", "UChicago", "Imperial", "ETH Zurich", "Toronto", "McGill", "ANU", "Tokyo", "Seoul", "Singapore"];
-  
   return <section id="sunshine-club" className="py-16 relative">
       <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
         {/* Modern Header */}
@@ -105,7 +102,7 @@ const SunshineClub = () => {
                 <TableRow>
                   <TableCell className="font-medium">Community access</TableCell>
                   <TableCell className="bg-[#FFD600]/10"><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
-                  <TableCell><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
+                  
                 </TableRow>
               </TableBody>
             </Table>
