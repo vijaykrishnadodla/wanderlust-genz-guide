@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
@@ -263,7 +264,7 @@ const Offering = () => {
             </p>
           </div>
 
-          {/* University Partners Section - New addition */}
+          {/* University Partners Section - Moved before Bonus Section */}
           <div className="mt-8">
             <h3 className="text-xl font-bold mb-4 text-center">Trusted by Students from Top Universities</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center justify-items-center">
