@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video, Sparkles, Timer, UserRound, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -11,17 +10,18 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import SunnyMascot from './SunnyMascot';
 
 // Star animation component
-const StarDust = ({ className }: { className?: string }) => {
-  return (
-    <div className={`absolute pointer-events-none ${className}`}>
+const StarDust = ({
+  className
+}: {
+  className?: string;
+}) => {
+  return <div className={`absolute pointer-events-none ${className}`}>
       <Sparkles className="h-4 w-4 text-yellow-300 animate-pulse-gentle" />
-    </div>
-  );
+    </div>;
 };
-
 const SunshineClub = () => {
   const isMobile = useIsMobile();
-  
+
   // Plans data for membership comparison
   const plans = [{
     name: "FullTimer",
@@ -76,7 +76,6 @@ const SunshineClub = () => {
       localEvents: false
     }
   }];
-
   const featureLabels = {
     newsletter: "Curated Newsletter",
     travelRules: "10 Top Secret Non-Negotiable Student Travel Rules",
@@ -89,7 +88,7 @@ const SunshineClub = () => {
     community: "Local Student Community Groups",
     localEvents: "Local Events"
   };
-  
+
   // University logos and names mapping - updated with all the provided logos
   const universityLogos = [{
     name: "Harvard",
@@ -276,9 +275,7 @@ const SunshineClub = () => {
                   GET FULLTIMER NOW
                 </Button>
                 
-                <p className="text-center text-sm mt-2 text-gray-600 font-handwritten text-base">
-                  30-day money back guarantee
-                </p>
+                
               </div>
             </Card>
 
@@ -299,9 +296,7 @@ const SunshineClub = () => {
                   <li className="text-gray-500 text-sm">+ 5 more features</li>
                 </ul>
                 
-                <Button className="w-full bg-[#fdad32] hover:bg-[#fe4c02] text-white font-bold text-sm rounded-full">
-                  Choose Plan
-                </Button>
+                <Button className="w-full bg-[#fdad32] hover:bg-[#fe4c02] text-white font-bold text-sm rounded-full">Coming soon</Button>
               </CardContent>
             </Card>
             
@@ -358,9 +353,9 @@ const SunshineClub = () => {
                     <TableCell className="font-medium">Price</TableCell>
                     <TableCell className="text-center bg-[#fdad32]/10">
                       <span className="line-through text-gray-400">$29</span>{" "}
-                      <span className="font-bold">$19</span>
+                      <span className="font-bold">$20</span>
                     </TableCell>
-                    <TableCell className="text-center">$19</TableCell>
+                    <TableCell className="text-center">coming soon</TableCell>
                     <TableCell className="text-center">Free</TableCell>
                   </TableRow>
                 </TableBody>
@@ -453,11 +448,7 @@ const SunshineClub = () => {
               <span className="absolute -top-4 right-0 text-yellow-300 animate-float">✨</span>
             </div>
             
-            <img 
-              alt="ISIC Logo" 
-              className={`${isMobile ? 'w-4/5 my-2' : 'h-16'} object-contain`} 
-              src="/lovable-uploads/c0f8247c-d5d1-4768-9367-f6ba825e44ce.png" 
-            />
+            <img alt="ISIC Logo" className={`${isMobile ? 'w-4/5 my-2' : 'h-16'} object-contain`} src="/lovable-uploads/c0f8247c-d5d1-4768-9367-f6ba825e44ce.png" />
             
             <div className="relative inline-block">
               <h2 className="text-2xl font-bold font-display text-center bg-clip-text bg-gradient-to-r from-[#F97316] to-[#FDAD32] text-transparent drop-shadow-sm animate-pulse-gentle">
@@ -548,5 +539,4 @@ const SunshineClub = () => {
       </div>
     </section>;
 };
-
 export default SunshineClub;
