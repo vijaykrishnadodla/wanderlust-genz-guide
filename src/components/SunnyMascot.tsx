@@ -28,6 +28,14 @@ const SunnyMascot = ({
     xl: 'h-56 w-56'
   };
 
+  // Sizing for accessories and sparkles based on avatar size
+  const accessorySizes = {
+    sm: { top: '-top-1', right: '-right-1', height: 'h-3', width: 'w-3', icon: 'h-3 w-3' },
+    md: { top: '-top-2', right: '-right-2', height: 'h-4', width: 'w-4', icon: 'h-4 w-4' },
+    lg: { top: '-top-3', right: '-right-3', height: 'h-6', width: 'w-6', icon: 'h-5 w-5' },
+    xl: { top: '-top-4', right: '-right-4', height: 'h-8', width: 'w-8', icon: 'h-6 w-6' }
+  };
+
   // Get the appropriate avatar image based on travel style
   const getAvatarImage = () => {
     switch (travelStyle) {
@@ -46,30 +54,32 @@ const SunnyMascot = ({
     }
   };
 
-  // Travel style accessory with updated Gen Z design
+  // Travel style accessory with updated Gen Z design - now sized relative to avatar
   const renderAccessory = () => {
+    const { top, right, height, width, icon } = accessorySizes[size];
+    
     switch (travelStyle) {
       case 'beach':
-        return <div className="absolute -top-2 -right-1 transform rotate-6 z-10">
-            <div className="bg-sunny-orange-light h-3 w-7 rounded-full"></div>
-            <div className="bg-sunny-orange-light h-5 w-10 rounded-t-full -mt-1"></div>
+        return <div className={`absolute ${top} ${right} transform rotate-6 z-10`}>
+            <div className={`bg-sunny-orange-light ${height} ${width} rounded-full`}></div>
+            <div className={`bg-sunny-orange-light h-${parseInt(height.split('-')[1]) + 2} w-${parseInt(width.split('-')[1]) + 3} rounded-t-full -mt-1`}></div>
           </div>;
       case 'cultural':
-        return <div className="absolute -top-1 -right-1 z-10">
+        return <div className={`absolute ${top} ${right} z-10`}>
             <div className="bg-sunny-yellow-light rounded-full p-1">
-              <Camera className="h-4 w-4 text-sunny-orange" />
+              <Camera className={icon + " text-sunny-orange"} />
             </div>
           </div>;
       case 'educational':
-        return <div className="absolute -top-1 -right-1 z-10">
+        return <div className={`absolute ${top} ${right} z-10`}>
             <div className="bg-sunny-yellow-light rounded-full p-1">
-              <Book className="h-4 w-4 text-sunny-orange" />
+              <Book className={icon + " text-sunny-orange"} />
             </div>
           </div>;
       case 'adventure':
-        return <div className="absolute -top-1 -right-1 z-10">
+        return <div className={`absolute ${top} ${right} z-10`}>
             <div className="bg-sunny-yellow-light rounded-full p-1">
-              <Backpack className="h-4 w-4 text-sunny-orange" />
+              <Backpack className={icon + " text-sunny-orange"} />
             </div>
           </div>;
       default:
@@ -77,37 +87,39 @@ const SunnyMascot = ({
     }
   };
 
-  // Add sparkle effect for Gen Z dynamic feel
+  // Add sparkle effect for Gen Z dynamic feel - now sized relative to avatar
   const renderSparkles = () => {
+    const { top, right, icon } = accessorySizes[size];
+    
     return <>
-        <div className="absolute -top-1 -left-1 sunny-pulse" style={{
+        <div className={`absolute ${top} -left-1 sunny-pulse`} style={{
         animationDelay: '0.5s'
       }}>
-          <Sparkles className="h-4 w-4 text-sunny-yellow" />
+          <Sparkles className={icon + " text-sunny-yellow"} />
         </div>
-        <div className="absolute -bottom-1 -right-1 sunny-pulse" style={{
+        <div className={`absolute -bottom-1 ${right} sunny-pulse`} style={{
         animationDelay: '1s'
       }}>
-          <Sparkles className="h-3 w-3 text-sunny-orange" />
+          <Sparkles className={`${parseInt(icon.split(' ')[0].split('-')[1]) - 1} ${parseInt(icon.split(' ')[1].split('-')[1]) - 1} text-sunny-orange`} />
         </div>
-        <div className="absolute top-1/2 -right-2 sunny-pulse" style={{
+        <div className={`absolute top-1/2 ${right} sunny-pulse`} style={{
         animationDelay: '1.5s'
       }}>
-          <Sparkles className="h-2 w-2 text-sunny-orange-light" />
+          <Sparkles className={`${parseInt(icon.split(' ')[0].split('-')[1]) - 2} ${parseInt(icon.split(' ')[1].split('-')[1]) - 2} text-sunny-orange-light`} />
         </div>
       </>;
   };
 
-  // Changed: Updated the container to use row layout when there's text
-  return <div className={`flex ${withText ? 'flex-row items-center' : 'flex-col'} ${isMobile ? (withText ? 'flex-col items-center' : 'items-center') : 'items-start'} gap-4 ${className}`}>
+  // Updated layout with proper responsive behavior and transition
+  return <div className={`flex ${withText ? 'flex-row items-center' : 'flex-col'} ${isMobile ? (withText ? 'flex-col items-center' : 'items-center') : 'items-start'} gap-4 transition-all duration-300 ${className}`}>
       <div className="relative">
         {/* Updated Sunny image with glow effect */}
         <div className={`relative ${sizeClasses[size]} sunny-float`}>
           <div className="absolute inset-0 bg-sunny-yellow/50 rounded-full blur-md sunny-pulse"></div>
           
-          {/* Base Sun with new fashion-style avatar */}
+          {/* Base Sun with avatar image */}
           <div className="w-full h-full relative z-0">
-            {/* Use the new sunny avatar image with fashion style (hat and heart glasses) */}
+            {/* Use the sunny avatar image */}
             <img 
               src={getAvatarImage()} 
               alt="Sunny mascot" 
@@ -123,8 +135,8 @@ const SunnyMascot = ({
         </div>
       </div>
       
-      {/* Changed: Updated speech bubble positioning to be on the right side of the avatar */}
-      {withText && message && <div className={`sunny-speech-bubble ${isMobile ? 'sunny-speech-bubble-top' : 'sunny-speech-bubble-left'} max-w-xs font-handwritten text-sunny-orange animate-fade-in`}>
+      {/* Fixed speech bubble with proper positioning and animation */}
+      {withText && message && <div className={`sunny-speech-bubble ${isMobile ? 'sunny-speech-bubble-top mt-2' : 'sunny-speech-bubble-left ml-2'} max-w-xs font-handwritten text-sunny-orange-dark animate-fade-in p-3`}>
           {message}
         </div>}
     </div>;
