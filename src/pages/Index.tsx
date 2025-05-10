@@ -13,6 +13,7 @@ import Ambassador from '@/components/Ambassador';
 import SignUp from '@/components/SignUp';
 import Footer from '@/components/Footer';
 import PricingSection from '@/components/PricingSection';
+import BenefitsSection from '@/components/BenefitsSection';
 
 const Index = () => {
   return <div className="stb-page-container min-h-screen">
@@ -24,6 +25,12 @@ const Index = () => {
           <Hero />
           {/* Wave divider after Hero */}
           
+        </div>
+        
+        {/* Benefits Section - new section above Sunshine Club */}
+        <div className="relative stb-section-gradient-3">
+          <BenefitsSection />
+          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
         </div>
         
         {/* Sunshine Club section with gradient 1 */}
