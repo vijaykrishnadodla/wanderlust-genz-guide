@@ -28,10 +28,10 @@ const SunnyMascot = ({
     xl: 'h-56 w-56'
   };
 
-  // Sizing for accessories and sparkles based on avatar size
+  // Improved sizing for accessories and sparkles based on avatar size
   const accessorySizes = {
     sm: { top: '-top-1', right: '-right-1', height: 'h-3', width: 'w-3', icon: 'h-3 w-3' },
-    md: { top: '-top-2', right: '-right-2', height: 'h-4', width: 'w-4', icon: 'h-4 w-4' },
+    md: { top: '-top-2', right: '-right-2', height: 'h-5', width: 'w-5', icon: 'h-4 w-4' },
     lg: { top: '-top-3', right: '-right-3', height: 'h-6', width: 'w-6', icon: 'h-5 w-5' },
     xl: { top: '-top-4', right: '-right-4', height: 'h-8', width: 'w-8', icon: 'h-6 w-6' }
   };
@@ -54,7 +54,7 @@ const SunnyMascot = ({
     }
   };
 
-  // Travel style accessory with updated Gen Z design - now sized relative to avatar
+  // Fixed and improved travel style accessory with proper sizing relative to avatar
   const renderAccessory = () => {
     const { top, right, height, width, icon } = accessorySizes[size];
     
@@ -62,7 +62,7 @@ const SunnyMascot = ({
       case 'beach':
         return <div className={`absolute ${top} ${right} transform rotate-6 z-10`}>
             <div className={`bg-sunny-orange-light ${height} ${width} rounded-full`}></div>
-            <div className={`bg-sunny-orange-light h-${parseInt(height.split('-')[1]) + 2} w-${parseInt(width.split('-')[1]) + 3} rounded-t-full -mt-1`}></div>
+            <div className={`bg-sunny-orange-light ${height} ${width} rounded-t-full -mt-1`}></div>
           </div>;
       case 'cultural':
         return <div className={`absolute ${top} ${right} z-10`}>
@@ -87,7 +87,7 @@ const SunnyMascot = ({
     }
   };
 
-  // Add sparkle effect for Gen Z dynamic feel - now sized relative to avatar
+  // Fixed sparkle effect with proper sizing and positioning
   const renderSparkles = () => {
     const { top, right, icon } = accessorySizes[size];
     
@@ -100,17 +100,17 @@ const SunnyMascot = ({
         <div className={`absolute -bottom-1 ${right} sunny-pulse`} style={{
         animationDelay: '1s'
       }}>
-          <Sparkles className={`${parseInt(icon.split(' ')[0].split('-')[1]) - 1} ${parseInt(icon.split(' ')[1].split('-')[1]) - 1} text-sunny-orange`} />
+          <Sparkles className={icon + " text-sunny-orange"} />
         </div>
         <div className={`absolute top-1/2 ${right} sunny-pulse`} style={{
         animationDelay: '1.5s'
       }}>
-          <Sparkles className={`${parseInt(icon.split(' ')[0].split('-')[1]) - 2} ${parseInt(icon.split(' ')[1].split('-')[1]) - 2} text-sunny-orange-light`} />
+          <Sparkles className={icon + " text-sunny-orange-light"} />
         </div>
       </>;
   };
 
-  // Updated layout with proper responsive behavior and transition
+  // Updated layout with improved responsive behavior and transitions
   return <div className={`flex ${withText ? 'flex-row items-center' : 'flex-col'} ${isMobile ? (withText ? 'flex-col items-center' : 'items-center') : 'items-start'} gap-4 transition-all duration-300 ${className}`}>
       <div className="relative">
         {/* Updated Sunny image with glow effect */}

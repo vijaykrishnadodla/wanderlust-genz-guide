@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -136,7 +135,6 @@ export default {
 					'0%, 100%': { transform: 'rotate(-3deg)' },
 					'50%': { transform: 'rotate(3deg)' }
 				},
-				// Add the missing fade-in animation
 				'fade-in': {
 					'0%': { opacity: '0', transform: 'translateY(10px)' },
 					'100%': { opacity: '1', transform: 'translateY(0)' }
@@ -150,7 +148,6 @@ export default {
 				'pulse-gentle': 'pulse-gentle 2s ease-in-out infinite',
 				'spin-slow': 'spin-slow 12s linear infinite',
 				'wiggle': 'wiggle 1s ease-in-out infinite',
-				// Add the missing fade-in animation
 				'fade-in': 'fade-in 0.3s ease-out'
 			},
 			backgroundImage: {

@@ -72,7 +72,7 @@ const JourneySuns = () => {
             </div>)}
         </div>
         
-        {/* Improved Sunny mascot positioning */}
+        {/* Improved Sunny mascot positioning with smoother transitions */}
         <div className="absolute transition-all duration-500 ease-in-out" style={{
         left: `calc(${activeStep * 25}% + 8%)`,
         top: '-40px',
