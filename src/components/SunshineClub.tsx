@@ -159,13 +159,13 @@ const SunshineClub = () => {
             <div className="pricing-card-accent"></div>
             
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-2xl font-bold text-[#FF7A00]">Fulltimer</h3>
+              <h3 className="text-2xl font-bold text-[#FF7A00]">Full Timer</h3>
               <Badge variant="outline" className="bg-red-50 text-red-600 border-red-200 font-bold">SPECIAL OFFER</Badge>
             </div>
             
             <div className="flex items-baseline mb-2">
-              <span className="text-gray-400 line-through mr-2">$29</span>
-              <span className="text-4xl font-bold text-[#F97316]">$19</span>
+              <span className="text-gray-400 line-through mr-2 text-xl">$29</span>
+              <span className="text-4xl font-bold text-[#F97316]">$20</span>
               <span className="text-gray-600 ml-1">/year</span>
             </div>
             
