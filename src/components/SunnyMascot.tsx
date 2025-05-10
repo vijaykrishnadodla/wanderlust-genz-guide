@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Backpack, Camera, Book, Map, Sparkles } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -92,7 +91,7 @@ const SunnyMascot = ({
   };
 
   // Changed: Updated the container to use row layout when there's text
-  return <div className={`flex ${withText ? 'flex-row items-center' : 'flex-col'} ${isMobile ? (withText ? 'flex-col items-center' : 'items-center') : 'items-start'} gap-4 ${className}`}>
+  return <div className={`flex ${withText ? 'flex-row items-center' : 'flex-col'} ${isMobile ? withText ? 'flex-col items-center' : 'items-center' : 'items-start'} gap-4 ${className}`}>
       <div className="relative">
         {/* Updated Sunny image with glow effect */}
         <div className={`relative ${sizeClasses[size]}`}>
@@ -101,7 +100,7 @@ const SunnyMascot = ({
           {/* Base Sun with new fashion-style avatar */}
           <div className="w-full h-full relative z-0">
             {/* Use the new sunny avatar image with fashion style (hat and heart glasses) */}
-            <img src="/lovable-uploads/1795a97d-401c-44f0-9fe1-baa9ee21c4b9.png" alt="Sunny mascot" className="w-full h-full object-contain" />
+            <img alt="Sunny mascot" className="w-full h-full object-contain" src="/lovable-uploads/88f5bf17-ecd4-4f77-a2f0-b06ff9352dc7.png" />
           </div>
           
           {/* Travel style accessories */}
