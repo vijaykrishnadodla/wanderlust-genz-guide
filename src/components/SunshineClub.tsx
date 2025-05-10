@@ -6,6 +6,7 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from '@/components/ui/separator';
 import JourneySuns from './JourneySuns';
+
 const SunshineClub = () => {
   // University logos and names mapping - updated with all the provided logos
   const universityLogos = [{
@@ -186,14 +187,12 @@ const SunshineClub = () => {
           </div>
         </div>
 
-        {/* Trusted By Section - Updated with ISIC partnership */}
+        {/* Trusted By Section - Updated with ISIC partnership - MODIFIED TO BE IN ONE LINE */}
         <div className="mb-16">
-          <div className="flex flex-col items-center text-center mb-8">
-            <h2 className="text-2xl font-bold mb-6">IN COOPERATION WITH</h2>
-            <div className="mb-4">
-              <img alt="ISIC Logo" className="h-16 object-contain" src="/lovable-uploads/c0f8247c-d5d1-4768-9367-f6ba825e44ce.png" />
-            </div>
-            <p className="text-gray-600 max-w-2xl mx-auto mb-8">
+          <div className="flex flex-row items-center justify-center gap-4 mb-8">
+            <h2 className="text-2xl font-bold whitespace-nowrap">IN COOPERATION WITH</h2>
+            <img alt="ISIC Logo" className="h-16 object-contain" src="/lovable-uploads/c0f8247c-d5d1-4768-9367-f6ba825e44ce.png" />
+            <p className="text-gray-600">
               TRUSTED BY THE TOP GLOBAL UNIVERSITIES
             </p>
           </div>
@@ -275,4 +274,5 @@ const SunshineClub = () => {
       </div>
     </section>;
 };
+
 export default SunshineClub;
