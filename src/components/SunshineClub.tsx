@@ -57,57 +57,7 @@ const SunshineClub = () => {
         </div>
 
         {/* Membership comparison table - modernized */}
-        <div className="bg-white rounded-xl shadow-md border-2 border-[#FFD600]/30 overflow-hidden mb-16">
-          <div className="p-6 border-b border-gray-100 bg-gradient-to-r from-[#FFE0B2]/50 to-white">
-            <h3 className="text-2xl font-bold text-[#FF7A00]">Membership Options</h3>
-            <p className="text-[#1e1e1e]/70">Choose the plan that works for you</p>
-          </div>
-          
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow className="bg-[#FEF7CD]/30">
-                  <TableHead className="w-1/3">Features</TableHead>
-                  <TableHead className="w-1/3 bg-[#FFD600]/20">
-                    <div className="font-bold text-xl mb-1 text-[#FF7A00]">Fulltimer</div>
-                    <div className="text-sm text-gray-600">For active students</div>
-                  </TableHead>
-                  <TableHead className="w-1/3">
-                    <div className="font-bold text-xl mb-1">Part-timer</div>
-                    <div className="text-sm text-gray-600">For occasional travelers</div>
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell className="font-medium">10 student travel rules</TableCell>
-                  <TableCell className="bg-[#FFD600]/10"><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
-                  <TableCell className="text-gray-400">-</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-medium">City guides</TableCell>
-                  <TableCell className="bg-[#FFD600]/10"><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
-                  <TableCell><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-medium">Live Q&A sessions</TableCell>
-                  <TableCell className="bg-[#FFD600]/10"><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
-                  <TableCell className="text-gray-400">-</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-medium">ISIC discounts</TableCell>
-                  <TableCell className="bg-[#FFD600]/10"><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
-                  <TableCell className="text-gray-400">-</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-medium">Community access</TableCell>
-                  <TableCell className="bg-[#FFD600]/10"><Check className="h-5 w-5 text-[#FF7A00]" /></TableCell>
-                  
-                </TableRow>
-              </TableBody>
-            </Table>
-          </div>
-        </div>
+        
 
         {/* Bonus Section - Modernized */}
         <div className="mb-16">
