@@ -190,17 +190,21 @@ const SunshineClub = () => {
           </div>
         </div>
 
-        {/* Trusted By Section - Responsive for mobile */}
+        {/* Trusted By Section - Optimized for mobile */}
         <div className="mb-16">
           <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} items-center justify-center ${isMobile ? 'gap-2' : 'gap-4'} mb-8 py-4 border-y-2 border-[#FFD600]/50`}>
             <h2 className="text-2xl font-bold font-display text-[#F97316] text-center">IN COOPERATION WITH</h2>
-            <img alt="ISIC Logo" className={`${isMobile ? 'h-12 my-2' : 'h-16'} object-contain`} src="/lovable-uploads/c0f8247c-d5d1-4768-9367-f6ba825e44ce.png" />
+            <img 
+              alt="ISIC Logo" 
+              className={`${isMobile ? 'w-4/5 my-2' : 'h-16'} object-contain`} 
+              src="/lovable-uploads/c0f8247c-d5d1-4768-9367-f6ba825e44ce.png" 
+            />
             <h2 className="text-2xl font-bold font-display text-[#F97316] text-center">
               TRUSTED BY THE TOP GLOBAL UNIVERSITIES
             </h2>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 justify-center items-center">
+          <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-4 justify-center items-center">
             {universityLogos.slice(0, 18).map((uni, index) => <div key={index} className="university-stamp mx-auto">
                 <img src={uni.logo} alt={`${uni.name} University`} className="w-full h-full object-contain p-1" />
               </div>)}
