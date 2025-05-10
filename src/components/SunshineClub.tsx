@@ -6,17 +6,18 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from '@/components/ui/separator';
 import JourneySuns from './JourneySuns';
+
 const SunshineClub = () => {
   // University logos and names mapping - updated with all the provided logos
   const universityLogos = [{
     name: "Harvard",
-    logo: "/lovable-uploads/2f0c4da4-6e39-4a7b-be74-64aa968d3eca.jpg"
+    logo: "/lovable-uploads/c856622f-59f3-4cd0-baa8-09350023937b.png"
   }, {
     name: "Oxford",
     logo: "/lovable-uploads/d28c8881-1159-4531-b72a-ceb919332f52.png"
   }, {
-    name: "MIT",
-    logo: "/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg"
+    name: "ETH Zurich", 
+    logo: "/lovable-uploads/bcb9c431-76ba-47f7-906e-c88f2aaf1d88.png"
   }, {
     name: "Stanford",
     logo: "/lovable-uploads/832dd1b4-4324-40a9-9c84-0a823be50f5a.png"
@@ -269,4 +270,5 @@ const SunshineClub = () => {
       </div>
     </section>;
 };
+
 export default SunshineClub;
