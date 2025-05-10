@@ -6,7 +6,6 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from '@/components/ui/separator';
 import JourneySuns from './JourneySuns';
-
 const SunshineClub = () => {
   // University logos and names mapping - updated with all the provided logos
   const universityLogos = [{
@@ -16,7 +15,7 @@ const SunshineClub = () => {
     name: "Oxford",
     logo: "/lovable-uploads/d28c8881-1159-4531-b72a-ceb919332f52.png"
   }, {
-    name: "ETH Zurich", 
+    name: "ETH Zurich",
     logo: "/lovable-uploads/bcb9c431-76ba-47f7-906e-c88f2aaf1d88.png"
   }, {
     name: "Stanford",
@@ -192,11 +191,7 @@ const SunshineClub = () => {
           <div className="flex flex-col items-center text-center mb-8">
             <h2 className="text-2xl font-bold mb-6">IN COOPERATION WITH</h2>
             <div className="mb-4">
-              <img 
-                src="/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png" 
-                alt="ISIC Logo" 
-                className="h-16 object-contain" 
-              />
+              <img alt="ISIC Logo" className="h-16 object-contain" src="/lovable-uploads/c0f8247c-d5d1-4768-9367-f6ba825e44ce.png" />
             </div>
             <p className="text-gray-600 max-w-2xl mx-auto mb-8">
               TRUSTED BY THE TOP GLOBAL UNIVERSITIES
@@ -280,5 +275,4 @@ const SunshineClub = () => {
       </div>
     </section>;
 };
-
 export default SunshineClub;
