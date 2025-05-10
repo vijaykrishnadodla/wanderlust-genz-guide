@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,7 +6,6 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from '@/components/ui/separator';
 import JourneySuns from './JourneySuns';
-
 const SunshineClub = () => {
   // State for the countdown timer
   const [timeLeft, setTimeLeft] = useState({
@@ -51,17 +49,10 @@ const SunshineClub = () => {
     }, 1000);
     return () => clearInterval(timer);
   }, []);
-  
-  // University logos for trusted by section
-  const universities = [
-    "Harvard", "Oxford", "MIT", "Stanford", "Yale", "Princeton", 
-    "Columbia", "Cambridge", "Berkeley", "UCLA", "NYU", "UPenn", 
-    "Caltech", "Duke", "Cornell", "UChicago", "Imperial", "ETH Zurich", 
-    "Toronto", "McGill", "ANU", "Tokyo", "Seoul", "Singapore"
-  ];
 
-  return (
-    <section id="sunshine-club" className="py-16 relative">
+  // University logos for trusted by section
+  const universities = ["Harvard", "Oxford", "MIT", "Stanford", "Yale", "Princeton", "Columbia", "Cambridge", "Berkeley", "UCLA", "NYU", "UPenn", "Caltech", "Duke", "Cornell", "UChicago", "Imperial", "ETH Zurich", "Toronto", "McGill", "ANU", "Tokyo", "Seoul", "Singapore"];
+  return <section id="sunshine-club" className="py-16 relative">
       <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
         {/* Modern Header */}
         <div className="text-center mb-16">
@@ -211,7 +202,7 @@ const SunshineClub = () => {
               No verification required
             </p>
             
-            <Button variant="outline" className="w-full border-[#FF7A00] text-[#FF7A00] hover:bg-[#FF7A00]/10">Choose Part Timer</Button>
+            <Button variant="outline" className="w-full border-[#FF7A00] text-[#FF7A00] hover:bg-[#FF7A00]/10">Coming soon</Button>
           </div>
         </div>
 
@@ -269,11 +260,9 @@ const SunshineClub = () => {
         <div className="mb-16">
           <h2 className="text-2xl font-bold text-center mb-8">TRUSTED BY</h2>
           <div className="grid grid-cols-3 md:grid-cols-6 gap-4 justify-center items-center">
-            {universities.slice(0, 12).map((uni, index) => (
-              <div key={index} className="university-stamp mx-auto">
+            {universities.slice(0, 12).map((uni, index) => <div key={index} className="university-stamp mx-auto">
                 <span className="font-bold text-xs text-center">{uni}</span>
-              </div>
-            ))}
+              </div>)}
           </div>
           <div className="mt-4 text-center">
             <p className="text-sm text-gray-600">+ {universities.length - 12} more top universities worldwide</p>
@@ -348,8 +337,6 @@ const SunshineClub = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default SunshineClub;
