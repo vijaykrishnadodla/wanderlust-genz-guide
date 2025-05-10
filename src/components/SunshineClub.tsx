@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video, Sparkles, Timer, UserRound } from 'lucide-react';
+import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video, Sparkles, Timer, UserRound, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
