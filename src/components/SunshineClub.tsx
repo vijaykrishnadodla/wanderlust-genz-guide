@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Sun, ArrowRight, Check, Users, Globe, DollarSign, MessageCircle, Star, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -187,12 +188,12 @@ const SunshineClub = () => {
           </div>
         </div>
 
-        {/* Trusted By Section - Updated with ISIC partnership - MODIFIED TO BE IN ONE LINE */}
+        {/* Trusted By Section - Updated with ISIC partnership - Holistic Design */}
         <div className="mb-16">
-          <div className="flex flex-row items-center justify-center gap-4 mb-8">
-            <h2 className="text-2xl font-bold whitespace-nowrap">IN COOPERATION WITH</h2>
+          <div className="flex flex-row items-center justify-center gap-4 mb-8 py-4 border-y-2 border-[#FFD600]/50">
+            <h2 className="text-2xl font-bold font-display text-[#F97316]">IN COOPERATION WITH</h2>
             <img alt="ISIC Logo" className="h-16 object-contain" src="/lovable-uploads/c0f8247c-d5d1-4768-9367-f6ba825e44ce.png" />
-            <p className="text-gray-600">
+            <p className="text-lg font-bold text-gray-600">
               TRUSTED BY THE TOP GLOBAL UNIVERSITIES
             </p>
           </div>
