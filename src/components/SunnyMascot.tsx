@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Backpack, Camera, Book, Map, Sparkles } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -89,7 +90,9 @@ const SunnyMascot = ({
         </div>
       </>;
   };
-  return <div className={`flex flex-col ${isMobile ? 'items-center' : 'items-start'} gap-4 ${className}`}>
+
+  // Changed: Updated the container to use row layout when there's text
+  return <div className={`flex ${withText ? 'flex-row items-center' : 'flex-col'} ${isMobile ? (withText ? 'flex-col items-center' : 'items-center') : 'items-start'} gap-4 ${className}`}>
       <div className="relative">
         {/* Updated Sunny image with glow effect */}
         <div className={`relative ${sizeClasses[size]}`}>
@@ -109,7 +112,8 @@ const SunnyMascot = ({
         </div>
       </div>
       
-      {withText && message && <div className="sunny-speech-bubble sunny-speech-bubble-left max-w-xs font-handwritten text-sunny-orange">
+      {/* Changed: Updated speech bubble positioning to be on the right side of the avatar */}
+      {withText && message && <div className={`sunny-speech-bubble ${isMobile ? 'sunny-speech-bubble-top' : 'sunny-speech-bubble-left'} max-w-xs font-handwritten text-sunny-orange`}>
           {message}
         </div>}
     </div>;
