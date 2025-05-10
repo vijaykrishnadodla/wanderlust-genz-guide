@@ -31,9 +31,13 @@ const Navbar = () => {
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="relative">
-              <div className={`absolute inset-0 bg-sunny-gradient rounded-full opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300`}></div>
-              <SunnyMascot size="sm" className="relative z-10" />
+            <div className="relative w-8 h-8 sm:w-10 sm:h-10">
+              <img 
+                src="/lovable-uploads/9238c9a8-0093-446f-a9f2-d0a191f3c306.png" 
+                alt="Student Travel Buddy Logo" 
+                className="w-full h-full object-contain"
+              />
+              <div className="absolute inset-0 bg-sunny-gradient rounded-full opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300 -z-10"></div>
             </div>
             <span className="font-display text-xl font-bold text-sunny-orange hidden sm:block">STUDENT TRAVEL BUDDY</span>
             <span className="font-display text-xl font-bold text-sunny-orange sm:hidden">STB</span>
