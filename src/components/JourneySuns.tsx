@@ -44,6 +44,21 @@ const JourneySuns = () => {
 
   return (
     <div className="mb-16 max-w-4xl mx-auto py-0">
+      {/* Sunny mascot positioned at the active step - MOVED HIGHER */}
+      <div 
+        className="relative z-20 mb-6" 
+        style={{
+          left: `calc(${activeStep * 25}% + 8%)`,
+          marginTop: "-20px"
+        }}
+      >
+        <SunnyMascot 
+          size="sm" 
+          withText 
+          message={activeStep === 3 ? "You made it! 🎉" : "Let's go! ☀️"} 
+        />
+      </div>
+    
       <div className="text-center">
         <h3 className="text-2xl md:text-3xl font-bold mb-3">YOUR TRAVEL JOURNEY</h3>
         <p className="text-[#1e1e1e]/70 mb-8 py-0 my-0 mx-0">How Sunshine Club works in 4 simple steps</p>
@@ -94,21 +109,7 @@ const JourneySuns = () => {
           ))}
         </div>
         
-        {/* Sunny mascot positioned at the active step */}
-        <div 
-          className="absolute transition-all duration-500 ease-in-out" 
-          style={{
-            left: `calc(${activeStep * 25}% + 8%)`,
-            top: '-40px',
-            transform: 'translateX(-50%)'
-          }}
-        >
-          <SunnyMascot 
-            size="sm" 
-            withText 
-            message={activeStep === 3 ? "You made it! 🎉" : "Let's go! ☀️"} 
-          />
-        </div>
+        {/* Removed the original Sunny mascot position that was here */}
       </div>
       
       {/* Mobile responsive SVG rays (abstract design elements) */}
