@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Sun, Sparkles } from 'lucide-react';
+import { ArrowRight, Sun } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 
 const JourneySuns = () => {
@@ -17,7 +18,7 @@ const JourneySuns = () => {
   // Journey steps with orange/yellow colors and standardized text lengths
   const steps = [{
     title: "JOIN",
-    desc: "Get verified student status & ISIC card",
+    desc: "Get verified student status & card",
     emoji: "🎓",
     color: "bg-gradient-to-br from-[#FFD600] to-[#FF7A00]",
     icon: "sun"
@@ -63,15 +64,9 @@ const JourneySuns = () => {
                 <div className={`journey-sun-icon h-full w-full ${step.color} ${activeStep === index ? 'shine-bigger' : ''} text-lg font-bold text-white flex items-center justify-center rounded-full`}>
                   <Sun className="h-8 w-8 text-white" />
                   
-                  {/* ISIC logo with stars around it for the first step only */}
+                  {/* ISIC logo for the first step only */}
                   {index === 0 && (
                     <div className="absolute -bottom-8 -right-8 w-20 h-20 flex items-center justify-center">
-                      {/* Stars around the ISIC logo */}
-                      <Sparkles className="absolute -top-4 -left-4 h-6 w-6 text-[#FFD600] animate-pulse" />
-                      <Sparkles className="absolute -bottom-4 -right-4 h-6 w-6 text-[#FFD600] animate-pulse" style={{animationDelay: "0.5s"}} />
-                      <Sparkles className="absolute top-0 -right-4 h-5 w-5 text-[#FFD600] animate-pulse" style={{animationDelay: "0.7s"}} />
-                      
-                      {/* ISIC Logo - 4x bigger with transparent background */}
                       <img 
                         src="/lovable-uploads/6006eeef-3bc0-4c25-ac79-febaff57500f.png" 
                         alt="ISIC Logo" 
@@ -87,7 +82,22 @@ const JourneySuns = () => {
               
               <div className={`text-center transition-opacity duration-300 ${activeStep === index ? 'opacity-100' : 'opacity-50'}`}>
                 <h4 className="font-bold text-lg md:text-xl">{step.title}</h4>
-                <p className="text-xs md:text-sm max-w-[120px] mx-auto">{step.desc}</p>
+                {index === 0 ? (
+                  <p className="text-xs md:text-sm max-w-[140px] mx-auto">
+                    Get verified student status & 
+                    <span className="inline-flex items-center">
+                      <img 
+                        src="/lovable-uploads/6006eeef-3bc0-4c25-ac79-febaff57500f.png" 
+                        alt="ISIC" 
+                        className="h-4 mx-1 inline-block"
+                        style={{ filter: "drop-shadow(0 0 1px rgba(0,0,0,0.5))" }}
+                      />
+                      card
+                    </span>
+                  </p>
+                ) : (
+                  <p className="text-xs md:text-sm max-w-[120px] mx-auto">{step.desc}</p>
+                )}
               </div>
               
               {index < steps.length - 1 && (
