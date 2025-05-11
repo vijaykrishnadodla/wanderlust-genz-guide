@@ -214,6 +214,17 @@ const TravelQuiz = () => {
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="container px-4 md:px-6 max-w-4xl relative z-10">
+        {/* SunnyMascot moved above the heading */}
+        <div className="flex justify-center mb-8">
+          <SunnyMascot 
+            size="md" 
+            withText 
+            message={step === 'result' ? "Wow, perfect match! ✨" : "Let's find your ideal destination! 🌍"} 
+            travelStyle="adventure"
+            className="relative z-20"
+          />
+        </div>
+        
         <div className="text-center mb-10">
           <div className="inline-block relative">
             <h2 className="text-3xl md:text-4xl font-display bg-gradient-to-r from-[#fdad32] to-[#fe4c02] text-white px-6 py-2 rounded-lg">STUDENT TRAVEL STYLE QUIZ</h2>
@@ -225,9 +236,7 @@ const TravelQuiz = () => {
         </div>
 
         <Card className="border shadow-xl bg-gradient-to-br from-white to-[#ffeea6]/20">
-          <div className="absolute -top-8 -right-4 hidden md:block">
-            <SunnyMascot withText message={step === 'result' ? "Wow, perfect match! ✨" : "Let's find your ideal destination! 🌍"} />
-          </div>
+          {/* Removed SunnyMascot from here since it's now above the heading */}
           
           {step === 'name' && (
             <>
