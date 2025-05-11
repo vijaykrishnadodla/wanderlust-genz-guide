@@ -26,11 +26,20 @@ const Testimonials = () => {
       link: "https://boards.cruisecritic.com/topic/1958979-isic-international-student-identity-card/?utm_source=chatgpt.com"
     },
     {
+      quote: "The ISIC card is definitely worthwhile. Both my kids used it in Italy, France and England and saved money on travel and attractions. Any other student card does not work for discounts.",
+      author: "Fodors User",
+      location: "Fodors Forum",
+      color: "bg-sunny-peach",
+      rotation: "-rotate-2",
+      emoji: "💳",
+      link: "https://www.fodors.com/community/europe/student-isic-card-helpful-569802/?utm_source=chatgpt.com"
+    },
+    {
       quote: "The city guide felt like it was written for me. Because it literally was!",
       author: "Sofia ⭐",
       location: "Barcelona",
-      color: "bg-sunny-peach",
-      rotation: "-rotate-2",
+      color: "bg-sunny-yellow-light",
+      rotation: "rotate-1",
       emoji: "🗺️"
     }
   ];
