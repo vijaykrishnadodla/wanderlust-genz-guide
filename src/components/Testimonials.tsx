@@ -1,8 +1,10 @@
+
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Star, ArrowRight, Quote, Link } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 import { Button } from '@/components/ui/button';
+
 const Testimonials = () => {
   const testimonials = [{
     quote: "Get the ISIC. Your student ID from a University in the US could be worthless over there, they don't know if it is authentic or not. Think of the ISIC as an internationally recognized version of your student ID. I find it interesting that a study abroad program would not give you an idea, but either way I get the ISIC.",
@@ -29,13 +31,31 @@ const Testimonials = () => {
     emoji: "💳",
     link: "https://www.fodors.com/community/europe/student-isic-card-helpful-569802/?utm_source=chatgpt.com"
   }, {
-    quote: "The city guide felt like it was written for me. Because it literally was!",
-    author: "Sofia ⭐",
-    location: "Barcelona",
+    quote: "In many (most?) countries you won't get student discounts for e.g. transport/event/entrance tickets unless you can prove you are a student. Afaik, if you're a 'foreigner' only an ISIC card will do that.",
+    author: "Reddit User",
+    location: "Reddit",
     color: "bg-sunny-yellow-light",
     rotation: "rotate-1",
-    emoji: "🗺️"
+    emoji: "🎫",
+    link: "https://www.reddit.com/r/travel/comments/rw6kd2/going_to_freiburg_im_breisgau_what_are_your/?utm_source=chatgpt.com"
+  }, {
+    quote: "The discount is pretty significant and the sites add up so definitely worth bringing some proof of being a student.",
+    author: "TripAdvisor User",
+    location: "TripAdvisor Forum",
+    color: "bg-sunny-orange-light",
+    rotation: "-rotate-1",
+    emoji: "🏛️",
+    link: "https://www.tripadvisor.com/ShowTopic-g294201-i9404-k14196204-Student_Discounts_using_ISIC_Card_Is_it_worth-Cairo_Cairo_Governorate.html"
+  }, {
+    quote: "This app and student card have been very helpful to get tickets, hotel and transportation discounts all over Europe.",
+    author: "App Store Review",
+    location: "App Store",
+    color: "bg-sunny-yellow-pale",
+    rotation: "rotate-2",
+    emoji: "📱",
+    link: ""
   }];
+  
   return <section className="py-16 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 bg-sunny-soft z-0"></div>
@@ -52,7 +72,7 @@ const Testimonials = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {testimonials.map((testimonial, index) => <Card key={index} className={`${testimonial.color} border-none shadow-lg transform ${testimonial.rotation} transition-transform hover:-translate-y-2 duration-300`}>
               <CardContent className="p-6">
                 <div className="flex flex-col gap-4 relative">
@@ -105,4 +125,5 @@ const Testimonials = () => {
       </div>
     </section>;
 };
+
 export default Testimonials;
