@@ -1,22 +1,15 @@
-
 import React from 'react';
 import { UserRound, Globe, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
 const Ambassador = () => {
-  return (
-    <section id="ambassador" className="py-16 bg-gradient-to-t from-[#FEF7CD]/60 to-white relative">
+  return <section id="ambassador" className="py-16 bg-gradient-to-t from-[#FEF7CD]/60 to-white relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="container px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
           <div>
-            <img 
-              src="/lovable-uploads/45550131-1033-4488-9a9c-81e60cbe7fbb.png" 
-              alt="When you can't find the sunshine, be the sunshine" 
-              className="rounded-lg shadow-lg transform rotate-3"
-            />
+            <img alt="When you can't find the sunshine, be the sunshine" className="rounded-lg shadow-lg transform rotate-3" src="/lovable-uploads/4e8ca135-6b1c-4114-955b-e29bc9a85a77.png" />
             <div className="mt-8">
               <h3 className="text-2xl font-display text-[#F97316] mb-4">Ambassador Program</h3>
               <p className="text-xl mb-2">
@@ -75,8 +68,6 @@ const Ambassador = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Ambassador;

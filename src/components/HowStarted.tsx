@@ -1,15 +1,11 @@
-
 import React, { useState } from 'react';
 import { Clock } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
-
 const HowStarted = () => {
   const [bubbleText, setBubbleText] = useState("Created in cooperation with ISIC — the only globally recognized student ID, trusted by over 120 million students worldwide throughout their studies.");
-  
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBubbleText(e.target.value);
   };
-  
   return <section id="how-started" className="py-16 bg-white relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
@@ -25,21 +21,15 @@ const HowStarted = () => {
           
           <div className="w-full bg-[#FEC6A1]/40 rounded-full transform rotate-1 mx-auto mb-8 overflow-hidden max-w-3xl">
             <div className="p-2">
-              <Textarea 
-                value={bubbleText}
-                onChange={handleTextChange}
-                className="w-full border-none bg-transparent resize-none font-bold text-[#F97316] min-h-[40px] p-1 focus:ring-0 focus:outline-none"
-                style={{ 
-                  overflow: 'hidden',
-                  height: 'auto'
-                }}
-                onInput={(e) => {
-                  // Auto-resize the textarea
-                  const target = e.target as HTMLTextAreaElement;
-                  target.style.height = 'auto';
-                  target.style.height = `${target.scrollHeight}px`;
-                }}
-              />
+              <Textarea value={bubbleText} onChange={handleTextChange} className="w-full border-none bg-transparent resize-none font-bold text-[#F97316] min-h-[40px] p-1 focus:ring-0 focus:outline-none" style={{
+              overflow: 'hidden',
+              height: 'auto'
+            }} onInput={e => {
+              // Auto-resize the textarea
+              const target = e.target as HTMLTextAreaElement;
+              target.style.height = 'auto';
+              target.style.height = `${target.scrollHeight}px`;
+            }} />
             </div>
           </div>
           
@@ -65,12 +55,14 @@ const HowStarted = () => {
           </div>
           
           <div className="mt-12 max-w-2xl mx-auto">
-            <p className="text-lg">Student Travel Buddy was created in 2025 when Dominika realized students were missing out on the best parts of travel because they didn't have access to insider knowledge. Now we're a community of thousands helping each other explore the world on a student budget.</p>
+            <p className="text-lg">Student Travel Buddy was created in 2025 when we realized students were missing out on the best parts of travel because they didn't have access to insider knowledge. Now we're a community helping each other explore the world on a student budget.</p>
             
             <div className="mt-8 flex justify-center">
               <div className="polaroid transform rotate-2 inline-block relative">
                 {/* Adding all flags to the top and bottom of the polaroid frame */}
-                <div className="absolute top-0 w-full flex justify-evenly flex-wrap" style={{ transform: 'translateY(-50%)' }}>
+                <div className="absolute top-0 w-full flex justify-evenly flex-wrap" style={{
+                transform: 'translateY(-50%)'
+              }}>
                   <span className="rotate-[-15deg] text-lg">🇳🇴</span>
                   <span className="rotate-[0deg] text-lg">🇩🇰</span>
                   <span className="rotate-[15deg] text-lg">🇫🇷</span>
@@ -80,7 +72,9 @@ const HowStarted = () => {
                   <span className="rotate-[-5deg] text-lg">🇮🇹</span>
                 </div>
                 
-                <div className="absolute bottom-0 w-full flex justify-evenly flex-wrap" style={{ transform: 'translateY(50%)' }}>
+                <div className="absolute bottom-0 w-full flex justify-evenly flex-wrap" style={{
+                transform: 'translateY(50%)'
+              }}>
                   <span className="rotate-[15deg] text-lg">🇦🇪</span>
                   <span className="rotate-[0deg] text-lg">🇮🇸</span>
                   <span className="rotate-[-15deg] text-lg">🇱🇰</span>
@@ -99,5 +93,4 @@ const HowStarted = () => {
       </div>
     </section>;
 };
-
 export default HowStarted;
