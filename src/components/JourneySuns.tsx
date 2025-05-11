@@ -18,10 +18,10 @@ const JourneySuns = () => {
   // Journey steps with orange/yellow colors
   const steps = [{
     title: "JOIN",
-    desc: "Sign up and get ISIC card for student discounts",
+    desc: "Verify your student status and get International Student ID card",
     emoji: "🎓",
     color: "bg-gradient-to-br from-[#FFD600] to-[#FF7A00]",
-    icon: "isic" // Special flag for ISIC logo
+    icon: "sun" // Changed back to sun
   }, {
     title: "PLAN",
     desc: "Get personalized itineraries & discounts",
@@ -61,15 +61,16 @@ const JourneySuns = () => {
                 className={`journey-sun h-16 w-16 mb-3 cursor-pointer transition-all duration-300 ${activeStep === index ? 'scale-110' : ''}`} 
                 onClick={() => setActiveStep(index)}
               >
-                <div className={`journey-sun-icon h-full w-full ${step.color} ${activeStep === index ? 'shine-bigger' : ''} text-lg font-bold text-white flex items-center justify-center`}>
-                  {step.icon === "isic" ? (
-                    <img 
-                      src="/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png" 
-                      alt="ISIC Logo" 
-                      className="h-10 w-10 object-contain"
-                    />
-                  ) : (
-                    <Sun className="h-8 w-8 text-white" />
+                <div className={`journey-sun-icon h-full w-full ${step.color} ${activeStep === index ? 'shine-bigger' : ''} text-lg font-bold text-white flex items-center justify-center rounded-full`}>
+                  <Sun className="h-8 w-8 text-white" />
+                  {index === 0 && (
+                    <div className="absolute -bottom-1 -right-1 w-8 h-8 flex items-center justify-center">
+                      <img 
+                        src="/lovable-uploads/6006eeef-3bc0-4c25-ac79-febaff57500f.png" 
+                        alt="ISIC Logo" 
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
                   )}
                 </div>
               </div>
