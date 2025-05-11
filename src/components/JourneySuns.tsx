@@ -18,7 +18,7 @@ const JourneySuns = () => {
   // Journey steps with orange/yellow colors and standardized text lengths
   const steps = [{
     title: "JOIN",
-    desc: "Get verified student status & card",
+    desc: "Get verified student status & ISIC card",
     emoji: "🎓",
     color: "bg-gradient-to-br from-[#FFD600] to-[#FF7A00]",
     icon: "sun"
@@ -82,22 +82,7 @@ const JourneySuns = () => {
               
               <div className={`text-center transition-opacity duration-300 ${activeStep === index ? 'opacity-100' : 'opacity-50'}`}>
                 <h4 className="font-bold text-lg md:text-xl">{step.title}</h4>
-                {index === 0 ? (
-                  <p className="text-xs md:text-sm max-w-[140px] mx-auto">
-                    Get verified student status & 
-                    <span className="inline-flex items-center">
-                      <img 
-                        src="/lovable-uploads/6006eeef-3bc0-4c25-ac79-febaff57500f.png" 
-                        alt="ISIC" 
-                        className="h-4 mx-1 inline-block"
-                        style={{ filter: "drop-shadow(0 0 1px rgba(0,0,0,0.5))" }}
-                      />
-                      card
-                    </span>
-                  </p>
-                ) : (
-                  <p className="text-xs md:text-sm max-w-[120px] mx-auto">{step.desc}</p>
-                )}
+                <p className="text-xs md:text-sm max-w-[120px] mx-auto">{step.desc}</p>
               </div>
               
               {index < steps.length - 1 && (
