@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sun, Sparkles } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
@@ -66,19 +65,19 @@ const JourneySuns = () => {
                   
                   {/* ISIC logo with stars around it for the first step only */}
                   {index === 0 && (
-                    <div className="absolute -bottom-2 -right-2 w-10 h-10 flex items-center justify-center">
+                    <div className="absolute -bottom-8 -right-8 w-20 h-20 flex items-center justify-center">
                       {/* Stars around the ISIC logo */}
-                      <Sparkles className="absolute -top-2 -left-2 h-4 w-4 text-[#FFD600] animate-pulse" />
-                      <Sparkles className="absolute -bottom-2 -right-2 h-4 w-4 text-[#FFD600] animate-pulse" style={{animationDelay: "0.5s"}} />
-                      <Sparkles className="absolute top-0 -right-2 h-3 w-3 text-[#FFD600] animate-pulse" style={{animationDelay: "0.7s"}} />
+                      <Sparkles className="absolute -top-4 -left-4 h-6 w-6 text-[#FFD600] animate-pulse" />
+                      <Sparkles className="absolute -bottom-4 -right-4 h-6 w-6 text-[#FFD600] animate-pulse" style={{animationDelay: "0.5s"}} />
+                      <Sparkles className="absolute top-0 -right-4 h-5 w-5 text-[#FFD600] animate-pulse" style={{animationDelay: "0.7s"}} />
                       
-                      {/* ISIC Logo - Bigger with transparent background */}
+                      {/* ISIC Logo - 4x bigger with transparent background */}
                       <img 
                         src="/lovable-uploads/6006eeef-3bc0-4c25-ac79-febaff57500f.png" 
                         alt="ISIC Logo" 
                         className="w-full h-full object-contain"
                         style={{
-                          filter: "drop-shadow(0 0 2px rgba(255,255,255,0.8))"
+                          filter: "drop-shadow(0 0 3px rgba(255,255,255,0.9))"
                         }}
                       />
                     </div>
