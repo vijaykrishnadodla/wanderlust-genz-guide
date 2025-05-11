@@ -24,13 +24,17 @@ const Index = () => {
         <div className="relative">
           <Hero />
           {/* Wave divider after Hero */}
-          
         </div>
         
-        {/* Benefits Section - new section above Sunshine Club */}
+        {/* Travel Quiz section moved above Benefits - with gradient 1 */}
+        <div className="relative stb-section-gradient-1">
+          <TravelQuiz />
+          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
+        </div>
+        
+        {/* Benefits Section - now below Travel Quiz */}
         <div className="relative stb-section-gradient-3">
           <BenefitsSection />
-          
         </div>
         
         {/* Sunshine Club section with gradient 1 */}
@@ -44,13 +48,6 @@ const Index = () => {
           <Offering />
         </div>
         
-        {/* Travel Quiz section with gradient 1 */}
-        <div className="relative stb-section-gradient-1">
-          
-          <TravelQuiz />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-        </div>
-        
         {/* Testimonials section with gradient 3 */}
         <div className="relative stb-section-gradient-3">
           <Testimonials />
@@ -58,13 +55,11 @@ const Index = () => {
         
         {/* Features section with gradient 1 */}
         <div className="relative stb-section-gradient-1">
-          
           <Features />
         </div>
         
         {/* BackStory section with gradient 4 */}
         <div className="relative stb-section-gradient-4">
-          
           <BackStory />
         </div>
         
