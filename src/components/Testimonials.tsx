@@ -17,12 +17,13 @@ const Testimonials = () => {
       link: "https://www.reddit.com/r/travel/comments/rw6kd2/going_to_freiburg_im_breisgau_what_are_your/?utm_source=chatgpt.com"
     },
     {
-      quote: "Used my student card for 5 discounts in 1 day. Trip = absolute vibe!",
-      author: "Jamal ✌️",
-      location: "London",
+      quote: "The ISIC card is definitely worthwhile. Both my kids used it in Italy, France and England and saved money on travel and attractions on two separate trips. Any other student card does not work for discounts. They were both very glad to have it for the small cost of getting one.",
+      author: "Fodors User",
+      location: "Fodors Forum",
       color: "bg-sunny-orange-pale",
       rotation: "rotate-0",
-      emoji: "💰"
+      emoji: "💰",
+      link: "https://www.fodors.com/community/europe/student-isic-card-helpful-569802/?utm_source=chatgpt.com"
     },
     {
       quote: "The city guide felt like it was written for me. Because it literally was!",
