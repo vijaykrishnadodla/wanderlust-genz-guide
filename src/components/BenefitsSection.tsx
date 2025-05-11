@@ -55,9 +55,7 @@ const BenefitsSection = () => {
               <Award className="h-8 w-8 text-white" />
             </div>
             <h3 className="text-xl font-bold mb-2">Global Community</h3>
-            <p className="text-gray-600">
-              Connect with peers from top universities worldwide for authentic travel experiences
-            </p>
+            <p className="text-gray-600">Connect with us through our Sunny avatar and peers from top universities worldwide for authentic travel experiences</p>
           </div>
         </div>
         

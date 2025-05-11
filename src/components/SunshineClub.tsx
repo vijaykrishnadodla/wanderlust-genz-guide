@@ -43,7 +43,6 @@ const SunshineClub = () => {
     highlight: true,
     spotsLeft: "24"
   };
-  
   const featureLabels = {
     newsletter: "Curated Newsletter",
     travelRules: "10 Top Secret Non-Negotiable Student Travel Rules",
@@ -153,37 +152,7 @@ const SunshineClub = () => {
         <JourneySuns />
 
         {/* Key Benefits - Modern Cards with Orange Icons */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          <div className="sunshine-card group">
-            <div className="h-12 w-12 modern-sun mb-4">
-              <div className="modern-sun-icon flex items-center justify-center">
-                <DollarSign className="h-6 w-6 text-white" />
-              </div>
-            </div>
-            <h3 className="text-xl font-bold mb-2">Save Money</h3>
-            <p className="text-gray-600">Average savings of $200/week with our exclusive student discounts and local tips.</p>
-          </div>
-          
-          <div className="sunshine-card group">
-            <div className="h-12 w-12 modern-sun mb-4">
-              <div className="modern-sun-icon flex items-center justify-center">
-                <Globe className="h-6 w-6 text-white" />
-              </div>
-            </div>
-            <h3 className="text-xl font-bold mb-2">Authentic Travel</h3>
-            <p className="text-gray-600">Experience cities like a local with hidden gems and cultural connections.</p>
-          </div>
-          
-          <div className="sunshine-card group">
-            <div className="h-12 w-12 modern-sun mb-4">
-              <div className="modern-sun-icon flex items-center justify-center">
-                <MessageCircle className="h-6 w-6 text-white" />
-              </div>
-            </div>
-            <h3 className="text-xl font-bold mb-2">Travel Buddy</h3>
-            <p className="text-gray-600">Get support, advice, and make friends with fellow student travelers.</p>
-          </div>
-        </div>
+        
         
         {/* Membership details section - Only showing FullTimer */}
         <div className="mb-16">
