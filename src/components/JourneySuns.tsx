@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Sun } from 'lucide-react';
+import { ArrowRight, Sun, Sparkles } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 
 const JourneySuns = () => {
@@ -15,28 +15,28 @@ const JourneySuns = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Journey steps with orange/yellow colors
+  // Journey steps with orange/yellow colors and standardized text lengths
   const steps = [{
     title: "JOIN",
-    desc: "Verify your student status and get International Student ID card",
+    desc: "Get verified student status & ISIC card",
     emoji: "🎓",
     color: "bg-gradient-to-br from-[#FFD600] to-[#FF7A00]",
-    icon: "sun" // Changed back to sun
+    icon: "sun"
   }, {
     title: "PLAN",
-    desc: "Get personalized itineraries & discounts",
+    desc: "Access discounts & custom itineraries",
     emoji: "🗺️",
     color: "bg-gradient-to-br from-[#FF9900] to-[#FF7A00]",
     icon: "sun"
   }, {
     title: "TRAVEL",
-    desc: "Explore with confidence and savings",
+    desc: "Explore new places with confidence",
     emoji: "✈️",
     color: "bg-gradient-to-br from-[#FFCC00] to-[#FF5500]",
     icon: "sun"
   }, {
     title: "SHARE",
-    desc: "Connect with other students worldwide",
+    desc: "Connect with students worldwide",
     emoji: "👋",
     color: "bg-gradient-to-br from-[#FFB347] to-[#FF7A00]",
     icon: "sun"
@@ -63,12 +63,20 @@ const JourneySuns = () => {
               >
                 <div className={`journey-sun-icon h-full w-full ${step.color} ${activeStep === index ? 'shine-bigger' : ''} text-lg font-bold text-white flex items-center justify-center rounded-full`}>
                   <Sun className="h-8 w-8 text-white" />
+                  
+                  {/* ISIC logo with stars around it for the first step only */}
                   {index === 0 && (
                     <div className="absolute -bottom-1 -right-1 w-8 h-8 flex items-center justify-center">
+                      {/* Stars around the ISIC logo */}
+                      <Sparkles className="absolute -top-2 -left-2 h-4 w-4 text-[#FFD600] animate-pulse" />
+                      <Sparkles className="absolute -bottom-2 -right-2 h-4 w-4 text-[#FFD600] animate-pulse" style={{animationDelay: "0.5s"}} />
+                      <Sparkles className="absolute top-0 -right-2 h-3 w-3 text-[#FFD600] animate-pulse" style={{animationDelay: "0.7s"}} />
+                      
+                      {/* ISIC Logo */}
                       <img 
                         src="/lovable-uploads/6006eeef-3bc0-4c25-ac79-febaff57500f.png" 
                         alt="ISIC Logo" 
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain rounded-full bg-white p-0.5"
                       />
                     </div>
                   )}
