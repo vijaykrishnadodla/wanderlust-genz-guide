@@ -1,19 +1,20 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Star, ArrowRight, Quote } from 'lucide-react';
+import { Star, ArrowRight, Quote, Link } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 import { Button } from '@/components/ui/button';
 
 const Testimonials = () => {
   const testimonials = [
     {
-      quote: "Sunny helped me find a €15 train deal — took only 2 mins! Total legend.",
-      author: "Emma 🌸",
-      location: "Berlin",
+      quote: "Get the ISIC. Your student ID from a University in the US could be worthless over there, they don't know if it is authentic or not. Think of the ISIC as an internationally recognized version of your student ID. I find it interesting that a study abroad program would not give you an idea, but either way I get the ISIC.",
+      author: "cloudjocky",
+      location: "Reddit",
       color: "bg-sunny-yellow-pale",
       rotation: "rotate-2",
-      emoji: "🚆"
+      emoji: "🌎",
+      link: "https://www.reddit.com/r/travel/comments/rw6kd2/going_to_freiburg_im_breisgau_what_are_your/?utm_source=chatgpt.com"
     },
     {
       quote: "Used my student card for 5 discounts in 1 day. Trip = absolute vibe!",
@@ -77,7 +78,20 @@ const Testimonials = () => {
                   <div className="flex items-center justify-between mt-2">
                     <div>
                       <p className="font-bold">{testimonial.author}</p>
-                      <p className="text-sm text-sunny-orange-dark">{testimonial.location}</p>
+                      <div className="flex items-center">
+                        <p className="text-sm text-sunny-orange-dark">{testimonial.location}</p>
+                        {testimonial.link && (
+                          <a 
+                            href={testimonial.link}
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="ml-1 text-sunny-orange hover:text-sunny-orange-dark transition-colors"
+                            aria-label="View original post"
+                          >
+                            <Link className="h-3 w-3" />
+                          </a>
+                        )}
+                      </div>
                     </div>
                     <div className="bg-white/60 backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center text-xl shadow-sm sunny-bounce">
                       {testimonial.emoji}
