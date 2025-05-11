@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Backpack, Camera, Book, Map, Sparkles } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 interface SunnyMascotProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   withText?: boolean;
@@ -10,7 +8,6 @@ interface SunnyMascotProps {
   className?: string;
   travelStyle?: 'default' | 'beach' | 'cultural' | 'educational' | 'adventure' | 'fashion';
 }
-
 const SunnyMascot = ({
   size = 'md',
   withText = false,
@@ -90,7 +87,7 @@ const SunnyMascot = ({
           {/* Base Sun with new fashion-style avatar */}
           <div className="w-full h-full relative z-0">
             {/* Use the new sunny avatar image with fashion style (hat and heart glasses) */}
-            <img alt="Sunny mascot" className="w-full h-full object-contain" src="/lovable-uploads/88f5bf17-ecd4-4f77-a2f0-b06ff9352dc7.png" />
+            <img alt="Sunny mascot" className="w-full h-full object-contain" src="/lovable-uploads/c9180875-3f42-4496-9fb6-598551a462b3.png" />
           </div>
           
           {/* Travel style accessories */}
@@ -107,5 +104,4 @@ const SunnyMascot = ({
         </div>}
     </div>;
 };
-
 export default SunnyMascot;
