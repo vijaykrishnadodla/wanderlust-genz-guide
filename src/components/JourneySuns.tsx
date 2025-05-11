@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sun } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const JourneySuns = () => {
   // State to track the active step
   const [activeStep, setActiveStep] = useState(0);
+  const isMobile = useIsMobile();
 
   // Auto-advance steps every 3 seconds
   useEffect(() => {
@@ -43,22 +45,7 @@ const JourneySuns = () => {
   }];
 
   return (
-    <div className="mb-16 max-w-4xl mx-auto py-0">
-      {/* Sunny mascot positioned at the active step - MOVED HIGHER */}
-      <div 
-        className="relative z-20 mb-6" 
-        style={{
-          left: `calc(${activeStep * 25}% + 8%)`,
-          marginTop: "-20px"
-        }}
-      >
-        <SunnyMascot 
-          size="sm" 
-          withText 
-          message={activeStep === 3 ? "You made it! 🎉" : "Let's go! ☀️"} 
-        />
-      </div>
-    
+    <div className="mb-16 max-w-4xl mx-auto py-0 px-4">
       <div className="text-center">
         <h3 className="text-2xl md:text-3xl font-bold mb-3">YOUR TRAVEL JOURNEY</h3>
         <p className="text-[#1e1e1e]/70 mb-8 py-0 my-0 mx-0">How Sunshine Club works in 4 simple steps</p>
@@ -73,15 +60,15 @@ const JourneySuns = () => {
           {steps.map((step, index) => (
             <div key={index} className="flex flex-col items-center relative z-10 w-1/4 py-[40px]">
               <div 
-                className={`journey-sun h-16 w-16 mb-3 cursor-pointer transition-all duration-300 ${activeStep === index ? 'scale-110' : ''}`} 
+                className={`journey-sun h-12 w-12 md:h-16 md:w-16 mb-3 cursor-pointer transition-all duration-300 ${activeStep === index ? 'scale-110' : ''}`} 
                 onClick={() => setActiveStep(index)}
               >
                 <div className={`journey-sun-icon h-full w-full ${step.color} ${activeStep === index ? 'shine-bigger' : ''} text-lg font-bold text-white flex items-center justify-center rounded-full`}>
-                  <Sun className="h-8 w-8 text-white" />
+                  <Sun className={`${isMobile ? 'h-6 w-6' : 'h-8 w-8'} text-white`} />
                   
                   {/* ISIC logo for the first step only */}
                   {index === 0 && (
-                    <div className="absolute -bottom-8 -right-8 w-20 h-20 flex items-center justify-center">
+                    <div className={`absolute ${isMobile ? '-bottom-6 -right-6 w-14 h-14' : '-bottom-8 -right-8 w-20 h-20'} flex items-center justify-center`}>
                       <img 
                         src="/lovable-uploads/6006eeef-3bc0-4c25-ac79-febaff57500f.png" 
                         alt="ISIC Logo" 
@@ -96,8 +83,8 @@ const JourneySuns = () => {
               </div>
               
               <div className={`text-center transition-opacity duration-300 ${activeStep === index ? 'opacity-100' : 'opacity-50'}`}>
-                <h4 className="font-bold text-lg md:text-xl">{step.title}</h4>
-                <p className="text-xs md:text-sm max-w-[120px] mx-auto">{step.desc}</p>
+                <h4 className="font-bold text-base md:text-xl">{step.title}</h4>
+                <p className="text-xs md:text-sm max-w-[90px] md:max-w-[120px] mx-auto">{step.desc}</p>
               </div>
               
               {index < steps.length - 1 && (
@@ -109,7 +96,21 @@ const JourneySuns = () => {
           ))}
         </div>
         
-        {/* Removed the original Sunny mascot position that was here */}
+        {/* Sunny mascot positioned at the active step - RESTORED TO ORIGINAL POSITION */}
+        <div 
+          className={`absolute transition-all duration-500 ease-in-out z-20 ${isMobile ? 'w-full flex justify-center' : ''}`}
+          style={{
+            left: isMobile ? '0' : `calc(${activeStep * 25}% + 8%)`,
+            top: isMobile ? '-70px' : '-40px',
+            transform: isMobile ? 'none' : 'translateX(-50%)'
+          }}
+        >
+          <SunnyMascot 
+            size="sm" 
+            withText 
+            message={activeStep === 3 ? "You made it! 🎉" : "Let's go! ☀️"} 
+          />
+        </div>
       </div>
       
       {/* Mobile responsive SVG rays (abstract design elements) */}

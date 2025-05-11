@@ -223,7 +223,7 @@
     transform: rotate(180deg);
   }
   
-  /* Journey suns styling */
+  /* Journey suns styling - Enhanced for mobile responsiveness */
   .journey-sun {
     position: relative;
     transition: all 0.3s ease;
@@ -258,6 +258,26 @@
     }
   }
   
+  /* Mobile-responsive journey steps */
+  @media (max-width: 768px) {
+    .journey-sun-icon {
+      box-shadow: 0 2px 4px rgba(255, 122, 0, 0.2);
+    }
+    
+    .shine-bigger {
+      animation: shine-mobile 2s infinite;
+    }
+    
+    @keyframes shine-mobile {
+      0%, 100% {
+        box-shadow: 0 0 6px 1px rgba(255, 214, 0, 0.7);
+      }
+      50% {
+        box-shadow: 0 0 12px 3px rgba(255, 122, 0, 0.9);
+      }
+    }
+  }
+
   /* University stamps styling - Updated for logo images */
   .university-stamp {
     background-color: white;
