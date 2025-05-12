@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -6,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Plane, Map, Ticket, Calendar, Compass, Check, ArrowRight, Camera } from 'lucide-react';
-import SunnyMascot from './SunnyMascot';
 
 type QuizStep = 'name' | 'destination' | 'email' | 'holidayType' | 'result';
 
@@ -214,15 +212,28 @@ const TravelQuiz = () => {
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="container px-4 md:px-6 max-w-4xl relative z-10">
-        {/* SunnyMascot moved above the heading */}
+        {/* Updated SunnyMascot with new image */}
         <div className="flex justify-center mb-8">
-          <SunnyMascot 
-            size="md" 
-            withText 
-            message={step === 'result' ? "Wow, perfect match! ✨" : "Let's find your ideal destination! 🌍"} 
-            travelStyle="adventure"
-            className="relative z-20"
-          />
+          <div className="relative">
+            <img 
+              src="/lovable-uploads/32c6b682-f72e-4893-b586-0026cc34060d.png" 
+              alt="Sunny mascot traveler" 
+              className="h-24 md:h-32 w-auto sunny-float"
+            />
+            <div 
+              className="absolute font-handwritten text-sunny-orange text-sm md:text-base leading-tight"
+              style={{
+                zIndex: 30,
+                textAlign: 'center',
+                top: '10px',
+                right: '-110px',
+                maxWidth: '120px',
+                textShadow: '0 1px 2px rgba(255,255,255,0.5)'
+              }}
+            >
+              {step === 'result' ? "Wow, perfect match! ✨" : "Let's find your ideal destination! 🌍"}
+            </div>
+          </div>
         </div>
         
         <div className="text-center mb-10">
