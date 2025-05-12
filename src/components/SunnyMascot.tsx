@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Backpack, Camera, Book, Map, Sparkles } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -87,7 +86,7 @@ const SunnyMascot = ({
           
           {/* Base Sun with new fashion-style avatar - Updated to use the new image */}
           <div className="w-full h-full relative z-0">
-            <img alt="Sunny mascot" className="w-full h-full object-contain" src="/lovable-uploads/1d055f73-005d-497a-8bca-25b4227f88e1.png" />
+            <img alt="Sunny mascot" className="w-full h-full object-contain" src="/lovable-uploads/26445152-6bec-4571-a696-f6672bb5b4b2.png" />
           </div>
           
           {/* Travel style accessories */}
