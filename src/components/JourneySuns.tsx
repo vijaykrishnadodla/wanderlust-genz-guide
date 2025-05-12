@@ -74,6 +74,9 @@ const JourneySuns = () => {
           How Sunshine Club works in 4 simple steps
         </p>
         <Separator className="w-24 mx-auto bg-sunny-yellow-dark/30 h-0.5 mt-4 mb-6" />
+        
+        {/* Added wave divider right under the heading */}
+        <div className="stb-wave-divider stb-wave-divider-bottom mt-4 w-full"></div>
       </div>
       
       {/* Added increased padding-top on mobile to better accommodate the mascot */}

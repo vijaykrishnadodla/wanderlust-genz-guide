@@ -37,10 +37,9 @@ const Index = () => {
           <BenefitsSection />
         </div>
         
-        {/* Sunshine Club section with gradient 1 and wave divider moved here */}
+        {/* Sunshine Club section with gradient 1 - removed wave divider from here since it's now inside JourneySuns component */}
         <div className="relative stb-section-gradient-1">
           <SunshineClub />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
         </div>
         
         {/* Offering section with gradient 2 */}
