@@ -44,6 +44,22 @@ const JourneySuns = () => {
     icon: "sun"
   }];
 
+  // Get appropriate message based on the active step
+  const getMascotMessage = () => {
+    switch(activeStep) {
+      case 0:
+        return "Start your journey! 🎓";
+      case 1:
+        return "Let's plan your trip! 🗺️";
+      case 2:
+        return "Adventure awaits! ✈️";
+      case 3:
+        return "Share your experiences! 👋";
+      default:
+        return "Let's go! ☀️";
+    }
+  };
+
   return (
     <div className="mb-16 max-w-4xl mx-auto py-0 px-4">
       <div className="text-center">
@@ -97,7 +113,7 @@ const JourneySuns = () => {
           ))}
         </div>
         
-        {/* Sunny mascot positioned at the active step - ADJUSTED POSITION */}
+        {/* Sunny mascot positioned at the active step with proper styling and messaging */}
         <div 
           className={`absolute transition-all duration-500 ease-in-out z-20 ${isMobile ? 'w-full flex justify-center' : ''}`}
           style={{
@@ -106,15 +122,26 @@ const JourneySuns = () => {
             transform: isMobile ? 'none' : 'translateX(-50%)'
           }}
         >
-          {/* Use SunnyMascot component with new image prop for the surfing Sunny version */}
-          <img 
-            src="/lovable-uploads/67c190fc-8292-43b8-8383-b083e9313950.png"
-            alt="Sunny mascot"
-            className={`w-auto ${isMobile ? 'h-20' : 'h-24'} object-contain`}
-            style={{
-              filter: "drop-shadow(0 0 5px rgba(255, 255, 255, 0.7))"
-            }}
-          />
+          {/* Use SunnyMascot component with the surfing image and conditional messaging */}
+          <div className="relative">
+            <img 
+              src="/lovable-uploads/67c190fc-8292-43b8-8383-b083e9313950.png"
+              alt="Sunny mascot"
+              className={`w-auto ${isMobile ? 'h-20' : 'h-24'} object-contain`}
+              style={{
+                filter: "drop-shadow(0 0 5px rgba(255, 255, 255, 0.7))"
+              }}
+            />
+            
+            {/* Speech bubble with dynamic message */}
+            <div className={`absolute ${isMobile ? 'top-[-10px] right-[-80px]' : 'top-[-15px] right-[-100px]'} sunny-speech-bubble bg-white px-3 py-2 rounded-xl text-sm max-w-[120px]`}
+                style={{
+                  boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
+                  zIndex: 30
+                }}>
+              {getMascotMessage()}
+            </div>
+          </div>
         </div>
       </div>
       
