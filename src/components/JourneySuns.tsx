@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sun } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Separator } from '@/components/ui/separator';
 
 const JourneySuns = () => {
   // State to track the active step
@@ -61,31 +62,46 @@ const JourneySuns = () => {
   };
 
   return (
-    <div className="mb-16 max-w-4xl mx-auto py-0 px-4">
-      <div className="text-center">
-        <h3 className="text-2xl md:text-3xl font-bold mb-3">YOUR TRAVEL JOURNEY</h3>
-        <p className="text-[#1e1e1e]/70 mb-8 py-0 my-0 mx-0">How Sunshine Club works in 4 simple steps</p>
+    <div className="mb-20 md:mb-24 max-w-4xl mx-auto py-6 px-4 relative overflow-hidden">
+      {/* Enhanced background pattern for more visual interest */}
+      <div className="absolute inset-0 sunny-dot-pattern opacity-10 z-0"></div>
+      
+      <div className="text-center mb-8 relative z-10">
+        <h3 className="sunny-heading text-2xl md:text-3xl font-bold mb-3 tracking-wide">
+          YOUR TRAVEL JOURNEY
+        </h3>
+        <p className="text-[#1e1e1e]/70 mb-2 max-w-md mx-auto">
+          How Sunshine Club works in 4 simple steps
+        </p>
+        <Separator className="w-24 mx-auto bg-sunny-yellow-dark/30 h-0.5 mt-4 mb-6" />
       </div>
       
-      {/* Added padding-top on mobile to accommodate the mascot */}
-      <div className="relative pt-16 md:pt-0">
-        {/* Sun path - the connecting line */}
-        <div className="absolute top-14 left-0 right-0 h-1 bg-gradient-to-r from-[#FFD600] via-[#FF9900] to-[#FF7A00] rounded-full"></div>
+      {/* Added increased padding-top on mobile to better accommodate the mascot */}
+      <div className="relative pt-20 md:pt-4">
+        {/* Sun path - enhanced connecting line with gradient */}
+        <div className="absolute top-14 left-0 right-0 h-1.5 bg-gradient-to-r from-[#FFD600] via-[#FF9900] to-[#FF7A00] rounded-full shadow-sm"></div>
         
-        {/* Journey steps */}
+        {/* Journey steps with improved spacing and interactive elements */}
         <div className="flex justify-between relative">
           {steps.map((step, index) => (
-            <div key={index} className="flex flex-col items-center relative z-10 w-1/4 py-[40px]">
+            <div 
+              key={index} 
+              className={`flex flex-col items-center relative z-10 w-1/4 py-5 transition-all duration-300 ${activeStep === index ? 'transform scale-105' : ''}`}
+            >
               <div 
-                className={`journey-sun h-12 w-12 md:h-16 md:w-16 mb-3 cursor-pointer transition-all duration-300 ${activeStep === index ? 'scale-110' : ''}`} 
+                className={`journey-sun h-12 w-12 md:h-16 md:w-16 mb-4 cursor-pointer transition-all duration-300 hover:scale-110`} 
                 onClick={() => setActiveStep(index)}
               >
-                <div className={`journey-sun-icon h-full w-full ${step.color} ${activeStep === index ? 'shine-bigger' : ''} text-lg font-bold text-white flex items-center justify-center rounded-full`}>
-                  <Sun className={`${isMobile ? 'h-6 w-6' : 'h-8 w-8'} text-white`} />
+                <div 
+                  className={`journey-sun-icon h-full w-full ${step.color} ${activeStep === index ? 'shine-bigger' : ''} 
+                    text-lg font-bold text-white flex items-center justify-center rounded-full
+                    ${activeStep !== index ? 'opacity-80 hover:opacity-100' : ''}`}
+                >
+                  <Sun className={`${isMobile ? 'h-6 w-6' : 'h-8 w-8'} text-white ${activeStep === index ? 'sunny-pulse' : ''}`} />
                   
-                  {/* ISIC logo for the first step only */}
+                  {/* ISIC logo for the first step only with improved positioning */}
                   {index === 0 && (
-                    <div className={`absolute ${isMobile ? '-bottom-6 -right-6 w-14 h-14' : '-bottom-8 -right-8 w-20 h-20'} flex items-center justify-center`}>
+                    <div className={`absolute ${isMobile ? '-bottom-6 -right-6 w-14 h-14' : '-bottom-8 -right-8 w-20 h-20'} flex items-center justify-center sunny-bounce`}>
                       <img 
                         src="/lovable-uploads/6006eeef-3bc0-4c25-ac79-febaff57500f.png" 
                         alt="ISIC Logo" 
@@ -99,13 +115,14 @@ const JourneySuns = () => {
                 </div>
               </div>
               
-              <div className={`text-center transition-opacity duration-300 ${activeStep === index ? 'opacity-100' : 'opacity-50'}`}>
-                <h4 className="font-bold text-base md:text-xl">{step.title}</h4>
-                <p className="text-xs md:text-sm max-w-[90px] md:max-w-[120px] mx-auto">{step.desc}</p>
+              <div className={`text-center transition-all duration-500 ${activeStep === index ? 'opacity-100' : 'opacity-70'}`}>
+                <h4 className="font-bold text-base md:text-xl mb-1">{step.title}</h4>
+                <p className="text-xs md:text-sm max-w-[100px] md:max-w-[140px] mx-auto leading-tight">{step.desc}</p>
               </div>
               
+              {/* Enhanced arrow between steps */}
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute -right-3 top-14 transform -translate-y-1/2 z-0">
+                <div className="hidden md:flex absolute -right-3 top-14 transform -translate-y-1/2 z-0 sunny-pulse" style={{ animationDelay: `${index * 0.5}s` }}>
                   <ArrowRight className="h-6 w-6 text-[#FF7A00]" />
                 </div>
               )}
@@ -113,31 +130,30 @@ const JourneySuns = () => {
           ))}
         </div>
         
-        {/* Sunny mascot positioned at the active step with proper styling and messaging */}
+        {/* Sunny mascot positioned at the active step with sunny-float animation and better positioned speech bubble */}
         <div 
-          className={`absolute transition-all duration-500 ease-in-out z-20 ${isMobile ? 'w-full flex justify-center' : ''}`}
+          className={`absolute transition-all duration-500 ease-in-out z-20 sunny-float ${isMobile ? 'w-full flex justify-center' : ''}`}
           style={{
             left: isMobile ? '0' : `calc(${activeStep * 25}% + 8%)`,
-            top: isMobile ? '-40px' : '-40px',
+            top: isMobile ? '-45px' : '-40px',
             transform: isMobile ? 'none' : 'translateX(-50%)'
           }}
         >
-          {/* Use the new surfing Sunny mascot image with conditional messaging */}
+          {/* Use the surfing Sunny mascot image with better animations */}
           <div className="relative">
             <img 
               src="/lovable-uploads/6f9cda72-0b19-42a8-b4b8-d9dc5ef40816.png"
               alt="Sunny mascot surfing"
-              className={`w-auto ${isMobile ? 'h-20' : 'h-24'} object-contain`}
+              className={`w-auto ${isMobile ? 'h-20' : 'h-24'} object-contain transition-transform hover:scale-105 duration-300`}
               style={{
                 filter: "drop-shadow(0 0 5px rgba(255, 255, 255, 0.7))"
               }}
             />
             
-            {/* Improved speech bubble with adjusted positioning to start from Sunny's hand */}
+            {/* Speech bubble with proper arrow positioning using sunny-speech-bubble-left class */}
             <div 
-              className={`absolute ${isMobile ? 'top-6 right-[-40px]' : 'top-8 right-[-45px]'} 
-                sunny-speech-bubble bg-white px-3 py-1.5 rounded-xl 
-                font-handwritten text-sunny-orange whitespace-nowrap text-sm`}
+              className={`sunny-speech-bubble sunny-speech-bubble-right absolute ${isMobile ? 'top-6 right-[-40px]' : 'top-8 right-[-45px]'} 
+                px-4 py-2 rounded-xl font-handwritten text-sunny-orange whitespace-nowrap text-sm md:text-base`}
               style={{
                 boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
                 zIndex: 30,
@@ -152,7 +168,7 @@ const JourneySuns = () => {
         </div>
       </div>
       
-      {/* Mobile responsive SVG rays (abstract design elements) */}
+      {/* Enhanced SVG rays with better animations */}
       <div className="hidden md:block">
         <svg 
           className="absolute left-0 right-0 top-8 w-full" 
