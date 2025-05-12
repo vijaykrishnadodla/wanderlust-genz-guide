@@ -50,11 +50,11 @@ const JourneySuns = () => {
       case 0:
         return "Start your journey! 🎓";
       case 1:
-        return "Let's plan your trip! 🗺️";
+        return "Let's plan! 🗺️";
       case 2:
         return "Adventure awaits! ✈️";
       case 3:
-        return "Share your experiences! 👋";
+        return "Share experiences! 👋";
       default:
         return "Let's go! ☀️";
     }
@@ -133,12 +133,17 @@ const JourneySuns = () => {
               }}
             />
             
-            {/* Speech bubble with dynamic message */}
-            <div className={`absolute ${isMobile ? 'top-[-10px] right-[-80px]' : 'top-[-15px] right-[-100px]'} sunny-speech-bubble bg-white px-3 py-2 rounded-xl text-sm max-w-[120px]`}
-                style={{
-                  boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
-                  zIndex: 30
-                }}>
+            {/* Cloud-shaped speech bubble with smaller, single-line text */}
+            <div 
+              className={`absolute ${isMobile ? '-top-2 right-[-65px]' : '-top-2 right-[-75px]'} bg-white px-2 py-1 text-xs whitespace-nowrap max-w-[100px] text-center`}
+              style={{
+                borderRadius: '15px 15px 15px 15px',
+                boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
+                zIndex: 30,
+                // Cloud shape with multiple border radius values
+                clipPath: 'polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%)'
+              }}
+            >
               {getMascotMessage()}
             </div>
           </div>
