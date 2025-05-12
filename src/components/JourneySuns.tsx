@@ -130,7 +130,7 @@ const JourneySuns = () => {
           ))}
         </div>
         
-        {/* Sunny mascot positioned at the active step with sunny-float animation and text-only message */}
+        {/* Sunny mascot positioned at the active step with sunny-float animation and text positioned near hand */}
         <div 
           className={`absolute transition-all duration-500 ease-in-out z-20 sunny-float ${isMobile ? 'w-full flex justify-center' : ''}`}
           style={{
@@ -150,15 +150,17 @@ const JourneySuns = () => {
               }}
             />
             
-            {/* Text-only message positioned between icons, moved 2cm to the right */}
+            {/* Text-only message positioned next to Sunny's hand, with wrapping support */}
             <div 
-              className="absolute font-handwritten text-sunny-orange whitespace-nowrap text-sm md:text-base"
+              className="absolute font-handwritten text-sunny-orange text-sm md:text-base leading-tight"
               style={{
                 zIndex: 30,
                 textAlign: 'center',
-                // Text positioned to fit between journey icons, moved further right
-                top: isMobile ? '22px' : '26px',
-                right: isMobile ? '-155px' : '-175px',
+                // Text positioned next to Sunny's hand (1.5cm to the left)
+                top: isMobile ? '20px' : '22px',
+                right: isMobile ? '-100px' : '-120px',
+                maxWidth: isMobile ? '80px' : '100px',
+                textShadow: '0 1px 2px rgba(255,255,255,0.5)'
               }}
             >
               {getMascotMessage()}
