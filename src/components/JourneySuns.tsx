@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sun } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
@@ -133,9 +132,9 @@ const JourneySuns = () => {
               }}
             />
             
-            {/* Improved speech bubble with better styling */}
+            {/* Improved speech bubble with better styling and repositioned lower */}
             <div 
-              className={`absolute ${isMobile ? '-top-3 right-[-80px]' : '-top-3 right-[-90px]'} 
+              className={`absolute ${isMobile ? 'top-6 right-[-80px]' : 'top-8 right-[-90px]'} 
                 sunny-speech-bubble bg-white px-3 py-1.5 rounded-xl 
                 font-handwritten text-sunny-orange whitespace-nowrap text-sm`}
               style={{
