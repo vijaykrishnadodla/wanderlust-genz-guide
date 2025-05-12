@@ -118,15 +118,15 @@ const JourneySuns = () => {
           className={`absolute transition-all duration-500 ease-in-out z-20 ${isMobile ? 'w-full flex justify-center' : ''}`}
           style={{
             left: isMobile ? '0' : `calc(${activeStep * 25}% + 8%)`,
-            top: isMobile ? '-40px' : '-40px', // Adjusted for mobile to be higher up
+            top: isMobile ? '-40px' : '-40px',
             transform: isMobile ? 'none' : 'translateX(-50%)'
           }}
         >
-          {/* Use SunnyMascot component with the surfing image and conditional messaging */}
+          {/* Use the new surfing Sunny mascot image with conditional messaging */}
           <div className="relative">
             <img 
-              src="/lovable-uploads/67c190fc-8292-43b8-8383-b083e9313950.png"
-              alt="Sunny mascot"
+              src="/lovable-uploads/6f9cda72-0b19-42a8-b4b8-d9dc5ef40816.png"
+              alt="Sunny mascot surfing"
               className={`w-auto ${isMobile ? 'h-20' : 'h-24'} object-contain`}
               style={{
                 filter: "drop-shadow(0 0 5px rgba(255, 255, 255, 0.7))"
