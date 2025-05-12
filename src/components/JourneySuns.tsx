@@ -150,16 +150,16 @@ const JourneySuns = () => {
               }}
             />
             
-            {/* Text-only message positioned next to Sunny's hand, with wrapping support */}
+            {/* Text-only message positioned right next to Sunny's hand, with improved wrapping support */}
             <div 
               className="absolute font-handwritten text-sunny-orange text-sm md:text-base leading-tight"
               style={{
                 zIndex: 30,
                 textAlign: 'center',
-                // Text positioned next to Sunny's hand (1.5cm to the left)
-                top: isMobile ? '20px' : '22px',
-                right: isMobile ? '-100px' : '-120px',
-                maxWidth: isMobile ? '80px' : '100px',
+                // Further optimized positioning to be right next to Sunny's hand
+                top: isMobile ? '15px' : '18px',
+                right: isMobile ? '-90px' : '-105px',
+                maxWidth: isMobile ? '80px' : '90px',
                 textShadow: '0 1px 2px rgba(255,255,255,0.5)'
               }}
             >

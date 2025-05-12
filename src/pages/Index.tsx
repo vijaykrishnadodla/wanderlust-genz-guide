@@ -37,7 +37,7 @@ const Index = () => {
           <BenefitsSection />
         </div>
         
-        {/* Sunshine Club section with gradient 1 */}
+        {/* Sunshine Club section with gradient 1 and wave divider moved here */}
         <div className="relative stb-section-gradient-1">
           <SunshineClub />
           <div className="stb-wave-divider stb-wave-divider-bottom"></div>
@@ -63,15 +63,15 @@ const Index = () => {
           <BackStory />
         </div>
         
-        {/* HowStarted section with gradient 1 */}
+        {/* HowStarted section with gradient 1 - removed wave divider from here */}
         <div className="relative stb-section-gradient-1">
           <HowStarted />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
         </div>
         
         {/* Ambassador section with gradient 2 */}
         <div className="relative stb-section-gradient-2">
           <Ambassador />
+          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
         </div>
         
         {/* SignUp section with gradient 1 */}
