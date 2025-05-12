@@ -51,7 +51,8 @@ const JourneySuns = () => {
         <p className="text-[#1e1e1e]/70 mb-8 py-0 my-0 mx-0">How Sunshine Club works in 4 simple steps</p>
       </div>
       
-      <div className="relative">
+      {/* Added padding-top on mobile to accommodate the mascot */}
+      <div className="relative pt-16 md:pt-0">
         {/* Sun path - the connecting line */}
         <div className="absolute top-14 left-0 right-0 h-1 bg-gradient-to-r from-[#FFD600] via-[#FF9900] to-[#FF7A00] rounded-full"></div>
         
@@ -96,19 +97,23 @@ const JourneySuns = () => {
           ))}
         </div>
         
-        {/* Sunny mascot positioned at the active step - RESTORED TO ORIGINAL POSITION */}
+        {/* Sunny mascot positioned at the active step - ADJUSTED POSITION */}
         <div 
           className={`absolute transition-all duration-500 ease-in-out z-20 ${isMobile ? 'w-full flex justify-center' : ''}`}
           style={{
             left: isMobile ? '0' : `calc(${activeStep * 25}% + 8%)`,
-            top: isMobile ? '-70px' : '-40px',
+            top: isMobile ? '-40px' : '-40px', // Adjusted for mobile to be higher up
             transform: isMobile ? 'none' : 'translateX(-50%)'
           }}
         >
-          <SunnyMascot 
-            size="sm" 
-            withText 
-            message={activeStep === 3 ? "You made it! 🎉" : "Let's go! ☀️"} 
+          {/* Use SunnyMascot component with new image prop for the surfing Sunny version */}
+          <img 
+            src="/lovable-uploads/67c190fc-8292-43b8-8383-b083e9313950.png"
+            alt="Sunny mascot"
+            className={`w-auto ${isMobile ? 'h-20' : 'h-24'} object-contain`}
+            style={{
+              filter: "drop-shadow(0 0 5px rgba(255, 255, 255, 0.7))"
+            }}
           />
         </div>
       </div>
