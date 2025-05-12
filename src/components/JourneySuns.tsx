@@ -48,13 +48,13 @@ const JourneySuns = () => {
   const getMascotMessage = () => {
     switch(activeStep) {
       case 0:
-        return "Start your journey! 🎓";
+        return "Start your journey 🎓";
       case 1:
-        return "Let's plan! 🗺️";
+        return "Let's plan 🗺️";
       case 2:
-        return "Adventure awaits! ✈️";
+        return "Adventure awaits ✈️";
       case 3:
-        return "Share experiences! 👋";
+        return "Share your experiences 👋";
       default:
         return "Let's go! ☀️";
     }
@@ -133,15 +133,17 @@ const JourneySuns = () => {
               }}
             />
             
-            {/* Cloud-shaped speech bubble with smaller, single-line text */}
+            {/* Improved speech bubble with better styling */}
             <div 
-              className={`absolute ${isMobile ? '-top-2 right-[-65px]' : '-top-2 right-[-75px]'} bg-white px-2 py-1 text-xs whitespace-nowrap max-w-[100px] text-center`}
+              className={`absolute ${isMobile ? '-top-3 right-[-80px]' : '-top-3 right-[-90px]'} 
+                sunny-speech-bubble bg-white px-3 py-1.5 rounded-xl 
+                font-handwritten text-sunny-orange whitespace-nowrap text-sm`}
               style={{
-                borderRadius: '15px 15px 15px 15px',
                 boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
                 zIndex: 30,
-                // Cloud shape with multiple border radius values
-                clipPath: 'polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%)'
+                minWidth: '140px',
+                maxWidth: '200px',
+                textAlign: 'center'
               }}
             >
               {getMascotMessage()}
