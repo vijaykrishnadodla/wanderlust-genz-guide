@@ -19,6 +19,7 @@ const StarDust = ({
       <Sparkles className="h-4 w-4 text-yellow-300 animate-pulse-gentle" />
     </div>;
 };
+
 const SunshineClub = () => {
   const isMobile = useIsMobile();
 
@@ -43,6 +44,7 @@ const SunshineClub = () => {
     highlight: true,
     spotsLeft: "24"
   };
+  
   const featureLabels = {
     newsletter: "Curated Newsletter",
     travelRules: "10 Top Secret Non-Negotiable Student Travel Rules",
@@ -137,6 +139,7 @@ const SunshineClub = () => {
 
   // Keep the full list of universities for the counter
   const universities = ["Harvard", "Oxford", "MIT", "Stanford", "Yale", "Princeton", "Columbia", "Cambridge", "Berkeley", "Chicago", "UPenn", "Caltech", "Cornell", "Toronto", "NUS", "NTU", "HKUST", "Sydney", "Tsinghua", "UCLA", "NYU", "Duke", "Imperial", "ETH Zurich", "McGill", "ANU", "Tokyo", "Seoul", "Singapore"];
+  
   return <section id="sunshine-club" className="py-16 relative">
       <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
         {/* Modern Header with sparkly effects */}
@@ -379,9 +382,19 @@ const SunshineClub = () => {
           </div>
         </div>
 
-        {/* CTA Section - Centered button */}
+        {/* CTA Section - Centered button with added sunshine image */}
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to join the club?</h2>
+          
+          {/* Add the sunshine journey image */}
+          <div className="flex flex-col items-center mb-6">
+            <img 
+              src="/lovable-uploads/46b36319-cde5-4a49-8ded-42ee3372fe14.png" 
+              alt="Sunshine journey: you already have what it takes → soul full of sunshine → shine on" 
+              className="max-w-full md:max-w-2xl mx-auto h-auto mb-6"
+            />
+          </div>
+          
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
             Start your adventure with fellow students who love to travel smarter, not harder.
           </p>
@@ -396,4 +409,5 @@ const SunshineClub = () => {
       </div>
     </section>;
 };
+
 export default SunshineClub;
