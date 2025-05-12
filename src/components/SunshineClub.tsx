@@ -56,64 +56,83 @@ const SunshineClub = () => {
     localEvents: "Local Events"
   };
 
-  // University logos and names mapping - updated with all the provided logos
+  // University logos and names mapping - updated with website URLs
   const universityLogos = [{
     name: "Harvard",
-    logo: "/lovable-uploads/c856622f-59f3-4cd0-baa8-09350023937b.png"
+    logo: "/lovable-uploads/c856622f-59f3-4cd0-baa8-09350023937b.png",
+    website: "https://www.harvard.edu"
   }, {
     name: "Oxford",
-    logo: "/lovable-uploads/d28c8881-1159-4531-b72a-ceb919332f52.png"
+    logo: "/lovable-uploads/d28c8881-1159-4531-b72a-ceb919332f52.png",
+    website: "https://www.ox.ac.uk"
   }, {
     name: "ETH Zurich",
-    logo: "/lovable-uploads/bcb9c431-76ba-47f7-906e-c88f2aaf1d88.png"
+    logo: "/lovable-uploads/bcb9c431-76ba-47f7-906e-c88f2aaf1d88.png",
+    website: "https://ethz.ch/en.html"
   }, {
     name: "Stanford",
-    logo: "/lovable-uploads/832dd1b4-4324-40a9-9c84-0a823be50f5a.png"
+    logo: "/lovable-uploads/832dd1b4-4324-40a9-9c84-0a823be50f5a.png",
+    website: "https://www.stanford.edu"
   }, {
     name: "Yale",
-    logo: "/lovable-uploads/d3f54b62-f843-4732-8aae-27f9e7d51dda.png"
+    logo: "/lovable-uploads/d3f54b62-f843-4732-8aae-27f9e7d51dda.png",
+    website: "https://www.yale.edu"
   }, {
     name: "Princeton",
-    logo: "/lovable-uploads/c8ee8c54-1ae7-490f-bbb8-75978c486431.png"
+    logo: "/lovable-uploads/c8ee8c54-1ae7-490f-bbb8-75978c486431.png",
+    website: "https://www.princeton.edu"
   }, {
     name: "Columbia",
-    logo: "/lovable-uploads/544e57e6-94ce-4b89-b52a-9d1dabf9b0ea.png"
+    logo: "/lovable-uploads/544e57e6-94ce-4b89-b52a-9d1dabf9b0ea.png",
+    website: "https://www.columbia.edu"
   }, {
     name: "Cambridge",
-    logo: "/lovable-uploads/6fdda045-a019-489d-87a3-d823664a0cbf.png"
+    logo: "/lovable-uploads/6fdda045-a019-489d-87a3-d823664a0cbf.png",
+    website: "https://www.cam.ac.uk"
   }, {
     name: "Berkeley",
-    logo: "/lovable-uploads/b66cce02-8ef6-42d3-8be3-fb538945490c.png"
+    logo: "/lovable-uploads/b66cce02-8ef6-42d3-8be3-fb538945490c.png",
+    website: "https://www.berkeley.edu"
   }, {
     name: "Chicago",
-    logo: "/lovable-uploads/5a230154-15a8-46a9-97f3-3d89677f6a3d.png"
+    logo: "/lovable-uploads/5a230154-15a8-46a9-97f3-3d89677f6a3d.png",
+    website: "https://www.uchicago.edu"
   }, {
     name: "UPenn",
-    logo: "/lovable-uploads/698b81da-180a-47a2-b935-1dd063b0a8dc.png"
+    logo: "/lovable-uploads/698b81da-180a-47a2-b935-1dd063b0a8dc.png",
+    website: "https://www.upenn.edu"
   }, {
     name: "Caltech",
-    logo: "/lovable-uploads/2b49a586-03d5-49ba-855f-dd59e013ea82.png"
+    logo: "/lovable-uploads/2b49a586-03d5-49ba-855f-dd59e013ea82.png",
+    website: "https://www.caltech.edu"
   }, {
     name: "Cornell",
-    logo: "/lovable-uploads/5c2d377d-29d1-42e0-bd60-bd389a75fe7d.png"
+    logo: "/lovable-uploads/5c2d377d-29d1-42e0-bd60-bd389a75fe7d.png",
+    website: "https://www.cornell.edu"
   }, {
     name: "Toronto",
-    logo: "/lovable-uploads/e60195a2-9edf-437e-b71d-99fed66fa308.png"
+    logo: "/lovable-uploads/e60195a2-9edf-437e-b71d-99fed66fa308.png",
+    website: "https://www.utoronto.ca"
   }, {
     name: "NUS",
-    logo: "/lovable-uploads/67c190fc-8292-43b8-8383-b083e9313950.png"
+    logo: "/lovable-uploads/67c190fc-8292-43b8-8383-b083e9313950.png",
+    website: "https://nus.edu.sg"
   }, {
     name: "NTU",
-    logo: "/lovable-uploads/2fd47381-217e-4a1d-b706-a5c716bf326c.png"
+    logo: "/lovable-uploads/2fd47381-217e-4a1d-b706-a5c716bf326c.png",
+    website: "https://www.ntu.edu.sg"
   }, {
     name: "HKUST",
-    logo: "/lovable-uploads/32931c6d-d22e-4947-8eb7-556c36bbdf1f.png"
+    logo: "/lovable-uploads/32931c6d-d22e-4947-8eb7-556c36bbdf1f.png",
+    website: "https://hkust.edu.hk"
   }, {
     name: "Sydney",
-    logo: "/lovable-uploads/befd5591-b9fd-40f1-b35e-1a1af3ef3ef3.png"
+    logo: "/lovable-uploads/befd5591-b9fd-40f1-b35e-1a1af3ef3ef3.png",
+    website: "https://www.sydney.edu.au"
   }, {
     name: "Tsinghua",
-    logo: "/lovable-uploads/6ea74ff7-ba75-4e2b-981f-bb9f813af6ed.png"
+    logo: "/lovable-uploads/6ea74ff7-ba75-4e2b-981f-bb9f813af6ed.png",
+    website: "https://www.tsinghua.edu.cn/en/"
   }];
 
   // Keep the full list of universities for the counter
@@ -303,9 +322,19 @@ const SunshineClub = () => {
           </div>
           
           <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-4 justify-center items-center">
-            {universityLogos.slice(0, 18).map((uni, index) => <div key={index} className="university-stamp mx-auto">
-                <img src={uni.logo} alt={`${uni.name} University`} className="w-full h-full object-contain p-1" />
-              </div>)}
+            {universityLogos.slice(0, 18).map((uni, index) => (
+              <div key={index} className="university-stamp mx-auto">
+                <a 
+                  href={uni.website} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="block hover:opacity-80 transition-opacity"
+                  aria-label={`Visit ${uni.name} University website`}
+                >
+                  <img src={uni.logo} alt={`${uni.name} University`} className="w-full h-full object-contain p-1" />
+                </a>
+              </div>
+            ))}
           </div>
         </div>
 
