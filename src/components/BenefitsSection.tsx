@@ -44,9 +44,7 @@ const BenefitsSection = () => {
               <TrendingUp className="h-8 w-8 text-white" />
             </div>
             <h3 className="text-xl font-bold mb-2">Save Money</h3>
-            <p className="text-gray-600">
-              Our members save an average of $200 per trip with our exclusive student deals
-            </p>
+            <p className="text-gray-600">Our members can save an average of $200/week when travelling with our exclusive student deals</p>
           </div>
           
           {/* Benefit Card 3 */}

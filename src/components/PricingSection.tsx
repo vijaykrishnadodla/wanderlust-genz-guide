@@ -1,10 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-
 const PricingSection = () => {
   // State for the countdown timer
   const [timeLeft, setTimeLeft] = useState({
@@ -48,9 +46,7 @@ const PricingSection = () => {
     }, 1000);
     return () => clearInterval(timer);
   }, []);
-
-  return (
-    <section id="pricing-section" className="py-16 relative">
+  return <section id="pricing-section" className="py-16 relative">
       <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
         {/* Modern Header */}
         <div className="text-center mb-16">
@@ -99,14 +95,7 @@ const PricingSection = () => {
           </div>
         </div>
 
-        <div className="text-center mb-8">
-          <p className="text-gray-600 mb-4">
-            Want to see all membership options?
-          </p>
-          <Link to="/templates" className="text-[#FF7A00] font-bold hover:underline">
-            View all membership options
-          </Link>
-        </div>
+        
 
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to join the club?</h2>
@@ -122,8 +111,6 @@ const PricingSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default PricingSection;

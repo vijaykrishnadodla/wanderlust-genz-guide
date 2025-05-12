@@ -84,7 +84,7 @@ const HowStarted = () => {
                   <span className="rotate-[0deg] text-lg">🇦🇺</span>
                 </div>
                 
-                <img src="/lovable-uploads/6babe884-a973-49d2-9125-fad3e4a98f6e.jpg" alt="Sunny the Travel Buddy" className="w-40 h-40 object-contain retro-filter" />
+                <img alt="Sunny the Travel Buddy" className="w-40 h-40 object-contain retro-filter" src="/lovable-uploads/ec5dc35d-a34d-468f-9a22-136a51a82060.png" />
                 <p className="text-center font-handwritten mt-1">Sunny was born!</p>
               </div>
             </div>

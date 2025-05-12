@@ -234,11 +234,7 @@ const SunshineClub = () => {
             </Card>
           </div>
           
-          <div className="text-center mb-4">
-            <Link to="/templates" className="text-[#FF7A00] font-bold hover:underline">
-              View all membership options and comparison →
-            </Link>
-          </div>
+          
         </div>
 
         {/* Membership comparison table removed, now appears in Templates.tsx */}
@@ -322,19 +318,11 @@ const SunshineClub = () => {
           </div>
           
           <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-4 justify-center items-center">
-            {universityLogos.slice(0, 18).map((uni, index) => (
-              <div key={index} className="university-stamp mx-auto">
-                <a 
-                  href={uni.website} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="block hover:opacity-80 transition-opacity"
-                  aria-label={`Visit ${uni.name} University website`}
-                >
+            {universityLogos.slice(0, 18).map((uni, index) => <div key={index} className="university-stamp mx-auto">
+                <a href={uni.website} target="_blank" rel="noopener noreferrer" className="block hover:opacity-80 transition-opacity" aria-label={`Visit ${uni.name} University website`}>
                   <img src={uni.logo} alt={`${uni.name} University`} className="w-full h-full object-contain p-1" />
                 </a>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
 
