@@ -47,6 +47,24 @@ const WhatsInsideSection = () => {
     }
   ];
   
+  const partnerLogos = [
+    {
+      name: "ISIC Logo",
+      imageSrc: "/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png",
+      website: "https://www.isic.org/"
+    },
+    {
+      name: "UNESCO Logo",
+      imageSrc: "/lovable-uploads/43eabef1-8bb9-46f7-b153-0a0c02087110.png",
+      website: "https://www.unesco.org/"
+    },
+    {
+      name: "University Partners",
+      imageSrc: "/lovable-uploads/6d788043-5bb0-4bd1-aee1-41c5cedd3162.png",
+      website: "https://www.studentclearinghouse.org/"
+    }
+  ];
+  
   return (
     <section className="py-16 bg-white relative">
       {/* Film grain texture overlay */}
@@ -86,9 +104,21 @@ const WhatsInsideSection = () => {
           </div>
           
           <div className="mt-12 flex justify-center items-center gap-8 flex-wrap">
-            <img src="/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png" alt="ISIC Logo" className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity" />
-            <img src="/lovable-uploads/43eabef1-8bb9-46f7-b153-0a0c02087110.png" alt="UNESCO Logo" className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity" />
-            <img src="/lovable-uploads/6d788043-5bb0-4bd1-aee1-41c5cedd3162.png" alt="University Partners" className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity" />
+            {partnerLogos.map((partner, index) => (
+              <a 
+                key={index} 
+                href={partner.website} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="transition-opacity"
+              >
+                <img 
+                  src={partner.imageSrc} 
+                  alt={partner.name} 
+                  className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity" 
+                />
+              </a>
+            ))}
           </div>
         </div>
       </div>
