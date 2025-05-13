@@ -1,9 +1,11 @@
+
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
 import { Check, CheckCircle, Timer, UserRound, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SunnyMascot from './SunnyMascot';
+
 const Offering = () => {
   const plans = [{
     name: "FullTimer",
@@ -58,6 +60,7 @@ const Offering = () => {
       localEvents: false
     }
   }];
+  
   const featureLabels = {
     newsletter: "Curated Newsletter",
     travelRules: "10 Top Secret Non-Negotiable Student Travel Rules",
@@ -70,11 +73,15 @@ const Offering = () => {
     community: "Local Student Community Groups",
     localEvents: "Local Events"
   };
-  return <section id="offering" className="py-16 bg-gradient-to-t from-[#ffeea6]/30 to-white relative">
+  
+  return <section id="offering" className="py-16 relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
-      
+      <div className="inner">
+        {/* Content goes here */}
+      </div>
     </section>;
 };
+
 export default Offering;

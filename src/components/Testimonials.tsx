@@ -61,7 +61,7 @@ const Testimonials = () => {
       <div className="absolute inset-0 bg-sunny-soft z-0"></div>
       <div className="absolute top-0 left-0 w-full h-full sunny-dot-pattern opacity-20 z-0"></div>
       
-      <div className="container px-4 md:px-6 relative z-10">
+      <div className="inner relative z-10">
         <div className="text-center mb-12">
           <div className="inline-block stb-blob bg-white p-4 shadow-sm transform -rotate-2 mb-2">
             <h2 className="text-3xl md:text-4xl font-display text-sunny-orange m-0">REAL STUDENTS. REAL DISCOUNTS.</h2>

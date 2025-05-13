@@ -17,7 +17,7 @@ import BenefitsSection from '@/components/BenefitsSection';
 import WaveDivider from '@/components/WaveDivider';
 
 const Index = () => {
-  return <div className="stb-page-container min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight">
+  return <div className="min-h-screen">
       <Navbar />
 
       <div className="relative">
