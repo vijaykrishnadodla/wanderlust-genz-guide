@@ -7,7 +7,7 @@ import SunnyMascot from './SunnyMascot';
 
 const Footer = () => {
   return (
-    <footer className="bg-sunny-gradient text-white py-12 relative overflow-hidden">
+    <footer className="relative overflow-hidden py-12">
       {/* Grain texture overlay */}
       <div className="absolute inset-0 bg-film-grain opacity-20 mix-blend-overlay"></div>
       
@@ -88,7 +88,7 @@ const Footer = () => {
                 placeholder="Your email" 
                 className="bg-white/20 border-0 focus-visible:ring-2 focus-visible:ring-white text-white placeholder:text-white/60 rounded-xl backdrop-blur-sm" 
               />
-              <Button className="bg-white hover:bg-sunny-yellow-light text-sunny-orange font-bold rounded-xl flex items-center gap-2 group">
+              <Button className="hover:bg-sunny-yellow-light text-sunny-orange font-bold rounded-xl flex items-center gap-2 group">
                 Join Now
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>

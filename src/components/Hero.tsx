@@ -9,10 +9,9 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const Hero = () => {
   const isMobile = useIsMobile();
   return <section className="relative pt-24 pb-16 md:pt-28 md:pb-24 overflow-hidden">
-      {/* Sunny background gradients */}
-      <div className="absolute inset-0 bg-sunny-soft z-0"></div>
-      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-sunny-yellow-light/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/4 z-0"></div>
-      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-sunny-orange-light/20 rounded-full blur-3xl translate-x-1/4 translate-y-1/4 z-0"></div>
+      {/* Decorative background elements */}
+      <div className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/4 z-0"></div>
+      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 rounded-full blur-3xl translate-x-1/4 translate-y-1/4 z-0"></div>
       
       <div className="container px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -81,13 +80,13 @@ const Hero = () => {
           <div className="relative flex flex-col items-center justify-center">
             {/* Top caption text - "You pack the snacks, I'll plan the vibe" */}
             <div className="mb-4 transform -rotate-3 z-10">
-              <p className="font-handwritten text-lg text-sunny-orange text-center bg-white px-4 py-2 rounded shadow-sm">
+              <p className="font-handwritten text-lg text-sunny-orange text-center bg-white/80 px-4 py-2 rounded shadow-sm">
                 "You pack the snacks, I'll plan the vibe" ☀️
               </p>
             </div>
             
             {/* Sunny character in smaller white frame */}
-            <div className="bg-white p-3 md:p-4 rounded-md shadow-lg transform rotate-2 mb-4">
+            <div className="bg-white/80 p-3 md:p-4 rounded-md shadow-lg transform rotate-2 mb-4">
               <div className="relative">
                 <div className="flex justify-center" style={{
                   width: isMobile ? '280px' : '320px',
@@ -114,7 +113,7 @@ const Hero = () => {
         
         {/* Bottom decorative elements */}
         <div className="mt-4 flex justify-center">
-          <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm">
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full shadow-sm">
             <Sun className="h-5 w-5 text-sunny-yellow-dark sunny-spin" />
             <span className="font-medium text-sunny-orange-dark">Start your sunny adventure today!</span>
           </div>

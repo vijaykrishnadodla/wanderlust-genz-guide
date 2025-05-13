@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Star, TrendingUp, Award } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 const BenefitsSection = () => {
   const isMobile = useIsMobile();
   return <section className="py-16 relative">
@@ -28,7 +30,7 @@ const BenefitsSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Benefit Card 1 */}
-          <div className="bg-white rounded-xl p-6 shadow-md border-2 border-[#FFD600]/30 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+          <div className="rounded-xl p-6 shadow-md border-2 border-[#FFD600]/30 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
             <div className="mx-auto bg-gradient-to-br from-[#FFD600] to-[#F97316] w-16 h-16 rounded-full flex items-center justify-center mb-4 shadow-md">
               <Star className="h-8 w-8 text-white" />
             </div>
@@ -39,7 +41,7 @@ const BenefitsSection = () => {
           </div>
           
           {/* Benefit Card 2 */}
-          <div className="bg-white rounded-xl p-6 shadow-md border-2 border-[#FFD600]/30 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+          <div className="rounded-xl p-6 shadow-md border-2 border-[#FFD600]/30 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
             <div className="mx-auto bg-gradient-to-br from-[#FFD600] to-[#F97316] w-16 h-16 rounded-full flex items-center justify-center mb-4 shadow-md">
               <TrendingUp className="h-8 w-8 text-white" />
             </div>
@@ -48,7 +50,7 @@ const BenefitsSection = () => {
           </div>
           
           {/* Benefit Card 3 */}
-          <div className="bg-white rounded-xl p-6 shadow-md border-2 border-[#FFD600]/30 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+          <div className="rounded-xl p-6 shadow-md border-2 border-[#FFD600]/30 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
             <div className="mx-auto bg-gradient-to-br from-[#FFD600] to-[#F97316] w-16 h-16 rounded-full flex items-center justify-center mb-4 shadow-md">
               <Award className="h-8 w-8 text-white" />
             </div>
