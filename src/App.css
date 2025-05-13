@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -46,7 +47,25 @@
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  @apply min-h-screen bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-fixed bg-grain text-midnight;
+  background: radial-gradient(ellipse at center, #FFD447 0%, #FFEFE2 70%, white 100%);
+  background-attachment: fixed;
+  position: relative;
+  color: #1A1A2E;
+}
+
+/* Add grain background as a pseudo-element to avoid the Tailwind error */
+.stb-page-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFZSURBVGhD7ZpBDoMgEEXB+5+gcW+MP3HlwoXxBs0YiKGtQiswMG/ztiYK/GegtA3DYK3N8zzP27YdXtd1Da/neY6dgk+t3qe2IGqt4XfrvDvZkYhKfVFhOSITDZblgCRij8AyHIhCqnOwrAakEslgGQOUkZgZGJjIGAsQQq2zBWMGbTCmMEZiKv5z7TdKYh5xH0ooe26QxH3KmEcJzKOsRnUMJTCappEUSigRg4lsSClMJUTsRSlMZUT+Q0nMowTmNRJTCfGvOlCVzzkRe6uAqZzITyiJqayIQynMoyzm9fuf6ggzEfGKJTAxEYAxEROYqIh4xRKYyIjAjMBERQTGd0xMBOY7JioC4zsmKgLjOyYuAuMzJioCUx8zz/Npn1c0EYGpj9n3/bTPK5pIM9JGmpE20ow0I22kGWlG2kgz0oy0kWakjbSRZuTDiDsrdDoIdhxH+7it0/kB6BqKkOCCHGAAAAAASUVORK5CYII=");
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .stb-gradient-bg {
