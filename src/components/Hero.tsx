@@ -78,41 +78,42 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="relative h-[350px] md:h-[450px] flex items-center justify-center">
-            {/* Central Sunny character - Updated with more compact Polaroid style frame */}
-            <div className="absolute inset-0 flex items-center justify-center z-20">
-              <div className="bg-white p-3 md:p-4 rounded-md shadow-lg transform rotate-2 w-[300px] md:w-[400px]">
-                {/* Polaroid content - Sunny mascot with new fashion style */}
-                <div className="relative mb-10">
-                  <div className="flex justify-center" style={{
-                  width: isMobile ? '360px' : '420px',
-                  height: isMobile ? '360px' : '420px'
+          <div className="relative flex flex-col items-center justify-center">
+            {/* Top caption text - "You pack the snacks, I'll plan the vibe" */}
+            <div className="mb-4 transform -rotate-3 z-10">
+              <p className="font-handwritten text-lg text-sunny-orange text-center bg-white px-4 py-2 rounded shadow-sm">
+                "You pack the snacks, I'll plan the vibe" ☀️
+              </p>
+            </div>
+            
+            {/* Sunny character in smaller white frame */}
+            <div className="bg-white p-3 md:p-4 rounded-md shadow-lg transform rotate-2 mb-4">
+              <div className="relative">
+                <div className="flex justify-center" style={{
+                  width: isMobile ? '280px' : '320px',
+                  height: isMobile ? '280px' : '320px'
                 }}>
-                    <SunnyMascot size="xl" travelStyle="fashion" className="sunny-bounce" />
-                  </div>
-                  
-                  {/* Handwritten caption */}
-                  <p className="absolute bottom-[-30px] left-0 right-0 text-center font-handwritten text-xl text-gray-800">meet SUNNY your new travel BESTIE!</p>
-                </div>
-                
-                {/* Caption text above Polaroid */}
-                <div className="absolute -top-12 -left-4 -right-4 transform -rotate-3">
-                  <p className="font-handwritten text-lg text-sunny-orange text-center bg-white px-4 py-2 rounded shadow-sm">
-                    "You pack the snacks, I'll plan the vibe" ☀️
-                  </p>
+                  <SunnyMascot size="xl" travelStyle="fashion" className="sunny-bounce" />
                 </div>
               </div>
             </div>
             
-            {/* Mini signup form for immediate engagement */}
-            <div className="absolute bottom-2 inset-x-0 z-30 px-4">
-              <MiniSignUpForm />
+            {/* "Meet Sunny" caption below the frame */}
+            <div className="mb-6 text-center">
+              <p className="font-handwritten text-xl text-gray-800">
+                meet SUNNY your new travel BESTIE!
+              </p>
             </div>
           </div>
         </div>
         
+        {/* Mini signup form moved below the grid */}
+        <div className="mt-8 mb-8">
+          <MiniSignUpForm />
+        </div>
+        
         {/* Bottom decorative elements */}
-        <div className="mt-8 flex justify-center">
+        <div className="mt-4 flex justify-center">
           <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm">
             <Sun className="h-5 w-5 text-sunny-yellow-dark sunny-spin" />
             <span className="font-medium text-sunny-orange-dark">Start your sunny adventure today!</span>
