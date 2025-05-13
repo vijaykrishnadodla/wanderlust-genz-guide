@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
@@ -70,7 +69,7 @@ const TravelQuiz = () => {
                     <div className="p-1">
                       <div className="bg-[#FDE1D3]/60 p-4 rounded-lg text-center h-full flex flex-col items-center justify-center">
                         <div className="mb-4">
-                          <SunnyMascot size="md" travelStyle="cultural" />
+                          <SunnyMascot size="md" travelStyle="culture" />
                         </div>
                         <h4 className="font-bold text-lg mb-2">Culture Explorer</h4>
                         <p className="text-sm">You're all about museums, history, and local traditions!</p>
@@ -81,7 +80,7 @@ const TravelQuiz = () => {
                     <div className="p-1">
                       <div className="bg-[#FEF7CD]/60 p-4 rounded-lg text-center h-full flex flex-col items-center justify-center">
                         <div className="mb-4">
-                          <SunnyMascot size="md" travelStyle="educational" />
+                          <SunnyMascot size="md" travelStyle="foodie" />
                         </div>
                         <h4 className="font-bold text-lg mb-2">Food Enthusiast</h4>
                         <p className="text-sm">Your trips revolve around culinary discoveries and local flavors!</p>
