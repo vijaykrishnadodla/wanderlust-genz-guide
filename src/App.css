@@ -1,4 +1,3 @@
-
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -47,8 +46,6 @@
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  background: radial-gradient(ellipse at center, #FFD447 0%, #FFEFE2 70%, white 100%);
-  background-attachment: fixed;
   position: relative;
   color: #1A1A2E;
 }

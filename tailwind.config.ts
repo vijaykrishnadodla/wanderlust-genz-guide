@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -8,6 +9,7 @@ export default {
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
 	],
+	safelist: [/bg-radialSunny/, /bg-grain/, /from-\[#FFD447\]/, /via-\[#FFEFE2\]/],
 	prefix: "",
 	theme: {
 		container: {
