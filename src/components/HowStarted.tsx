@@ -1,12 +1,16 @@
+
 import React, { useState } from 'react';
 import { Clock } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
+
 const HowStarted = () => {
   const [bubbleText, setBubbleText] = useState("Created in cooperation with ISIC — the only globally recognized student ID, trusted by over 120 million students worldwide throughout their studies.");
+  
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBubbleText(e.target.value);
   };
-  return <section id="how-started" className="py-16 bg-white relative">
+  
+  return <section id="how-started" className="py-16 relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
@@ -93,4 +97,5 @@ const HowStarted = () => {
       </div>
     </section>;
 };
+
 export default HowStarted;

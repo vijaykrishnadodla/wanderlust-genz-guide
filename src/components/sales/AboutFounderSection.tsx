@@ -12,7 +12,7 @@ const AboutFounderSection = () => {
   ];
 
   return (
-    <section id="about" className="py-16 bg-white relative">
+    <section id="about" className="py-16 relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       

@@ -5,7 +5,7 @@ import { ArrowRight, Sun } from 'lucide-react';
 
 const BriefIntroSection = () => {
   return (
-    <section className="py-16 bg-white relative">
+    <section className="py-16 relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       

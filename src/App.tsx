@@ -13,7 +13,7 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <div className="overflow-x-hidden">
+  <div className="overflow-x-hidden debug-overflow">
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />

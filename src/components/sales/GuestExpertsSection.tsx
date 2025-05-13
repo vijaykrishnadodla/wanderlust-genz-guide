@@ -31,7 +31,7 @@ const GuestExpertsSection = () => {
   ];
   
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-[#FEF7CD]/40 relative">
+    <section className="py-16 relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       

@@ -12,7 +12,7 @@ const WaveDivider = ({ flip = false }: WaveDividerProps) => {
         viewBox="0 0 1440 100" 
         className="block w-full h-[64px] sm:h-[100px] relative -mt-px"
         preserveAspectRatio="none"
-        fill="#FFFFFF"
+        fill="#FFEFE2"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path 

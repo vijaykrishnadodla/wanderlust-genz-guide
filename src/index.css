@@ -11,6 +11,16 @@
   html, body {
     @apply overflow-x-hidden;
   }
+  
+  body { 
+    position: relative; 
+  }
+
+  /* force every section to be transparent so body gradient shows */
+  section, header, footer { 
+    background: transparent !important; 
+    border: 0 !important; 
+  }
 
   :root {
     --background: 48 100% 97%;
@@ -408,5 +418,18 @@
   
   .modern-sun-icon {
     @apply rounded-full bg-gradient-to-r from-[#fdad32] to-[#fe4c02] h-full w-full;
+  }
+}
+
+@layer utilities {
+  .debug-overflow::after {
+    content: '⚠️  overflow';
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: .25rem .5rem;
+    background: red; color: #fff;
+    font-size: .75rem; text-align: center;
+    z-index: 9999;
+    pointer-events: none;
   }
 }
