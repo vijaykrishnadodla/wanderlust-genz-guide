@@ -1,14 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Sun, Sparkles } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
-
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -22,17 +19,7 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const scrollToSection = (id: string) => {
-    setIsMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-sm shadow-sm' : 'bg-transparent'}`}>
+  return <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm' : 'bg-transparent'}`}>
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2 group">
@@ -46,21 +33,9 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
-            <button onClick={() => scrollToSection('quiz')} className="px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale">
-              Quiz
-            </button>
-            <button onClick={() => scrollToSection('sunshine-club')} className="px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale">
-              Sunshine Club
-            </button>
-            <button onClick={() => scrollToSection('offering')} className="px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale">
-              Offers
-            </button>
-            <button onClick={() => scrollToSection('our-story')} className="px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale">
-              Our Story
-            </button>
-            <button onClick={() => scrollToSection('pricing')} className="px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale">
-              Pricing
-            </button>
+            {['Home', 'Sales Page', 'Funnel', 'Memberships', 'Quiz'].map((item, index) => <Link key={index} to={item === 'Home' ? '/' : item === 'Sales Page' ? '/sales' : item === 'Funnel' ? '/funnel' : `#${item.toLowerCase()}`} className="px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale">
+                {item}
+              </Link>)}
           </nav>
 
           <div className="hidden md:flex items-center space-x-3">
@@ -80,25 +55,14 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-sm border-t border-sunny-yellow-light/30 shadow-md animate-accordion-down">
+      {isMenuOpen && <div className="md:hidden bg-white border-t border-sunny-yellow-light/30 shadow-md animate-accordion-down">
           <div className="container px-4 py-4">
             <nav className="flex flex-col space-y-2">
-              <button onClick={() => scrollToSection('quiz')} className="px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center">
-                Quiz
-              </button>
-              <button onClick={() => scrollToSection('sunshine-club')} className="px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center">
-                Sunshine Club
-              </button>
-              <button onClick={() => scrollToSection('offering')} className="px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center">
-                Offers
-              </button>
-              <button onClick={() => scrollToSection('our-story')} className="px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center">
-                Our Story
-              </button>
-              <button onClick={() => scrollToSection('pricing')} className="px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center">
-                Pricing
-              </button>
+              {['Home', 'Sales Page', 'Funnel', 'Memberships', 'Quiz'].map((item, index) => <Link key={index} to={item === 'Home' ? '/' : item === 'Sales Page' ? '/sales' : item === 'Funnel' ? '/funnel' : `#${item.toLowerCase()}`} className="px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center" onClick={() => setIsMenuOpen(false)}>
+                  {item === 'Home' && <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" />}
+                  {item === 'Sales Page' && <Sparkles className="h-4 w-4 mr-2 text-sunny-yellow-dark" />}
+                  {item}
+                </Link>)}
               <div className="pt-3 flex flex-col space-y-2 border-t border-sunny-yellow-light/30 mt-2">
                 <Button variant="outline" className="w-full justify-center rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10">
                   <Sun className="mr-2 h-4 w-4" /> Sign In
@@ -109,10 +73,7 @@ const Navbar = () => {
               </div>
             </nav>
           </div>
-        </div>
-      )}
-    </header>
-  );
+        </div>}
+    </header>;
 };
-
 export default Navbar;

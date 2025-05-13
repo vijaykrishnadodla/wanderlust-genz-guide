@@ -24,74 +24,64 @@ const Index = () => {
         <div className="relative">
           <Hero />
           {/* Wave divider after Hero */}
+        </div>
+        
+        {/* Travel Quiz section moved above Benefits - with gradient 1 */}
+        <div className="relative stb-section-gradient-1">
+          <TravelQuiz />
           <div className="stb-wave-divider stb-wave-divider-bottom"></div>
         </div>
         
-        {/* Travel Quiz section - with consistent gradient */}
-        <section id="quiz" className="relative stb-section-gradient">
-          <TravelQuiz />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-        </section>
-        
-        {/* Benefits Section */}
-        <section id="benefits" className="relative stb-section-gradient">
+        {/* Benefits Section - now below Travel Quiz */}
+        <div className="relative stb-section-gradient-3">
           <BenefitsSection />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-        </section>
+        </div>
         
-        {/* Sunshine Club section */}
-        <section id="sunshine-club" className="relative stb-section-gradient">
+        {/* Sunshine Club section with gradient 1 - removed wave divider from here since it's now inside JourneySuns component */}
+        <div className="relative stb-section-gradient-1">
           <SunshineClub />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-        </section>
+        </div>
         
-        {/* Offering section */}
-        <section id="offering" className="relative stb-section-gradient">
+        {/* Offering section with gradient 2 */}
+        <div className="relative stb-section-gradient-2">
           <Offering />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-        </section>
+        </div>
         
-        {/* Testimonials section */}
-        <section id="testimonials" className="relative stb-section-gradient">
+        {/* Testimonials section with gradient 3 */}
+        <div className="relative stb-section-gradient-3">
           <Testimonials />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-        </section>
+        </div>
         
-        {/* Features section */}
-        <section id="features" className="relative stb-section-gradient">
+        {/* Features section with gradient 1 */}
+        <div className="relative stb-section-gradient-1">
           <Features />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-        </section>
+        </div>
         
-        {/* BackStory section */}
-        <section id="our-story" className="relative stb-section-gradient">
+        {/* BackStory section with gradient 4 */}
+        <div className="relative stb-section-gradient-4">
           <BackStory />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-        </section>
+        </div>
         
-        {/* HowStarted section */}
-        <section className="relative stb-section-gradient">
+        {/* HowStarted section with gradient 1 - removed wave divider from here */}
+        <div className="relative stb-section-gradient-1">
           <HowStarted />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-        </section>
+        </div>
         
-        {/* Ambassador section */}
-        <section id="ambassadors" className="relative stb-section-gradient">
+        {/* Ambassador section with gradient 2 */}
+        <div className="relative stb-section-gradient-2">
           <Ambassador />
           <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-        </section>
+        </div>
         
-        {/* SignUp section */}
-        <section id="signup" className="relative stb-section-gradient">
+        {/* SignUp section with gradient 1 */}
+        <div className="relative stb-section-gradient-1">
           <SignUp />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-        </section>
+        </div>
         
-        {/* Pricing Section */}
-        <section id="pricing" className="relative stb-section-gradient">
+        {/* Pricing Section with gradient 3 */}
+        <div className="relative stb-section-gradient-3">
           <PricingSection />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
-        </section>
+        </div>
         
         {/* Footer */}
         <Footer />

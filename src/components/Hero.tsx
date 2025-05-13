@@ -67,21 +67,13 @@ const Hero = () => {
               <p className="text-sm">Joined by <span className="font-bold text-sunny-orange">5,000+</span> student travelers</p>
             </div>
             
-            {/* Bottom section with Popular Destinations and MiniSignUpForm side by side */}
-            <div className="mt-4 flex flex-col md:flex-row justify-between items-end gap-4">
-              {/* Popular Destinations */}
-              <div className="bg-white/70 backdrop-blur-sm p-3 rounded-2xl shadow-sm w-full md:w-auto">
-                <p className="font-medium text-sm mb-2">Popular Student Destinations:</p>
-                <div className="flex flex-wrap gap-2">
-                  {["Paris", "Barcelona", "London", "Rome", "Berlin"].map(city => <span key={city} className="bg-sunny-yellow-pale px-2 py-1 rounded-full text-xs flex items-center gap-1 border border-sunny-yellow-light">
-                      <MapPin className="h-3 w-3 text-sunny-orange" /> {city}
-                    </span>)}
-                </div>
-              </div>
-              
-              {/* MiniSignUpForm */}
-              <div className="w-full md:w-auto">
-                <MiniSignUpForm />
+            {/* Popular Destinations */}
+            <div className="mt-4 bg-white/70 backdrop-blur-sm p-3 rounded-2xl shadow-sm hidden md:block">
+              <p className="font-medium text-sm mb-2">Popular Student Destinations:</p>
+              <div className="flex flex-wrap gap-2">
+                {["Paris", "Barcelona", "London", "Rome", "Berlin"].map(city => <span key={city} className="bg-sunny-yellow-pale px-2 py-1 rounded-full text-xs flex items-center gap-1 border border-sunny-yellow-light">
+                    <MapPin className="h-3 w-3 text-sunny-orange" /> {city}
+                  </span>)}
               </div>
             </div>
           </div>
@@ -113,6 +105,11 @@ const Hero = () => {
               </p>
             </div>
           </div>
+        </div>
+        
+        {/* Mini signup form moved below the grid */}
+        <div className="mt-8 mb-8">
+          <MiniSignUpForm />
         </div>
         
         {/* Bottom decorative elements */}

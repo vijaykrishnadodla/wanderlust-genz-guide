@@ -55,7 +55,7 @@
 
   body {
     @apply bg-sunny-yellow-pale text-foreground font-sans;
-    /* Primary background gradient for the entire site */
+    /* Removed the grainy texture effect */
     background: linear-gradient(135deg, #FFFBEB 0%, #FFE0B2 50%, #FFFBEB 100%);
   }
   
@@ -191,25 +191,35 @@
     );
   }
   
-  /* Section styling with consistent gradient */
+  /* New consistent section styling */
   .stb-section {
     @apply relative z-10 overflow-hidden;
   }
   
-  /* Main section gradient - consistent across all sections */
-  .stb-section-gradient {
-    @apply bg-gradient-to-b from-sunny-yellow-pale to-sunny-orange-light/20 py-16;
+  .stb-section-1 {
+    @apply bg-gradient-to-b from-sunny-yellow-pale via-sunny-orange-light/30 to-sunny-yellow-pale;
   }
   
-  /* Wave divider styles - consistent 5cm height (approx 50px) */
+  .stb-section-2 {
+    @apply bg-gradient-to-r from-sunny-yellow-light/40 to-sunny-orange-light/20;
+  }
+  
+  .stb-section-3 {
+    @apply bg-gradient-to-br from-sunny-yellow/30 to-sunny-orange/10;
+  }
+  
+  .stb-section-4 {
+    @apply bg-sunny-soft;
+  }
+
+  /* Wave divider styles */
   .stb-wave-divider {
     position: absolute;
     left: 0;
     width: 100%;
-    height: 50px; /* 5cm as requested, standardized to 50px for web */
+    height: 50px;
     background-repeat: repeat-x;
     background-size: 100px 50px;
-    z-index: 10;
   }
   
   .stb-wave-divider-top {
@@ -372,30 +382,5 @@
   
   .modern-sun-icon {
     @apply rounded-full bg-gradient-to-r from-[#fdad32] to-[#fe4c02] h-full w-full;
-  }
-
-  /* Standardized heading styles */
-  .section-heading {
-    @apply text-3xl md:text-4xl lg:text-5xl font-display mb-6 text-center;
-    color: #FF7A00;
-  }
-
-  .section-subheading {
-    @apply text-lg md:text-xl font-handwritten mb-8 text-center;
-    color: #E05F00;
-  }
-
-  /* Consistent container padding */
-  .section-container {
-    @apply container px-4 md:px-6 mx-auto py-16;
-  }
-
-  /* Consistent card styling */
-  .content-card {
-    @apply bg-white rounded-xl shadow-sm border border-sunny-yellow-light/30 p-6 transition-all duration-300;
-  }
-
-  .content-card:hover {
-    @apply shadow-md transform -translate-y-1;
   }
 }
