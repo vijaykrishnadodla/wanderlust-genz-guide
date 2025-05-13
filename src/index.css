@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
@@ -56,6 +57,15 @@
     @apply bg-sunny-yellow-pale text-foreground font-sans;
     /* Removed the grainy texture effect */
     background: linear-gradient(135deg, #FFFBEB 0%, #FFE0B2 50%, #FFFBEB 100%);
+  }
+  
+  /* Custom size for the 50% larger avatar */
+  .h-84 {
+    height: 21rem; /* 336px - 50% larger than 56 (224px) */
+  }
+  
+  .w-84 {
+    width: 21rem; /* 336px - 50% larger than 56 (224px) */
   }
   
   /* Gen Z style components */

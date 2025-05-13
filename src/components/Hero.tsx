@@ -1,9 +1,11 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles, MapPin, Sun } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 import MiniSignUpForm from './MiniSignUpForm';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 const Hero = () => {
   const isMobile = useIsMobile();
   return <section className="relative pt-24 pb-16 md:pt-28 md:pb-24 overflow-hidden">
@@ -76,15 +78,15 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="relative h-[400px] md:h-[500px] flex items-center justify-center">
-            {/* Central Sunny character - Updated with Polaroid style frame */}
+          <div className="relative h-[350px] md:h-[450px] flex items-center justify-center">
+            {/* Central Sunny character - Updated with more compact Polaroid style frame */}
             <div className="absolute inset-0 flex items-center justify-center z-20">
-              <div className="bg-white p-4 md:p-6 rounded-md shadow-lg transform rotate-2 w-[280px] md:w-[340px]">
+              <div className="bg-white p-3 md:p-4 rounded-md shadow-lg transform rotate-2 w-[300px] md:w-[400px]">
                 {/* Polaroid content - Sunny mascot with new fashion style */}
                 <div className="relative mb-10">
                   <div className="flex justify-center" style={{
-                  width: isMobile ? '240px' : '280px',
-                  height: isMobile ? '240px' : '280px'
+                  width: isMobile ? '360px' : '420px',
+                  height: isMobile ? '360px' : '420px'
                 }}>
                     <SunnyMascot size="xl" travelStyle="fashion" className="sunny-bounce" />
                   </div>
@@ -119,4 +121,5 @@ const Hero = () => {
       </div>
     </section>;
 };
+
 export default Hero;
