@@ -1,11 +1,14 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Sun, Sparkles } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -19,7 +22,27 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  return <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm' : 'bg-transparent'}`}>
+
+  const scrollToSection = (sectionId: string) => {
+    setIsMenuOpen(false);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const yOffset = -80; // Offset for fixed navbar
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+  
+  // Define the navigation items
+  const navItems = [
+    { name: 'Travel Quiz', id: 'quiz' },
+    { name: 'Sunshine Club', id: 'sunshine-club' },
+    { name: 'Our Story', id: 'our-story' },
+    { name: 'Ambassadors', id: 'ambassadors' }
+  ];
+  
+  return (
+    <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm' : 'bg-transparent'}`}>
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2 group">
@@ -33,9 +56,15 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
-            {['Home', 'Sales Page', 'Funnel', 'Memberships', 'Quiz'].map((item, index) => <Link key={index} to={item === 'Home' ? '/' : item === 'Sales Page' ? '/sales' : item === 'Funnel' ? '/funnel' : `#${item.toLowerCase()}`} className="px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale">
-                {item}
-              </Link>)}
+            {navItems.map((item, index) => (
+              <button 
+                key={index} 
+                onClick={() => scrollToSection(item.id)}
+                className="px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale"
+              >
+                {item.name}
+              </button>
+            ))}
           </nav>
 
           <div className="hidden md:flex items-center space-x-3">
@@ -55,14 +84,19 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && <div className="md:hidden bg-white border-t border-sunny-yellow-light/30 shadow-md animate-accordion-down">
+      {isMenuOpen && (
+        <div className="md:hidden bg-white border-t border-sunny-yellow-light/30 shadow-md animate-accordion-down">
           <div className="container px-4 py-4">
             <nav className="flex flex-col space-y-2">
-              {['Home', 'Sales Page', 'Funnel', 'Memberships', 'Quiz'].map((item, index) => <Link key={index} to={item === 'Home' ? '/' : item === 'Sales Page' ? '/sales' : item === 'Funnel' ? '/funnel' : `#${item.toLowerCase()}`} className="px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center" onClick={() => setIsMenuOpen(false)}>
-                  {item === 'Home' && <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" />}
-                  {item === 'Sales Page' && <Sparkles className="h-4 w-4 mr-2 text-sunny-yellow-dark" />}
-                  {item}
-                </Link>)}
+              {navItems.map((item, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToSection(item.id)}
+                  className="px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center"
+                >
+                  {item.name}
+                </button>
+              ))}
               <div className="pt-3 flex flex-col space-y-2 border-t border-sunny-yellow-light/30 mt-2">
                 <Button variant="outline" className="w-full justify-center rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10">
                   <Sun className="mr-2 h-4 w-4" /> Sign In
@@ -73,7 +107,10 @@ const Navbar = () => {
               </div>
             </nav>
           </div>
-        </div>}
-    </header>;
+        </div>
+      )}
+    </header>
+  );
 };
+
 export default Navbar;
