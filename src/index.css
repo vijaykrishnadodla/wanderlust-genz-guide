@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
@@ -54,9 +53,7 @@
   }
 
   body {
-    @apply bg-sunny-yellow-pale text-foreground font-sans;
-    /* Removed the grainy texture effect */
-    background: linear-gradient(135deg, #FFFBEB 0%, #FFE0B2 50%, #FFFBEB 100%);
+    @apply bg-background text-foreground font-sans;
   }
   
   /* Custom size for the 50% larger avatar */
@@ -73,6 +70,30 @@
     @apply bg-white rounded-3xl p-6 shadow-sm border border-sunny-orange-light/20 hover:shadow-md transition-all duration-300;
   }
   
+  /* New card utility with backdrop blur */
+  .card {
+    @apply rounded-2xl bg-white/80 backdrop-blur p-6 shadow-xl;
+  }
+  
+  /* Background grain texture */
+  .bg-grain {
+    position: relative;
+  }
+  
+  .bg-grain::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFZSURBVGhD7ZpBDoMgEEXB+5+gcW+MP3HlwoXxBs0YiKGtQiswMG/ztiYK/GegtA3DYK3N8zzP27YdXtd1Da/neY6dgk+t3qe2IGqt4XfrvDvZkYhKfVFhOSITDZblgCRij8AyHIhCqnOwrAakEslgGQOUkZgZGJjIGAsQQq2zBWMGbTCmMEZiKv5z7TdKYh5xH0ooe26QxH3KmEcJzKOsRnUMJTCappEUSigRg4lsSClMJUTsRSlMZUT+Q0nMowTmNRJTCfGvOlCVzzkRe6uAqZzITyiJqayIQynMoyzm9fuf6ggzEfGKJTAxEYAxEROYqIh4xRKYyIjAjMBERQTGd0xMBOY7JioC4zsmKgLjOyYuAuMzJioCUx8zz/Npn1c0EYGpj9n3/bTPK5pIM9JGmpE20ow0I22kGWlG2kgz0oy0kWakjbSRZuTDiDsrdDoIdhxH+7it0/kB6BqKkOCCHGAAAAAASUVORK5CYII=");
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  
+  /* Gen Z style components */
   .sunny-button {
     @apply px-6 py-3 bg-sunny-gradient text-white font-medium rounded-full shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300;
   }

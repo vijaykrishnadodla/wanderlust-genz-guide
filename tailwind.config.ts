@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -89,7 +88,8 @@ export default {
 					white: "#FFFFFF",
 					cream: "#FFFAF0",
 					peach: "#FFE0B2"
-				}
+				},
+				midnight: "#1A1A2E"
 			},
 			fontFamily: {
 				sans: ["'Poppins'", "sans-serif"],
@@ -151,7 +151,8 @@ export default {
 				'sunny-soft': "linear-gradient(135deg, #FFFBEB 0%, #FFF1E6 100%)",
 				'sunny-glow': "radial-gradient(circle, rgba(255, 214, 0, 0.4) 0%, rgba(255, 122, 0, 0.1) 70%)",
 				'sunny-rays': "repeating-conic-gradient(from 0deg, #FFD600 0deg 10deg, transparent 10deg 15deg)",
-				'film-grain': "url('https://grainy-gradients.vercel.app/noise.svg')"
+				'film-grain': "url('https://grainy-gradients.vercel.app/noise.svg')",
+				'radialSunny': "radial-gradient(ellipse at center, var(--tw-gradient-stops))"
 			}
 		}
 	},

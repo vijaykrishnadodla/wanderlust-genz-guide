@@ -41,12 +41,12 @@
   color: #888;
 }
 
-/* Student Travel Buddy specific styles - Updated for Gen Z */
+/* Student Travel Buddy specific styles - Updated for Gen Z with gradient background */
 .stb-page-container {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  background: linear-gradient(135deg, #FFFBEB 0%, #FFE0B2 50%, #FFFBEB 100%);
+  @apply min-h-screen bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-fixed bg-grain text-midnight;
 }
 
 .stb-gradient-bg {

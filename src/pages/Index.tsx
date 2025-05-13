@@ -14,73 +14,83 @@ import SignUp from '@/components/SignUp';
 import Footer from '@/components/Footer';
 import PricingSection from '@/components/PricingSection';
 import BenefitsSection from '@/components/BenefitsSection';
+import WaveDivider from '@/components/WaveDivider';
 
 const Index = () => {
   return <div className="stb-page-container min-h-screen">
       <Navbar />
 
       <div className="relative">
-        {/* Hero section with base gradient */}
+        {/* Hero section */}
         <div className="relative">
           <Hero />
-          {/* Wave divider after Hero */}
+          <WaveDivider />
         </div>
         
-        {/* Travel Quiz section moved above Benefits - with gradient 1 */}
-        <div className="relative stb-section-gradient-1">
+        {/* Travel Quiz section */}
+        <div className="relative">
           <TravelQuiz />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
+          <WaveDivider />
         </div>
         
-        {/* Benefits Section - now below Travel Quiz */}
-        <div className="relative stb-section-gradient-3">
+        {/* Benefits Section */}
+        <div className="relative">
           <BenefitsSection />
+          <WaveDivider />
         </div>
         
-        {/* Sunshine Club section with gradient 1 - removed wave divider from here since it's now inside JourneySuns component */}
-        <div className="relative stb-section-gradient-1">
+        {/* Sunshine Club section */}
+        <div className="relative">
           <SunshineClub />
+          <WaveDivider />
         </div>
         
-        {/* Offering section with gradient 2 */}
-        <div className="relative stb-section-gradient-2">
+        {/* Offering section */}
+        <div className="relative">
           <Offering />
+          <WaveDivider />
         </div>
         
-        {/* Testimonials section with gradient 3 */}
-        <div className="relative stb-section-gradient-3">
+        {/* Testimonials section */}
+        <div className="relative">
           <Testimonials />
+          <WaveDivider />
         </div>
         
-        {/* Features section with gradient 1 */}
-        <div className="relative stb-section-gradient-1">
+        {/* Features section */}
+        <div className="relative">
           <Features />
+          <WaveDivider />
         </div>
         
-        {/* BackStory section with gradient 4 */}
-        <div className="relative stb-section-gradient-4">
+        {/* BackStory section */}
+        <div className="relative">
           <BackStory />
+          <WaveDivider />
         </div>
         
-        {/* HowStarted section with gradient 1 - removed wave divider from here */}
-        <div className="relative stb-section-gradient-1">
+        {/* HowStarted section */}
+        <div className="relative">
           <HowStarted />
+          <WaveDivider />
         </div>
         
-        {/* Ambassador section with gradient 2 */}
-        <div className="relative stb-section-gradient-2">
+        {/* Ambassador section */}
+        <div className="relative">
           <Ambassador />
-          <div className="stb-wave-divider stb-wave-divider-bottom"></div>
+          <WaveDivider />
         </div>
         
-        {/* SignUp section with gradient 1 */}
-        <div className="relative stb-section-gradient-1">
+        {/* SignUp section */}
+        <div className="relative">
           <SignUp />
+          <WaveDivider />
         </div>
         
-        {/* Pricing Section with gradient 3 */}
-        <div className="relative stb-section-gradient-3">
+        {/* Pricing Section */}
+        <div className="relative">
           <PricingSection />
+          <WaveDivider />
         </div>
         
         {/* Footer */}
