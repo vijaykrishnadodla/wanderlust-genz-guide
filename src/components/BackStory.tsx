@@ -1,20 +1,12 @@
-
 import React from 'react';
 import { BookOpen } from 'lucide-react';
-
 const BackStory = () => {
-  return <section id="our-story" className="py-16 bg-gradient-to-b from-white to-[#FEF7CD]/40 relative">
+  return <section id="backstory" className="py-16 bg-gradient-to-b from-white to-[#FEF7CD]/40 relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="container px-4 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-display inline-block bg-[#FEC6A1] px-6 py-2 rounded-lg transform rotate-1">
-              OUR STORY
-            </h2>
-          </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div className="relative">
               {/* Polaroid wrapper with relative positioning */}
@@ -99,5 +91,4 @@ const BackStory = () => {
       </div>
     </section>;
 };
-
 export default BackStory;

@@ -9,7 +9,7 @@ import Testimonials from '@/components/Testimonials';
 import Features from '@/components/Features';
 import BackStory from '@/components/BackStory';
 import HowStarted from '@/components/HowStarted';
-import Ambassadors from '@/components/Ambassadors';
+import Ambassador from '@/components/Ambassador';
 import SignUp from '@/components/SignUp';
 import Footer from '@/components/Footer';
 import PricingSection from '@/components/PricingSection';
@@ -57,7 +57,7 @@ const Index = () => {
           <Features />
         </div>
         
-        {/* BackStory (Our Story) section with gradient 4 */}
+        {/* BackStory section with gradient 4 */}
         <div className="relative stb-section-gradient-4">
           <BackStory />
         </div>
@@ -67,9 +67,9 @@ const Index = () => {
           <HowStarted />
         </div>
         
-        {/* Ambassadors section with gradient 2 */}
+        {/* Ambassador section with gradient 2 */}
         <div className="relative stb-section-gradient-2">
-          <Ambassadors />
+          <Ambassador />
           <div className="stb-wave-divider stb-wave-divider-bottom"></div>
         </div>
         
@@ -88,5 +88,4 @@ const Index = () => {
       </div>
     </div>;
 };
-
 export default Index;
