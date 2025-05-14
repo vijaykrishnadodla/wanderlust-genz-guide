@@ -1,10 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-
 const PricingSection = () => {
   // State for the countdown timer
   const [timeLeft, setTimeLeft] = useState({
@@ -48,7 +46,6 @@ const PricingSection = () => {
     }, 1000);
     return () => clearInterval(timer);
   }, []);
-
   return <section id="pricing-section" className="py-16 relative">
       <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
         {/* Modern Header */}
@@ -103,11 +100,7 @@ const PricingSection = () => {
           
           {/* Add the sunshine image here */}
           <div className="flex flex-col items-center mb-6">
-            <img 
-              src="/lovable-uploads/46b36319-cde5-4a49-8ded-42ee3372fe14.png" 
-              alt="Sunshine journey: you already have what it takes → soul full of sunshine → shine on" 
-              className="max-w-full md:max-w-2xl mx-auto h-auto mb-6"
-            />
+            <img alt="Sunshine journey: you already have what it takes → soul full of sunshine → shine on" className="max-w-full md:max-w-2xl mx-auto h-auto mb-6" src="/lovable-uploads/6553e5b2-6432-482a-b526-b7cfad42c154.png" />
           </div>
           
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -124,5 +117,4 @@ const PricingSection = () => {
       </div>
     </section>;
 };
-
 export default PricingSection;
