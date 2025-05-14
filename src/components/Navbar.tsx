@@ -1,11 +1,14 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Sun, Sparkles } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -19,8 +22,9 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
   return <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm' : 'bg-transparent'}`}>
-      <div className="container px-4 md:px-6 mx-auto">
+      <div className="inner">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2 group">
             <div className="relative w-8 h-8 sm:w-10 sm:h-10">
@@ -56,7 +60,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && <div className="md:hidden bg-white border-t border-sunny-yellow-light/30 shadow-md animate-accordion-down">
-          <div className="container px-4 py-4">
+          <div className="inner py-4">
             <nav className="flex flex-col space-y-2">
               {['Home', 'Sales Page', 'Funnel', 'Memberships', 'Quiz'].map((item, index) => <Link key={index} to={item === 'Home' ? '/' : item === 'Sales Page' ? '/sales' : item === 'Funnel' ? '/funnel' : `#${item.toLowerCase()}`} className="px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center" onClick={() => setIsMenuOpen(false)}>
                   {item === 'Home' && <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" />}
@@ -76,4 +80,5 @@ const Navbar = () => {
         </div>}
     </header>;
 };
+
 export default Navbar;
