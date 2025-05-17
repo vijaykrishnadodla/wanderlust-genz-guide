@@ -18,7 +18,7 @@
   }
 
   /* force every section to be transparent so body gradient shows */
-  section, header, footer { 
+  section, footer { 
     background: transparent !important; 
     border: 0 !important; 
   }
