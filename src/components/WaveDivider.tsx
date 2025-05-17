@@ -3,9 +3,12 @@ import React from 'react';
 
 interface WaveDividerProps {
   flip?: boolean;
+  hidden?: boolean;
 }
 
-const WaveDivider = ({ flip = false }: WaveDividerProps) => {
+const WaveDivider = ({ flip = false, hidden = false }: WaveDividerProps) => {
+  if (hidden) return null;
+
   return (
     <div className={`w-full overflow-hidden ${flip ? 'transform rotate-180' : ''}`}>
       <svg 
@@ -24,4 +27,7 @@ const WaveDivider = ({ flip = false }: WaveDividerProps) => {
   );
 };
 
+
 export default WaveDivider;
+
+
