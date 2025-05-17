@@ -6,7 +6,7 @@ interface WaveDividerProps {
   hidden?: boolean;
 }
 
-const WaveDivider = ({ flip = false, hidden = false }: WaveDividerProps) => {
+const WaveDivider = ({ flip = false, hidden = true }: WaveDividerProps) => {
   if (hidden) return null;
 
   return (
