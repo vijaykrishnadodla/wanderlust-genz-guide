@@ -7,7 +7,7 @@ import SunnyMascot from './SunnyMascot';
 
 const Footer = () => {
   return (
-    <footer className="relative overflow-hidden py-12 bg-gradient-to-br from-[#1A1F2C]/90 to-[#221F26] text-black">
+    <footer className="relative overflow-hidden py-12 bg-gradient-to-br from-[#1A1F2C]/90 to-[#221F26] text-white">
       {/* Grain texture overlay */}
       <div className="absolute inset-0 bg-film-grain opacity-20 mix-blend-overlay"></div>
       
