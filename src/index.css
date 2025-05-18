@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
@@ -17,13 +18,7 @@
     position: relative; 
   }
 
-  /* force every section to be transparent so body gradient shows */
-  /* This might conflict with section-specific backgrounds if those are desired later */
-  /* section, footer { 
-    background: transparent !important; 
-    border: 0 !important; 
-  } */
-
+  /* ... keep existing code (comments and :root variables) */
   :root {
     --background: 48 100% 97%; /* #FFFBEB */
     --foreground: 35 80% 8%; /* #201A02 */
@@ -76,9 +71,11 @@
 
   body {
     @apply bg-background text-foreground font-sans;
+    /* text-midnight is used in the new main tag, ensuring body has a base text color */
   }
   
-  /* Custom sizes for Gen Z components */
+  /* ... keep existing code (Custom sizes, Gen Z styles, Background grain, Sunny components, Fun interactive elements, Text styles, Speech bubble, Sunny rays, Image filters, Polaroid, Stickers, Typography, Decorative elements, Section styling, Wave dividers, Journey suns, University stamps, Pricing card styles) */
+    /* Custom sizes for Gen Z components */
   .h-84 {
     height: 21rem; /* 336px - 50% larger than 56 (224px) */
   }
@@ -93,9 +90,9 @@
   }
   
   /* New card utility with backdrop blur */
-  .card { /* This global .card style might conflict with shadcn Card if not careful */
+  /* .card { // This global .card style might conflict with shadcn Card if not careful 
     @apply rounded-2xl bg-white/80 backdrop-blur p-6 shadow-xl;
-  }
+  } */
   
   /* Background grain texture */
   .bg-grain {
@@ -454,38 +451,6 @@
     z-index: 9999;
     pointer-events: none;
   }
-
-  /* These container styles are being moved out of @layer utilities below */
-  /*
-  .container,
-  .max-w-screen-lg,
-  .max-w-screen-xl {
-    width: 100%;
-    max-width: 1280px; 
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem; 
-    padding-right: 1rem; 
-  }
-
-  @media (min-width: 640px) { 
-    .container,
-    .max-w-screen-lg,
-    .max-w-screen-xl {
-      padding-left: 1.5rem; 
-      padding-right: 1.5rem; 
-    }
-  }
-
-  @media (min-width: 1024px) { 
-    .container,
-    .max-w-screen-lg,
-    .max-w-screen-xl {
-      padding-left: 2rem; 
-      padding-right: 2rem; 
-    }
-  }
-  */
 }
 
 /* Global overrides for .container, .max-w-screen-lg, .max-w-screen-xl as per instruction */
@@ -494,31 +459,27 @@
 .max-w-screen-lg,
 .max-w-screen-xl {
   width: 100%;
-  max-width: 1280px; /* Corresponds to max-w-screen-xl */
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1rem; /* Corresponds to px-4 */
-  padding-right: 1rem; /* Corresponds to px-4 */
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-@media (min-width: 640px) { /* Corresponds to sm: breakpoint */
+@media (min-width: 640px) {
   .container,
   .max-w-screen-lg,
   .max-w-screen-xl {
-    padding-left: 1.5rem; /* Corresponds to sm:px-6 */
-    padding-right: 1.5rem; /* Corresponds to sm:px-6 */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 
-@media (min-width: 1024px) { /* Corresponds to lg: breakpoint */
+@media (min-width: 1024px) {
   .container,
   .max-w-screen-lg,
   .max-w-screen-xl {
-    padding-left: 2rem; /* Corresponds to lg:px-8 */
-    padding-right: 2rem; /* Corresponds to lg:px-8 */
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
-
-/* The .inner class definition from @layer base is technically equivalent to these, */
-/* but the instruction was to add these separately. This ensures they take precedence if needed. */
-/* .inner { @apply max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8; } is effectively the same. */

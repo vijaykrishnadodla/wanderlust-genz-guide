@@ -3,27 +3,21 @@ import React from 'react';
 
 interface WaveDividerProps {
   flip?: boolean;
-  hidden?: boolean;
+  // hidden prop is removed as per new simplified component
 }
 
-const WaveDivider = ({ flip = false, hidden = false }: WaveDividerProps) => {
-  if (hidden) return null;
-
+// Updated WaveDivider component as per instructions
+const WaveDivider = ({ flip = false }: WaveDividerProps) => {
   return (
-    <div className={`w-full overflow-hidden ${flip ? 'transform rotate-180' : ''}`}>
-      <svg 
-        viewBox="0 0 1440 100" 
-        className="block w-full h-[64px] sm:h-[100px] -mt-px" // Updated className
-        preserveAspectRatio="none"
-        fill="#FFEFE2" // Set fill color directly
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path 
-          d="M0,32L48,48C96,64,192,96,288,96C384,96,480,64,576,48C672,32,768,32,864,48C960,64,1056,96,1152,96C1248,96,1344,64,1392,48L1440,32L1440,100L1392,100C1344,100,1248,100,1152,100C1056,100,960,100,864,100C768,100,672,100,576,100C480,100,384,100,288,100C192,100,96,100,48,100L0,100Z"
-          opacity="0.8"
-        ></path>
-      </svg>
-    </div>
+    <svg 
+      className={`w-full h-[64px] sm:h-[100px] block -mt-px ${flip ? 'transform rotate-180' : ''}`} // Added transform for flip
+      viewBox="0 0 1440 100" 
+      preserveAspectRatio="none" 
+      fill="#FFEFE2" // Fill color from instructions
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0,30 C120,90 360,90 480,30 C600,-30 840,-30 960,30 C1080,90 1320,90 1440,30 L1440,100 L0,100 Z"/>
+    </svg>
   );
 };
 
