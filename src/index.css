@@ -435,7 +435,7 @@
   }
 
   .btn-yellow {
-    @apply bg-sunny-yellow-DEFAULT text-midnight hover:bg-sunny-yellow-dark focus:ring-sunny-yellow-dark;
+    @apply bg-sunny-yellow text-midnight hover:bg-sunny-yellow-dark focus:ring-sunny-yellow-dark;
   }
   
   .btn-outline {
