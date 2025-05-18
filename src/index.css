@@ -437,4 +437,11 @@
     z-index: 9999;
     pointer-events: none;
   }
+
+  .container,
+  .max-w-screen-lg,
+  .max-w-screen-xl {
+    @apply w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
 }
+
