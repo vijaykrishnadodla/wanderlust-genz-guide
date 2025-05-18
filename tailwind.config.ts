@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -88,7 +87,7 @@ export default {
 						dark: "#E05F00"     // Dark orange
 					},
 					white: "#FFFFFF",
-					cream: "#FFFAF0",
+					cream: "#FFFBF2",    // Updated cream color
 					peach: "#FFE0B2"
 				},
 				midnight: "#1A1A2E"
