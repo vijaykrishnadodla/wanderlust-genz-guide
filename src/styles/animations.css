@@ -1,0 +1,42 @@
+
+@layer base {
+  .sunny-float {
+    @apply animate-float;
+  }
+  
+  .sunny-bounce {
+    @apply animate-bounce-subtle;
+  }
+  
+  .sunny-pulse {
+    @apply animate-pulse-gentle;
+  }
+  
+  .sunny-spin {
+    @apply animate-spin-slow;
+  }
+  
+  .sunny-wiggle:hover {
+    @apply animate-wiggle;
+  }
+  
+  @keyframes shine {
+    0%, 100% {
+      box-shadow: 0 0 10px 2px rgba(255, 214, 0, 0.7); /* Sunny Yellow glow */
+    }
+    50% {
+      box-shadow: 0 0 20px 5px rgba(255, 122, 0, 0.9); /* Sunny Orange glow */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    @keyframes shine-mobile {
+      0%, 100% {
+        box-shadow: 0 0 6px 1px rgba(255, 214, 0, 0.7);
+      }
+      50% {
+        box-shadow: 0 0 12px 3px rgba(255, 122, 0, 0.9);
+      }
+    }
+  }
+}

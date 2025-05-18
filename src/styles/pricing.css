@@ -1,0 +1,53 @@
+
+@layer base {
+  /* Pricing card styling */
+  .pricing-card {
+    @apply bg-white rounded-xl p-6 border border-gray-100 shadow-sm relative overflow-hidden transition-all duration-300;
+  }
+  
+  .pricing-card:hover {
+    @apply shadow-md transform -translate-y-1;
+  }
+  
+  .pricing-card-highlight {
+    @apply border-primary;
+    box-shadow: 0 10px 25px -5px hsla(var(--primary) / 0.2);
+  }
+  
+  .pricing-card-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)));
+  }
+  
+  .countdown-digit {
+    @apply bg-white/80 px-2 py-0.5 rounded text-primary font-mono font-bold;
+  }
+  
+  .feature-item {
+    @apply flex items-start gap-3 border border-accent rounded-lg p-3 bg-card;
+  }
+  
+  .feature-icon {
+    @apply h-6 w-6 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center shrink-0;
+  }
+  
+  .brand-logo {
+    @apply bg-white/70 p-3 rounded-lg shadow-sm flex items-center justify-center h-16 text-center font-bold text-foreground/70 border border-border/20;
+  }
+  
+  .sunshine-accent {
+    @apply bg-secondary/20 text-secondary-foreground px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  .modern-sun {
+    @apply rounded-full bg-gradient-to-br from-primary to-secondary p-3 group-hover:shadow-lg transition-all;
+  }
+  
+  .modern-sun-icon {
+    @apply rounded-full bg-gradient-to-r from-primary to-secondary h-full w-full;
+  }
+}
