@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles, MapPin, Sun } from 'lucide-react';
@@ -25,15 +24,15 @@ const Hero = () => {
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display">
-                TRAVEL <span className="text-sunny-yellow-dark">BRIGHTER.</span> SPEND <span className="text-sunny-orange">SMARTER.</span>
+                YOUR STUDENT TRAVEL COMPANION <span className="text-xs">(Text from PDF Lines 6-33 Needed)</span>
               </h1>
               
               <p className="text-lg md:text-2xl font-handwritten text-sunny-orange sunny-bounce">
-                The ultimate travel sidekick for students - with Sunny by your side!
+                Unlock authentic adventures & savings with Sunny! <span className="text-xs">(Text from PDF Lines 6-33 Needed)</span>
               </p>
               
               <p className="text-lg">
-                Join thousands of students saving <span className="font-bold text-sunny-orange">$200+ per week</span> on travel with our exclusive membership perks.
+                Travel smarter, safer, and sunnier with your bestie! <span className="text-xs">(Text from PDF Lines 6-33 Needed)</span>
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 md:justify-start justify-center">
@@ -50,8 +49,8 @@ const Hero = () => {
                 </Button>
                 
                 <Button variant="outline" className="rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10 h-auto py-3 group" onClick={() => {
-                const offeringSection = document.getElementById('offering');
-                if (offeringSection) offeringSection.scrollIntoView({
+                const membershipSection = document.getElementById('membership'); // Changed from 'offering'
+                if (membershipSection) membershipSection.scrollIntoView({
                   behavior: 'smooth'
                 });
               }}>
@@ -70,11 +69,13 @@ const Hero = () => {
               
               {/* Popular Destinations */}
               <div className="mt-4 bg-white/70 backdrop-blur-sm p-3 rounded-2xl shadow-sm hidden md:block">
-                <p className="font-medium text-sm mb-2">Popular Student Destinations:</p>
+                <p className="font-medium text-sm mb-2">Popular Student Destinations: <span className="text-xs">(Content from PDF Needed)</span></p>
                 <div className="flex flex-wrap gap-2">
-                  {["Paris", "Barcelona", "London", "Rome", "Berlin"].map(city => <span key={city} className="bg-sunny-yellow-pale px-2 py-1 rounded-full text-xs flex items-center gap-1 border border-sunny-yellow-light">
+                  {["Destination A (PDF)", "Destination B (PDF)", "Destination C (PDF)"].map(city => (
+                    <span key={city} className="bg-sunny-yellow-pale px-2 py-1 rounded-full text-xs flex items-center gap-1 border border-sunny-yellow-light">
                       <MapPin className="h-3 w-3 text-sunny-orange" /> {city}
-                    </span>)}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -108,8 +109,8 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Mini signup form moved below the grid */}
-          <div className="mt-8 mb-8">
+          {/* Mini signup form relocated here for alignment */}
+          <div className="mt-6 md:mt-4"> {/* Adjusted margin for consistency */}
             <MiniSignUpForm />
           </div>
           
