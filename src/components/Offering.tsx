@@ -74,14 +74,46 @@ const Offering = () => {
     localEvents: "Local Events"
   };
   
-  return <section id="offering" className="py-16 relative">
+  return (
+    <section id="offering" className="py-16 relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="inner">
-        {/* Content goes here */}
+        {/* Content defined by 'plans' and 'featureLabels' would be rendered here.
+            Currently, this component defines the data but does not render it.
+            The structure is ready for content within this 'inner' div.
+        */}
+        {/* For example, if you wanted to display the plans:
+        <div className="container px-4 md:px-6">
+          <h2 className="text-3xl font-bold text-center mb-8">Our Plans</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {plans.map(plan => (
+              <Card key={plan.name} className={plan.highlight ? 'border-sunny-orange' : ''}>
+                <CardContent className="p-6">
+                  <h3 className="text-2xl font-bold">{plan.name}</h3>
+                  <p className="text-4xl font-bold">{plan.price}</p>
+                  {plan.originalPrice && <p className="line-through text-muted-foreground">{plan.originalPrice}</p>}
+                  <p className="mt-4 mb-6">{plan.description}</p>
+                  <Button className="w-full">Choose Plan</Button>
+                  <ul className="mt-6 space-y-2">
+                    {Object.entries(featureLabels).map(([key, label]) => (
+                      <li key={key} className="flex items-center">
+                        {plan.features[key as keyof typeof plan.features] ? <CheckCircle className="h-5 w-5 text-green-500 mr-2" /> : <HelpCircle className="h-5 w-5 text-muted-foreground mr-2" />}
+                        {label}
+                      </li>
+                    ))}
+                  </ul>
+                  {plan.spotsLeft && <p className="text-sm text-sunny-orange mt-4 text-center">Only {plan.spotsLeft} spots left!</p>}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+        */}
       </div>
-    </section>;
+    </section>
+  );
 };
 
 export default Offering;

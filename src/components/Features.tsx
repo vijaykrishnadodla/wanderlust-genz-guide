@@ -78,54 +78,56 @@ const Features = () => {
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
-      <div className="container px-4 md:px-6 relative z-10">
-        <div className="flex flex-col gap-2 text-center mb-12">
-          <div className="inline-block transform rotate-1 bg-[#FEC6A1]/60 px-6 py-2 rounded-lg mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display">CORE TRAITS OF THE IDEAL GEN Z TRAVEL BUDDY</h2>
+      <div className="inner">
+        <div className="container px-4 md:px-6 relative z-10">
+          <div className="flex flex-col gap-2 text-center mb-12">
+            <div className="inline-block transform rotate-1 bg-[#FEC6A1]/60 px-6 py-2 rounded-lg mx-auto">
+              <h2 className="text-3xl md:text-4xl font-display">CORE TRAITS OF THE IDEAL GEN Z TRAVEL BUDDY</h2>
+            </div>
+            <p className="text-[#F97316] md:text-lg font-handwritten mt-2">It's not just someone to split a hostel with — it's a whole vibe</p>
           </div>
-          <p className="text-[#F97316] md:text-lg font-handwritten mt-2">It's not just someone to split a hostel with — it's a whole vibe</p>
-        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <Card 
-              key={index} 
-              className={`border-none shadow-lg hover:shadow-xl transition-shadow transform ${feature.rotation} hover:-translate-y-1 hover:scale-[1.02] transition-transform`}
-            >
-              <CardHeader className={`${feature.color} rounded-t-lg`}>
-                <div className="flex justify-center">
-                  {feature.icon}
-                </div>
-              </CardHeader>
-              <CardContent className="pt-6 bg-white">
-                <CardTitle className="text-xl mb-3 text-center">{feature.title}</CardTitle>
-                <ul className="list-disc pl-5 space-y-2 mb-3">
-                  {feature.description.map((point, i) => (
-                    <li key={i} className="text-gray-600">{point}</li>
-                  ))}
-                </ul>
-                {feature.quote && (
-                  <div className="bg-[#FEF7CD]/50 p-3 rounded-lg mt-3">
-                    <p className="font-handwritten text-center text-[#F97316] text-sm">"{feature.quote}"</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <Card 
+                key={index} 
+                className={`border-none shadow-lg hover:shadow-xl transition-shadow transform ${feature.rotation} hover:-translate-y-1 hover:scale-[1.02] transition-transform`}
+              >
+                <CardHeader className={`${feature.color} rounded-t-lg`}>
+                  <div className="flex justify-center">
+                    {feature.icon}
                   </div>
-                )}
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        
-        <div className="mt-8 text-center">
-          <div className="bg-[#FDE1D3]/40 p-4 rounded-lg inline-block transform -rotate-1">
-            <p className="font-handwritten text-lg text-[#F97316]">
-              "Let's go. You pack the snacks, I'll plan the vibe."
-            </p>
+                </CardHeader>
+                <CardContent className="pt-6 bg-white">
+                  <CardTitle className="text-xl mb-3 text-center">{feature.title}</CardTitle>
+                  <ul className="list-disc pl-5 space-y-2 mb-3">
+                    {feature.description.map((point, i) => (
+                      <li key={i} className="text-gray-600">{point}</li>
+                    ))}
+                  </ul>
+                  {feature.quote && (
+                    <div className="bg-[#FEF7CD]/50 p-3 rounded-lg mt-3">
+                      <p className="font-handwritten text-center text-[#F97316] text-sm">"{feature.quote}"</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
           </div>
-        </div>
-        
-        {/* Decorative elements */}
-        <div className="absolute -bottom-5 left-10 hidden md:block">
-          <div className="bg-[#FEF7CD] p-2 rounded-lg shadow-sm transform rotate-12">
-            <p className="font-handwritten text-sm text-[#F97316]">Travel like a pro! ✌️</p>
+          
+          <div className="mt-8 text-center">
+            <div className="bg-[#FDE1D3]/40 p-4 rounded-lg inline-block transform -rotate-1">
+              <p className="font-handwritten text-lg text-[#F97316]">
+                "Let's go. You pack the snacks, I'll plan the vibe."
+              </p>
+            </div>
+          </div>
+          
+          {/* Decorative elements */}
+          <div className="absolute -bottom-5 left-10 hidden md:block">
+            <div className="bg-[#FEF7CD] p-2 rounded-lg shadow-sm transform rotate-12">
+              <p className="font-handwritten text-sm text-[#F97316]">Travel like a pro! ✌️</p>
+            </div>
           </div>
         </div>
       </div>
