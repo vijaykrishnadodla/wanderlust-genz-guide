@@ -13,7 +13,7 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <main id="page" className="min-h-screen w-full overflow-x-hidden
+  <div id="page" className="min-h-screen w-full overflow-x-hidden
                   bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain
                   text-midnight">
     <QueryClientProvider client={queryClient}>
@@ -32,7 +32,7 @@ const App = () => (
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
-  </main>
+  </div>
 );
 
 export default App;
