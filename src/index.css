@@ -441,7 +441,29 @@
   .container,
   .max-w-screen-lg,
   .max-w-screen-xl {
-    @apply w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8;
+    width: 100%;
+    max-width: 1280px; /* Corresponds to max-w-screen-xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* Corresponds to px-4 */
+    padding-right: 1rem; /* Corresponds to px-4 */
+  }
+
+  @media (min-width: 640px) { /* Corresponds to sm: breakpoint */
+    .container,
+    .max-w-screen-lg,
+    .max-w-screen-xl {
+      padding-left: 1.5rem; /* Corresponds to sm:px-6 */
+      padding-right: 1.5rem; /* Corresponds to sm:px-6 */
+    }
+  }
+
+  @media (min-width: 1024px) { /* Corresponds to lg: breakpoint */
+    .container,
+    .max-w-screen-lg,
+    .max-w-screen-xl {
+      padding-left: 2rem; /* Corresponds to lg:px-8 */
+      padding-right: 2rem; /* Corresponds to lg:px-8 */
+    }
   }
 }
-
