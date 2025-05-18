@@ -10,7 +10,7 @@ const SunnyCard = () => {
     <div className="relative flex flex-col items-center justify-center">
       <div className="mb-4 transform -rotate-3 z-10">
         <p className="font-handwritten text-lg text-sunny-orange text-center bg-white/80 px-4 py-2 rounded-xl shadow-sm">
-          "You pack the snacks, I'll plan the vibe" ☀️
+          "You pack the snacks, I’ll plan the vibe" ☀️ {/* Updated quote */}
         </p>
       </div>
       

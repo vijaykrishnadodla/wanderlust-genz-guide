@@ -2,17 +2,17 @@
 @tailwind components;
 
 @layer components {
-  /* New general button styles */
+  /* General button styles from prompt */
   .btn {
-    @apply inline-block px-6 py-3 rounded-full font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply inline-block rounded-full px-6 py-3 text-sm font-semibold shadow;
   }
 
   .btn-yellow {
-    @apply bg-sunny-yellow text-midnight hover:bg-sunny-yellow-dark focus:ring-sunny-yellow-dark;
+    @apply bg-[#FFD447] text-midnight hover:bg-opacity-90; /* Added hover for better UX */
   }
   
   .btn-outline {
-    @apply bg-transparent border-2 border-sunny-orange text-sunny-orange hover:bg-sunny-orange hover:text-white focus:ring-sunny-orange;
+    @apply border border-midnight text-midnight hover:bg-midnight hover:text-white; /* Added hover for better UX */
   }
   
   /* Gen Z style components */
