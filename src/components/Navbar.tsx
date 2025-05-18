@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Sun, Sparkles, Gift } from 'lucide-react';
+import { Menu, X, Sun, Sparkles, Gift, Users, Check } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 
 const Navbar = () => {
