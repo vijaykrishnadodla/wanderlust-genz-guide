@@ -428,6 +428,21 @@
   }
 }
 
+@layer components {
+  /* New general button styles */
+  .btn {
+    @apply inline-block px-6 py-3 rounded-full font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-yellow {
+    @apply bg-sunny-yellow-DEFAULT text-midnight hover:bg-sunny-yellow-dark focus:ring-sunny-yellow-dark;
+  }
+  
+  .btn-outline {
+    @apply bg-transparent border-2 border-sunny-orange text-sunny-orange hover:bg-sunny-orange hover:text-white focus:ring-sunny-orange;
+  }
+}
+
 @layer utilities {
   .debug-overflow::after {
     content: '⚠️  overflow';
