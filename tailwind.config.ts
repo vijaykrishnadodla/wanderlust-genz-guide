@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -87,10 +88,13 @@ export default {
 						dark: "#E05F00"     // Dark orange
 					},
 					white: "#FFFFFF",
-					cream: "#FFFBF2",    // Updated cream color
+					cream: "#FFFBF2",    // This was already here, user wants it top-level too
 					peach: "#FFE0B2"
 				},
-				midnight: "#1A1A2E"
+				midnight: "#1A1A2E",
+				// Added colors as per request
+				cream: '#FFFBF2',
+				hyper: '#FF4F9E',
 			},
 			fontFamily: {
 				sans: ["'Poppins'", "sans-serif"],
@@ -159,3 +163,4 @@ export default {
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+

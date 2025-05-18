@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
@@ -56,11 +55,19 @@
 
     --radius: 1rem;
 
-    /* ... keep existing code (sidebar variables) */
+    /* Sidebar colors */
+    --sidebar-background: 220 15% 13%; /* Dark Gray */
+    --sidebar-foreground: 0 0% 90%; /* Off-White */
+    --sidebar-primary: 30 100% 50%; /* Sunny Orange */
+    --sidebar-primary-foreground: 0 0% 100%; /* White */
+    --sidebar-accent: 39 100% 60%; /* Sunny Yellow Dark */
+    --sidebar-accent-foreground: 0 0% 100%; /* White */
+    --sidebar-border: 220 10% 30%; /* Medium Gray */
+    --sidebar-ring: 30 100% 50%; /* Sunny Orange */
   }
 
-  .inner { /* This is already defined as per user's instruction. Redundant here. */
-    /* @apply max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8; */ 
+  .inner {
+    @apply max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   * {
@@ -71,7 +78,7 @@
     @apply bg-background text-foreground font-sans;
   }
   
-  /* ... keep existing code (custom size h-84, w-84 and other Gen Z styles) */
+  /* Custom sizes for Gen Z components */
   .h-84 {
     height: 21rem; /* 336px - 50% larger than 56 (224px) */
   }
@@ -108,8 +115,6 @@
     pointer-events: none;
   }
   
-  /* ... keep existing code (sunny-button, sunny-tag, etc. through to end of @layer base) */
-
   .sunny-button {
     @apply px-6 py-3 bg-sunny-gradient text-white font-medium rounded-full shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300;
   }
@@ -249,7 +254,6 @@
     @apply bg-sunny-soft; /* Assumes sunny-soft is defined in tailwind.config.js */
   }
 
-  /* ... keep existing code (wave divider styles, journey suns, university stamps, pricing card, etc.) */
   .stb-wave-divider {
     position: absolute;
     left: 0;
