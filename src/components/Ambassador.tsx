@@ -93,7 +93,7 @@ const Ambassador = () => {
           </div>
         </div>
 
-        <div className="text-center mt-12 md:mt-16">
+        <div className="flex justify-center mt-12 md:mt-16 w-full">
           <Link to="/ambassador-application">
             <Button className="stb-button flex items-center gap-2 bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-2xl px-12 py-8 rounded-full transform hover:scale-105 transition-transform">
               <Camera className="h-6 w-6" />
