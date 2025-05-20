@@ -2,13 +2,15 @@
 import React, { useEffect } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
-import { Heart, Globe, Plane, PartyPopper } from 'lucide-react'; // Added PartyPopper
+import { Heart, Globe, Plane, PartyPopper } from 'lucide-react';
 
 const CheckoutConfirmationPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  // The image path provided by user upload
-  const sunnyMascotImage = "/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg"; 
+  // The image path provided by user upload - success state
+  const sunnyMascotImageSuccess = "/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg"; 
+  // The new image path for manual review state
+  const sunnyMascotImageManualReview = "/lovable-uploads/c00b5409-2e1c-406c-bddb-742712f51270.png"; 
 
   // Default to manual_required if no state is passed, or redirect
   const verificationStatus = location.state?.verificationStatus || 'manual_required'; 
@@ -56,7 +58,7 @@ const CheckoutConfirmationPage = () => {
           
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-6 relative z-10 text-center md:text-left">
             <img 
-              src={sunnyMascotImage}
+              src={sunnyMascotImageSuccess}
               width="300" // Adjusted from mockup slightly for responsiveness
               alt="Sunny celebrating" 
               className="max-w-[250px] md:max-w-[350px]"
@@ -75,7 +77,7 @@ const CheckoutConfirmationPage = () => {
                 <Globe size={20} />
               </div>
               <Link 
-                to="/" // Mockup has /app-store, changing to / for now as /app-store might not exist. User can change this.
+                to="/" 
                 className="mt-8 md:mt-10 inline-block bg-white text-[#0EAD69] font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-100 transition-colors"
               >
                 All set! Go to Homepage
@@ -93,7 +95,7 @@ const CheckoutConfirmationPage = () => {
       <section className="bg-gradient-to-br from-[#FFF9E5] to-[#FCE1F1] py-12 md:py-24 relative rounded-lg">
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 px-6 text-center md:text-left">
           <img 
-            src={sunnyMascotImage} // Using same image, can be different if needed
+            src={sunnyMascotImageManualReview} 
             width="200" // Scaled smaller as per mockup logic
             alt="Sunny waiting" 
             className="max-w-[180px] md:max-w-[250px]"
@@ -128,3 +130,4 @@ const CheckoutConfirmationPage = () => {
 };
 
 export default CheckoutConfirmationPage;
+
