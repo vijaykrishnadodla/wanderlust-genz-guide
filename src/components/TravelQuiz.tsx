@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Plane, Map, Ticket, Calendar, Compass, Check, ArrowRight, Camera } from 'lucide-react';
+import { Card } from '@/components/ui/card';
+import { Plane } from 'lucide-react';
 import { destinations, defaultItinerary, DestinationItinerary, HolidayTypeDetails, Attraction } from '@/data/travelDestinations';
+
+// Import new components
+import { QuizStepName } from './quiz/QuizStepName';
+import { QuizStepDestination } from './quiz/QuizStepDestination';
+import { QuizStepEmail } from './quiz/QuizStepEmail';
+import { QuizStepHolidayType } from './quiz/QuizStepHolidayType';
+import { QuizResult } from './quiz/QuizResult';
+import { QuizNavigation } from './quiz/QuizNavigation';
 
 type QuizStep = 'name' | 'destination' | 'email' | 'holidayType' | 'result';
 
-interface FormData {
+export interface FormData {
   name: string;
   destination: string;
   email: string;
@@ -18,7 +22,7 @@ interface FormData {
   idealTripDescription?: string;
 }
 
-interface DisplayItinerary {
+export interface DisplayItinerary {
   title: string;
   city: string;
   country: string;
@@ -63,10 +67,7 @@ const TravelQuiz = () => {
     if (step === 'destination') setStep('name');
     else if (step === 'email') setStep('destination');
     else if (step === 'holidayType') setStep('email');
-    else if (step === 'result') {
-      setDisplayItinerary(null);
-      setStep('holidayType');
-    }
+    // No previous from result step in this refactored version, reset handles it
   };
 
   const handleReset = () => {
@@ -84,7 +85,7 @@ const TravelQuiz = () => {
   const isNextDisabled = () => {
     if (step === 'name' && !formData.name.trim()) return true;
     if (step === 'destination' && !formData.destination.trim()) return true;
-    if (step === 'email' && !formData.email.trim()) return true;
+    if (step === 'email' && !formData.email.trim()) return true; // Add email validation later if needed
     if (step === 'holidayType' && !formData.holidayType) return true;
     return false;
   };
@@ -150,11 +151,9 @@ const TravelQuiz = () => {
 
   return (
     <section id="quiz" className="py-16 bg-gradient-to-b from-[#ffeea6]/30 to-white relative">
-      {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="container px-4 md:px-6 max-w-4xl relative z-10">
-        {/* Updated SunnyMascot with new image */}
         <div className="flex justify-center mb-8">
           <div className="relative">
             <img 
@@ -191,243 +190,57 @@ const TravelQuiz = () => {
         <Card className="border shadow-xl bg-gradient-to-br from-white to-[#ffeea6]/20">
           {step === 'name' && (
             <>
-              <CardHeader>
-                <CardTitle className="text-xl">What's your name?</CardTitle>
-                <CardDescription className="font-handwritten text-[#fe4c02]">Question 1 of 4</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <Input 
-                    type="text" 
-                    name="name" 
-                    placeholder="Your name" 
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="border-[#fdad32] rounded-lg"
-                  />
-                </div>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button 
-                  variant="outline" 
-                  onClick={handlePrevious} 
-                  disabled={true}
-                  className="border-[#fdad32] text-[#fe4c02] hover:bg-[#fdad32]/10 rounded-full"
-                >
-                  Previous
-                </Button>
-                <Button 
-                  className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full" 
-                  onClick={handleNext}
-                  disabled={isNextDisabled()}
-                >
-                  Next
-                </Button>
-              </CardFooter>
+              <QuizStepName formData={formData} handleInputChange={handleInputChange} />
+              <QuizNavigation
+                onPrevious={handlePrevious}
+                onNext={handleNext}
+                isPreviousDisabled={true}
+                isNextDisabled={isNextDisabled()}
+                showPreviousButton={false}
+              />
             </>
           )}
 
           {step === 'destination' && (
             <>
-              <CardHeader>
-                <CardTitle className="text-xl">What city are you traveling to?</CardTitle>
-                <CardDescription className="font-handwritten text-[#fe4c02]">Question 2 of 4 (Or type "SURPRISE ME")</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <Input 
-                    type="text" 
-                    name="destination" 
-                    placeholder="Destination city or type 'SURPRISE ME'" 
-                    value={formData.destination}
-                    onChange={handleInputChange}
-                    className="border-[#fdad32] rounded-lg"
-                  />
-                </div>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button 
-                  variant="outline" 
-                  onClick={handlePrevious} 
-                  className="border-[#fdad32] text-[#fe4c02] hover:bg-[#fdad32]/10 rounded-full"
-                >
-                  Previous
-                </Button>
-                <Button 
-                  className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full" 
-                  onClick={handleNext}
-                  disabled={isNextDisabled()}
-                >
-                  Next
-                </Button>
-              </CardFooter>
+              <QuizStepDestination formData={formData} handleInputChange={handleInputChange} />
+              <QuizNavigation
+                onPrevious={handlePrevious}
+                onNext={handleNext}
+                isNextDisabled={isNextDisabled()}
+              />
             </>
           )}
 
           {step === 'email' && (
             <>
-              <CardHeader>
-                <CardTitle className="text-xl">What's your email?</CardTitle>
-                <CardDescription className="font-handwritten text-[#fe4c02]">Question 3 of 4 (Used to send your ISIC card and personalized travel guide offer)</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <Input 
-                    type="email" 
-                    name="email" 
-                    placeholder="Your email" 
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="border-[#fdad32] rounded-lg"
-                  />
-                </div>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button 
-                  variant="outline" 
-                  onClick={handlePrevious} 
-                  className="border-[#fdad32] text-[#fe4c02] hover:bg-[#fdad32]/10 rounded-full"
-                >
-                  Previous
-                </Button>
-                <Button 
-                  className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full" 
-                  onClick={handleNext}
-                  disabled={isNextDisabled()}
-                >
-                  Next
-                </Button>
-              </CardFooter>
+              <QuizStepEmail formData={formData} handleInputChange={handleInputChange} />
+              <QuizNavigation
+                onPrevious={handlePrevious}
+                onNext={handleNext}
+                isNextDisabled={isNextDisabled()}
+              />
             </>
           )}
-
+          
           {step === 'holidayType' && (
             <>
-              <CardHeader>
-                <CardTitle className="text-xl">What's your travel style?</CardTitle>
-                <CardDescription className="font-handwritten text-[#fe4c02]">Question 4 of 4</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <RadioGroup className="space-y-3" value={formData.holidayType} onValueChange={handleRadioChange}>
-                  <div className="flex items-center space-x-2 border border-[#fdad32]/30 rounded-lg p-4 hover:bg-[#ffeea6]/20 transition-colors cursor-pointer">
-                    <RadioGroupItem value="sun-beach" id="sun-beach" />
-                    <Label htmlFor="sun-beach" className="w-full cursor-pointer flex items-center gap-2">
-                      <span className="text-xl">🏖️</span> Beach & Relaxation
-                    </Label>
-                  </div>
-                  
-                  <div className="flex items-center space-x-2 border border-[#fdad32]/30 rounded-lg p-4 hover:bg-[#ffeea6]/20 transition-colors cursor-pointer">
-                    <RadioGroupItem value="cultural" id="cultural" />
-                    <Label htmlFor="cultural" className="w-full cursor-pointer flex items-center gap-2">
-                      <span className="text-xl">🏛️</span> Cultural Exploration
-                    </Label>
-                  </div>
-                  
-                  <div className="flex items-center space-x-2 border border-[#fdad32]/30 rounded-lg p-4 hover:bg-[#ffeea6]/20 transition-colors cursor-pointer">
-                    <RadioGroupItem value="educational" id="educational" />
-                    <Label htmlFor="educational" className="w-full cursor-pointer flex items-center gap-2">
-                      <span className="text-xl">📚</span> Educational
-                    </Label>
-                  </div>
-                  
-                  <div className="flex items-center space-x-2 border border-[#fdad32]/30 rounded-lg p-4 hover:bg-[#ffeea6]/20 transition-colors cursor-pointer">
-                    <RadioGroupItem value="adventure" id="adventure" />
-                    <Label htmlFor="adventure" className="w-full cursor-pointer flex items-center gap-2">
-                      <span className="text-xl">🧗‍♀️</span> Adventure & Sports
-                    </Label>
-                  </div>
-                </RadioGroup>
-                <div className="mt-6 space-y-2">
-                  <Label htmlFor="idealTripDescription" className="font-handwritten text-[#fe4c02] text-md">
-                    Or describe your ideal trip for a vibe match (optional):
-                  </Label>
-                  <Textarea
-                    id="idealTripDescription"
-                    name="idealTripDescription"
-                    placeholder="E.g., 'Looking for hidden cafes, art galleries, and local music scenes...'"
-                    value={formData.idealTripDescription}
-                    onChange={handleInputChange}
-                    className="border-[#fdad32] rounded-lg min-h-[100px]"
-                  />
-                </div>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button 
-                  variant="outline" 
-                  onClick={handlePrevious} 
-                  className="border-[#fdad32] text-[#fe4c02] hover:bg-[#fdad32]/10 rounded-full"
-                >
-                  Previous
-                </Button>
-                <Button 
-                  className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full" 
-                  onClick={handleNext}
-                  disabled={isNextDisabled()}
-                >
-                  Get Results
-                </Button>
-              </CardFooter>
+              <QuizStepHolidayType 
+                formData={formData} 
+                handleInputChange={handleInputChange} 
+                handleRadioChange={handleRadioChange} 
+              />
+              <QuizNavigation
+                onPrevious={handlePrevious}
+                onNext={handleNext}
+                isNextDisabled={isNextDisabled()}
+                nextButtonText="Get Results"
+              />
             </>
           )}
 
           {step === 'result' && displayItinerary && (
-            <>
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#fe4c02]">{displayItinerary.title}</CardTitle>
-                <CardDescription className="font-handwritten text-lg">Based on your answers, we've found your ideal match!</CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-col items-center">
-                <div className="bg-white p-6 rounded-full shadow-md mb-6 border border-[#fdad32]/30">
-                  <div className="bg-gradient-to-br from-[#fdad32]/50 to-[#fe4c02]/50 p-6 rounded-full flex items-center justify-center">
-                    <span className="text-5xl">{displayItinerary.imageEmoji || "🌍"}</span>
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold mb-2 text-[#fdad32]">{displayItinerary.city}, {displayItinerary.country}</h3>
-                <p className="text-center text-gray-600 mb-6 font-handwritten text-lg">
-                  {displayItinerary.vibeDescription}
-                </p>
-                {displayItinerary.userDescriptionConsidered && (
-                  <p className="text-sm text-gray-500 mb-4 italic text-center">
-                    {displayItinerary.userDescriptionConsidered}
-                  </p>
-                )}
-                <div className="bg-[#ffeea6]/40 p-4 rounded-lg w-full mb-6 border border-[#fdad32]/30">
-                  <p className="font-medium text-center">Unlock your personalized guide with:</p>
-                  <ul className="mt-2 space-y-2">
-                    {displayItinerary.attractions.map((attraction, index) => (
-                      <li key={index} className="flex items-center gap-2 justify-center">
-                        {typeof attraction.icon === 'string' ? <span>{attraction.icon}</span> : attraction.icon}
-                        {attraction.name}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                {displayItinerary.estimatedSavings && (
-                  <div className="flex items-center">
-                    <div className="bg-[#ffeea6] p-3 rounded-lg">
-                      <p className="font-handwritten text-[#fe4c02]">
-                        Estimated savings with ISIC card: <span className="font-bold">{displayItinerary.estimatedSavings}</span>!
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button 
-                  className="border-[#fdad32] text-[#fe4c02] hover:bg-[#fdad32]/10 rounded-full" 
-                  variant="outline"
-                  onClick={handleReset}
-                >
-                  <Map className="mr-2 h-4 w-4" /> Try Another Destination
-                </Button>
-                <Button 
-                  className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full"
-                >
-                  Get Full Guide <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CardFooter>
-            </>
+            <QuizResult displayItinerary={displayItinerary} onReset={handleReset} />
           )}
         </Card>
       </div>
