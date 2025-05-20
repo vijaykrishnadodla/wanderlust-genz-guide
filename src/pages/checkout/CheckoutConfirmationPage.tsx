@@ -1,8 +1,9 @@
+
 import React, { useEffect } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { Button } from '@/components/ui/button';
-import SunnyMascot from '@/components/SunnyMascot'; // Corrected import
-import { Heart, Plane, Globe, UserRound, Check, ShieldCheck, Mail, FileText, PartyPopper } from 'lucide-react'; // Removed Confetti, Added PartyPopper
+import { SunnyMascot } from '@/components/SunnyMascot'; // Assuming SunnyMascot is at this path
+import { Heart, Plane, Globe, Confetti, UserRound, Check, ShieldCheck, Mail, FileText } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -12,7 +13,7 @@ const ConfettiParticle: React.FC<{ style: React.CSSProperties }> = ({ style }) =
     className="absolute rounded-full w-2 h-2 animate-fall"
     style={{ ...style, animationDuration: `${Math.random() * 2 + 3}s`, animationDelay: `${Math.random() * 2}s` }}
   >
-    <PartyPopper className="w-full h-full" /> {/* Changed from Confetti to PartyPopper */}
+    <Confetti className="w-full h-full" />
   </div>
 );
 
@@ -91,14 +92,14 @@ const CheckoutConfirmationPage = () => {
   // Generate some confetti particles for verified_auto status
   const confettiParticles = finalStatus === 'verified_auto' 
     ? Array.from({ length: 30 }).map((_, i) => {
-        const colors = ['#FFD700', '#FF6347', '#FFC0CB', '#87CEFA', '#DA70D6']; // Gold, Tomato, Pink, LightSkyBlue, Orchid
+        const colors = ['#FFD700', '#FF6347', '#ADFF2F', '#87CEFA', '#DA70D6']; // Gold, Tomato, GreenYellow, LightSkyBlue, Orchid
         return (
           <ConfettiParticle
             key={i}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * -50}%`, // Start above the screen
-              color: colors[Math.floor(Math.random() * colors.length)], // Using color for PartyPopper
+              backgroundColor: colors[Math.floor(Math.random() * colors.length)],
               transform: `rotate(${Math.random() * 360}deg)`
             }}
           />
