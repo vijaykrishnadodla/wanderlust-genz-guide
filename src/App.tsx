@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,9 +8,10 @@ import SalesPage from "./pages/SalesPage";
 import FunnelLandingPage from "./pages/FunnelLandingPage";
 import EpicPerksPage from "./pages/EpicPerksPage";
 import Templates from "./pages/Templates";
-import CheckoutPage from "./pages/CheckoutPage"; // Added import
-import PaymentSuccessPage from "./pages/PaymentSuccessPage"; // Added import
-import PaymentCancelPage from "./pages/PaymentCancelPage"; // Added import
+import CheckoutPage from "./pages/CheckoutPage";
+import PaymentSuccessPage from "./pages/PaymentSuccessPage";
+import PaymentCancelPage from "./pages/PaymentCancelPage";
+import AmbassadorApplicationPage from "./pages/AmbassadorApplicationPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,10 +31,10 @@ const App = () => (
             <Route path="/funnel" element={<FunnelLandingPage />} />
             <Route path="/epic-perks" element={<EpicPerksPage />} />
             <Route path="/templates" element={<Templates />} />
-            <Route path="/checkout" element={<CheckoutPage />} /> {/* Added route */}
-            <Route path="/payment-success" element={<PaymentSuccessPage />} /> {/* Added route */}
-            <Route path="/payment-cancel" element={<PaymentCancelPage />} /> {/* Added route */}
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/payment-success" element={<PaymentSuccessPage />} />
+            <Route path="/payment-cancel" element={<PaymentCancelPage />} />
+            <Route path="/ambassador-application" element={<AmbassadorApplicationPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

@@ -1,6 +1,8 @@
 import React from 'react';
-import { UserRound, Globe, Star } from 'lucide-react';
+import { UserRound, Globe, Star, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+
 const Ambassador = () => {
   return <section id="ambassador" className="py-16 bg-gradient-to-t from-[#FEF7CD]/60 to-white relative">
       {/* Film grain texture overlay */}
@@ -15,10 +17,12 @@ const Ambassador = () => {
               <p className="text-xl mb-2">
                 Are you an experienced student traveler or do you want to encourage others to travel? <Globe className="inline h-5 w-5 text-[#F97316]" />
               </p>
-              <Button className="stb-button mt-4 flex items-center gap-2">
-                <UserRound className="h-5 w-5" />
-                Join
-              </Button>
+              <Link to="/ambassador-application">
+                <Button className="stb-button mt-4 flex items-center gap-2 bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-lg px-8 py-6 rounded-full transform hover:scale-105 transition-transform">
+                  <Camera className="h-5 w-5" />
+                  Become our ambassador today!
+                </Button>
+              </Link>
             </div>
           </div>
           
