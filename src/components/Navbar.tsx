@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -25,15 +26,23 @@ const Navbar = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      // Adjust for fixed header height if necessary
+      const headerOffset = 80; // Approximate height of the header
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
     setIsMenuOpen(false); // Close mobile menu after click
   };
 
   const navItems = [
-    { name: 'Home', path: '/', icon: <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'route' as const },
+    // { name: 'Home', path: '/', icon: <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'route' as const }, // Removed Home
     { name: 'Travel Quiz', path: 'quiz', icon: <Check className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' as const },
-    { name: 'Sunshine Club', path: 'sunshine-club', icon: <Users className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' as const },
+    { name: 'The Sunshine Club', path: 'sunshine-club', icon: <Users className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' as const }, // Renamed
     { name: 'Our Story', path: 'backstory', icon: <BookOpen className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' as const },
     { name: 'Ambassadors', path: 'ambassador', icon: <Star className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' as const },
   ];
@@ -66,7 +75,7 @@ const Navbar = () => {
                   key={item.name}
                   href={`#${item.path}`}
                   onClick={(e) => {
-                    e.preventDefault(); // Prevent default hash jump
+                    e.preventDefault(); 
                     scrollToSection(item.path);
                   }}
                   className="px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale cursor-pointer"
@@ -77,12 +86,12 @@ const Navbar = () => {
             ))}
           </nav>
 
-          {/* Desktop buttons: Sign In, Join Now */}
+          {/* Desktop buttons: Join Now */}
           <div className="hidden md:flex items-center space-x-3">
-            <Button variant="outline" className="rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10">
+            {/* <Button variant="outline" className="rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10">
               <Sun className="mr-2 h-4 w-4" /> Sign In
-            </Button>
-            <Button className="bg-sunny-gradient text-white rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+            </Button> Removed Sign In */}
+            <Button className="bg-sunny-gradient text-white rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all" onClick={() => scrollToSection('sunshine-club')}>
               <Sparkles className="mr-1 h-4 w-4" /> Join Now
             </Button>
           </div>
@@ -125,10 +134,10 @@ const Navbar = () => {
                  )
               ))}
               <div className="pt-3 flex flex-col space-y-2 border-t border-sunny-yellow-light/30 mt-2">
-                <Button variant="outline" className="w-full justify-center rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10">
+                {/* <Button variant="outline" className="w-full justify-center rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10">
                   <Sun className="mr-2 h-4 w-4" /> Sign In
-                </Button>
-                <Button className="w-full justify-center bg-sunny-gradient text-white rounded-full shadow-sm hover:shadow-md">
+                </Button> Removed Sign In */}
+                <Button className="w-full justify-center bg-sunny-gradient text-white rounded-full shadow-sm hover:shadow-md" onClick={() => scrollToSection('sunshine-club')}>
                   <Sparkles className="mr-1 h-4 w-4" /> Join Now
                 </Button>
               </div>
