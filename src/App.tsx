@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,6 +16,8 @@ import AmbassadorApplicationPage from "./pages/AmbassadorApplicationPage";
 import NotFound from "./pages/NotFound";
 import CheckoutDetailsPage from "./pages/checkout/CheckoutDetailsPage";
 import CheckoutPaymentPage from "./pages/checkout/CheckoutPaymentPage";
+import CheckoutVerifyPage from "./pages/checkout/CheckoutVerifyPage"; // Added import
+import CheckoutUploadDocsPage from "./pages/checkout/CheckoutUploadDocsPage"; // Added import
 
 const queryClient = new QueryClient();
 
@@ -36,6 +39,8 @@ const App = () => (
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/checkout/details" element={<CheckoutDetailsPage />} />
             <Route path="/checkout/payment" element={<CheckoutPaymentPage />} />
+            <Route path="/checkout/verify" element={<CheckoutVerifyPage />} /> {/* Added route */}
+            <Route path="/checkout/upload-docs" element={<CheckoutUploadDocsPage />} /> {/* Added route */}
             <Route path="/payment-success" element={<PaymentSuccessPage />} />
             <Route path="/payment-cancel" element={<PaymentCancelPage />} />
             <Route path="/ambassador-application" element={<AmbassadorApplicationPage />} />
