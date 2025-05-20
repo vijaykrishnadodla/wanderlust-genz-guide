@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles, MapPin, Sun } from 'lucide-react';
@@ -31,7 +30,7 @@ const Hero = () => {
             </p>
             
             <p className="text-lg">
-              Join thousands of students saving <span className="font-bold text-sunny-orange">$200+ per week</span> on travel with our exclusive membership perks.
+              Join thousands of students saving on average <span className="font-bold text-sunny-orange">$200+ per week</span> while traveling with our exclusive membership perks.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 md:justify-start justify-center">
@@ -53,7 +52,7 @@ const Hero = () => {
                 behavior: 'smooth'
               });
             }}>
-                <Sparkles className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform" /> Join Sunshine Club
+                <Sparkles className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform" /> Join The Sunshine Club
               </Button>
             </div>
 
@@ -68,9 +67,9 @@ const Hero = () => {
             
             {/* Popular Destinations */}
             <div className="mt-4 bg-white/70 backdrop-blur-sm p-3 rounded-2xl shadow-sm hidden md:block">
-              <p className="font-medium text-sm mb-2">Popular Student Destinations:</p>
+              <p className="font-medium text-sm mb-2">Popular Student Destinations Trending in 2025:</p>
               <div className="flex flex-wrap gap-2">
-                {["Paris", "Barcelona", "London", "Rome", "Berlin"].map(city => <span key={city} className="bg-sunny-yellow-pale px-2 py-1 rounded-full text-xs flex items-center gap-1 border border-sunny-yellow-light">
+                {["Cancún", "Paris", "London", "Rome", "Barcelona", "LA", "NY", "Chicago", "Honolulu", "Dublin", "Tokyo"].map(city => <span key={city} className="bg-sunny-yellow-pale px-2 py-1 rounded-full text-xs flex items-center gap-1 border border-sunny-yellow-light">
                     <MapPin className="h-3 w-3 text-sunny-orange" /> {city}
                   </span>)}
               </div>
