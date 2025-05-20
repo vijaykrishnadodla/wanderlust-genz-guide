@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 
 const formSchema = z.object({
@@ -61,27 +60,15 @@ const BasicDetailsForm = () => {
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
             age--;
         }
-
-        // For now, always navigate to payment page. Age check will be used later.
-        // const nextPath = age >= 17 ? '/checkout/payment?adult=true' : '/checkout/payment?adult=false';
-        // For this iteration, we'll just go to a placeholder /checkout/payment page.
-        // The actual payment page will be created in the next step.
-        // navigate(nextPath); 
         
         toast({
           title: "Details Saved",
           description: "Proceeding to payment.",
         });
-        navigate('/checkout'); // Placeholder: In next step, this will be /checkout/payment
-                               // For now, navigate back to the main checkout page to show progress.
-                               // This needs to be replaced with navigation to the actual Step 2 page.
-                               // The prompt implies step 2 is Stripe, so the existing CheckoutPage can be adapted for it.
-                               // For now, I'll leave it like this and in the next iteration we'll build the payment page.
-                               // The user's instructions say "Server calculates age from DOB and redirects to /pay?adult=true or /pay?adult=false."
-                               // And "Routing After Payment: If Age 17: go to /verify – instant NSC check. If Age < 17: go to /upload■docs – manual proof upload."
-                               // This implies the /checkout/payment page will be the next one.
-                               // Let's assume we'll create /checkout/payment in the next message.
-                               // So for now, we simulate saving and inform the user. A full navigation to next step will be done when /checkout/payment exists.
+        // Navigate to the next step, which will be the payment page.
+        // For now, let's assume the payment page will be at '/checkout/payment'
+        // This matches the plan from the previous step.
+        navigate('/checkout/payment'); 
     } catch (error) {
         console.error("Failed to save to session storage:", error);
         toast({
