@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Sun, Sparkles, Gift, Users, Check } from 'lucide-react';
+import { Menu, X, Sun, Sparkles, Users, Check, BookOpen, Star } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 
 const Navbar = () => {
@@ -22,17 +22,24 @@ const Navbar = () => {
     };
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMenuOpen(false); // Close mobile menu after click
+  };
+
   const navItems = [
-    { name: 'Home', path: '/', icon: <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
-    { name: 'Sales Page', path: '/sales', icon: <Sparkles className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
-    { name: 'Funnel', path: '/funnel', icon: <Sparkles className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
-    { name: 'Epic Perks', path: '/epic-perks', icon: <Gift className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
-    { name: 'Memberships', path: '#memberships', icon: <Users className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
-    { name: 'Quiz', path: '#quiz', icon: <Check className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> }
+    { name: 'Home', path: '/', icon: <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'route' as const },
+    { name: 'Travel Quiz', path: 'quiz', icon: <Check className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' as const },
+    { name: 'Sunshine Club', path: 'sunshine-club', icon: <Users className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' as const },
+    { name: 'Our Story', path: 'backstory', icon: <BookOpen className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' as const },
+    { name: 'Ambassadors', path: 'ambassador', icon: <Star className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' as const },
   ];
 
   return <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm' : 'bg-transparent'}`}>
-      <div className="inner">
+      <div className="container px-4 md:px-6 mx-auto">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2 group">
             <div className="relative w-8 h-8 sm:w-10 sm:h-10">
@@ -46,13 +53,27 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className="px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale"
-              >
-                {item.name}
-              </Link>
+              item.type === 'route' ? (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className="px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <a
+                  key={item.name}
+                  href={`#${item.path}`}
+                  onClick={(e) => {
+                    e.preventDefault(); // Prevent default hash jump
+                    scrollToSection(item.path);
+                  }}
+                  className="px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale cursor-pointer"
+                >
+                  {item.name}
+                </a>
+              )
             ))}
           </nav>
 
@@ -75,18 +96,33 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && <div className="md:hidden bg-white border-t border-sunny-yellow-light/30 shadow-md animate-accordion-down">
-          <div className="inner py-4">
+          <div className="container px-4 md:px-6 mx-auto py-4">
             <nav className="flex flex-col space-y-2">
               {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className="px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {React.cloneElement(item.icon, { className: "h-4 w-4 mr-2 text-sunny-yellow-dark"})}
-                  {item.name}
-                </Link>
+                 item.type === 'route' ? (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className="px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {React.cloneElement(item.icon, { className: "h-4 w-4 mr-2 text-sunny-yellow-dark"})}
+                    {item.name}
+                  </Link>
+                 ) : (
+                  <a
+                    key={item.name}
+                    href={`#${item.path}`}
+                    className="px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(item.path);
+                    }}
+                  >
+                    {React.cloneElement(item.icon, { className: "h-4 w-4 mr-2 text-sunny-yellow-dark"})}
+                    {item.name}
+                  </a>
+                 )
               ))}
               <div className="pt-3 flex flex-col space-y-2 border-t border-sunny-yellow-light/30 mt-2">
                 <Button variant="outline" className="w-full justify-center rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10">

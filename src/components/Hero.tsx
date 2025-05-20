@@ -47,7 +47,7 @@ const Hero = () => {
               </Button>
               
               <Button variant="outline" className="rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10 h-auto py-3 group" onClick={() => {
-              const offeringSection = document.getElementById('offering');
+              const offeringSection = document.getElementById('offering'); // This should ideally be 'sunshine-club' or similar if that's the target
               if (offeringSection) offeringSection.scrollIntoView({
                 behavior: 'smooth'
               });
@@ -65,13 +65,19 @@ const Hero = () => {
               <p className="text-sm">Joined by <span className="font-bold text-sunny-orange">5,000+</span> student travelers</p>
             </div>
             
-            {/* Popular Destinations */}
-            <div className="mt-4 bg-white/70 backdrop-blur-sm p-3 rounded-2xl shadow-sm hidden md:block">
-              <p className="font-medium text-sm mb-2">Popular Student Destinations Trending in 2025:</p>
-              <div className="flex flex-wrap gap-2">
-                {["Cancún", "Paris", "London", "Rome", "Barcelona", "LA", "NY", "Chicago", "Honolulu", "Dublin", "Tokyo"].map(city => <span key={city} className="bg-sunny-yellow-pale px-2 py-1 rounded-full text-xs flex items-center gap-1 border border-sunny-yellow-light">
-                    <MapPin className="h-3 w-3 text-sunny-orange" /> {city}
-                  </span>)}
+            {/* MiniSignUpForm and Popular Destinations Wrapper */}
+            <div className="mt-4 flex flex-col md:flex-row md:items-end md:gap-4">
+              <div className="w-full md:max-w-xs lg:max-w-sm xl:max-w-md flex-shrink-0">
+                  <MiniSignUpForm />
+              </div>
+              {/* Popular Destinations */}
+              <div className="mt-4 md:mt-0 bg-white/70 backdrop-blur-sm p-3 rounded-2xl shadow-sm hidden md:block md:flex-1">
+                <p className="font-medium text-sm mb-2">Popular Student Destinations Trending in 2025:</p>
+                <div className="flex flex-wrap gap-2">
+                  {["Cancún", "Paris", "London", "Rome", "Barcelona", "LA", "NY", "Chicago", "Honolulu", "Dublin", "Tokyo"].map(city => <span key={city} className="bg-sunny-yellow-pale px-2 py-1 rounded-full text-xs flex items-center gap-1 border border-sunny-yellow-light">
+                      <MapPin className="h-3 w-3 text-sunny-orange" /> {city}
+                    </span>)}
+                </div>
               </div>
             </div>
           </div>
@@ -105,13 +111,8 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Mini signup form moved below the grid */}
-        <div className="mt-8 mb-8">
-          <MiniSignUpForm />
-        </div>
-        
         {/* Bottom decorative elements */}
-        <div className="mt-4 flex justify-center">
+        <div className="mt-12 flex justify-center">
           <div className="flex items-center gap-2 px-4 py-2 rounded-full shadow-sm">
             <Sun className="h-5 w-5 text-sunny-yellow-dark sunny-spin" />
             <span className="font-medium text-sunny-orange-dark">Start your sunny adventure today!</span>
