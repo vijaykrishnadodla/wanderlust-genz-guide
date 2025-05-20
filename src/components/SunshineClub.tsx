@@ -348,7 +348,7 @@ const SunshineClub = () => {
 
         {/* This is for you if section - modernized with icons */}
         <div className="mb-16 bg-white rounded-xl p-8 shadow-sm border-2 border-[#FFD600]/20">
-          <h2 className="text-2xl font-bold text-center mb-8">THIS IS FOR YOU IF...</h2>
+          <h2 className="text-2xl font-bold text-center mb-8">THIS IS FOR YOU IF YOU...</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
             <div className="space-y-4">
