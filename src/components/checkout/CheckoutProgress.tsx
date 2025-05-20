@@ -7,7 +7,7 @@ interface CheckoutProgressProps {
   totalSteps: number;
 }
 
-const stepNames = ["Your Details", "Payment", "Verification"]; // Add more as needed
+const stepNames = ["Your Details", "Payment", "Verification", "Confirmation"]; // Updated stepNames
 
 const CheckoutProgress: React.FC<CheckoutProgressProps> = ({ currentStep, totalSteps }) => {
   const progressPercentage = (currentStep / totalSteps) * 100;

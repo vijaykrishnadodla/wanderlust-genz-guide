@@ -18,8 +18,8 @@ const CheckoutVerifyPage = () => {
     verificationStatus,
     errorMessage,
     handleVerification,
-    handleCompleteAndGoHome,
-    handleProceedToManualUpload,
+    handleCompleteAndGoHome, // This will navigate to confirmation page
+    handleProceedToManualUpload, // This will navigate to confirmation page
   } = useVerification();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const CheckoutVerifyPage = () => {
   };
 
   return (
-    <CheckoutLayout currentStep={3} totalSteps={3}>
+    <CheckoutLayout currentStep={3} totalSteps={4}> {/* Updated totalSteps */}
       <div className="text-center max-w-lg mx-auto">
         <ShieldCheck className="h-16 w-16 text-green-500 mx-auto mb-6" />
         <h1 className="text-3xl font-display text-sunny-orange-dark mb-2">
@@ -42,7 +42,6 @@ const CheckoutVerifyPage = () => {
           Flash Your Student Creds ☀️. Select your institution and consent to verification.
         </p>
 
-        {/* Display general status messages or form-specific errors */}
         <VerificationStatusDisplay
           status={verificationStatus}
           errorMessage={errorMessage}
@@ -64,11 +63,6 @@ const CheckoutVerifyPage = () => {
               onCheckedChange={setConsentGiven}
               disabled={verificationStatus === "loading"}
             />
-            {/* The VerificationStatusDisplay above handles most messages.
-                If there are specific messages to show ONLY within the form context
-                and not covered by the hook's status, they could be added here.
-                For now, the main VerificationStatusDisplay should cover it.
-            */}
             <Button
               type="submit"
               className="w-full stb-button bg-sunny-orange hover:bg-sunny-orange-dark text-white"
@@ -89,26 +83,24 @@ const CheckoutVerifyPage = () => {
         
         {verificationStatus === "success" && (
           <>
-            {/* Success message is handled by VerificationStatusDisplay */}
             <Button 
-              onClick={handleCompleteAndGoHome} 
+              onClick={handleCompleteAndGoHome} // Navigates to confirmation
               className="w-full stb-button bg-green-500 hover:bg-green-600 text-white mt-6"
               size="lg"
             >
-              All Set! Go to Homepage
+              Proceed to Confirmation
             </Button>
           </>
         )}
 
         {verificationStatus === "manual_required" && (
            <>
-            {/* Manual required message is handled by VerificationStatusDisplay */}
             <Button 
-              onClick={handleProceedToManualUpload} 
+              onClick={handleProceedToManualUpload} // Navigates to confirmation
               className="w-full stb-button bg-sunny-yellow hover:bg-sunny-yellow-dark text-midnight mt-6"
               size="lg"
             >
-              Proceed to Upload Documents
+              Proceed to Confirmation
             </Button>
            </>
         )}

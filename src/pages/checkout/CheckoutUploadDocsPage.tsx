@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { Button } from '@/components/ui/button';
-import { UploadCloud, FileText, Mail } from 'lucide-react'; // Added Mail icon
+import { UploadCloud, FileText, Mail } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast'; // Corrected import path
 import { useNavigate } from 'react-router-dom';
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"; // Added RadioGroup
-import { Label } from "@/components/ui/label"; // Added Label
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
 type UploadOption = "upload" | "emailLater";
 
@@ -15,7 +15,7 @@ const CheckoutUploadDocsPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [isProcessing, setIsProcessing] = useState(false); // Renamed from isUploading for clarity
+  const [isProcessing, setIsProcessing] = useState(false);
   const [uploadOption, setUploadOption] = useState<UploadOption>("upload");
 
   useEffect(() => {
@@ -43,34 +43,22 @@ const CheckoutUploadDocsPage = () => {
         setIsProcessing(false);
         return;
       }
-
-      // Placeholder for actual upload logic
       console.log("Uploading file:", selectedFile.name);
       await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate upload delay
-
-      toast({
-        title: "Document Uploaded",
-        description: `${selectedFile.name} has been submitted for review. We'll notify you once verification is complete.`,
-        duration: 7000,
-      });
+      // Removed toast for document uploaded
     } else { // emailLater option
-      toast({
-        title: "Order Confirmed!",
-        description: "Please email your verification document(s) to verifications@studenttravelbuddy.com within 48 hours. Include your order number if available.",
-        variant: "default",
-        duration: 10000, // Longer duration for important instructions
-      });
-      // Simulate a short delay for consistency if needed, or remove if instant is preferred
+      // Removed toast for order confirmed email later
       await new Promise(resolve => setTimeout(resolve, 500)); 
     }
 
     setIsProcessing(false);
     sessionStorage.removeItem('stbCheckoutDetails');
-    navigate('/'); // Navigate to homepage or a dedicated "thank you/next steps" page
+    // Navigate to confirmation page with 'manual_required' status
+    navigate('/checkout/confirmation', { state: { verificationStatus: 'manual_required' } });
   };
 
   return (
-    <CheckoutLayout currentStep={3} totalSteps={3}>
+    <CheckoutLayout currentStep={3} totalSteps={4}> {/* Updated totalSteps */}
       <div className="text-center">
         {uploadOption === 'upload' ? (
             <UploadCloud className="h-16 w-16 text-sunny-orange mx-auto mb-6" />
@@ -87,7 +75,7 @@ const CheckoutUploadDocsPage = () => {
         <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow border border-gray-200">
           <RadioGroup defaultValue="upload" onValueChange={(value: UploadOption) => {
             setUploadOption(value);
-            setSelectedFile(null); // Clear selected file if switching options
+            setSelectedFile(null); 
           }} className="mb-6 space-y-2">
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="upload" id="option-upload" />
@@ -145,7 +133,7 @@ const CheckoutUploadDocsPage = () => {
             className="w-full stb-button bg-sunny-orange hover:bg-sunny-orange-dark text-white"
             size="lg"
           >
-            {isProcessing ? (uploadOption === 'upload' ? "Uploading..." : "Processing...") : (uploadOption === 'upload' ? "Upload and Complete Order" : "Complete Order & Email Docs Later")}
+            {isProcessing ? (uploadOption === 'upload' ? "Uploading..." : "Processing...") : (uploadOption === 'upload' ? "Upload and Proceed" : "Complete Order & Proceed")}
           </Button>
         </div>
         <p className="text-sm text-gray-500 mt-6">
@@ -159,4 +147,3 @@ const CheckoutUploadDocsPage = () => {
 };
 
 export default CheckoutUploadDocsPage;
-

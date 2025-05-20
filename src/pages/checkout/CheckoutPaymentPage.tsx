@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast'; // Corrected import path
 import { Link, useNavigate } from 'react-router-dom';
 import { CreditCard } from 'lucide-react';
 import { BasicDetails } from '@/types/checkout';
@@ -114,7 +115,7 @@ const CheckoutPaymentPage = () => {
 
   if (pageError && !basicDetails) {
     return (
-      <CheckoutLayout currentStep={2} totalSteps={3}>
+      <CheckoutLayout currentStep={2} totalSteps={4}> {/* Updated totalSteps */}
         <PaymentPageError error={pageError} />
       </CheckoutLayout>
     );
@@ -122,14 +123,14 @@ const CheckoutPaymentPage = () => {
   
   if (!basicDetails) {
     return (
-      <CheckoutLayout currentStep={2} totalSteps={3}>
+      <CheckoutLayout currentStep={2} totalSteps={4}> {/* Updated totalSteps */}
         <PaymentPageLoading />
       </CheckoutLayout>
     );
   }
 
   return (
-    <CheckoutLayout currentStep={2} totalSteps={3}>
+    <CheckoutLayout currentStep={2} totalSteps={4}> {/* Updated totalSteps */}
       {showPaymentAnimation && <PaymentSuccessAnimation />}
       <Link to="/checkout/details" className="text-sunny-orange hover:underline mb-6 inline-block">
         &larr; Back to Your Details
