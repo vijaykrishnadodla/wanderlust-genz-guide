@@ -280,7 +280,7 @@ const SunshineClub = () => {
             
             <Card className="border-2 border-[#FFD600]/30 shadow-sm hover:shadow-md transition-all">
               <CardContent className="p-5 text-center">
-                <div className="h-10 w-10 bg-[#F97316]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <div className="h-10 w-10 bg-[#F97316]/20 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">
                   <Video className="h-5 w-5 text-[#F97316]" />
                 </div>
                 <h3 className="font-bold mb-1">Live Webinars</h3>
