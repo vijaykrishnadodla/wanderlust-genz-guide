@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
@@ -23,43 +24,44 @@
   }
 
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --background: 48 100% 97%;
+    --foreground: 35 80% 8%;
+
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
+    --card-foreground: 35 80% 8%;
+
+    --popover: 48 100% 97%;
+    --popover-foreground: 35 80% 8%;
+
+    --primary: 30 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 39 100% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 39 70% 92%;
+    --muted-foreground: 35 50% 40%;
+
+    --accent: 30 100% 94%;
+    --accent-foreground: 30 80% 30%;
+
+    --destructive: 0 85% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.5rem;
 
-    /* Sunny Theme Colors */
-    --sunny-yellow: theme('colors.yellow.300'); /* #FDE047 */
-    --sunny-yellow-light: theme('colors.yellow.200'); /* #FEF08A */
-    --sunny-yellow-pale: theme('colors.yellow.100'); /* #FEF9C3 */
-    --sunny-yellow-dark: theme('colors.amber.500'); /* #F59E0B */
-    
-    --sunny-orange: theme('colors.orange.500'); /* #F97316 */
-    --sunny-orange-light: theme('colors.orange.300'); /* #FDBA74 */
-    --sunny-orange-dark: theme('colors.orange.700'); /* #C2410C */
+    --border: 30 70% 88%;
+    --input: 30 70% 88%;
+    --ring: 30 100% 50%;
 
-    --sunny-cream: theme('colors.orange.50'); /* #FFF7ED */
-    --midnight: theme('colors.slate.800'); /* #1e293b */
-  }
+    --radius: 1rem;
 
-  .dark {
-    /* ... keep existing dark theme variables */
+    --sidebar-background: 48 100% 97%;
+    --sidebar-foreground: 35 80% 8%;
+    --sidebar-primary: 30 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 100% 94%;
+    --sidebar-accent-foreground: 30 80% 30%;
+    --sidebar-border: 30 70% 88%;
+    --sidebar-ring: 30 100% 50%;
   }
 
   .inner {
@@ -71,7 +73,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
   
   /* Custom size for the 50% larger avatar */
@@ -105,7 +107,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFZSURBVGhD7ZpBDoMgEEXB+5+gcW+MP3HlwoXxBs0YiKGtQiswMG/ztiYK/GegtA3DYK3N8zzP27YdXtd1Da/neY6dgk+t3qe2IGqt4XfrvDvZkYhKfVFhOSITDZblgCRij8AyHIhCqnOwrAakEslgGQOUkZgZGJjIGAsQQq2zBWMGbTCmMEZiKv5z7TdKYh5xH0ooe26QxH3KmEcJzKOsRnUMJTCappEUSigRg4lsSClMJUTsRSlMZUT+Q0nMowTmNRJTCfGvOlCVzzkRe6uAqZzITyiJqayIQynMoyzm9fuf6ggzEfGKJTAxEYAxEROYqIh4xRKYyIjAjMBERQTGd0xMBOY7JioC4zsmKgLjOyYuAuMzJioCUx8zz/Npn1c0EYGpj9n3/bTPK5pIM9JGmpE20ow0I22kGWlG2kgz0oy0kWakjbSRZuTDiDoIdhxH+7it0/kB6BqKkOCCHGAAAAAASUVORK5CYII=");
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFZSURBVGhD7ZpBDoMgEEXB+5+gcW+MP3HlwoXxBs0YiKGtQiswMG/ztiYK/GegtA3DYK3N8zzP27YdXtd1Da/neY6dgk+t3qe2IGqt4XfrvDvZkYhKfVFhOSITDZblgCRij8AyHIhCqnOwrAakEslgGQOUkZgZGJjIGAsQQq2zBWMGbTCmMEZiKv5z7TdKYh5xH0ooe26QxH3KmEcJzKOsRnUMJTCappEUSigRg4lsSClMJUTsRSlMZUT+Q0nMowTmNRJTCfGvOlCVzzkRe6uAqZzITyiJqayIQynMoyzm9fuf6ggzEfGKJTAxEYAxEROYqIh4xRKYyIjAjMBERQTGd0xMBOY7JioC4zsmKgLjOyYuAuMzJioCUx8zz/Npn1c0EYGpj9n3/bTPK5pIM9JGmpE20ow0I22kGWlG2kgz0oy0kWakjbSRZuTDiDsrdDoIdhxH+7it0/kB6BqKkOCCHGAAAAAASUVORK5CYII=");
     opacity: 0.04;
     mix-blend-mode: overlay;
     pointer-events: none;
