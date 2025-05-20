@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Backpack, Camera, Book, Map, Sparkles } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -25,7 +24,7 @@ const SunnyMascot = ({
     sm: isMobile ? 'h-10 w-10' : 'h-12 w-12',
     md: isMobile ? 'h-16 w-16' : 'h-20 w-20',
     lg: isMobile ? 'h-24 w-24' : 'h-32 w-32',
-    xl: isMobile ? 'h-60 w-60' : 'h-84 w-84' // Increased by 50% from h-40/w-40 to h-60/w-60 for mobile and h-56/w-56 to h-84/w-84 for desktop
+    xl: isMobile ? 'h-60 w-60' : 'h-84 w-84' 
   };
 
   // Travel style accessory with updated Gen Z design
@@ -89,24 +88,18 @@ const SunnyMascot = ({
   // Changed: Updated the container to ensure visibility on all formats
   return <div className={`flex ${withText ? 'flex-row items-center' : 'flex-col'} ${isMobile ? withText ? 'flex-col items-center' : 'items-center' : 'items-start'} gap-2 md:gap-4 ${className}`}>
       <div className="relative">
-        {/* Updated Sunny image with glow effect */}
         <div className={`relative ${sizeClasses[size]} z-10`}>
           <div className={`absolute inset-0 bg-sunny-yellow/50 rounded-full blur-${size === 'xl' ? 'xl' : 'md'} sunny-pulse`}></div>
           
-          {/* Base Sun with new fashion-style avatar - Updated to use the new image */}
           <div className="w-full h-full relative z-0">
-            <img alt="Sunny mascot" className="w-full h-full object-contain" src="/lovable-uploads/26445152-6bec-4571-a696-f6672bb5b4b2.png" />
+            <img alt="Sunny mascot" className="w-full h-full object-contain" src="/lovable-uploads/ce761cf0-7852-40c4-a8b0-08311702524c.png" /> {/* Updated image src */}
           </div>
           
-          {/* Travel style accessories */}
           {renderAccessory()}
-          
-          {/* Add sparkle effect */}
           {renderSparkles()}
         </div>
       </div>
       
-      {/* Speech bubble positioning - adjusted for larger avatar */}
       {withText && message && <div className={`sunny-speech-bubble ${isMobile ? 'sunny-speech-bubble-top text-xs md:text-sm' : 'sunny-speech-bubble-left text-sm'} ${size === 'xl' ? 'max-w-[180px] md:max-w-sm' : 'max-w-[120px] md:max-w-xs'} font-handwritten text-sunny-orange`}>
           {message}
         </div>}
