@@ -44,12 +44,6 @@ const Ambassador = () => {
               <p className="text-xl mb-2">
                 Are you an experienced student traveler or do you want to encourage others to travel? <Globe className="inline h-5 w-5 text-[#F97316]" />
               </p>
-              <Link to="/ambassador-application" className="mt-auto flex justify-center py-4">
-                <Button className="stb-button flex items-center gap-2 bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-xl px-10 py-7 rounded-full transform hover:scale-105 transition-transform">
-                  <Camera className="h-5 w-5" />
-                  Become our ambassador today!
-                </Button>
-              </Link>
             </div>
           </div>
           
@@ -97,6 +91,15 @@ const Ambassador = () => {
               <p className="text-gray-700">Join a global network of student travel enthusiasts making cultural exchange and international friendship accessible to everyone.</p>
             </div>
           </div>
+        </div>
+
+        <div className="text-center mt-12 md:mt-16">
+          <Link to="/ambassador-application">
+            <Button className="stb-button flex items-center gap-2 bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-2xl px-12 py-8 rounded-full transform hover:scale-105 transition-transform">
+              <Camera className="h-6 w-6" />
+              Apply here
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
