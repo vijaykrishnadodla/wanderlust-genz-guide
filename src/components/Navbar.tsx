@@ -1,8 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Sun, Sparkles, Gift, Users, Check } from 'lucide-react';
-import SunnyMascot from './SunnyMascot';
+import { Menu, X, Sun, Sparkles, Users, Check, Gift } from 'lucide-react'; // Added Gift for variety if needed, kept others
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,12 +23,10 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', path: '/', icon: <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
-    { name: 'Sales Page', path: '/sales', icon: <Sparkles className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
-    { name: 'Funnel', path: '/funnel', icon: <Sparkles className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
-    { name: 'Epic Perks', path: '/epic-perks', icon: <Gift className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
-    { name: 'Memberships', path: '#memberships', icon: <Users className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
-    { name: 'Quiz', path: '#quiz', icon: <Check className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> }
+    { name: 'Travel Quiz', path: '#quiz', icon: <Check className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
+    { name: 'The Sunshine Club', path: '#sunshine-club', icon: <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
+    { name: 'Our Story', path: '#backstory', icon: <Sparkles className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> }, // Using Sparkles for Our Story
+    { name: 'Ambassadors', path: '#ambassador', icon: <Users className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> }
   ];
 
   return <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm' : 'bg-transparent'}`}>
@@ -56,11 +54,9 @@ const Navbar = () => {
             ))}
           </nav>
 
-          {/* Desktop buttons: Sign In, Join Now */}
+          {/* Desktop buttons: Join Now */}
           <div className="hidden md:flex items-center space-x-3">
-            <Button variant="outline" className="rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10">
-              <Sun className="mr-2 h-4 w-4" /> Sign In
-            </Button>
+            {/* Sign In Button Removed */}
             <Button className="bg-sunny-gradient text-white rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
               <Sparkles className="mr-1 h-4 w-4" /> Join Now
             </Button>
@@ -89,9 +85,7 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="pt-3 flex flex-col space-y-2 border-t border-sunny-yellow-light/30 mt-2">
-                <Button variant="outline" className="w-full justify-center rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10">
-                  <Sun className="mr-2 h-4 w-4" /> Sign In
-                </Button>
+                {/* Sign In Button Removed */}
                 <Button className="w-full justify-center bg-sunny-gradient text-white rounded-full shadow-sm hover:shadow-md">
                   <Sparkles className="mr-1 h-4 w-4" /> Join Now
                 </Button>
@@ -103,3 +97,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
