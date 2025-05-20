@@ -66,9 +66,7 @@ const JourneySuns = () => {
         <h3 className="sunny-heading text-2xl md:text-3xl font-bold mb-3 tracking-wide">
           YOUR TRAVEL JOURNEY
         </h3>
-        <p className="text-[#1e1e1e]/70 mb-2 max-w-md mx-auto">
-          How Sunshine Club works in 4 simple steps
-        </p>
+        <p className="text-[#1e1e1e]/70 mb-2 max-w-md mx-auto">How The Sunshine Club works in 4 simple steps</p>
         
         
         {/* Added wave divider right under the heading */}
