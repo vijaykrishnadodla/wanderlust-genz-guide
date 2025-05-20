@@ -1,19 +1,18 @@
-
 import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Compass, Sun, MapPin, ArrowRight, Sparkles, Star, Heart, Instagram, Facebook, Youtube, Globe } from 'lucide-react';
-// Removed: import { TikTok } from 'lucide-react';
+// Removed Globe, kept other necessary icons
+import { Compass, Sun, MapPin, ArrowRight, Sparkles, Star, Heart, Instagram, Facebook, Youtube } from 'lucide-react'; 
+// Removed: import { TikTok } from 'lucide-react'; // This line was already commented out or removed
 import SunnyMascot from './SunnyMascot';
 
 const Footer = () => {
   const socialLinks = [
-    { name: 'Website', href: 'https://www.studenttravelbuddy.com', icon: <Globe className="h-5 w-5" /> },
-    { name: 'Instagram', href: 'https://www.instagram.com/studenttravelbuddyofficial', icon: <Instagram className="h-5 w-5" /> },
-    { name: 'Facebook', href: 'https://www.facebook.com/studenttravelbuddyofficial', icon: <Facebook className="h-5 w-5" /> },
-    { name: 'YouTube', href: 'https://www.youtube.com/@studenttravelbuddyofficial', icon: <Youtube className="h-5 w-5" /> },
-    // Removed TikTok entry that caused the error
-    // { name: 'TikTok', href: 'https://www.tiktok.com/@studenttravelbuddy.com', icon: <TikTok className="h-5 w-5" /> },
+    // Website link removed
+    { name: '@studenttravelbuddyofficial', href: 'https://www.instagram.com/studenttravelbuddyofficial', icon: <Instagram className="h-5 w-5" /> },
+    { name: '@studenttravelbuddyofficial', href: 'https://www.facebook.com/studenttravelbuddyofficial', icon: <Facebook className="h-5 w-5" /> },
+    { name: '@studenttravelbuddyofficial', href: 'https://www.youtube.com/@studenttravelbuddyofficial', icon: <Youtube className="h-5 w-5" /> },
+    { name: '@studenttravelbuddy.com', href: 'https://www.tiktok.com/@studenttravelbuddy.com', icon: <span className="text-sm font-semibold">Tk</span> }, // Added TikTok with text icon
   ];
 
   return (
