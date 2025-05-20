@@ -1,11 +1,50 @@
 import React from 'react';
-import { BookOpen } from 'lucide-react';
+import { BookOpen, Sparkles } from 'lucide-react';
+
+// StarDust component for sparkle effects (similar to SunshineClub)
+const StarDust = ({ className }: { className?: string }) => {
+  return (
+    <div className={`absolute pointer-events-none ${className}`}>
+      <Sparkles className="h-4 w-4 text-yellow-300 animate-pulse-gentle" />
+    </div>
+  );
+};
+
 const BackStory = () => {
-  return <section id="backstory" className="py-16 bg-gradient-to-b from-white to-[#FEF7CD]/40 relative">
+  return (
+    <section id="backstory" className="py-16 bg-gradient-to-b from-white to-[#FEF7CD]/40 relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="container px-4 md:px-6 relative z-10">
+        {/* NEW "OUR STORY" HEADER */}
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 text-[#F97316] mb-3"> {/* Replicated sunshine-accent style */}
+            <BookOpen className="h-4 w-4" />
+            <span>Discover Our Journey</span>
+          </div>
+          <div className="relative inline-block">
+            <h2 className="text-4xl md:text-5xl font-display mb-4 relative z-10 bg-clip-text bg-gradient-to-r from-[#F97316] to-[#FDAD32] text-transparent drop-shadow-sm animate-pulse-gentle">
+              OUR STORY
+            </h2>
+            
+            {/* Star dust animations positioned around the title */}
+            <StarDust className="-top-4 -left-2" />
+            <StarDust className="-top-2 -right-3" />
+            <StarDust className="bottom-0 left-1/4" />
+            <StarDust className="top-1/2 right-1/4" />
+            <StarDust className="bottom-2 right-10" />
+            
+            {/* Extra star decoration */}
+            <span className="absolute -top-6 right-0 text-yellow-300 animate-float">✨</span>
+            <span className="absolute -bottom-4 left-4 text-yellow-400 animate-bounce-subtle">⭐</span>
+            <span className="absolute top-1/3 -right-8 text-yellow-300 animate-spin-slow text-sm">✨</span>
+            
+            {/* Sun glow effect behind text */}
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-200/20 to-orange-300/20 blur-lg -z-10 transform scale-110"></div>
+          </div>
+        </div>
+
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div className="relative">
@@ -89,6 +128,7 @@ const BackStory = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 export default BackStory;
