@@ -1,8 +1,9 @@
+
 import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Compass, Sun, MapPin, ArrowRight, Sparkles, Star, Heart, Instagram, Facebook, Youtube, Globe } from 'lucide-react';
-import { TikTok } from 'lucide-react';
+// Removed: import { TikTok } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 
 const Footer = () => {
@@ -11,7 +12,8 @@ const Footer = () => {
     { name: 'Instagram', href: 'https://www.instagram.com/studenttravelbuddyofficial', icon: <Instagram className="h-5 w-5" /> },
     { name: 'Facebook', href: 'https://www.facebook.com/studenttravelbuddyofficial', icon: <Facebook className="h-5 w-5" /> },
     { name: 'YouTube', href: 'https://www.youtube.com/@studenttravelbuddyofficial', icon: <Youtube className="h-5 w-5" /> },
-    { name: 'TikTok', href: 'https://www.tiktok.com/@studenttravelbuddy.com', icon: <TikTok className="h-5 w-5" /> },
+    // Removed TikTok entry that caused the error
+    // { name: 'TikTok', href: 'https://www.tiktok.com/@studenttravelbuddy.com', icon: <TikTok className="h-5 w-5" /> },
   ];
 
   return (
