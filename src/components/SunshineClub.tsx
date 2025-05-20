@@ -19,7 +19,6 @@ const StarDust = ({
       <Sparkles className="h-4 w-4 text-yellow-300 animate-pulse-gentle" />
     </div>;
 };
-
 const SunshineClub = () => {
   const isMobile = useIsMobile();
 
@@ -142,7 +141,6 @@ const SunshineClub = () => {
 
   // Keep the full list of universities for the counter
   const universities = ["Harvard", "Oxford", "MIT", "Stanford", "Yale", "Princeton", "Columbia", "Cambridge", "Berkeley", "Chicago", "UPenn", "Caltech", "Cornell", "Toronto", "NUS", "NTU", "HKUST", "Sydney", "Tsinghua", "UCLA", "NYU", "Duke", "Imperial", "ETH Zurich", "McGill", "ANU", "Tokyo", "Seoul", "Singapore"];
-
   const partnerLogos = [{
     name: "ISIC Logo",
     imageSrc: "/lovable-uploads/43907e87-ce60-45f2-a662-8f7e82bff4e8.png",
@@ -156,7 +154,6 @@ const SunshineClub = () => {
     imageSrc: "/lovable-uploads/12acd66e-e6bb-4740-a251-d4f72ad2d5d8.png",
     website: "https://www.studentclearinghouse.org/"
   }];
-
   return <section id="sunshine-club" className="py-16 relative">
       <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
         {/* Modern Header with sparkly effects */}
@@ -340,7 +337,7 @@ const SunshineClub = () => {
 
           {/* ADDED: Partner Logos Section */}
           <div className="mt-12 text-center">
-            <p className="text-sm text-gray-500 mb-4">Trusted partners and affiliations</p>
+            <p className="text-sm mb-4 font-normal text-black">Trusted partners and affiliations</p>
             <div className="flex justify-center items-center gap-8 flex-wrap">
               {partnerLogos.map((partner, index) => <a key={index} href={partner.website} target="_blank" rel="noopener noreferrer" className="transition-opacity">
                   <img alt={partner.name} className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity" src={partner.imageSrc} />
