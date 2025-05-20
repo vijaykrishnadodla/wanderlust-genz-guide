@@ -1,11 +1,19 @@
-
 import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Compass, Sun, MapPin, ArrowRight, Sparkles, Star, Heart } from 'lucide-react';
+import { Compass, Sun, MapPin, ArrowRight, Sparkles, Star, Heart, Instagram, Facebook, Youtube, Globe } from 'lucide-react';
+import { TikTok } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 
 const Footer = () => {
+  const socialLinks = [
+    { name: 'Website', href: 'https://www.studenttravelbuddy.com', icon: <Globe className="h-5 w-5" /> },
+    { name: 'Instagram', href: 'https://www.instagram.com/studenttravelbuddyofficial', icon: <Instagram className="h-5 w-5" /> },
+    { name: 'Facebook', href: 'https://www.facebook.com/studenttravelbuddyofficial', icon: <Facebook className="h-5 w-5" /> },
+    { name: 'YouTube', href: 'https://www.youtube.com/@studenttravelbuddyofficial', icon: <Youtube className="h-5 w-5" /> },
+    { name: 'TikTok', href: 'https://www.tiktok.com/@studenttravelbuddy.com', icon: <TikTok className="h-5 w-5" /> },
+  ];
+
   return (
     <footer className="relative overflow-hidden py-12 bg-sunny-gradient text-midnight">
       {/* Grain texture overlay */}
@@ -15,7 +23,7 @@ const Footer = () => {
       <div className="absolute top-0 right-0 w-64 h-64 bg-sunny-yellow/10 rounded-full blur-xl opacity-70 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-sunny-orange/5 rounded-full blur-2xl opacity-70 pointer-events-none"></div>
       
-      <div className="inner relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
@@ -60,15 +68,11 @@ const Footer = () => {
               CONNECT
             </h3>
             <ul className="space-y-3">
-              {[
-                { name: 'Instagram', emoji: '📸' },
-                { name: 'TikTok', emoji: '🎵' },
-                { name: 'Discord', emoji: '💬' }
-              ].map((item, index) => (
+              {socialLinks.map((item, index) => (
                 <li key={index}>
-                  <a href="#" className="text-midnight hover:text-sunny-orange transition-colors flex items-center gap-2 group">
-                    <span className="bg-white/50 w-7 h-7 flex items-center justify-center rounded-full group-hover:bg-white/70 transition-colors text-sunny-orange-dark">
-                      {item.emoji}
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-midnight hover:text-sunny-orange transition-colors flex items-center gap-2 group">
+                    <span className="bg-white/50 w-8 h-8 flex items-center justify-center rounded-full group-hover:bg-white/70 transition-colors text-sunny-orange-dark">
+                      {item.icon}
                     </span>
                     {item.name}
                   </a>
@@ -97,10 +101,10 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-sunny-orange-dark/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-midnight">© 2025 Student Travel Buddy. All rights reserved.</p>
+          <p className="text-sm text-midnight opacity-80">© {new Date().getFullYear()} Student Travel Buddy. All rights reserved.</p>
           <div className="flex gap-4">
-            <a href="#" className="text-midnight hover:text-sunny-orange transition-colors">Terms</a>
-            <a href="#" className="text-midnight hover:text-sunny-orange transition-colors">Privacy</a>
+            <a href="#" className="text-sm text-midnight opacity-80 hover:text-sunny-orange transition-colors">Terms</a>
+            <a href="#" className="text-sm text-midnight opacity-80 hover:text-sunny-orange transition-colors">Privacy</a>
           </div>
         </div>
         
