@@ -95,8 +95,8 @@ const Ambassador = () => {
 
         <div className="flex justify-center mt-12 md:mt-16 w-full">
           <Link to="/ambassador-application">
-            <Button className="stb-button flex items-center gap-2 bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-12 py-4 sm:py-6 md:py-8 rounded-full transform hover:scale-105 transition-transform">
-              <Camera className="h-5 w-5 sm:h-6 sm:w-6" />
+            <Button className="stb-button flex items-center gap-2 bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-base sm:text-lg md:text-xl px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 rounded-full transform hover:scale-105 transition-transform">
+              <Camera className="h-4 w-4 sm:h-5 sm:w-5" />
               Become our ambassador today! Apply here
             </Button>
           </Link>

@@ -47,8 +47,8 @@ const Hero = () => {
               </Button>
               
               <Button variant="outline" className="rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10 h-auto py-3 group" onClick={() => {
-              const offeringSection = document.getElementById('offering');
-              if (offeringSection) offeringSection.scrollIntoView({
+              const sunshineClubSection = document.getElementById('sunshine-club');
+              if (sunshineClubSection) sunshineClubSection.scrollIntoView({
                 behavior: 'smooth'
               });
             }}>
