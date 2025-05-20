@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&family=Kalam:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -71,9 +73,7 @@
   }
 
   body {
-    @apply bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight;
-    font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth;
+    @apply bg-background text-foreground font-sans;
   }
   
   /* Custom size for the 50% larger avatar */
@@ -427,39 +427,6 @@
 }
 
 @layer utilities {
-  @keyframes fall {
-    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; } /* Start further up */
-    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-  }
-  .animate-fall {
-    animation-name: fall;
-    animation-timing-function: linear; /* Consistent fall speed */
-    animation-fill-mode: forwards;
-  }
-
-  @keyframes bounce-slow { /* Custom bounce for icons */
-    0%, 100% {
-      transform: translateY(-10%);
-      animation-timing-function: cubic-bezier(0.8,0,1,1);
-    }
-    50% {
-      transform: translateY(0);
-      animation-timing-function: cubic-bezier(0,0,0.2,1);
-    }
-  }
-  .animate-bounce-slow {
-    animation: bounce-slow 2s infinite;
-  }
-
-  @keyframes spin-slow { /* Custom spin for icons */
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  .animate-spin-slow {
-    animation: spin-slow 3s linear infinite;
-  }
-
   .debug-overflow::after {
     content: '⚠️  overflow';
     position: fixed;

@@ -10,7 +10,7 @@ const CheckoutDetailsPage = () => {
   }, []);
 
   return (
-    <CheckoutLayout currentStep={1} totalSteps={4}> {/* Updated totalSteps */}
+    <CheckoutLayout currentStep={1} totalSteps={3}>
       <Link to="/checkout" className="text-sunny-orange hover:underline mb-6 inline-block">
         &larr; Back to Order Summary
       </Link>

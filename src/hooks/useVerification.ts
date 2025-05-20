@@ -1,13 +1,13 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useToast } from '@/components/ui/use-toast'; // Keep for potential other toasts
+import { useToast } from '@/components/ui/use-toast';
 
 export type VerificationStatus = "idle" | "loading" | "success" | "error" | "manual_required";
 
 export const useVerification = () => {
   const navigate = useNavigate();
-  const { toast } = useToast(); // Toast can still be used for errors during verification
+  const { toast } = useToast();
   const [verificationStatus, setVerificationStatus] = useState<VerificationStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -15,21 +15,11 @@ export const useVerification = () => {
     if (!selectedSchool) {
       setErrorMessage("Please select your school.");
       setVerificationStatus("error");
-      toast({ // Keep error toast
-        title: "Error",
-        description: "Please select your school.",
-        variant: "destructive",
-      });
       return;
     }
     if (!consentGiven) {
       setErrorMessage("You must agree to the Student Status Verification Consent.");
       setVerificationStatus("error");
-      toast({ // Keep error toast
-        title: "Error",
-        description: "You must agree to the Student Status Verification Consent.",
-        variant: "destructive",
-      });
       return;
     }
 
@@ -43,20 +33,25 @@ export const useVerification = () => {
 
     if (isSuccessfullyVerified) {
       setVerificationStatus("success");
-      // Toast removed - will be handled by confirmation page
+      toast({
+        title: "Verified! 🎉",
+        description: "Welcome aboard Student Travel Buddy! Your digital ISIC is being generated. Check your email (and spam folder) for login instructions.",
+        variant: "default",
+        duration: 7000,
+      });
       sessionStorage.removeItem('stbCheckoutDetails');
     } else {
       setVerificationStatus("manual_required");
       setErrorMessage("We couldn’t verify you automatically. Please proceed to upload your documents.");
-      // Toast removed - will be handled by confirmation page (via VerificationStatusDisplay on current page, and then dedicated page)
+      toast({
+        title: "Automatic Verification Failed",
+        description: "Please proceed to upload your documents for manual verification.",
+        variant: "destructive",
+      });
     }
   };
 
-  // These navigation functions are called by buttons on CheckoutVerifyPage
-  // The actual final navigation to confirmation page will happen from CheckoutVerifyPage or CheckoutUploadDocsPage
   const handleCompleteAndGoHome = () => {
-    // This will be re-purposed or called from the confirmation page eventually
-    // For now, CheckoutVerifyPage will handle its own nav to confirmation on success
     navigate('/');
   };
   
@@ -68,9 +63,9 @@ export const useVerification = () => {
     verificationStatus,
     errorMessage,
     handleVerification,
-    handleCompleteAndGoHome, // Exposed for potential use on confirmation page
+    handleCompleteAndGoHome,
     handleProceedToManualUpload,
-    setErrorMessage,
-    setVerificationStatus
+    setErrorMessage, // Exposing this if direct error setting is needed outside handleVerification
+    setVerificationStatus // Exposing this for flexibility
   };
 };
