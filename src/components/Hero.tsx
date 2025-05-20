@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles, MapPin, Sun } from 'lucide-react';
@@ -7,7 +8,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 
 const Hero = () => {
   const isMobile = useIsMobile();
-  return <section className="relative pt-24 pb-16 md:pt-28 md:pb-24 overflow-hidden">
+  return <section id="hero" className="relative pt-24 pb-16 md:pt-28 md:pb-24 overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/4 z-0"></div>
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 rounded-full blur-3xl translate-x-1/4 translate-y-1/4 z-0"></div>
