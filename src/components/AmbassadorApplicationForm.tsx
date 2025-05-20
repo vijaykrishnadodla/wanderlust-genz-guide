@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { User, Mail, Phone, CalendarDays, MapPin, Building, Globe, FileText, Briefcase, Send, Users, Link as LinkIcon, Languages, Video, HelpCircle, ListChecks, MessageSquare } from 'lucide-react';
+import { User, Mail, Phone, CalendarDays, MapPin, Building, Globe, FileText, Briefcase, Send, Users, Link as LinkIcon, Languages, Video, HelpCircle, ListChecks, MessageSquare, Sparkles } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
 const MAX_FILE_SIZE_MB = 5;
@@ -279,4 +278,3 @@ const AmbassadorApplicationForm: React.FC = () => {
 };
 
 export default AmbassadorApplicationForm;
-
