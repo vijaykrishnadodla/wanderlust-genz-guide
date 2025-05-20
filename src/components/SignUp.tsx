@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { UserCheck, Mail, UserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,28 +13,7 @@ const SignUp = () => {
       
       <div className="container px-4 md:px-6 relative z-10">
         
-
-        {/* Newsletter Section */}
-        <div className="mt-16 max-w-xl mx-auto p-6 rounded-lg shadow-md border border-[ffbf7033]/30 bg-[#ffbf7033]/20">
-          <div className="text-center mb-4">
-            <h3 className="text-xl font-bold text-[#f1a019]">Stay Updated</h3>
-            <p className="text-gray-700">Get travel tips, exclusive deals, and destination inspiration</p>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="flex-grow">
-              <Input placeholder="Your email address" className="border-[#3A67CA] rounded-lg" />
-            </div>
-            <Button className="bg-gradient-to-r from-[#3A67CA] to-[#5eb8dc] hover:brightness-105 text-white font-bold flex items-center gap-2 rounded-full">
-              <Mail className="h-4 w-4" />
-              Subscribe
-            </Button>
-          </div>
-          
-          <p className="text-xs text-gray-500 mt-3 text-center">
-            By subscribing, you agree to receive marketing emails. You can unsubscribe anytime.
-          </p>
-        </div>
+        {/* Newsletter Section Removed */}
 
         {/* Partner Logos section removed from here */}
         {/* The section below has been removed:
