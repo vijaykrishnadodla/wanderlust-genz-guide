@@ -1,18 +1,9 @@
-
 import { useState, useEffect } from 'react';
 
-interface ApiSchool {
-  "FICE": string;
-  "OPE ID": string;
-  "Institution Name": string;
-  "Street": string;
-  "City": string;
-  "State": string;
-  "Zip": string;
-  "Zip4": string | null;
-  "Main": string;
-  "Branch": string | null;
-  "CIP": string;
+interface ClearinghouseApiSchool {
+  opeid: string;
+  institutionName: string;
+  active: boolean;
 }
 
 export interface School {
@@ -30,23 +21,38 @@ export const useSchoolsList = () => {
       setIsLoadingSchools(true);
       setSchoolsError(null);
       try {
-        const response = await fetch('https://docs.studentclearinghouse.org/vs/insights-json/participating-schools');
+        const response = await fetch('https://verify.studentclearinghouse.org/api/vs/pse/schools?agreementType=Degree&accountId=ALL');
         if (!response.ok) {
-          throw new Error(`Failed to fetch schools: ${response.statusText}`);
+          let errorData;
+          try {
+            errorData = await response.json();
+          } catch (e) {
+            // Ignore if response body is not JSON
+          }
+          const errorMessage = errorData?.message || response.statusText;
+          throw new Error(`Failed to fetch schools: ${response.status} ${errorMessage}`);
         }
-        const data: ApiSchool[] = await response.json();
+        const data: ClearinghouseApiSchool[] = await response.json();
+        
         const formattedSchools: School[] = data
-          .filter(school => school["Institution Name"] && school["OPE ID"])
+          .filter(school => school.institutionName && school.opeid && school.active === true)
           .map(school => ({
-            value: school["OPE ID"],
-            label: school["Institution Name"],
+            value: school.opeid,
+            label: school.institutionName,
           }))
           .sort((a, b) => a.label.localeCompare(b.label));
         
+        if (formattedSchools.length === 0) {
+          setSchoolsError("No schools found matching the criteria or the list is currently unavailable. Please try again later.");
+        }
         setSchoolsList(formattedSchools);
       } catch (error) {
         console.error("Error fetching schools:", error);
-        setSchoolsError("Could not load the list of schools. Please try again later or contact support.");
+        if (error instanceof Error) {
+          setSchoolsError(error.message);
+        } else {
+          setSchoolsError("Could not load the list of schools. Please try again later or contact support.");
+        }
       } finally {
         setIsLoadingSchools(false);
       }
