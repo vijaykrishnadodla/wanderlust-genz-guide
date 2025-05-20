@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Keep for logo link
 import { Button } from '@/components/ui/button';
-import { Menu, X, Sun, Sparkles, Users, Check, Gift } from 'lucide-react';
+import { Menu, X, Sun, Sparkles, Users, Check } from 'lucide-react'; // Removed Gift as it's not used
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,9 +46,9 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <a // Changed from Link to a
+              <a
                 key={item.name}
-                href={item.path} // Changed from to to href
+                href={item.path}
                 className={commonLinkClasses}
               >
                 {item.name}
@@ -59,10 +58,11 @@ const Navbar = () => {
 
           {/* Desktop buttons: Join Now */}
           <div className="hidden md:flex items-center space-x-3">
-            {/* Sign In Button Removed */}
-            <Button className="bg-sunny-gradient text-white rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
-              <Sparkles className="mr-1 h-4 w-4" /> Join Now
-            </Button>
+            <a href="#sunshine-club" onClick={() => setIsMenuOpen(false)}>
+              <Button className="bg-sunny-gradient text-white rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+                <Sparkles className="mr-1 h-4 w-4" /> Join Now
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -77,21 +77,22 @@ const Navbar = () => {
           <div className="inner py-4">
             <nav className="flex flex-col space-y-2">
               {navItems.map((item) => (
-                <a // Changed from Link to a
+                <a
                   key={item.name}
-                  href={item.path} // Changed from to to href
+                  href={item.path}
                   className={mobileLinkClasses}
-                  onClick={() => setIsMenuOpen(false)} // Keep this to close menu on click
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {React.cloneElement(item.icon, { className: "h-4 w-4 mr-2 text-sunny-yellow-dark"})}
                   {item.name}
                 </a>
               ))}
               <div className="pt-3 flex flex-col space-y-2 border-t border-sunny-yellow-light/30 mt-2">
-                {/* Sign In Button Removed */}
-                <Button className="w-full justify-center bg-sunny-gradient text-white rounded-full shadow-sm hover:shadow-md">
-                  <Sparkles className="mr-1 h-4 w-4" /> Join Now
-                </Button>
+                <a href="#sunshine-club" onClick={() => setIsMenuOpen(false)}>
+                  <Button className="w-full justify-center bg-sunny-gradient text-white rounded-full shadow-sm hover:shadow-md">
+                    <Sparkles className="mr-1 h-4 w-4" /> Join Now
+                  </Button>
+                </a>
               </div>
             </nav>
           </div>
