@@ -19,6 +19,7 @@ import CheckoutPaymentPage from "./pages/checkout/CheckoutPaymentPage";
 import CheckoutVerifyPage from "./pages/checkout/CheckoutVerifyPage";
 import CheckoutUploadDocsPage from "./pages/checkout/CheckoutUploadDocsPage";
 import CheckoutConfirmationPage from "./pages/checkout/CheckoutConfirmationPage"; // Added import
+import StudentVerificationConsentPage from "./pages/StudentVerificationConsentPage"; // Added import
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ const App = () => (
             <Route path="/checkout/verify" element={<CheckoutVerifyPage />} />
             <Route path="/checkout/upload-docs" element={<CheckoutUploadDocsPage />} />
             <Route path="/checkout/confirmation" element={<CheckoutConfirmationPage />} /> {/* Added route */}
+            <Route path="/student-verification-consent" element={<StudentVerificationConsentPage />} /> {/* Added route */}
             <Route path="/payment-success" element={<PaymentSuccessPage />} />
             <Route path="/payment-cancel" element={<PaymentCancelPage />} />
             <Route path="/ambassador-application" element={<AmbassadorApplicationPage />} />

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { sampleSchoolsList, School } from '@/data/schoolsList'; // Import the local data
 
 interface ClearinghouseApiSchool {
   opeid: string;
@@ -6,10 +7,7 @@ interface ClearinghouseApiSchool {
   active: boolean;
 }
 
-export interface School {
-  value: string;
-  label: string;
-}
+export { School }; // Keep School export if other parts of the app use this specific type from the hook
 
 export const useSchoolsList = () => {
   const [schoolsList, setSchoolsList] = useState<School[]>([]);
@@ -21,37 +19,24 @@ export const useSchoolsList = () => {
       setIsLoadingSchools(true);
       setSchoolsError(null);
       try {
-        const response = await fetch('https://verify.studentclearinghouse.org/api/vs/pse/schools?agreementType=Degree&accountId=ALL');
-        if (!response.ok) {
-          let errorData;
-          try {
-            errorData = await response.json();
-          } catch (e) {
-            // Ignore if response body is not JSON
-          }
-          const errorMessage = errorData?.message || response.statusText;
-          throw new Error(`Failed to fetch schools: ${response.status} ${errorMessage}`);
-        }
-        const data: ClearinghouseApiSchool[] = await response.json();
-        
-        const formattedSchools: School[] = data
-          .filter(school => school.institutionName && school.opeid && school.active === true)
-          .map(school => ({
-            value: school.opeid,
-            label: school.institutionName,
-          }))
+        // Simulate API call delay
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        // Use the imported sample data
+        const formattedSchools: School[] = sampleSchoolsList
+          .filter(school => school.label && school.value) // Basic validation
           .sort((a, b) => a.label.localeCompare(b.label));
         
         if (formattedSchools.length === 0) {
-          setSchoolsError("No schools found matching the criteria or the list is currently unavailable. Please try again later.");
+          setSchoolsError("No schools found in the sample list. Please check the data source.");
         }
         setSchoolsList(formattedSchools);
       } catch (error) {
-        console.error("Error fetching schools:", error);
+        console.error("Error processing sample schools list:", error);
         if (error instanceof Error) {
           setSchoolsError(error.message);
         } else {
-          setSchoolsError("Could not load the list of schools. Please try again later or contact support.");
+          setSchoolsError("Could not load the list of schools from the sample data.");
         }
       } finally {
         setIsLoadingSchools(false);
