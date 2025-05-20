@@ -4,7 +4,9 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { Plane, Map, Ticket, Calendar, Compass, Check, ArrowRight, Camera } from 'lucide-react';
+import { destinations, defaultItinerary, DestinationItinerary, HolidayTypeDetails, Attraction } from '@/data/travelDestinations';
 
 type QuizStep = 'name' | 'destination' | 'email' | 'holidayType' | 'result';
 
@@ -13,18 +15,18 @@ interface FormData {
   destination: string;
   email: string;
   holidayType: string;
+  idealTripDescription?: string;
 }
 
-interface Itinerary {
+interface DisplayItinerary {
   title: string;
-  description: string;
-  discounts: {
-    place: string;
-    regularPrice: string;
-    discountPrice: string;
-    savings: string;
-  }[];
-  recommendations: string[];
+  city: string;
+  country: string;
+  vibeDescription: string;
+  attractions: Attraction[];
+  estimatedSavings?: string;
+  imageEmoji?: string;
+  userDescriptionConsidered?: string;
 }
 
 const TravelQuiz = () => {
@@ -34,16 +36,17 @@ const TravelQuiz = () => {
     destination: '',
     email: '',
     holidayType: '',
+    idealTripDescription: '',
   });
-  const [itinerary, setItinerary] = useState<Itinerary | null>(null);
+  const [displayItinerary, setDisplayItinerary] = useState<DisplayItinerary | null>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleRadioChange = (value: string) => {
-    setFormData({ ...formData, holidayType: value });
+    setFormData(prev => ({ ...prev, holidayType: value }));
   };
 
   const handleNext = () => {
@@ -60,7 +63,10 @@ const TravelQuiz = () => {
     if (step === 'destination') setStep('name');
     else if (step === 'email') setStep('destination');
     else if (step === 'holidayType') setStep('email');
-    else if (step === 'result') setStep('holidayType');
+    else if (step === 'result') {
+      setDisplayItinerary(null);
+      setStep('holidayType');
+    }
   };
 
   const handleReset = () => {
@@ -69,141 +75,77 @@ const TravelQuiz = () => {
       destination: '',
       email: '',
       holidayType: '',
+      idealTripDescription: '',
     });
     setStep('name');
-    setItinerary(null);
+    setDisplayItinerary(null);
   };
 
   const isNextDisabled = () => {
-    if (step === 'name' && !formData.name) return true;
-    if (step === 'destination' && !formData.destination) return true;
-    if (step === 'email' && !formData.email) return true;
+    if (step === 'name' && !formData.name.trim()) return true;
+    if (step === 'destination' && !formData.destination.trim()) return true;
+    if (step === 'email' && !formData.email.trim()) return true;
     if (step === 'holidayType' && !formData.holidayType) return true;
     return false;
   };
 
   const generateItinerary = () => {
-    // Generate a personalized itinerary based on the form data
-    const holidayTypes: Record<string, Itinerary> = {
-      'sun-beach': {
-        title: `Your Beach Getaway in ${formData.destination}`,
-        description: `${formData.name}, get ready for sun-soaked days and vibrant beach vibes in ${formData.destination}! With your ISIC card, you'll save on beach activities and shoreline adventures.`,
-        discounts: [
-          {
-            place: 'Beach Club Access',
-            regularPrice: '€25',
-            discountPrice: '€15',
-            savings: '€10 (40%)'
-          },
-          {
-            place: 'Snorkeling Tour',
-            regularPrice: '€45',
-            discountPrice: '€32',
-            savings: '€13 (29%)'
-          },
-          {
-            place: 'Sunset Cruise',
-            regularPrice: '€60',
-            discountPrice: '€45',
-            savings: '€15 (25%)'
-          }
-        ],
-        recommendations: [
-          'Visit the hidden coves at Playa Secreto',
-          'Try the student-favorite seafood at Coastal Kitchen',
-          'Join the weekly beach volleyball tournament (free with ISIC)'
-        ]
-      },
-      'cultural': {
-        title: `Your Cultural Journey in ${formData.destination}`,
-        description: `${formData.name}, immerse yourself in the rich heritage and artistic wonders of ${formData.destination}! Your ISIC card unlocks special access and savings at cultural hotspots.`,
-        discounts: [
-          {
-            place: 'City Museum',
-            regularPrice: '€18',
-            discountPrice: '€9',
-            savings: '€9 (50%)'
-          },
-          {
-            place: 'Historic Quarter Walking Tour',
-            regularPrice: '€30',
-            discountPrice: '€15',
-            savings: '€15 (50%)'
-          },
-          {
-            place: 'Local Theatre Performance',
-            regularPrice: '€40',
-            discountPrice: '€25',
-            savings: '€15 (37%)'
-          }
-        ],
-        recommendations: [
-          'Don\'t miss the hidden art galleries in the Old Town',
-          'Student night at Cultural Café every Thursday (25% off)',
-          'Free language exchange meetups at International House'
-        ]
-      },
-      'educational': {
-        title: `Your Study Experience in ${formData.destination}`,
-        description: `${formData.name}, enhance your academic journey in ${formData.destination} with exclusive student perks! Your ISIC card is the key to balancing study and exploration.`,
-        discounts: [
-          {
-            place: 'University Library Access',
-            regularPrice: '€12/day',
-            discountPrice: 'Free',
-            savings: '€12 (100%)'
-          },
-          {
-            place: 'Language Course',
-            regularPrice: '€200',
-            discountPrice: '€140',
-            savings: '€60 (30%)'
-          },
-          {
-            place: 'Academic Conference',
-            regularPrice: '€75',
-            discountPrice: '€30',
-            savings: '€45 (60%)'
-          }
-        ],
-        recommendations: [
-          'Join the international students community at Global House',
-          'Study-friendly cafés with student discounts near campus',
-          'Weekend educational excursions (20% off with ISIC)'
-        ]
-      },
-      'adventure': {
-        title: `Your Adventure Quest in ${formData.destination}`,
-        description: `${formData.name}, get ready for adrenaline-pumping experiences in ${formData.destination}! Your ISIC card is your ticket to affordable thrills and unforgettable moments.`,
-        discounts: [
-          {
-            place: 'Zip-lining Experience',
-            regularPrice: '€50',
-            discountPrice: '€35',
-            savings: '€15 (30%)'
-          },
-          {
-            place: 'Mountain Bike Rental (Full Day)',
-            regularPrice: '€35',
-            discountPrice: '€20',
-            savings: '€15 (43%)'
-          },
-          {
-            place: 'Guided Hiking Tour',
-            regularPrice: '€40',
-            discountPrice: '€28',
-            savings: '€12 (30%)'
-          }
-        ],
-        recommendations: [
-          'Try the hidden trails at Adventure Park (15% off entry)',
-          'Student-favorite hostel with adventure packages',
-          'Group excursions every Saturday (extra 10% off with ISIC)'
-        ]
+    let chosenDestination: DestinationItinerary | undefined;
+    let finalCity = formData.destination;
+    let finalCountry = "Unknown";
+
+    if (formData.destination.trim().toUpperCase() === 'SURPRISE ME') {
+      if (destinations.length > 0) {
+        const randomIndex = Math.floor(Math.random() * destinations.length);
+        chosenDestination = destinations[randomIndex];
+        finalCity = chosenDestination.city;
+        finalCountry = chosenDestination.country;
+      } else {
+        chosenDestination = undefined;
+        finalCity = "A Mysterious Place";
       }
+    } else {
+      chosenDestination = destinations.find(
+        d => d.city.toLowerCase() === formData.destination.trim().toLowerCase()
+      );
+      if (chosenDestination) {
+        finalCity = chosenDestination.city;
+        finalCountry = chosenDestination.country;
+      } else {
+        finalCity = formData.destination.trim();
+      }
+    }
+
+    let holidayDetails: HolidayTypeDetails | undefined = chosenDestination?.holidayTypes[formData.holidayType];
+
+    if (!holidayDetails) {
+      if (chosenDestination && Object.keys(chosenDestination.holidayTypes).length > 0) {
+        const firstAvailableHolidayTypeKey = Object.keys(chosenDestination.holidayTypes)[0];
+        holidayDetails = chosenDestination.holidayTypes[firstAvailableHolidayTypeKey];
+      } else {
+        holidayDetails = defaultItinerary;
+        if (!chosenDestination) finalCountry = "Your Chosen Land";
+      }
+    }
+
+    const selectedHolidayTypeName = formData.holidayType.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+    const itineraryResult: DisplayItinerary = {
+      title: `Your ${selectedHolidayTypeName} Trip in ${finalCity}`,
+      city: finalCity,
+      country: finalCountry,
+      vibeDescription: holidayDetails.vibeDescription,
+      attractions: holidayDetails.attractions,
+      imageEmoji: chosenDestination?.imageEmoji || "🌍",
+      estimatedSavings: holidayDetails.isicSavings 
+        ? `${holidayDetails.isicSavings.total} ${holidayDetails.isicSavings.period}`
+        : "Significant savings with ISIC!",
+      userDescriptionConsidered: formData.idealTripDescription 
+        ? `We've noted your interest: "${formData.idealTripDescription.substring(0, 50)}${formData.idealTripDescription.length > 50 ? '...' : ''}"`
+        : undefined,
     };
     
-    setItinerary(holidayTypes[formData.holidayType] || holidayTypes['adventure']);
+    setDisplayItinerary(itineraryResult);
   };
 
   return (
@@ -247,8 +189,6 @@ const TravelQuiz = () => {
         </div>
 
         <Card className="border shadow-xl bg-gradient-to-br from-white to-[#ffeea6]/20">
-          {/* Removed SunnyMascot from here since it's now above the heading */}
-          
           {step === 'name' && (
             <>
               <CardHeader>
@@ -291,14 +231,14 @@ const TravelQuiz = () => {
             <>
               <CardHeader>
                 <CardTitle className="text-xl">What city are you traveling to?</CardTitle>
-                <CardDescription className="font-handwritten text-[#fe4c02]">Question 2 of 4</CardDescription>
+                <CardDescription className="font-handwritten text-[#fe4c02]">Question 2 of 4 (Or type "SURPRISE ME")</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
                   <Input 
                     type="text" 
                     name="destination" 
-                    placeholder="Destination city" 
+                    placeholder="Destination city or type 'SURPRISE ME'" 
                     value={formData.destination}
                     onChange={handleInputChange}
                     className="border-[#fdad32] rounded-lg"
@@ -328,7 +268,7 @@ const TravelQuiz = () => {
             <>
               <CardHeader>
                 <CardTitle className="text-xl">What's your email?</CardTitle>
-                <CardDescription className="font-handwritten text-[#fe4c02]">Question 3 of 4 (Used to send your ISIC card and travel guide)</CardDescription>
+                <CardDescription className="font-handwritten text-[#fe4c02]">Question 3 of 4 (Used to send your ISIC card and personalized travel guide offer)</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -397,6 +337,19 @@ const TravelQuiz = () => {
                     </Label>
                   </div>
                 </RadioGroup>
+                <div className="mt-6 space-y-2">
+                  <Label htmlFor="idealTripDescription" className="font-handwritten text-[#fe4c02] text-md">
+                    Or describe your ideal trip for a vibe match (optional):
+                  </Label>
+                  <Textarea
+                    id="idealTripDescription"
+                    name="idealTripDescription"
+                    placeholder="E.g., 'Looking for hidden cafes, art galleries, and local music scenes...'"
+                    value={formData.idealTripDescription}
+                    onChange={handleInputChange}
+                    className="border-[#fdad32] rounded-lg min-h-[100px]"
+                  />
+                </div>
               </CardContent>
               <CardFooter className="flex justify-between">
                 <Button 
@@ -417,44 +370,48 @@ const TravelQuiz = () => {
             </>
           )}
 
-          {step === 'result' && (
+          {step === 'result' && displayItinerary && (
             <>
               <CardHeader>
-                <CardTitle className="text-2xl text-[#fe4c02]">Your Perfect Travel Destination</CardTitle>
+                <CardTitle className="text-2xl text-[#fe4c02]">{displayItinerary.title}</CardTitle>
                 <CardDescription className="font-handwritten text-lg">Based on your answers, we've found your ideal match!</CardDescription>
               </CardHeader>
               <CardContent className="flex flex-col items-center">
                 <div className="bg-white p-6 rounded-full shadow-md mb-6 border border-[#fdad32]/30">
                   <div className="bg-gradient-to-br from-[#fdad32]/50 to-[#fe4c02]/50 p-6 rounded-full flex items-center justify-center">
-                    <span className="text-5xl">✈️</span>
+                    <span className="text-5xl">{displayItinerary.imageEmoji || "🌍"}</span>
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-2 text-[#fdad32]">Barcelona, Spain</h3>
+                <h3 className="text-2xl font-bold mb-2 text-[#fdad32]">{displayItinerary.city}, {displayItinerary.country}</h3>
                 <p className="text-center text-gray-600 mb-6 font-handwritten text-lg">
-                  Creative, vibrant, and full of hidden gems - Barcelona matches your spontaneous yet culture-focused travel style!
+                  {displayItinerary.vibeDescription}
                 </p>
+                {displayItinerary.userDescriptionConsidered && (
+                  <p className="text-sm text-gray-500 mb-4 italic text-center">
+                    {displayItinerary.userDescriptionConsidered}
+                  </p>
+                )}
                 <div className="bg-[#ffeea6]/40 p-4 rounded-lg w-full mb-6 border border-[#fdad32]/30">
-                  <p className="font-medium text-center">Unlock your personalized Barcelona guide with:</p>
+                  <p className="font-medium text-center">Unlock your personalized guide with:</p>
                   <ul className="mt-2 space-y-2">
-                    <li className="flex items-center gap-2 justify-center">
-                      <span>🎟️</span> Student discount museum passes
-                    </li>
-                    <li className="flex items-center gap-2 justify-center">
-                      <span>🍽️</span> Local budget-friendly tapas routes
-                    </li>
-                    <li className="flex items-center gap-2 justify-center">
-                      <Camera className="h-4 w-4 text-[#fdad32]" /> Instagram-worthy hidden viewpoints
-                    </li>
+                    {displayItinerary.attractions.map((attraction, index) => (
+                      <li key={index} className="flex items-center gap-2 justify-center">
+                        {typeof attraction.icon === 'string' ? <span>{attraction.icon}</span> : attraction.icon}
+                        {attraction.name}
+                      </li>
+                    ))}
                   </ul>
                 </div>
                 
-                <div className="flex items-center">
-                  <div className="bg-[#ffeea6] p-3 rounded-lg">
-                    <p className="font-handwritten text-[#fe4c02]">
-                      Estimated savings with ISIC card: <span className="font-bold">€158</span> on a 7-day trip!
-                    </p>
+                {displayItinerary.estimatedSavings && (
+                  <div className="flex items-center">
+                    <div className="bg-[#ffeea6] p-3 rounded-lg">
+                      <p className="font-handwritten text-[#fe4c02]">
+                        Estimated savings with ISIC card: <span className="font-bold">{displayItinerary.estimatedSavings}</span>!
+                      </p>
+                    </div>
                   </div>
-                </div>
+                )}
               </CardContent>
               <CardFooter className="flex justify-between">
                 <Button 
