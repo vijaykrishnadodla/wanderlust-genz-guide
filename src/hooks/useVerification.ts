@@ -1,21 +1,22 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useToast } from '@/hooks/use-toast'; // Corrected import path
+import { useToast } from '@/hooks/use-toast';
 
 export type VerificationStatus = "idle" | "loading" | "success" | "error" | "manual_required";
 
 export const useVerification = () => {
   const navigate = useNavigate();
-  const { toast } = useToast(); // Kept for potential other errors
+  const { toast } = useToast();
   const [verificationStatus, setVerificationStatus] = useState<VerificationStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const handleVerification = async (selectedSchool: string, consentGiven: boolean) => {
-    if (!selectedSchool) {
-      setErrorMessage("Please select your school.");
+  const handleVerification = async (schoolIdentifier: string, consentGiven: boolean, isManualEntry: boolean) => {
+    console.log("useVerification - handleVerification called with:", { schoolIdentifier, consentGiven, isManualEntry });
+    if (!schoolIdentifier) {
+      setErrorMessage("Please select or enter your school.");
       setVerificationStatus("error");
-      toast({ title: "Validation Error", description: "Please select your school.", variant: "destructive" });
+      toast({ title: "Validation Error", description: "Please select or enter your school.", variant: "destructive" });
       return;
     }
     if (!consentGiven) {
@@ -28,15 +29,28 @@ export const useVerification = () => {
     setVerificationStatus("loading");
     setErrorMessage("");
 
-    await new Promise(resolve => setTimeout(resolve, 2500));
+    await new Promise(resolve => setTimeout(resolve, 1500)); // Reduced delay for testing
 
+    if (isManualEntry) {
+      console.log("useVerification - Manual entry detected, setting to manual_required.");
+      setVerificationStatus("manual_required");
+      setErrorMessage("Your school was entered manually. Please proceed to upload your documents for verification.");
+      // Navigation to upload docs is handled by the link in ComboSchoolField if user clicks it,
+      // or by CheckoutVerifyPage if this status is reached after submitting form.
+      // The 'Proceed to Confirmation (Manual Review)' button on CheckoutVerifyPage uses handleProceedToManualUpload.
+      return; // Stop further processing for manual entries here.
+    }
+
+    // If not manual, proceed with existing (random) verification logic
     const isSuccessfullyVerified = Math.random() > 0.3; 
 
     if (isSuccessfullyVerified) {
+      console.log("useVerification - Automatic verification successful.");
       setVerificationStatus("success");
       sessionStorage.removeItem('stbCheckoutDetails');
       // Toasts removed, navigation handled by onClick in CheckoutVerifyPage
     } else {
+      console.log("useVerification - Automatic verification failed, setting to manual_required.");
       setVerificationStatus("manual_required");
       setErrorMessage("We couldn’t verify you automatically. Please proceed to upload your documents.");
       // Toasts removed, navigation handled by onClick in CheckoutVerifyPage or CheckoutUploadDocsPage
@@ -44,15 +58,13 @@ export const useVerification = () => {
   };
 
   const handleCompleteAndGoHome = () => {
-    // Navigate to confirmation page with success status
     navigate('/checkout/confirmation', { state: { verificationStatus: 'success' } });
   };
   
   const handleProceedToManualUpload = () => {
-    // Navigate to confirmation page with manual_required status, or to upload docs page if that's preferred first.
-    // The user's flow implies after verify failure, they might go to confirmation page stating manual review.
-    // If they explicitly chose to upload, that page handles its own navigation to confirmation.
-    // For now, this specific function (called from verify page) means automatic verification failed, and they should see a manual review confirmation.
+    // This function is typically called when automatic verification fails,
+    // or if the user is already on the verify page and it's determined they need manual upload.
+    // It navigates to the confirmation page showing manual review is pending.
     navigate('/checkout/confirmation', { state: { verificationStatus: 'manual_required' } });
   };
 
