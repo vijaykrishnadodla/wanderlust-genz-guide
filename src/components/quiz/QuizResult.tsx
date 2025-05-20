@@ -5,7 +5,7 @@ import { CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from 
 import { Button } from '@/components/ui/button';
 import { Map, ArrowRight, AlertTriangle } from 'lucide-react';
 import { DisplayItinerary, FormData } from '../TravelQuiz'; // Assuming DisplayItinerary is exported
-import { attractions } from '@/data/travelDestinations';
+// Removed incorrect import: import { attractions } from '@/data/travelDestinations';
 
 interface QuizResultProps {
   displayItinerary: DisplayItinerary;
