@@ -19,7 +19,6 @@ const StarDust = ({
       <Sparkles className="h-4 w-4 text-yellow-300 animate-pulse-gentle" />
     </div>;
 };
-
 const SunshineClub = () => {
   const isMobile = useIsMobile();
 
@@ -30,7 +29,8 @@ const SunshineClub = () => {
     originalPrice: "$29",
     description: "All-access pass for verified full-time students – perks, discounts, community events, and more.",
     features: {
-      isicCard: true, // Moved to top
+      isicCard: true,
+      // Moved to top
       itineraries: true,
       community: true,
       cityGuides: true,
@@ -39,12 +39,11 @@ const SunshineClub = () => {
       webinars: true,
       chatSupport: true,
       phoneSupport: true,
-      newsletter: true,
+      newsletter: true
     },
-    highlight: true,
+    highlight: true
     // spotsLeft: "24" // No longer used for banner
   };
-
   const featureLabels = {
     isicCard: "ISIC Card & Exclusive Student Discounts (save $2-300/week)",
     itineraries: "Daily Itineraries When You Travel (Skip FOMO)",
@@ -55,22 +54,11 @@ const SunshineClub = () => {
     webinars: "Webinars",
     chatSupport: "Chat Support",
     phoneSupport: "Phone Support",
-    newsletter: "Curated Newsletter",
+    newsletter: "Curated Newsletter"
   };
 
   // Define the order of features for display
-  const orderedFeatureKeys: (keyof typeof featureLabels)[] = [
-    'isicCard',
-    'itineraries',
-    'community',
-    'cityGuides',
-    'travelRules',
-    'localEvents',
-    'webinars',
-    'chatSupport',
-    'phoneSupport',
-    'newsletter',
-  ];
+  const orderedFeatureKeys: (keyof typeof featureLabels)[] = ['isicCard', 'itineraries', 'community', 'cityGuides', 'travelRules', 'localEvents', 'webinars', 'chatSupport', 'phoneSupport', 'newsletter'];
 
   // University logos and names mapping - updated with website URLs
   const universityLogos = [{
@@ -227,12 +215,10 @@ const SunshineClub = () => {
                 </p>
                 
                 <ul className="space-y-3 mb-6 bg-white p-4 rounded-lg border border-[#fdad32]/30">
-                  {orderedFeatureKeys.map((key) => plan.features[key] ? (
-                    <li key={key} className="flex items-start gap-2">
+                  {orderedFeatureKeys.map(key => plan.features[key] ? <li key={key} className="flex items-start gap-2">
                       <CheckCircle className="h-5 w-5 text-[#fdad32] shrink-0 mt-0.5" />
                       <span className="font-medium">{featureLabels[key]}</span>
-                    </li>
-                  ) : null)}
+                    </li> : null)}
                 </ul>
                 
                 <div className="flex items-start mb-6">
@@ -321,9 +307,7 @@ const SunshineClub = () => {
             <img alt="ISIC Logo" className={`${isMobile ? 'w-4/5 my-2' : 'h-16'} object-contain`} src="/lovable-uploads/c0f8247c-d5d1-4768-9367-f6ba825e44ce.png" />
             
             <div className="relative inline-block">
-              <h2 className="text-2xl font-bold font-display text-center bg-clip-text bg-gradient-to-r from-[#F97316] to-[#FDAD32] text-transparent drop-shadow-sm animate-pulse-gentle">
-                TRUSTED BY THE TOP GLOBAL UNIVERSITIES
-              </h2>
+              <h2 className="font-bold font-display text-center bg-clip-text bg-gradient-to-r from-[#F97316] to-[#FDAD32] text-transparent drop-shadow-sm animate-pulse-gentle text-lg">TRUSTED BY THE STUDENTS FROM TOP GLOBAL UNIVERSITIES</h2>
               {/* Star dust animations for the heading */}
               <StarDust className="-top-2 -right-1" />
               <StarDust className="bottom-0 right-1/3" />
