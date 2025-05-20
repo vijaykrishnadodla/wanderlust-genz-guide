@@ -7,7 +7,7 @@ interface ClearinghouseApiSchool {
   active: boolean;
 }
 
-export { School }; // Keep School export if other parts of the app use this specific type from the hook
+export type { School }; // Changed to export type
 
 export const useSchoolsList = () => {
   const [schoolsList, setSchoolsList] = useState<School[]>([]);
