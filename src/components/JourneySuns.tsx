@@ -1,10 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sun } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Separator } from '@/components/ui/separator';
-
 const JourneySuns = () => {
   // State to track the active step
   const [activeStep, setActiveStep] = useState(0);
@@ -60,7 +58,6 @@ const JourneySuns = () => {
         return "Let's go! ☀️";
     }
   };
-
   return <div className="mb-20 md:mb-24 max-w-4xl mx-auto py-6 px-4 relative overflow-hidden">
       {/* Enhanced background pattern for more visual interest */}
       <div className="absolute inset-0 sunny-dot-pattern opacity-10 z-0"></div>
@@ -72,7 +69,7 @@ const JourneySuns = () => {
         <p className="text-[#1e1e1e]/70 mb-2 max-w-md mx-auto">
           How Sunshine Club works in 4 simple steps
         </p>
-        <Separator className="w-24 mx-auto bg-sunny-yellow-dark/30 h-0.5 mt-4 mb-6" />
+        
         
         {/* Added wave divider right under the heading */}
         
@@ -144,17 +141,17 @@ const JourneySuns = () => {
       </div>
       
       {/* Enhanced SVG rays with better animations - THIS BLOCK IS REMOVED
-      <div className="hidden md:block">
+       <div className="hidden md:block">
         <svg className="absolute left-0 right-0 top-8 w-full" xmlns="http://www.w3.org/2000/svg" height="100" viewBox="0 0 800 100" style={{
         zIndex: -1
-      }}>
+       }}>
           <path className="sun-ray sun-ray-delay-1" d="M50,50 C150,20 250,80 350,50" stroke="#FFD600" strokeWidth="2" fill="none" />
           <path className="sun-ray" d="M150,50 C250,10 350,90 450,50" stroke="#FF9900" strokeWidth="2" fill="none" />
           <path className="sun-ray sun-ray-delay-2" d="M250,50 C350,20 450,80 550,50" stroke="#FFB347" strokeWidth="2" fill="none" />
           <path className="sun-ray" d="M350,50 C450,10 550,90 650,50" stroke="#FF7A00" strokeWidth="2" fill="none" />
         </svg>
-      </div>
-      */}
+       </div>
+       */}
     </div>;
 };
 export default JourneySuns;
