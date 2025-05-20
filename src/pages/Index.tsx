@@ -1,5 +1,6 @@
 
-import React from 'react';
+import React, { useEffect } from 'react'; // Added useEffect
+import { useLocation } from 'react-router-dom'; // Added useLocation
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import SunshineClub from '@/components/SunshineClub';
@@ -17,18 +18,36 @@ import BenefitsSection from '@/components/BenefitsSection';
 import WaveDivider from '@/components/WaveDivider';
 
 const Index = () => {
+  const location = useLocation(); // Added
+
+  useEffect(() => {
+    // Scrolls to the top when the component mounts or path changes (without hash)
+    // Handles specific hash scrolling for sections after navigation
+    const { hash } = location;
+    if (hash) {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Only scroll to top if there's no hash, to avoid overriding hash scrolling
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]); // Rerun on path or hash change
+
   return <div className="min-h-screen">
       <Navbar />
 
       <div className="relative">
         {/* Hero section */}
         <div className="relative">
-          <Hero />
+          <Hero /> {/* Hero component already has id="hero" */}
           <WaveDivider />
         </div>
         
         {/* Travel Quiz section */}
-        <div className="relative">
+        <div id="quiz" className="relative"> {/* Added id for quiz */}
           <TravelQuiz />
           <WaveDivider />
         </div>
@@ -40,7 +59,7 @@ const Index = () => {
         </div>
         
         {/* Sunshine Club section */}
-        <div className="relative">
+        <div id="sunshine-club" className="relative"> {/* Added id for sunshine-club */}
           <SunshineClub />
           <WaveDivider />
         </div>
@@ -64,7 +83,7 @@ const Index = () => {
         </div>
         
         {/* BackStory section */}
-        <div className="relative">
+        <div id="backstory" className="relative"> {/* Added id for backstory */}
           <BackStory />
           <WaveDivider />
         </div>
@@ -76,7 +95,7 @@ const Index = () => {
         </div>
         
         {/* Ambassador section */}
-        <div className="relative">
+        <div id="ambassador" className="relative"> {/* Added id for ambassador */}
           <Ambassador />
           <WaveDivider />
         </div>
