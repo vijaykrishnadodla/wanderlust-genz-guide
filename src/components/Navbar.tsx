@@ -1,9 +1,15 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Sun, Sparkles, Users, Check, BookOpen, Star } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
+
+interface NavItem {
+  name: string;
+  path: string;
+  icon: JSX.Element;
+  type: 'route' | 'anchor';
+}
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,12 +45,11 @@ const Navbar = () => {
     setIsMenuOpen(false); // Close mobile menu after click
   };
 
-  const navItems = [
-    // { name: 'Home', path: '/', icon: <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'route' as const }, // Removed Home
-    { name: 'Travel Quiz', path: 'quiz', icon: <Check className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' as const },
-    { name: 'The Sunshine Club', path: 'sunshine-club', icon: <Users className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' as const }, // Renamed
-    { name: 'Our Story', path: 'backstory', icon: <BookOpen className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' as const },
-    { name: 'Ambassadors', path: 'ambassador', icon: <Star className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' as const },
+  const navItems: NavItem[] = [
+    { name: 'Travel Quiz', path: 'quiz', icon: <Check className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' },
+    { name: 'The Sunshine Club', path: 'sunshine-club', icon: <Users className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' },
+    { name: 'Our Story', path: 'backstory', icon: <BookOpen className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' },
+    { name: 'Ambassadors', path: 'ambassador', icon: <Star className="h-4 w-4 mr-2 text-sunny-yellow-dark" />, type: 'anchor' },
   ];
 
   return <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm' : 'bg-transparent'}`}>
@@ -88,9 +93,6 @@ const Navbar = () => {
 
           {/* Desktop buttons: Join Now */}
           <div className="hidden md:flex items-center space-x-3">
-            {/* <Button variant="outline" className="rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10">
-              <Sun className="mr-2 h-4 w-4" /> Sign In
-            </Button> Removed Sign In */}
             <Button className="bg-sunny-gradient text-white rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all" onClick={() => scrollToSection('sunshine-club')}>
               <Sparkles className="mr-1 h-4 w-4" /> Join Now
             </Button>
@@ -134,9 +136,6 @@ const Navbar = () => {
                  )
               ))}
               <div className="pt-3 flex flex-col space-y-2 border-t border-sunny-yellow-light/30 mt-2">
-                {/* <Button variant="outline" className="w-full justify-center rounded-full border-sunny-orange text-sunny-orange hover:bg-sunny-orange/10">
-                  <Sun className="mr-2 h-4 w-4" /> Sign In
-                </Button> Removed Sign In */}
                 <Button className="w-full justify-center bg-sunny-gradient text-white rounded-full shadow-sm hover:shadow-md" onClick={() => scrollToSection('sunshine-club')}>
                   <Sparkles className="mr-1 h-4 w-4" /> Join Now
                 </Button>
