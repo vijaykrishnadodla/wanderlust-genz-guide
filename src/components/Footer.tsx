@@ -11,33 +11,33 @@ const Footer = () => {
       platformName: 'Instagram',
       handle: '@studenttravelbuddyofficial',
       href: 'https://www.instagram.com/studenttravelbuddyofficial',
-      icon: <Instagram className="h-6 w-6" />,
-      bgColor: 'bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500',
-      textColor: 'text-white',
-      hoverEffect: 'hover:scale-105 hover:rotate-[-2deg]',
-      iconBgColor: 'bg-white/20',
+      icon: <Instagram className="h-5 w-5" />, // Reduced size
+      bgColor: 'bg-white/50 backdrop-blur-sm',
+      textColor: 'text-sunny-orange-dark',
+      hoverEffect: 'hover:scale-105 hover:rotate-[-2deg] hover:bg-white/70',
+      iconBgColor: 'bg-sunny-yellow/50 group-hover:bg-sunny-yellow/70',
       emoji: '📸'
     },
     {
       platformName: 'Facebook',
       handle: '@studenttravelbuddyofficial',
       href: 'https://www.facebook.com/studenttravelbuddyofficial',
-      icon: <Facebook className="h-6 w-6" />,
-      bgColor: 'bg-blue-600',
-      textColor: 'text-white',
-      hoverEffect: 'hover:scale-105 hover:rotate-[2deg]',
-      iconBgColor: 'bg-white/20',
+      icon: <Facebook className="h-5 w-5" />, // Reduced size
+      bgColor: 'bg-white/50 backdrop-blur-sm',
+      textColor: 'text-sunny-orange-dark',
+      hoverEffect: 'hover:scale-105 hover:rotate-[2deg] hover:bg-white/70',
+      iconBgColor: 'bg-sunny-yellow/50 group-hover:bg-sunny-yellow/70',
       emoji: '👍'
     },
     {
       platformName: 'YouTube',
       handle: '@studenttravelbuddyofficial',
       href: 'https://www.youtube.com/@studenttravelbuddyofficial',
-      icon: <Youtube className="h-6 w-6" />,
-      bgColor: 'bg-red-600',
-      textColor: 'text-white',
-      hoverEffect: 'hover:scale-105 hover:rotate-[-1deg]',
-      iconBgColor: 'bg-white/20',
+      icon: <Youtube className="h-5 w-5" />, // Reduced size
+      bgColor: 'bg-white/50 backdrop-blur-sm',
+      textColor: 'text-sunny-orange-dark',
+      hoverEffect: 'hover:scale-105 hover:rotate-[-1deg] hover:bg-white/70',
+      iconBgColor: 'bg-sunny-yellow/50 group-hover:bg-sunny-yellow/70',
       emoji: '📺'
     },
     {
@@ -45,17 +45,17 @@ const Footer = () => {
       handle: '@studenttravelbuddy.com',
       href: 'https://www.tiktok.com/@studenttravelbuddy.com',
       icon: (
-        <span className="flex items-center justify-center h-6 w-6"> {/* Adjusted parent span size */}
+        <span className="flex items-center justify-center h-5 w-5"> {/* Adjusted parent span size */}
           <svg fill="currentColor" viewBox="0 0 24 24" className="h-5 w-5"> {/* Icon color will be inherited */}
             <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.5.09 1.53.03 3.08-.12 4.6-.95-.12-1.9-.36-2.79-.71a10.21 10.21 0 01-2.64-1.79c-.99-1.08-1.67-2.47-1.81-3.97-.13-.04-.26-.08-.39-.12zm-2.99 5.88c.13 2.04 1.01 3.94 2.42 5.24 1.4 1.3 3.33 1.96 5.34 1.78v3.81c-.88.12-1.76.17-2.64.17-2.38 0-4.69-1.02-6.33-2.7-1.64-1.67-2.56-3.9-2.56-6.23.01-1.46.02-2.93.01-4.39h3.8Z" />
           </svg>
         </span>
       ),
-      bgColor: 'bg-black',
-      textColor: 'text-white',
-      accentClasses: 'shadow-[0_0_8px_#ec008c,0_0_4px_#00ffff]', // Simplified shadow for better compatibility
-      hoverEffect: 'hover:scale-105 hover:skew-y-[-2deg]',
-      iconBgColor: 'bg-gray-800', // Darker bg for TikTok icon
+      bgColor: 'bg-white/50 backdrop-blur-sm',
+      textColor: 'text-sunny-orange-dark',
+      accentClasses: '', // Removed TikTok specific shadow
+      hoverEffect: 'hover:scale-105 hover:skew-y-[-2deg] hover:bg-white/70',
+      iconBgColor: 'bg-sunny-yellow/50 group-hover:bg-sunny-yellow/70',
       emoji: '🎶'
     },
   ];
@@ -113,21 +113,21 @@ const Footer = () => {
             <h3 className="font-display text-lg text-sunny-orange-dark mb-4 transform rotate-1 inline-block bg-white/40 px-3 py-1 rounded-lg backdrop-blur-sm">
               CONNECT
             </h3>
-            <ul className="space-y-4"> {/* Increased spacing */}
+            <ul className="space-y-3"> {/* Adjusted spacing */}
               {socialLinks.map((item, index) => (
                 <li key={index}>
                   <a
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center gap-3 p-3 rounded-xl transition-all duration-300 ease-in-out group transform hover:-translate-y-1 ${item.bgColor} ${item.textColor} ${item.hoverEffect} ${item.accentClasses || ''}`}
+                    className={`flex items-center gap-2 p-2 rounded-xl transition-all duration-300 ease-in-out group transform hover:-translate-y-1 ${item.bgColor} ${item.textColor} ${item.hoverEffect} ${item.accentClasses || ''}`}
                   >
-                    <span className={`flex items-center justify-center h-10 w-10 rounded-lg shadow-md group-hover:scale-110 transition-transform ${item.iconBgColor}`}>
+                    <span className={`flex items-center justify-center h-8 w-8 rounded-lg shadow-sm group-hover:scale-110 transition-transform ${item.iconBgColor}`}> {/* Reduced size */}
                       {item.icon}
                     </span>
                     <div className="flex flex-col">
-                      <span className="font-display text-sm uppercase tracking-wider">{item.platformName} {item.emoji}</span>
-                      <span className="font-handwritten text-lg">{item.handle}</span>
+                      <span className="font-display text-xs uppercase tracking-wider">{item.platformName} {item.emoji}</span> {/* Reduced size */}
+                      <span className="font-handwritten text-sm">{item.handle}</span> {/* Reduced size, changed font style */}
                     </div>
                   </a>
                 </li>
