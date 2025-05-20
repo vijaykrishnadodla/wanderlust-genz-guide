@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,7 +13,8 @@ import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import PaymentCancelPage from "./pages/PaymentCancelPage";
 import AmbassadorApplicationPage from "./pages/AmbassadorApplicationPage";
 import NotFound from "./pages/NotFound";
-import CheckoutDetailsPage from "./pages/checkout/CheckoutDetailsPage"; // New import
+import CheckoutDetailsPage from "./pages/checkout/CheckoutDetailsPage";
+import CheckoutPaymentPage from "./pages/checkout/CheckoutPaymentPage";
 
 const queryClient = new QueryClient();
 
@@ -34,7 +34,8 @@ const App = () => (
             <Route path="/epic-perks" element={<EpicPerksPage />} />
             <Route path="/templates" element={<Templates />} />
             <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/checkout/details" element={<CheckoutDetailsPage />} /> {/* New Route */}
+            <Route path="/checkout/details" element={<CheckoutDetailsPage />} />
+            <Route path="/checkout/payment" element={<CheckoutPaymentPage />} />
             <Route path="/payment-success" element={<PaymentSuccessPage />} />
             <Route path="/payment-cancel" element={<PaymentCancelPage />} />
             <Route path="/ambassador-application" element={<AmbassadorApplicationPage />} />

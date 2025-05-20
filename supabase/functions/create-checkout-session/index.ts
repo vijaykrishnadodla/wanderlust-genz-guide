@@ -1,6 +1,6 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import Stripe from "https://esm.sh/stripe@14.21.0"; // Ensure you use a recent version
+import Stripe from "https://esm.sh/stripe@14.21.0"; // Use a specific version
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
 const corsHeaders = {
@@ -8,112 +8,110 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-serve(async (req: Request) => {
+const logStep = (step: string, details?: any) => {
+  const detailsStr = details ? ` - ${JSON.stringify(details)}` : "";
+  console.log(`[CREATE-CHECKOUT-SESSION] ${step}${detailsStr}`);
+};
+
+serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
-  console.log("Create checkout session function invoked.");
-
   try {
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY");
-    const stripeSecretKey = Deno.env.get("STRIPE_SECRET_KEY");
-
-    if (!supabaseUrl || !supabaseAnonKey || !stripeSecretKey) {
-      console.error("Missing environment variables: SUPABASE_URL, SUPABASE_ANON_KEY, or STRIPE_SECRET_KEY");
-      return new Response(JSON.stringify({ error: "Internal server configuration error." }), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-        status: 500,
-      });
+    logStep("Function started");
+    const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
+    if (!stripeKey) {
+      logStep("Stripe secret key not found");
+      throw new Error("STRIPE_SECRET_KEY is not set in Supabase Edge Function secrets.");
     }
+    logStep("Stripe key verified");
+
+    const supabaseClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_ANON_KEY") ?? "",
+      { global: { headers: { Authorization: req.headers.get("Authorization")! } } }
+    );
+
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    const userEmail = user?.email || "guest@example.com"; // Fallback for unauthenticated or email-less user
+    logStep("User email retrieved", { email: userEmail });
     
-    console.log("Environment variables loaded.");
-
-    // Create Supabase client using the anon key for user authentication.
-    const supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
-
-    // Retrieve authenticated user
-    const authHeader = req.headers.get("Authorization");
-    if (!authHeader) {
-      console.error("No Authorization header provided.");
-      // Allow guest checkout for one-time payments if desired, or enforce login
-      // For now, let's proceed assuming guest or user provides email at Stripe checkout.
-      // If user MUST be logged in, throw an error here.
-      // return new Response(JSON.stringify({ error: "User not authenticated." }), {
-      //   headers: { ...corsHeaders, "Content-Type": "application/json" },
-      //   status: 401,
-      // });
+    const { basicDetails } = await req.json();
+    if (!basicDetails) {
+      logStep("Basic details not provided in request body");
+      throw new Error("Basic details are required.");
     }
-    
-    let userEmail: string | undefined = undefined;
-    let userId: string | undefined = undefined;
+    logStep("Basic details received", basicDetails);
 
-    if (authHeader) {
-        const token = authHeader.replace("Bearer ", "");
-        const { data, error: authError } = await supabaseClient.auth.getUser(token);
-        if (authError || !data.user) {
-            console.warn("User authentication failed or user not found, proceeding as guest if possible.", authError?.message);
-            // Decide if checkout should be blocked or proceed as guest
-        } else {
-            userEmail = data.user.email;
-            userId = data.user.id;
-            console.log(`User authenticated: ${userEmail}`);
-        }
-    } else {
-        console.log("No auth header, proceeding as guest checkout.");
-    }
-
-
-    // Initialize Stripe
-    const stripe = new Stripe(stripeSecretKey, {
+    const stripe = new Stripe(stripeKey, {
       apiVersion: "2023-10-16", // Use a fixed API version
-      // Enable telemetry to help Stripe improve its services.
-      telemetry: true,
+      httpClient: Stripe.createFetchHttpClient(),
     });
-    console.log("Stripe client initialized.");
 
-    const origin = req.headers.get("origin") || "http://localhost:5173"; // Adjust fallback if needed
+    // Check if customer exists
+    let customerId;
+    const customers = await stripe.customers.list({ email: basicDetails.email, limit: 1 });
+    if (customers.data.length > 0) {
+      customerId = customers.data[0].id;
+      logStep("Existing Stripe customer found", { customerId });
+    } else {
+      // Create a new customer if one doesn't exist
+      const customer = await stripe.customers.create({
+        email: basicDetails.email,
+        name: `${basicDetails.firstName} ${basicDetails.lastName}`,
+        metadata: {
+          dob: basicDetails.dateOfBirth,
+          stb_user_id: user?.id || "N/A",
+        }
+      });
+      customerId = customer.id;
+      logStep("New Stripe customer created", { customerId });
+    }
 
-    // Create a one-time payment session
     const session = await stripe.checkout.sessions.create({
-      // If user is logged in and you have a Stripe customer ID, you can pass it.
-      // customer: customerId, 
-      // customer_email: customerId ? undefined : userEmail, // Pass email if creating a new customer
-      payment_method_types: ['card'],
+      payment_method_types: ["card"],
+      customer: customerId,
       line_items: [
         {
           price_data: {
             currency: "usd",
-            product_data: { 
-              name: "FullTimer Membership",
-              description: "One-year access to the Student Travel Buddy Sunshine Club.",
-              images: [`${origin}/lovable-uploads/9238c9a8-0093-446f-a9f2-d0a191f3c306.png`] // Optional: STB logo
+            product_data: {
+              name: "Student Travel Buddy - FullTimer Membership",
+              description: "One-time payment for 1-year access.",
+              images: [], // Optional: Add product image URL here
             },
             unit_amount: 2000, // $20.00 in cents
           },
           quantity: 1,
         },
       ],
-      mode: "payment", // For one-time payments
-      success_url: `${origin}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/payment-cancel`,
-      // client_reference_id: userId, // Optional: if you want to associate the checkout session with your internal user ID
-      // automatic_tax: { enabled: true }, // Optional: If you want Stripe to handle taxes
+      mode: "payment",
+      success_url: `${req.headers.get("origin")}/payment-success`,
+      cancel_url: `${req.headers.get("origin")}/payment-cancel`,
+      metadata: {
+        firstName: basicDetails.firstName,
+        lastName: basicDetails.lastName,
+        dateOfBirth: basicDetails.dateOfBirth,
+        email: basicDetails.email,
+        isStudent: String(basicDetails.isStudent),
+        agreedToTerms: String(basicDetails.agreedToTerms),
+        stb_user_id: user?.id || "N/A", // Store Supabase user ID if available
+      },
     });
-    console.log(`Stripe session created: ${session.id}`);
+    logStep("Stripe checkout session created", { sessionId: session.id });
 
     return new Response(JSON.stringify({ sessionId: session.id, url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
-
   } catch (error) {
-    console.error("Error creating Stripe session:", error);
-    return new Response(JSON.stringify({ error: error.message || "Failed to create checkout session." }), {
+    logStep("Error in function", { message: error.message, stack: error.stack });
+    return new Response(JSON.stringify({ error: error.message }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 500,
     });
   }
 });
+
