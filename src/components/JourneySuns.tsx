@@ -1,8 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sun } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Separator } from '@/components/ui/separator';
+
 const JourneySuns = () => {
   // State to track the active step
   const [activeStep, setActiveStep] = useState(0);
@@ -58,6 +60,7 @@ const JourneySuns = () => {
         return "Let's go! ☀️";
     }
   };
+
   return <div className="mb-20 md:mb-24 max-w-4xl mx-auto py-6 px-4 relative overflow-hidden">
       {/* Enhanced background pattern for more visual interest */}
       <div className="absolute inset-0 sunny-dot-pattern opacity-10 z-0"></div>
@@ -140,7 +143,7 @@ const JourneySuns = () => {
         </div>
       </div>
       
-      {/* Enhanced SVG rays with better animations */}
+      {/* Enhanced SVG rays with better animations - THIS BLOCK IS REMOVED
       <div className="hidden md:block">
         <svg className="absolute left-0 right-0 top-8 w-full" xmlns="http://www.w3.org/2000/svg" height="100" viewBox="0 0 800 100" style={{
         zIndex: -1
@@ -151,6 +154,7 @@ const JourneySuns = () => {
           <path className="sun-ray" d="M350,50 C450,10 550,90 650,50" stroke="#FF7A00" strokeWidth="2" fill="none" />
         </svg>
       </div>
+      */}
     </div>;
 };
 export default JourneySuns;
