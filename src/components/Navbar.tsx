@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Keep for logo link
 import { Button } from '@/components/ui/button';
-import { Menu, X, Sun, Sparkles, Users, Check, Gift } from 'lucide-react'; // Added Gift for variety if needed, kept others
+import { Menu, X, Sun, Sparkles, Users, Check, Gift } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,9 +25,12 @@ const Navbar = () => {
   const navItems = [
     { name: 'Travel Quiz', path: '#quiz', icon: <Check className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
     { name: 'The Sunshine Club', path: '#sunshine-club', icon: <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
-    { name: 'Our Story', path: '#backstory', icon: <Sparkles className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> }, // Using Sparkles for Our Story
+    { name: 'Our Story', path: '#backstory', icon: <Sparkles className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
     { name: 'Ambassadors', path: '#ambassador', icon: <Users className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> }
   ];
+
+  const commonLinkClasses = "px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale";
+  const mobileLinkClasses = "px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center";
 
   return <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm' : 'bg-transparent'}`}>
       <div className="inner">
@@ -44,13 +47,13 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <Link
+              <a // Changed from Link to a
                 key={item.name}
-                to={item.path}
-                className="px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale"
+                href={item.path} // Changed from to to href
+                className={commonLinkClasses}
               >
                 {item.name}
-              </Link>
+              </a>
             ))}
           </nav>
 
@@ -74,15 +77,15 @@ const Navbar = () => {
           <div className="inner py-4">
             <nav className="flex flex-col space-y-2">
               {navItems.map((item) => (
-                <Link
+                <a // Changed from Link to a
                   key={item.name}
-                  to={item.path}
-                  className="px-3 py-2.5 text-sunny-orange-dark hover:bg-sunny-yellow-pale rounded-xl flex items-center"
-                  onClick={() => setIsMenuOpen(false)}
+                  href={item.path} // Changed from to to href
+                  className={mobileLinkClasses}
+                  onClick={() => setIsMenuOpen(false)} // Keep this to close menu on click
                 >
                   {React.cloneElement(item.icon, { className: "h-4 w-4 mr-2 text-sunny-yellow-dark"})}
                   {item.name}
-                </Link>
+                </a>
               ))}
               <div className="pt-3 flex flex-col space-y-2 border-t border-sunny-yellow-light/30 mt-2">
                 {/* Sign In Button Removed */}
@@ -97,4 +100,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
