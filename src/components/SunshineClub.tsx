@@ -294,7 +294,7 @@ const SunshineClub = () => {
         <div className="mb-16">
           <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} items-center justify-center ${isMobile ? 'gap-2' : 'gap-4'} mb-8 py-4 border-y-2 border-[#FFD600]/50`}>
             <div className="relative inline-block text-lg">
-              <h2 className="text-2xl font-bold font-display text-center bg-clip-text bg-gradient-to-r from-[#F97316] to-[#FDAD32] text-transparent drop-shadow-sm animate-pulse-gentle">
+              <h2 className="font-bold font-display text-center bg-clip-text bg-gradient-to-r from-[#F97316] to-[#FDAD32] text-transparent drop-shadow-sm animate-pulse-gentle text-base">
                 IN COOPERATION WITH
               </h2>
               {/* Star dust animations for the heading */}
