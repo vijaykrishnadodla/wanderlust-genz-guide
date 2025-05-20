@@ -19,6 +19,7 @@ const StarDust = ({
       <Sparkles className="h-4 w-4 text-yellow-300 animate-pulse-gentle" />
     </div>;
 };
+
 const SunshineClub = () => {
   const isMobile = useIsMobile();
 
@@ -29,32 +30,47 @@ const SunshineClub = () => {
     originalPrice: "$29",
     description: "All-access pass for verified full-time students – perks, discounts, community events, and more.",
     features: {
-      newsletter: true,
-      travelRules: true,
+      isicCard: true, // Moved to top
+      itineraries: true,
+      community: true,
       cityGuides: true,
-      isicCard: true,
+      travelRules: true,
+      localEvents: true,
+      webinars: true,
       chatSupport: true,
       phoneSupport: true,
-      itineraries: true,
-      webinars: true,
-      community: true,
-      localEvents: true
+      newsletter: true,
     },
     highlight: true,
-    spotsLeft: "24"
+    // spotsLeft: "24" // No longer used for banner
   };
+
   const featureLabels = {
-    newsletter: "Curated Newsletter",
-    travelRules: "10 Top Secret Non-Negotiable Student Travel Rules",
-    cityGuides: "Student City Guides",
     isicCard: "ISIC Card & Exclusive Student Discounts (save $2-300/week)",
+    itineraries: "Daily Itineraries When You Travel (Skip FOMO)",
+    community: "Local Student Community Groups",
+    cityGuides: "Student City Guides",
+    travelRules: "10 Top Secret Non-Negotiable Student Travel Rules",
+    localEvents: "Local Events",
+    webinars: "Webinars",
     chatSupport: "Chat Support",
     phoneSupport: "Phone Support",
-    itineraries: "Daily Itineraries When You Travel (Skip FOMO)",
-    webinars: "Webinars",
-    community: "Local Student Community Groups",
-    localEvents: "Local Events"
+    newsletter: "Curated Newsletter",
   };
+
+  // Define the order of features for display
+  const orderedFeatureKeys: (keyof typeof featureLabels)[] = [
+    'isicCard',
+    'itineraries',
+    'community',
+    'cityGuides',
+    'travelRules',
+    'localEvents',
+    'webinars',
+    'chatSupport',
+    'phoneSupport',
+    'newsletter',
+  ];
 
   // University logos and names mapping - updated with website URLs
   const universityLogos = [{
@@ -172,7 +188,6 @@ const SunshineClub = () => {
 
         {/* Key Benefits - Modern Cards with Orange Icons */}
         
-        
         {/* Membership details section - Only showing FullTimer */}
         <div className="mb-16">
           <div className="text-center mb-12">
@@ -193,43 +208,43 @@ const SunshineClub = () => {
               <div className="absolute top-0 left-0 right-0 bg-[#e93546] text-white text-center py-2">
                 <div className="flex items-center justify-center gap-1">
                   <Timer className="h-4 w-4" />
-                  <span className="font-bold">ONLY {plan.spotsLeft} SPOTS LEFT</span>
+                  <span className="font-bold">30% OFF FOR LIMITED TIME</span>
                 </div>
               </div>
               
-              <div className="pt-12 px-6 pb-6 bg-gradient-to-b from-[#ffeea6]/30 to-white">
+              <div className="pt-12 px-6 pb-6 bg-gradient-to-b from-[#ffeea6]/30 to-white text-left">
                 <div className="bg-white p-4 rounded-lg border border-[#fdad32]/30 mb-6">
-                  <h3 className="font-display text-3xl text-[#fdad32] mb-1">FULLTIMER</h3>
-                  <p className="text-gray-800 font-medium mb-2">The Complete Student Travel Experience</p>
-                  <div className="flex items-baseline justify-center">
+                  <h3 className="font-display text-3xl text-[#fdad32] mb-1">{plan.name.toUpperCase()}</h3>
+                  <p className="text-gray-800 font-medium mb-2">{plan.description}</p>
+                  <div className="flex items-baseline">
                     <span className="text-4xl font-bold text-[#fdad32]">{plan.price}</span>
                     <span className="ml-2 text-gray-500 line-through">{plan.originalPrice}</span>
                   </div>
                 </div>
                 
                 <p className="text-gray-700 mb-6 font-medium">
-                  Unlock <span className="text-[#fe4c02]">ALL student travel perks</span> plus exclusive access to special events & VIP support
+                  Unlock <span className="text-[#fe4c02]">ALL student travel perks</span> plus exclusive access to special events & VIP support.
                 </p>
                 
                 <ul className="space-y-3 mb-6 bg-white p-4 rounded-lg border border-[#fdad32]/30">
-                  {Object.entries(plan.features).map(([key, enabled]) => enabled ? <li key={key} className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-[#fdad32] shrink-0 mt-0.5" />
-                        <span className="font-medium">{featureLabels[key]}</span>
-                      </li> : null)}
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-[#fe4c02] shrink-0 mt-0.5" />
-                    <span className="font-medium text-[#fe4c02]">30% OFF for limited time!</span>
-                  </li>
+                  {orderedFeatureKeys.map((key) => plan.features[key] ? (
+                    <li key={key} className="flex items-start gap-2">
+                      <CheckCircle className="h-5 w-5 text-[#fdad32] shrink-0 mt-0.5" />
+                      <span className="font-medium">{featureLabels[key]}</span>
+                    </li>
+                  ) : null)}
                 </ul>
                 
-                <div className="flex items-center justify-center mb-6">
+                <div className="flex items-start mb-6">
                   <SunnyMascot withText message="Best choice for most students!" />
                 </div>
                 
-                <Button className="w-full bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white font-bold text-lg py-6 flex items-center justify-center gap-2 rounded-full">
-                  <UserRound className="h-5 w-5" />
-                  GET FULLTIMER NOW
-                </Button>
+                <Link to="/checkout">
+                  <Button className="w-full bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white font-bold text-lg py-6 flex items-center justify-center gap-2 rounded-full">
+                    <UserRound className="h-5 w-5" />
+                    GET FULLTIMER NOW
+                  </Button>
+                </Link>
               </div>
             </Card>
           </div>
@@ -330,7 +345,7 @@ const SunshineClub = () => {
         <div className="mb-16 bg-white rounded-xl p-8 shadow-sm border-2 border-[#FFD600]/20">
           <h2 className="text-2xl font-bold text-center mb-8">THIS IS FOR YOU IF...</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
             <div className="space-y-4">
               <div className="feature-item">
                 <div className="feature-icon">
@@ -383,7 +398,6 @@ const SunshineClub = () => {
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to join the club?</h2>
           
-          {/* Add the sunshine journey image */}
           <div className="flex flex-col items-center mb-6">
             <img alt="Sunshine journey: you already have what it takes → soul full of sunshine → shine on" className="max-w-full md:max-w-2xl mx-auto h-auto mb-6" src="/lovable-uploads/94ed1008-5c66-45fa-a222-9c6edac9b1c7.png" />
           </div>
@@ -393,10 +407,12 @@ const SunshineClub = () => {
           </p>
           
           <div className="flex justify-center">
-            <Button className="stb-button text-lg flex items-center gap-2 mx-auto">
-              Join The Sunshine Club
-              <ArrowRight className="h-5 w-5" />
-            </Button>
+            <Link to="/checkout">
+              <Button className="stb-button text-lg flex items-center gap-2 mx-auto">
+                Join The Sunshine Club
+                <ArrowRight className="h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
