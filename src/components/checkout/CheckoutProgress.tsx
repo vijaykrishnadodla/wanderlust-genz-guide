@@ -7,11 +7,12 @@ interface CheckoutProgressProps {
   totalSteps: number;
 }
 
-const stepNames = ["Your Details", "Payment", "Verification"]; // Add more as needed
+const stepNames = ["Your Details", "Payment", "Verification", "Confirmation"]; // Updated step names
 
 const CheckoutProgress: React.FC<CheckoutProgressProps> = ({ currentStep, totalSteps }) => {
   const progressPercentage = (currentStep / totalSteps) * 100;
-  const currentStepName = stepNames[currentStep -1] || `Step ${currentStep}`;
+  // Ensure stepName is correctly indexed, currentStep is 1-based
+  const currentStepName = stepNames[currentStep - 1] || `Step ${currentStep}`;
 
   return (
     <div className="mb-8">
@@ -19,10 +20,9 @@ const CheckoutProgress: React.FC<CheckoutProgressProps> = ({ currentStep, totalS
         <h2 className="text-xl font-semibold text-sunny-orange-dark">
           Step {currentStep} of {totalSteps}: {currentStepName}
         </h2>
-        <span className="text-sm text-gray-600">{currentStep}/{totalSteps}</span>
+        <span className="text-sm text-gray-600">{Math.min(currentStep, totalSteps)}/{totalSteps}</span>
       </div>
       <Progress value={progressPercentage} className="w-full h-2 bg-sunny-yellow-pale [&>*]:bg-sunny-orange" />
-      {/* You can enhance this later to show step names or more details */}
     </div>
   );
 };

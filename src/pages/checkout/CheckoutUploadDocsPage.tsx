@@ -1,21 +1,20 @@
-
 import React, { useEffect, useState } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { Button } from '@/components/ui/button';
-import { UploadCloud, FileText, Mail } from 'lucide-react'; // Added Mail icon
+import { UploadCloud, FileText, Mail, Loader2, ArrowRight } from 'lucide-react'; // Added Loader2, ArrowRight
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
 import { useNavigate } from 'react-router-dom';
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"; // Added RadioGroup
-import { Label } from "@/components/ui/label"; // Added Label
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
 type UploadOption = "upload" | "emailLater";
 
 const CheckoutUploadDocsPage = () => {
   const navigate = useNavigate();
-  const { toast } = useToast();
+  const { toast } = useToast(); // Keep for input validation errors
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [isProcessing, setIsProcessing] = useState(false); // Renamed from isUploading for clarity
+  const [isProcessing, setIsProcessing] = useState(false);
   const [uploadOption, setUploadOption] = useState<UploadOption>("upload");
 
   useEffect(() => {
@@ -32,10 +31,11 @@ const CheckoutUploadDocsPage = () => {
 
   const handleSubmitVerification = async () => {
     setIsProcessing(true);
+    let finalStatus: string = "";
 
     if (uploadOption === 'upload') {
       if (!selectedFile) {
-        toast({
+        toast({ // This toast is for form validation, which is fine
           title: "No File Selected",
           description: "Please select a document to upload.",
           variant: "destructive",
@@ -43,35 +43,26 @@ const CheckoutUploadDocsPage = () => {
         setIsProcessing(false);
         return;
       }
-
+      finalStatus = "manual_docs_submitted";
       // Placeholder for actual upload logic
       console.log("Uploading file:", selectedFile.name);
       await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate upload delay
-
-      toast({
-        title: "Document Uploaded",
-        description: `${selectedFile.name} has been submitted for review. We'll notify you once verification is complete.`,
-        duration: 7000,
-      });
+      // Toast for "Document Uploaded" removed, will be on confirmation page
     } else { // emailLater option
-      toast({
-        title: "Order Confirmed!",
-        description: "Please email your verification document(s) to verifications@studenttravelbuddy.com within 48 hours. Include your order number if available.",
-        variant: "default",
-        duration: 10000, // Longer duration for important instructions
-      });
-      // Simulate a short delay for consistency if needed, or remove if instant is preferred
+      finalStatus = "manual_email_later";
+      // Toast for "Order Confirmed! Please email..." removed
       await new Promise(resolve => setTimeout(resolve, 500)); 
     }
 
     setIsProcessing(false);
     sessionStorage.removeItem('stbCheckoutDetails');
-    navigate('/'); // Navigate to homepage or a dedicated "thank you/next steps" page
+    navigate('/checkout/confirmation', { state: { finalStatus } });
   };
 
   return (
-    <CheckoutLayout currentStep={3} totalSteps={3}>
+    <CheckoutLayout currentStep={3} totalSteps={4}> {/* Updated steps */}
       <div className="text-center">
+        {/* ... keep existing code (icon and header text) ... */}
         {uploadOption === 'upload' ? (
             <UploadCloud className="h-16 w-16 text-sunny-orange mx-auto mb-6" />
         ) : (
@@ -85,9 +76,10 @@ const CheckoutUploadDocsPage = () => {
         </p>
 
         <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow border border-gray-200">
+          {/* ... keep existing code (RadioGroup) ... */}
           <RadioGroup defaultValue="upload" onValueChange={(value: UploadOption) => {
             setUploadOption(value);
-            setSelectedFile(null); // Clear selected file if switching options
+            setSelectedFile(null); 
           }} className="mb-6 space-y-2">
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="upload" id="option-upload" />
@@ -100,6 +92,7 @@ const CheckoutUploadDocsPage = () => {
           </RadioGroup>
 
           {uploadOption === 'upload' && (
+            // ... keep existing code (file input and selected file display) ...
             <>
               <div className="mb-4">
                 <label htmlFor="document-upload" className="block text-sm font-medium text-gray-700 mb-2">
@@ -134,6 +127,7 @@ const CheckoutUploadDocsPage = () => {
           )}
           
           {uploadOption === 'emailLater' && (
+            // ... keep existing code (email later message) ...
             <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-md text-sm text-blue-700">
               <p>You've chosen to email your documents. Please send them to <strong className="font-semibold">verifications@studenttravelbuddy.com</strong> within 48 hours. Don't forget to include your name and order details if possible!</p>
             </div>
@@ -145,9 +139,20 @@ const CheckoutUploadDocsPage = () => {
             className="w-full stb-button bg-sunny-orange hover:bg-sunny-orange-dark text-white"
             size="lg"
           >
-            {isProcessing ? (uploadOption === 'upload' ? "Uploading..." : "Processing...") : (uploadOption === 'upload' ? "Upload and Complete Order" : "Complete Order & Email Docs Later")}
+            {isProcessing ? (
+              <>
+                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                {uploadOption === 'upload' ? "Uploading..." : "Processing..."}
+              </>
+            ) : (
+              <>
+                {uploadOption === 'upload' ? "Upload and Complete Order" : "Complete Order & Email Docs Later"}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </>
+            )}
           </Button>
         </div>
+        {/* ... keep existing code (footer text) ... */}
         <p className="text-sm text-gray-500 mt-6">
           {uploadOption === 'upload' ? "Your documents will be reviewed within 24-48 hours after submission." : "Please send your documents as soon as possible to avoid delays in your verification."}
           <br />
@@ -159,4 +164,3 @@ const CheckoutUploadDocsPage = () => {
 };
 
 export default CheckoutUploadDocsPage;
-
