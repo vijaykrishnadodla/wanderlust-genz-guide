@@ -97,7 +97,7 @@ const Ambassador = () => {
           <Link to="/ambassador-application">
             <Button className="stb-button flex items-center gap-2 bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-2xl px-12 py-8 rounded-full transform hover:scale-105 transition-transform">
               <Camera className="h-6 w-6" />
-              Apply here
+              Become our ambassador today! Apply here
             </Button>
           </Link>
         </div>
