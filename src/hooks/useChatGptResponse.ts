@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { supabase } from '@/lib/supabaseClient'; // Ensure you have a supabase client initialized
 
@@ -15,6 +14,12 @@ export const useChatGptResponse = () => {
   const [error, setError] = useState<string | null>(null);
 
   const getPersonalizedDescription = async (promptData: ChatGptPromptData): Promise<string | undefined> => {
+    if (!supabase) {
+      console.warn('Supabase client is not initialized. Skipping personalized description.');
+      setError('Supabase not configured. Personalized description unavailable.');
+      return undefined;
+    }
+
     setIsLoading(true);
     setError(null);
 
@@ -37,7 +42,6 @@ export const useChatGptResponse = () => {
         console.warn('No personalized description or error in function response:', data);
         throw new Error('Unexpected response from AI service.');
       }
-
     } catch (e: any) {
       console.error('Error fetching personalized description:', e);
       setError(e.message || 'An unexpected error occurred.');

@@ -11,7 +11,8 @@ import { QuizStepEmail } from './quiz/QuizStepEmail';
 import { QuizStepHolidayType } from './quiz/QuizStepHolidayType';
 import { QuizResult } from './quiz/QuizResult';
 import { QuizNavigation } from './quiz/QuizNavigation';
-import { useChatGptResponse } from '@/hooks/useChatGptResponse'; // New hook
+import { useChatGptResponse } from '@/hooks/useChatGptResponse'; 
+import { supabase } from '@/lib/supabaseClient'; // Import supabase to check if it's configured
 
 type QuizStep = 'name' | 'destination' | 'email' | 'holidayType' | 'result';
 
@@ -47,8 +48,15 @@ const TravelQuiz = () => {
   });
   const [displayItinerary, setDisplayItinerary] = useState<DisplayItinerary | null>(null);
   const [isGeneratingItinerary, setIsGeneratingItinerary] = useState(false);
+  const [showSupabaseWarning, setShowSupabaseWarning] = useState(false); // New state for warning
 
   const { getPersonalizedDescription, isLoading: isLoadingAiResponse, error: aiError } = useChatGptResponse();
+
+  useEffect(() => {
+    if (!supabase) {
+      setShowSupabaseWarning(true);
+    }
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -97,6 +105,7 @@ const TravelQuiz = () => {
     setStep('name');
     setDisplayItinerary(null);
     setIsGeneratingItinerary(false);
+    // Do not reset showSupabaseWarning as it's an app-load condition
   };
 
   const isNextDisabled = () => {
@@ -150,32 +159,33 @@ const TravelQuiz = () => {
     const selectedHolidayTypeName = formData.holidayType.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
     let aiVibeDescription: string | undefined = undefined;
-    try {
-      // Prepare data for AI
-      const aiPromptData = {
-        name: formData.name,
-        city: finalCity,
-        country: finalCountry,
-        holidayType: selectedHolidayTypeName,
-        userDescription: formData.idealTripDescription,
-      };
-      // This will call the Supabase Edge Function
-      const personalizedDesc = await getPersonalizedDescription(aiPromptData);
-      aiVibeDescription = personalizedDesc;
-    } catch (error) {
-      console.error("Failed to get personalized description:", error);
-      // Fallback to static description or show an error message
-      // For now, aiVibeDescription will remain undefined, and QuizResult will use the static one.
-    }
+    // The hook useChatGptResponse now handles the case where supabase is not initialized.
+    // It will return undefined for personalizedDesc if supabase isn't available or an error occurs.
+    // isLoadingAiResponse and aiError from the hook will reflect the status.
+    // No explicit check for `supabase` needed here before calling `getPersonalizedDescription`
+    // because the hook handles it.
+
+    // Prepare data for AI
+    const aiPromptData = {
+      name: formData.name,
+      city: finalCity,
+      country: finalCountry,
+      holidayType: selectedHolidayTypeName,
+      userDescription: formData.idealTripDescription,
+    };
+    // This will call the Supabase Edge Function if supabase is configured
+    const personalizedDesc = await getPersonalizedDescription(aiPromptData);
+    aiVibeDescription = personalizedDesc;
+    // aiError from the hook can be used to display a more specific message if needed
 
     const itineraryResult: DisplayItinerary = {
       title: `Your ${selectedHolidayTypeName} Trip to ${finalCity}`,
       city: finalCity,
       country: finalCountry,
       vibeDescription: holidayDetails.vibeDescription,
-      aiVibeDescription: aiVibeDescription,
+      aiVibeDescription: aiVibeDescription, // This will be undefined if AI call failed/skipped
       attractions: holidayDetails.attractions,
-      mustSee: holidayDetails.mustSee || [], // Ensure mustSee is always an array
+      mustSee: holidayDetails.mustSee || [], 
       imageEmoji: chosenDestination?.imageEmoji || "🌍",
       estimatedSavings: holidayDetails.isicSavings 
         ? `${holidayDetails.isicSavings.total} ${holidayDetails.isicSavings.period}`
@@ -226,68 +236,80 @@ const TravelQuiz = () => {
           <p className="text-[#fe4c02] mt-3 font-handwritten text-xl">Discover your travel vibe + unlock exclusive perks!</p>
         </div>
 
+        {showSupabaseWarning && (
+            <div className="mb-4 p-3 bg-yellow-100 border border-yellow-300 text-yellow-700 rounded-md text-sm text-center">
+                Personalized AI descriptions are currently unavailable. Default recommendations will be shown.
+                To enable this feature, please ensure Supabase is correctly configured with API keys.
+            </div>
+        )}
+
         <Card className="border shadow-xl bg-gradient-to-br from-white to-[#ffeea6]/20">
-          {isGeneratingItinerary || isLoadingAiResponse && step === 'holidayType' && (
+          {(isGeneratingItinerary || isLoadingAiResponse) && step === 'holidayType' && ( // Show loader if generating OR AI is loading
             <div className="flex flex-col items-center justify-center p-10">
               <Loader2 className="h-12 w-12 animate-spin text-[#fe4c02]" />
               <p className="mt-4 text-lg font-handwritten text-[#fe4c02]">Crafting your perfect trip...</p>
-              {aiError && <p className="mt-2 text-sm text-red-500">Could not fetch personalized suggestions. Showing default results.</p>}
+              {aiError && !showSupabaseWarning && <p className="mt-2 text-sm text-red-500">Could not fetch personalized suggestions: {aiError}. Showing default results.</p>}
             </div>
           )}
 
-          {!isGeneratingItinerary && !isLoadingAiResponse && step === 'name' && (
+          {/* Render steps only if not in the combined loading state for holidayType step */}
+          {!( (isGeneratingItinerary || isLoadingAiResponse) && step === 'holidayType') && (
             <>
-              <QuizStepName formData={formData} handleInputChange={handleInputChange} />
-              <QuizNavigation
-                onPrevious={handlePrevious}
-                onNext={handleNext}
-                isPreviousDisabled={true}
-                isNextDisabled={isNextDisabled()}
-                showPreviousButton={false}
-              />
-            </>
-          )}
+              {step === 'name' && (
+                <>
+                  <QuizStepName formData={formData} handleInputChange={handleInputChange} />
+                  <QuizNavigation
+                    onPrevious={handlePrevious}
+                    onNext={handleNext}
+                    isPreviousDisabled={true}
+                    isNextDisabled={isNextDisabled()}
+                    showPreviousButton={false}
+                  />
+                </>
+              )}
 
-          {!isGeneratingItinerary && !isLoadingAiResponse && step === 'destination' && (
-            <>
-              <QuizStepDestination formData={formData} handleInputChange={handleInputChange} />
-              <QuizNavigation
-                onPrevious={handlePrevious}
-                onNext={handleNext}
-                isNextDisabled={isNextDisabled()}
-              />
-            </>
-          )}
+              {step === 'destination' && (
+                <>
+                  <QuizStepDestination formData={formData} handleInputChange={handleInputChange} />
+                  <QuizNavigation
+                    onPrevious={handlePrevious}
+                    onNext={handleNext}
+                    isNextDisabled={isNextDisabled()}
+                  />
+                </>
+              )}
 
-          {!isGeneratingItinerary && !isLoadingAiResponse && step === 'email' && (
-            <>
-              <QuizStepEmail formData={formData} handleInputChange={handleInputChange} />
-              <QuizNavigation
-                onPrevious={handlePrevious}
-                onNext={handleNext}
-                isNextDisabled={isNextDisabled()}
-              />
-            </>
-          )}
-          
-          {!isGeneratingItinerary && !isLoadingAiResponse && step === 'holidayType' && (
-            <>
-              <QuizStepHolidayType 
-                formData={formData} 
-                handleInputChange={handleInputChange} 
-                handleRadioChange={handleRadioChange} 
-              />
-              <QuizNavigation
-                onPrevious={handlePrevious}
-                onNext={handleNext}
-                isNextDisabled={isNextDisabled()}
-                nextButtonText="Get Results"
-              />
-            </>
-          )}
+              {step === 'email' && (
+                <>
+                  <QuizStepEmail formData={formData} handleInputChange={handleInputChange} />
+                  <QuizNavigation
+                    onPrevious={handlePrevious}
+                    onNext={handleNext}
+                    isNextDisabled={isNextDisabled()}
+                  />
+                </>
+              )}
+              
+              {step === 'holidayType' && ( // This will now only render if not loading
+                <>
+                  <QuizStepHolidayType 
+                    formData={formData} 
+                    handleInputChange={handleInputChange} 
+                    handleRadioChange={handleRadioChange} 
+                  />
+                  <QuizNavigation
+                    onPrevious={handlePrevious}
+                    onNext={handleNext}
+                    isNextDisabled={isNextDisabled()}
+                    nextButtonText="Get Results"
+                  />
+                </>
+              )}
 
-          {step === 'result' && displayItinerary && (
-            <QuizResult displayItinerary={displayItinerary} onReset={handleReset} />
+              {step === 'result' && displayItinerary && (
+                <QuizResult displayItinerary={displayItinerary} onReset={handleReset} />
+              )}
+            </>
           )}
         </Card>
       </div>
