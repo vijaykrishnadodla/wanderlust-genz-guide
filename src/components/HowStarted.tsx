@@ -1,15 +1,11 @@
-
 import React, { useState } from 'react';
 import { Clock } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
-
 const HowStarted = () => {
   const [bubbleText, setBubbleText] = useState("Created in cooperation with ISIC — the only globally recognized student ID, trusted by over 120 million students worldwide throughout their studies.");
-  
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBubbleText(e.target.value);
   };
-  
   return <section id="how-started" className="py-16 relative">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
@@ -88,7 +84,7 @@ const HowStarted = () => {
                   <span className="rotate-[0deg] text-lg">🇦🇺</span>
                 </div>
                 
-                <img alt="Sunny the Travel Buddy" className="w-40 h-40 object-contain retro-filter" src="/lovable-uploads/ec5dc35d-a34d-468f-9a22-136a51a82060.png" />
+                <img alt="Sunny the Travel Buddy" className="w-40 h-40 object-contain retro-filter" src="/lovable-uploads/a7ac83c1-f337-4125-86bc-6e00cd58451d.png" />
                 <p className="text-center font-handwritten mt-1">Sunny was born!</p>
               </div>
             </div>
@@ -97,5 +93,4 @@ const HowStarted = () => {
       </div>
     </section>;
 };
-
 export default HowStarted;
