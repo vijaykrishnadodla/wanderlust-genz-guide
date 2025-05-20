@@ -1,12 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useToast } from '@/components/ui/use-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
-import { AlertTriangle, ArrowRight, CreditCard, UserCircle } from 'lucide-react';
+import { CreditCard } from 'lucide-react';
+import { BasicDetails } from '@/types/checkout'; // Import from new types file
+import PaymentDetailsContent from '@/components/checkout/payment/PaymentDetailsContent';
+import PaymentPageError from '@/components/checkout/payment/PaymentPageError';
+import PaymentPageLoading from '@/components/checkout/payment/PaymentPageLoading';
 
 // Ensure these are set in your .env file or environment variables
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -14,26 +17,18 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.error("Supabase URL or Anon Key is not defined. Please check your .env file or environment variables.");
+  // It's better to throw an error or handle this more gracefully in a real app
+  // For now, console.error is fine for development.
 }
 const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null;
-
-interface BasicDetails {
-  firstName: string;
-  middleName?: string;
-  lastName: string;
-  dateOfBirth: string;
-  email: string;
-  mobile?: string;
-  isStudent: boolean;
-  agreedToTerms: boolean;
-}
 
 const CheckoutPaymentPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [basicDetails, setBasicDetails] = useState<BasicDetails | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [pageError, setPageError] = useState<string | null>(null); // For page-level errors
+  const [paymentError, setPaymentError] = useState<string | null>(null); // For errors during payment attempt
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -43,7 +38,7 @@ const CheckoutPaymentPage = () => {
         setBasicDetails(JSON.parse(storedDetails));
       } catch (e) {
         console.error("Failed to parse details from session storage", e);
-        setError("Could not retrieve your details. Please go back and try again.");
+        setPageError("Could not retrieve your details. Please go back and try again.");
         toast({
           title: "Error",
           description: "Could not retrieve your details. Please go back to the previous step.",
@@ -52,7 +47,7 @@ const CheckoutPaymentPage = () => {
         navigate('/checkout/details');
       }
     } else {
-      setError("No details found. Please start from the first step.");
+      setPageError("No details found. Please start from the first step.");
       toast({
         title: "Missing Details",
         description: "Please complete the first step of the checkout.",
@@ -65,15 +60,17 @@ const CheckoutPaymentPage = () => {
   const handleProceedToPayment = async () => {
     if (!supabase) {
       toast({ title: "Initialization Error", description: "Supabase client not available.", variant: "destructive" });
+      setPaymentError("System error: Payment service not available.");
       return;
     }
     if (!basicDetails) {
       toast({ title: "Error", description: "User details are missing.", variant: "destructive" });
+      setPaymentError("User details are missing. Please go back and check your information.");
       return;
     }
 
     setIsLoading(true);
-    setError(null);
+    setPaymentError(null); // Clear previous payment errors
     console.log("Invoking create-checkout-session with details:", basicDetails);
 
     try {
@@ -100,7 +97,7 @@ const CheckoutPaymentPage = () => {
       }
     } catch (e: any) {
       console.error("Payment initiation failed:", e);
-      setError(e.message || "Payment initiation failed. Please try again.");
+      setPaymentError(e.message || "Payment initiation failed. Please try again.");
       toast({
         title: "Payment Error",
         description: e.message || "Could not initiate payment. Please try again.",
@@ -111,17 +108,10 @@ const CheckoutPaymentPage = () => {
     }
   };
 
-  if (error && !basicDetails) { // If error occurred before details could be loaded (e.g. no session storage)
+  if (pageError && !basicDetails) {
     return (
       <CheckoutLayout currentStep={2} totalSteps={3}>
-        <div className="text-center py-10">
-          <AlertTriangle className="mx-auto h-12 w-12 text-red-500" />
-          <h2 className="mt-2 text-xl font-semibold text-gray-900">Error Loading Page</h2>
-          <p className="mt-1 text-sm text-gray-600">{error}</p>
-          <Button onClick={() => navigate('/checkout/details')} className="mt-6 stb-button">
-            Go Back to Details
-          </Button>
-        </div>
+        <PaymentPageError error={pageError} />
       </CheckoutLayout>
     );
   }
@@ -129,9 +119,7 @@ const CheckoutPaymentPage = () => {
   if (!basicDetails) {
     return (
       <CheckoutLayout currentStep={2} totalSteps={3}>
-        <div className="text-center py-10">
-            <p>Loading details...</p>
-        </div>
+        <PaymentPageLoading />
       </CheckoutLayout>
     );
   }
@@ -154,54 +142,15 @@ const CheckoutPaymentPage = () => {
             Confirm your order and proceed to secure payment with Stripe.
           </CardDescription>
         </CardHeader>
-        <CardContent className="p-6 md:p-8 space-y-6">
-          <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-            <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-              <UserCircle className="h-6 w-6 mr-2 text-gray-500" />
-              Your Information
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm text-gray-700">
-              <p><strong>First Name:</strong> {basicDetails.firstName}</p>
-              <p><strong>Last Name:</strong> {basicDetails.lastName}</p>
-              <p><strong>Date of Birth:</strong> {new Date(basicDetails.dateOfBirth).toLocaleDateString()}</p>
-              <p><strong>Email:</strong> {basicDetails.email}</p>
-            </div>
-          </div>
-          
-          <div className="bg-sunny-yellow-extralight p-6 rounded-lg border border-sunny-yellow">
-            <h3 className="text-lg font-semibold text-sunny-orange-dark mb-2">Order Summary</h3>
-            <div className="flex justify-between items-center mb-1">
-              <span className="font-medium">Student Travel Buddy - FullTimer Plan</span>
-              <span className="font-bold text-xl text-sunny-orange">$20.00</span>
-            </div>
-            <p className="text-xs text-gray-600">One-time payment for 1-year access.</p>
-          </div>
-
-          {error && (
-            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
-              <p className="font-bold">Error</p>
-              <p>{error}</p>
-            </div>
-          )}
-
-          <p className="text-sm text-gray-600">
-            You will be redirected to Stripe to complete your payment securely.
-            Student Travel Buddy does not store your card details.
-          </p>
-          
-          <Button 
-            onClick={handleProceedToPayment} 
-            disabled={isLoading}
-            className="w-full stb-button text-lg py-3 mt-4"
-          >
-            {isLoading ? 'Processing...' : 'Pay $20 with Stripe'}
-            {!isLoading && <ArrowRight className="ml-2 h-5 w-5" />}
-          </Button>
-        </CardContent>
+        <PaymentDetailsContent
+          basicDetails={basicDetails}
+          error={paymentError} // Pass the payment-specific error here
+          isLoading={isLoading}
+          onProceedToPayment={handleProceedToPayment}
+        />
       </Card>
     </CheckoutLayout>
   );
 };
 
 export default CheckoutPaymentPage;
-
