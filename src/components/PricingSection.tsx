@@ -3,6 +3,7 @@ import { ArrowRight, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
+
 const PricingSection = () => {
   // State for the countdown timer
   const [timeLeft, setTimeLeft] = useState({
@@ -91,7 +92,9 @@ const PricingSection = () => {
               Requires verification of full-time student status
             </p>
             
-            <Button className="w-full bg-gradient-to-r from-[#FFD600] to-[#FF7A00] hover:brightness-105 text-white font-bold text-lg py-6">Choose Fulltimer</Button>
+            <Link to="/checkout" className="w-full">
+              <Button className="w-full bg-gradient-to-r from-[#FFD600] to-[#FF7A00] hover:brightness-105 text-white font-bold text-lg py-6">Choose Fulltimer</Button>
+            </Link>
           </div>
         </div>
 
@@ -108,10 +111,12 @@ const PricingSection = () => {
           </p>
           
           <div className="flex justify-center">
-            <Button className="stb-button text-lg flex items-center gap-2 mx-auto">
-              Join The Sunshine Club
-              <ArrowRight className="h-5 w-5" />
-            </Button>
+            <Link to="/checkout">
+              <Button className="stb-button text-lg flex items-center gap-2 mx-auto py-3 px-6 md:py-4 md:px-8">
+                Join The Sunshine Club
+                <ArrowRight className="h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

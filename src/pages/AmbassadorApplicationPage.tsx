@@ -1,11 +1,15 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AmbassadorApplicationForm from '@/components/AmbassadorApplicationForm';
 import WaveDivider from '@/components/WaveDivider'; // Optional, for consistency
 
 const AmbassadorApplicationPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
       <Navbar />

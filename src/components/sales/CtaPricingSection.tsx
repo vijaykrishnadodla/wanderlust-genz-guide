@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, UserRound } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const CtaPricingSection = () => {
   const [selectedPlan, setSelectedPlan] = useState<'upfront' | 'payment-plan'>('upfront');
@@ -34,49 +34,51 @@ const CtaPricingSection = () => {
             Don't waste money on tourist traps or miss out on the authentic student travel experience you deserve
           </p>
           
-          <div className="bg-white p-8 rounded-lg shadow-lg border border-[#FEC6A1]/20 mb-10">
-            <div className="flex flex-col md:flex-row gap-6 mb-8">
+          <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg border border-[#FEC6A1]/20 mb-10">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6 mb-8">
               <button 
-                className={`flex-1 p-4 rounded-lg border-2 border-[#FEC6A1] ${selectedPlan === 'upfront' ? 'bg-[#FEC6A1]/30' : 'bg-white'}`}
+                className={`flex-1 p-4 rounded-lg border-2 transition-colors ${selectedPlan === 'upfront' ? 'bg-[#FEC6A1]/30 border-[#F97316]' : 'bg-white border-[#FEC6A1] hover:border-[#F97316]/70'}`}
                 onClick={() => setSelectedPlan('upfront')}
               >
-                <h3 className="text-xl font-bold mb-1">UPFRONT PAYMENT (SAVE 10%)</h3>
-                <p className="text-3xl font-bold text-[#F97316] mb-2">$99</p>
+                <h3 className="text-lg md:text-xl font-bold mb-1">UPFRONT PAYMENT (SAVE 10%)</h3>
+                <p className="text-2xl md:text-3xl font-bold text-[#F97316] mb-2">$99</p>
                 <p className="text-sm text-gray-600">One-time payment</p>
               </button>
               
               <button 
-                className={`flex-1 p-4 rounded-lg border-2 border-[#FEC6A1] ${selectedPlan === 'payment-plan' ? 'bg-[#FEC6A1]/30' : 'bg-white'}`}
+                className={`flex-1 p-4 rounded-lg border-2 transition-colors ${selectedPlan === 'payment-plan' ? 'bg-[#FEC6A1]/30 border-[#F97316]' : 'bg-white border-[#FEC6A1] hover:border-[#F97316]/70'}`}
                 onClick={() => setSelectedPlan('payment-plan')}
               >
-                <h3 className="text-xl font-bold mb-1">PAYMENT PLAN</h3>
-                <p className="text-3xl font-bold text-[#F97316] mb-2">$55 × 2</p>
+                <h3 className="text-lg md:text-xl font-bold mb-1">PAYMENT PLAN</h3>
+                <p className="text-2xl md:text-3xl font-bold text-[#F97316] mb-2">$55 × 2</p>
                 <p className="text-sm text-gray-600">Two monthly payments</p>
               </button>
             </div>
             
-            <div className="mb-8">
-              <h3 className="font-bold text-xl mb-4">Everything You'll Get:</h3>
+            <div className="mb-8 text-left">
+              <h3 className="font-bold text-lg md:text-xl mb-4">Everything You'll Get:</h3>
               <ul className="space-y-3">
                 {benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-center gap-3">
-                    <Check className="h-5 w-5 text-[#F97316]" />
+                  <li key={index} className="flex items-start md:items-center gap-3">
+                    <Check className="h-5 w-5 text-[#F97316] shrink-0 mt-1 md:mt-0" />
                     <span>{benefit}</span>
                   </li>
                 ))}
               </ul>
               
               <div className="mt-6 p-3 bg-[#FEF7CD]/60 rounded-lg">
-                <p className="font-handwritten text-[#F97316]">
+                <p className="font-handwritten text-[#F97316] text-center md:text-left">
                   "Don't forget! Your ISIC card alone can save you $200+ on a typical trip."
                 </p>
               </div>
             </div>
             
-            <Button className="w-full stb-button text-lg flex items-center justify-center gap-2">
-              <UserRound className="h-5 w-5" />
-              Get Started with {selectedPlan === 'upfront' ? 'FullTimer Plan' : 'Payment Plan'}
-            </Button>
+            <Link to="/checkout" className="w-full">
+              <Button className="w-full stb-button text-lg flex items-center justify-center gap-2 py-3 px-6 md:py-4 md:px-8">
+                <UserRound className="h-5 w-5" />
+                Get Started with {selectedPlan === 'upfront' ? 'Upfront Payment' : 'Payment Plan'}
+              </Button>
+            </Link>
             
             <p className="text-center text-sm text-gray-600 pt-4">
               <span className="font-handwritten text-base">Limited offer!</span> Only 24 spots remaining at this price

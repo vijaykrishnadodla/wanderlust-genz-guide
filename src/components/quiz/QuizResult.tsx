@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Map, ArrowRight } from 'lucide-react';
@@ -54,19 +54,21 @@ export const QuizResult: React.FC<QuizResultProps> = ({ displayItinerary, onRese
           </div>
         )}
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex flex-col sm:flex-row justify-between gap-3">
         <Button 
-          className="border-[#fdad32] text-[#fe4c02] hover:bg-[#fdad32]/10 rounded-full" 
+          className="border-[#fdad32] text-[#fe4c02] hover:bg-[#fdad32]/10 rounded-full w-full sm:w-auto py-3 px-6" 
           variant="outline"
           onClick={onReset}
         >
           <Map className="mr-2 h-4 w-4" /> Try Another Destination
         </Button>
-        <Button 
-          className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full"
-        >
-          Get Full Guide <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
+        <Link to="/checkout" className="w-full sm:w-auto">
+          <Button 
+            className="bg-gradient-to-r from-[#fdad32] to-[#fe4c02] hover:brightness-105 text-white rounded-full w-full py-3 px-6"
+          >
+            Get Full Guide <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </Link>
       </CardFooter>
     </>
   );
