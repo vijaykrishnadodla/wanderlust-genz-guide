@@ -4,38 +4,44 @@ import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useToast } from '@/components/ui/use-toast';
 import { Link, useNavigate } from 'react-router-dom';
-import { createClient } from '@supabase/supabase-js';
+// import { createClient } from '@supabase/supabase-js'; // No longer needed for this simplified flow
 import { CreditCard } from 'lucide-react';
-import { BasicDetails } from '@/types/checkout'; // Import from new types file
+import { BasicDetails } from '@/types/checkout';
 import PaymentDetailsContent from '@/components/checkout/payment/PaymentDetailsContent';
 import PaymentPageError from '@/components/checkout/payment/PaymentPageError';
 import PaymentPageLoading from '@/components/checkout/payment/PaymentPageLoading';
 
-// Ensure these are set in your .env file or environment variables
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.error("Supabase URL or Anon Key is not defined. Please check your .env file or environment variables.");
-  // It's better to throw an error or handle this more gracefully in a real app
-  // For now, console.error is fine for development.
-}
-const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null;
+// Supabase client initialization is removed as we are bypassing payment
+// const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+// const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// if (!supabaseUrl || !supabaseAnonKey) {
+//   console.error("Supabase URL or Anon Key is not defined. Please check your .env file or environment variables.");
+// }
+// const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null;
 
 const CheckoutPaymentPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [basicDetails, setBasicDetails] = useState<BasicDetails | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [pageError, setPageError] = useState<string | null>(null); // For page-level errors
-  const [paymentError, setPaymentError] = useState<string | null>(null); // For errors during payment attempt
+  const [pageError, setPageError] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     const storedDetails = sessionStorage.getItem('stbCheckoutDetails');
     if (storedDetails) {
       try {
-        setBasicDetails(JSON.parse(storedDetails));
+        const parsedDetails = JSON.parse(storedDetails);
+        setBasicDetails(parsedDetails);
+        if (!parsedDetails.dateOfBirth) {
+          console.error("Date of birth is missing from stored details.");
+          setPageError("Your date of birth is missing. Please go back and complete your details.");
+          toast({
+            title: "Missing Information",
+            description: "Date of birth is required to proceed. Please go back to the details step.",
+            variant: "destructive",
+          });
+          navigate('/checkout/details');
+        }
       } catch (e) {
         console.error("Failed to parse details from session storage", e);
         setPageError("Could not retrieve your details. Please go back and try again.");
@@ -57,54 +63,42 @@ const CheckoutPaymentPage = () => {
     }
   }, [navigate, toast]);
 
-  const handleProceedToPayment = async () => {
-    if (!supabase) {
-      toast({ title: "Initialization Error", description: "Supabase client not available.", variant: "destructive" });
-      setPaymentError("System error: Payment service not available.");
+  const handleProceedToVerification = () => {
+    if (!basicDetails || !basicDetails.dateOfBirth) {
+      toast({ title: "Error", description: "User details or date of birth are missing.", variant: "destructive" });
+      setPageError("User details or date of birth are missing. Please go back and check your information.");
+      navigate('/checkout/details');
       return;
     }
-    if (!basicDetails) {
-      toast({ title: "Error", description: "User details are missing.", variant: "destructive" });
-      setPaymentError("User details are missing. Please go back and check your information.");
-      return;
-    }
-
-    setIsLoading(true);
-    setPaymentError(null); // Clear previous payment errors
-    console.log("Invoking create-checkout-session with details:", basicDetails);
 
     try {
-      const { data, error: functionError } = await supabase.functions.invoke('create-checkout-session', {
-        body: { basicDetails },
-      });
-
-      if (functionError) {
-        console.error('Supabase function error:', functionError);
-        throw new Error(functionError.message || "Failed to create checkout session.");
+      const dob = new Date(basicDetails.dateOfBirth);
+      // Check if dob is a valid date
+      if (isNaN(dob.getTime())) {
+        throw new Error("Invalid date of birth format.");
       }
-      
-      if (data.error) {
-        console.error('Error from Edge Function data:', data.error);
-        throw new Error(data.error || "An unknown error occurred in the Edge Function.");
+      const today = new Date();
+      let age = today.getFullYear() - dob.getFullYear();
+      const monthDiff = today.getMonth() - dob.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+        age--;
       }
 
-      if (data.url) {
-        console.log('Redirecting to Stripe Checkout:', data.url);
-        window.location.href = data.url;
+      console.log(`Calculated age: ${age}`);
+
+      if (age >= 17) {
+        navigate('/checkout/verify');
       } else {
-        console.error('No URL returned from Stripe function:', data);
-        throw new Error("Could not retrieve payment URL. Please try again.");
+        navigate('/checkout/upload-docs');
       }
     } catch (e: any) {
-      console.error("Payment initiation failed:", e);
-      setPaymentError(e.message || "Payment initiation failed. Please try again.");
-      toast({
-        title: "Payment Error",
-        description: e.message || "Could not initiate payment. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
+        console.error("Error calculating age or navigating:", e);
+        setPageError(e.message || "Could not proceed due to an issue with your details. Please check them and try again.");
+        toast({
+            title: "Error Processing Details",
+            description: e.message || "Could not proceed. Please ensure your date of birth is correct.",
+            variant: "destructive",
+        });
     }
   };
 
@@ -130,23 +124,23 @@ const CheckoutPaymentPage = () => {
         &larr; Back to Your Details
       </Link>
       <h1 className="text-3xl font-display text-sunny-orange-dark mb-6">
-        Step 2: Secure Payment
+        Step 2: Confirm Details
       </h1>
       <Card className="shadow-lg border border-gray-200">
         <CardHeader className="bg-gray-50 p-6">
           <CardTitle className="text-2xl text-sunny-orange-dark flex items-center">
             <CreditCard className="h-7 w-7 mr-3 text-sunny-orange" />
-            Payment Details
+            Order Confirmation
           </CardTitle>
           <CardDescription>
-            Confirm your order and proceed to secure payment with Stripe.
+            Please review your details before proceeding to student verification.
           </CardDescription>
         </CardHeader>
         <PaymentDetailsContent
           basicDetails={basicDetails}
-          error={paymentError} // Pass the payment-specific error here
-          isLoading={isLoading}
-          onProceedToPayment={handleProceedToPayment}
+          error={pageError} // Pass pageError for consistency, though payment-specific errors are removed
+          isLoading={false} // No loading state for this simplified flow
+          onProceedToPayment={handleProceedToVerification} // Renamed handler
         />
       </Card>
     </CheckoutLayout>

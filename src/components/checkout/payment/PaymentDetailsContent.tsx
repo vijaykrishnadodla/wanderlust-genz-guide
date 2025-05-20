@@ -8,7 +8,7 @@ import { BasicDetails } from '@/types/checkout';
 
 interface PaymentDetailsContentProps {
   basicDetails: BasicDetails;
-  error: string | null;
+  error: string | null; // This now reflects page-level errors from CheckoutPaymentPage
   isLoading: boolean;
   onProceedToPayment: () => void;
 }
@@ -26,14 +26,13 @@ const PaymentDetailsContent: React.FC<PaymentDetailsContentProps> = ({
 
       {error && (
         <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
-          <p className="font-bold">Error</p>
+          <p className="font-bold">Important</p>
           <p>{error}</p>
         </div>
       )}
 
       <p className="text-sm text-gray-600">
-        You will be redirected to Stripe to complete your payment securely.
-        Student Travel Buddy does not store your card details.
+        Please confirm your details. Clicking "Proceed to Verification" will take you to the next step.
       </p>
       
       <ProceedToPaymentButton isLoading={isLoading} onClick={onProceedToPayment} />
