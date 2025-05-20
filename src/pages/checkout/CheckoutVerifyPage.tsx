@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { Button } from '@/components/ui/button';
@@ -8,14 +7,33 @@ import SchoolSelectField from '@/components/checkout/verification/SchoolSelectFi
 import VerificationConsentCheckbox from '@/components/checkout/verification/VerificationConsentCheckbox';
 import { useToast } from '@/components/ui/use-toast';
 
+interface ApiSchool {
+  "FICE": string;
+  "OPE ID": string;
+  "Institution Name": string;
+  "Street": string;
+  "City": string;
+  "State": string;
+  "Zip": string;
+  "Zip4": string | null;
+  "Main": string;
+  "Branch": string | null;
+  "CIP": string;
+}
+
+interface School {
+  value: string;
+  label: string;
+}
+
+type VerificationStatus = "idle" | "loading" | "success" | "error" | "manual_required";
+
 const mockSchools = [
   { value: "university_of_sunshine", label: "University of Sunshine" },
   { value: "college_of_travel_arts", label: "College of Travel Arts" },
   { value: "institute_of_adventure_studies", label: "Institute of Adventure Studies" },
   { value: "other", label: "Other (Specify)" }, // Example for future enhancement
 ];
-
-type VerificationStatus = "idle" | "loading" | "success" | "error" | "manual_required";
 
 const CheckoutVerifyPage = () => {
   const navigate = useNavigate();
@@ -25,8 +43,42 @@ const CheckoutVerifyPage = () => {
   const [verificationStatus, setVerificationStatus] = useState<VerificationStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
+  const [schoolsList, setSchoolsList] = useState<School[]>([]);
+  const [isLoadingSchools, setIsLoadingSchools] = useState<boolean>(true);
+  const [schoolsError, setSchoolsError] = useState<string | null>(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const fetchSchools = async () => {
+      setIsLoadingSchools(true);
+      setSchoolsError(null);
+      try {
+        const response = await fetch('https://docs.studentclearinghouse.org/vs/insights-json/participating-schools');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch schools: ${response.statusText}`);
+        }
+        const data: ApiSchool[] = await response.json();
+        const formattedSchools: School[] = data
+          .filter(school => school["Institution Name"] && school["OPE ID"]) // Ensure essential fields are present
+          .map(school => ({
+            value: school["OPE ID"], // Using OPE ID as a unique value
+            label: school["Institution Name"],
+          }))
+          .sort((a, b) => a.label.localeCompare(b.label)); // Sort schools alphabetically
+        
+        setSchoolsList(formattedSchools);
+      } catch (error) {
+        console.error("Error fetching schools:", error);
+        setSchoolsError("Could not load the list of schools. Please try again later or contact support.");
+        // You might want to set a default or mock list here as a fallback
+        // setSchoolsList(mockSchools); // Or an empty array if no fallback
+      } finally {
+        setIsLoadingSchools(false);
+      }
+    };
+
+    fetchSchools();
     // Check if user is 17+ (from PaymentSuccessPage logic or session)
     // For now, we assume they are, as they landed here.
     // In a real app, re-verify age or ensure session data is robust.
@@ -83,7 +135,6 @@ const CheckoutVerifyPage = () => {
     navigate('/checkout/upload-docs');
   };
 
-
   const renderStatusMessage = () => {
     if (verificationStatus === "error" && errorMessage) {
       return (
@@ -129,6 +180,8 @@ const CheckoutVerifyPage = () => {
             <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 my-6" role="alert">
               <p className="font-bold">Student Verification</p>
               <p>Please select your school and provide consent to proceed with verification.</p>
+              {isLoadingSchools && <p className="mt-2">Loading school list...</p>}
+              {schoolsError && <p className="mt-2 text-red-600">{schoolsError}</p>}
             </div>
          );
     }
@@ -151,8 +204,9 @@ const CheckoutVerifyPage = () => {
             <SchoolSelectField
               selectedSchool={selectedSchool}
               onSchoolChange={setSelectedSchool}
-              schools={mockSchools}
-              disabled={verificationStatus === "loading"}
+              schools={schoolsList}
+              disabled={verificationStatus === "loading" || isLoadingSchools}
+              placeholder={isLoadingSchools ? "Loading schools..." : (schoolsError ? "Error loading schools" : "Choose your institution...")}
             />
             <VerificationConsentCheckbox
               isChecked={consentGiven}
@@ -165,7 +219,7 @@ const CheckoutVerifyPage = () => {
                 type="submit"
                 className="w-full stb-button bg-sunny-orange hover:bg-sunny-orange-dark text-white"
                 size="lg"
-                disabled={verificationStatus === "loading"}
+                disabled={verificationStatus === "loading" || isLoadingSchools || !selectedSchool || !consentGiven || !!schoolsError}
               >
                 {verificationStatus === "loading" ? (
                   <>
