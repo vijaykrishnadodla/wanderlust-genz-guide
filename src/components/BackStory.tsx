@@ -1,14 +1,6 @@
 import React from 'react';
-import { BookOpen, Sparkles } from 'lucide-react';
-
-// StarDust component for sparkle effects (similar to SunshineClub)
-const StarDust = ({ className }: { className?: string }) => {
-  return (
-    <div className={`absolute pointer-events-none ${className}`}>
-      <Sparkles className="h-4 w-4 text-yellow-300 animate-pulse-gentle" />
-    </div>
-  );
-};
+import { BookOpen } from 'lucide-react';
+import StarDust from '@/components/effects/StarDust';
 
 const BackStory = () => {
   return (
@@ -17,9 +9,9 @@ const BackStory = () => {
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="container px-4 md:px-6 relative z-10">
-        {/* NEW "OUR STORY" HEADER */}
+        {/* "OUR STORY" HEADER */}
         <div className="text-center mb-12 md:mb-16">
-          <div className="inline-flex items-center gap-2 text-[#F97316] mb-3"> {/* Replicated sunshine-accent style */}
+          <div className="inline-flex items-center gap-2 text-[#F97316] mb-3">
             <BookOpen className="h-4 w-4" />
             <span>Discover Our Journey</span>
           </div>
