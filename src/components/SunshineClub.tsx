@@ -19,6 +19,7 @@ const StarDust = ({
       <Sparkles className="h-4 w-4 text-yellow-300 animate-pulse-gentle" />
     </div>;
 };
+
 const SunshineClub = () => {
   const isMobile = useIsMobile();
 
@@ -141,6 +142,21 @@ const SunshineClub = () => {
 
   // Keep the full list of universities for the counter
   const universities = ["Harvard", "Oxford", "MIT", "Stanford", "Yale", "Princeton", "Columbia", "Cambridge", "Berkeley", "Chicago", "UPenn", "Caltech", "Cornell", "Toronto", "NUS", "NTU", "HKUST", "Sydney", "Tsinghua", "UCLA", "NYU", "Duke", "Imperial", "ETH Zurich", "McGill", "ANU", "Tokyo", "Seoul", "Singapore"];
+
+  const partnerLogos = [{
+    name: "ISIC Logo",
+    imageSrc: "/lovable-uploads/43907e87-ce60-45f2-a662-8f7e82bff4e8.png",
+    website: "https://www.isic.org/"
+  }, {
+    name: "UNESCO Logo",
+    imageSrc: "/lovable-uploads/241e9ec1-4a58-41c8-9ee9-bd701f46b2c7.png",
+    website: "https://www.unesco.org/"
+  }, {
+    name: "University Partners",
+    imageSrc: "/lovable-uploads/12acd66e-e6bb-4740-a251-d4f72ad2d5d8.png",
+    website: "https://www.studentclearinghouse.org/"
+  }];
+
   return <section id="sunshine-club" className="py-16 relative">
       <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
         {/* Modern Header with sparkly effects */}
@@ -234,8 +250,6 @@ const SunshineClub = () => {
               </div>
             </Card>
           </div>
-          
-          
         </div>
 
         {/* Membership comparison table removed, now appears in Templates.tsx */}
@@ -322,6 +336,16 @@ const SunshineClub = () => {
                   <img src={uni.logo} alt={`${uni.name} University`} className="w-full h-full object-contain p-1" />
                 </a>
               </div>)}
+          </div>
+
+          {/* ADDED: Partner Logos Section */}
+          <div className="mt-12 text-center">
+            <p className="text-sm text-gray-500 mb-4">Trusted partners and affiliations</p>
+            <div className="flex justify-center items-center gap-8 flex-wrap">
+              {partnerLogos.map((partner, index) => <a key={index} href={partner.website} target="_blank" rel="noopener noreferrer" className="transition-opacity">
+                  <img alt={partner.name} className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity" src={partner.imageSrc} />
+                </a>)}
+            </div>
           </div>
         </div>
 
