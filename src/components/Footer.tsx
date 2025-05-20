@@ -7,34 +7,34 @@ import SunnyMascot from './SunnyMascot';
 
 const Footer = () => {
   return (
-    <footer className="relative overflow-hidden py-12 bg-gradient-to-br from-[#1A1F2C]/90 to-[#221F26] text-white">
+    <footer className="relative overflow-hidden py-12 bg-sunny-gradient text-midnight">
       {/* Grain texture overlay */}
-      <div className="absolute inset-0 bg-film-grain opacity-20 mix-blend-overlay"></div>
+      <div className="absolute inset-0 bg-film-grain opacity-10 mix-blend-multiply pointer-events-none"></div>
       
       {/* Decorative circles */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-xl"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full blur-2xl"></div>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-sunny-yellow/10 rounded-full blur-xl opacity-70 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-sunny-orange/5 rounded-full blur-2xl opacity-70 pointer-events-none"></div>
       
       <div className="inner relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <SunnyMascot size="sm" />
-              <span className="font-display text-xl">STUDENT TRAVEL BUDDY</span>
+              <span className="font-display text-xl text-sunny-orange-dark">STUDENT TRAVEL BUDDY</span>
             </div>
-            <p className="text-white font-handwritten text-xl">
+            <p className="font-handwritten text-xl text-midnight">
               Travel brighter. Spend smarter.
             </p>
             
             <div className="mt-4">
-              <div className="bg-white/20 inline-block px-5 py-2 rounded-full font-medium text-white backdrop-blur-sm">
+              <div className="bg-white/40 inline-block px-5 py-2 rounded-full font-medium text-sunny-orange-dark backdrop-blur-sm">
                 @STUDENTTRAVELBUDDYOFFICIAL
               </div>
             </div>
           </div>
 
           <div>
-            <h3 className="font-display text-lg mb-4 transform -rotate-2 inline-block bg-white/20 px-3 py-1 rounded-lg backdrop-blur-sm">
+            <h3 className="font-display text-lg text-sunny-orange-dark mb-4 transform -rotate-2 inline-block bg-white/40 px-3 py-1 rounded-lg backdrop-blur-sm">
               EXPLORE
             </h3>
             <ul className="space-y-3">
@@ -44,8 +44,8 @@ const Footer = () => {
                 { name: 'About Us', icon: <Sun className="h-4 w-4" /> }
               ].map((item, index) => (
                 <li key={index}>
-                  <a href="#" className="text-white hover:text-sunny-yellow transition-colors flex items-center gap-2 group">
-                    <span className="bg-white/10 p-1.5 rounded-full group-hover:bg-white/20 transition-colors">
+                  <a href="#" className="text-midnight hover:text-sunny-orange transition-colors flex items-center gap-2 group">
+                    <span className="bg-white/50 p-1.5 rounded-full group-hover:bg-white/70 transition-colors">
                       {item.icon}
                     </span> 
                     {item.name}
@@ -56,7 +56,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-display text-lg mb-4 transform rotate-1 inline-block bg-white/20 px-3 py-1 rounded-lg backdrop-blur-sm">
+            <h3 className="font-display text-lg text-sunny-orange-dark mb-4 transform rotate-1 inline-block bg-white/40 px-3 py-1 rounded-lg backdrop-blur-sm">
               CONNECT
             </h3>
             <ul className="space-y-3">
@@ -66,8 +66,8 @@ const Footer = () => {
                 { name: 'Discord', emoji: '💬' }
               ].map((item, index) => (
                 <li key={index}>
-                  <a href="#" className="text-white hover:text-sunny-yellow transition-colors flex items-center gap-2 group">
-                    <span className="bg-white/10 w-7 h-7 flex items-center justify-center rounded-full group-hover:bg-white/20 transition-colors">
+                  <a href="#" className="text-midnight hover:text-sunny-orange transition-colors flex items-center gap-2 group">
+                    <span className="bg-white/50 w-7 h-7 flex items-center justify-center rounded-full group-hover:bg-white/70 transition-colors text-sunny-orange-dark">
                       {item.emoji}
                     </span>
                     {item.name}
@@ -78,15 +78,15 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-display text-lg mb-4 transform -rotate-1 inline-block bg-white/20 px-3 py-1 rounded-lg backdrop-blur-sm">
+            <h3 className="font-display text-lg text-sunny-orange-dark mb-4 transform -rotate-1 inline-block bg-white/40 px-3 py-1 rounded-lg backdrop-blur-sm">
               SUNSHINE CLUB
             </h3>
-            <p className="text-white mb-4 font-handwritten text-lg">Get exclusive travel drops and tips!</p>
+            <p className="mb-4 font-handwritten text-lg text-midnight">Get exclusive travel drops and tips!</p>
             <form className="flex flex-col gap-3">
               <Input 
                 type="email" 
                 placeholder="Your email" 
-                className="bg-white/20 border-0 focus-visible:ring-2 focus-visible:ring-white text-white placeholder:text-white/60 rounded-xl backdrop-blur-sm" 
+                className="bg-white/70 border border-sunny-orange-light/50 focus-visible:ring-2 focus-visible:ring-sunny-orange text-midnight placeholder:text-sunny-orange-dark/70 rounded-xl backdrop-blur-sm" 
               />
               <Button className="bg-sunny-yellow hover:bg-sunny-yellow-light text-sunny-orange-dark font-bold rounded-xl flex items-center gap-2 group">
                 Join Now
@@ -96,22 +96,21 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white">© 2025 Student Travel Buddy. All rights reserved.</p>
+        <div className="border-t border-sunny-orange-dark/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-midnight">© 2025 Student Travel Buddy. All rights reserved.</p>
           <div className="flex gap-4">
-            <a href="#" className="text-white hover:text-sunny-yellow transition-colors">Terms</a>
-            <a href="#" className="text-white hover:text-sunny-yellow transition-colors">Privacy</a>
+            <a href="#" className="text-midnight hover:text-sunny-orange transition-colors">Terms</a>
+            <a href="#" className="text-midnight hover:text-sunny-orange transition-colors">Privacy</a>
           </div>
         </div>
         
-        {/* Interactive comment prompt */}
-        <div className="mt-8 text-center p-5 bg-white/10 rounded-3xl backdrop-blur-sm border border-white/20 relative overflow-hidden">
-          <div className="absolute inset-0 sunny-dot-pattern opacity-5"></div>
+        <div className="mt-8 text-center p-5 bg-white/30 rounded-3xl backdrop-blur-sm border border-sunny-orange-light/30 relative overflow-hidden">
+          <div className="absolute inset-0 sunny-dot-pattern opacity-10 pointer-events-none"></div>
           <div className="relative z-10">
-            <p className="font-handwritten text-2xl mb-2">Drop a "☀️" in the comments</p>
-            <p className="text-white">...and unlock our secret travel hack guide!</p>
+            <p className="font-handwritten text-2xl text-sunny-orange-dark mb-2">Drop a "☀️" in the comments</p>
+            <p className="text-midnight">...and unlock our secret travel hack guide!</p>
             
-            <div className="mt-3 flex justify-center gap-2">
+            <div className="mt-3 flex justify-center gap-2 text-sunny-orange">
               <Sparkles className="h-5 w-5 sunny-pulse" />
               <Star className="h-5 w-5 sunny-pulse" style={{ animationDelay: "0.3s" }} />
               <Heart className="h-5 w-5 sunny-pulse" style={{ animationDelay: "0.6s" }} />
@@ -119,9 +118,8 @@ const Footer = () => {
           </div>
         </div>
         
-        {/* Decorative element */}
         <div className="absolute bottom-10 right-10 hidden lg:block sunny-bounce">
-          <div className="bg-white/20 backdrop-blur-sm p-3 rounded-xl text-white transform rotate-6 border border-white/10">
+          <div className="bg-white/40 backdrop-blur-sm p-3 rounded-xl text-sunny-orange-dark transform rotate-6 border border-sunny-orange-light/20">
             <p className="font-handwritten text-lg">Summer '25 ☀️</p>
           </div>
         </div>
