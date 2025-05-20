@@ -1,9 +1,8 @@
-
 import React from 'react';
-import { Globe, Star, Camera, UsersRound } from 'lucide-react'; // UserRound replaced by UsersRound for the new header
+import { Globe, Star, Camera, UsersRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import StarDust from '@/components/effects/StarDust'; // Import the new StarDust component
+import StarDust from '@/components/effects/StarDust';
 
 const Ambassador = () => {
   return (
@@ -12,44 +11,41 @@ const Ambassador = () => {
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
       
       <div className="container px-4 md:px-6 relative z-10">
-        {/* NEW "AMBASSADORS" HEADER */}
+        {/* "AMBASSADORS" HEADER */}
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 text-[#F97316] mb-3">
-            <UsersRound className="h-5 w-5" /> {/* Changed icon */}
-            <span>Meet Our Stars</span> {/* Changed text */}
+            <UsersRound className="h-5 w-5" />
+            <span>Meet Our Stars</span>
           </div>
           <div className="relative inline-block">
             <h2 className="text-4xl md:text-5xl font-display mb-4 relative z-10 bg-clip-text bg-gradient-to-r from-[#F97316] to-[#FDAD32] text-transparent drop-shadow-sm animate-pulse-gentle">
               AMBASSADORS
             </h2>
             
-            {/* Star dust animations positioned around the title */}
             <StarDust className="-top-4 -left-2" />
             <StarDust className="-top-2 -right-3" />
             <StarDust className="bottom-0 left-1/4" />
             <StarDust className="top-1/2 right-1/4" />
             <StarDust className="bottom-2 right-10" />
             
-            {/* Extra star decoration */}
             <span className="absolute -top-6 right-0 text-yellow-300 animate-float">✨</span>
             <span className="absolute -bottom-4 left-4 text-yellow-400 animate-bounce-subtle">⭐</span>
             <span className="absolute top-1/3 -right-8 text-yellow-300 animate-spin-slow text-sm">✨</span>
             
-            {/* Sun glow effect behind text */}
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-200/20 to-orange-300/20 blur-lg -z-10 transform scale-110"></div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-          <div>
+          <div className="flex flex-col h-full">
             <img alt="When you can't find the sunshine, be the sunshine" className="rounded-lg shadow-lg transform rotate-3" src="/lovable-uploads/4e8ca135-6b1c-4114-955b-e29bc9a85a77.png" />
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col flex-grow">
               <h3 className="text-2xl font-display text-[#F97316] mb-4">Ambassador Program</h3>
               <p className="text-xl mb-2">
                 Are you an experienced student traveler or do you want to encourage others to travel? <Globe className="inline h-5 w-5 text-[#F97316]" />
               </p>
-              <Link to="/ambassador-application">
-                <Button className="stb-button mt-4 flex items-center gap-2 bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-lg px-8 py-6 rounded-full transform hover:scale-105 transition-transform">
+              <Link to="/ambassador-application" className="mt-auto flex justify-center py-4">
+                <Button className="stb-button flex items-center gap-2 bg-[#F97316] hover:bg-[#fe4c02] text-white font-bold text-xl px-10 py-7 rounded-full transform hover:scale-105 transition-transform">
                   <Camera className="h-5 w-5" />
                   Become our ambassador today!
                 </Button>
