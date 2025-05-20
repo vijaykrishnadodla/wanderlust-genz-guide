@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Plane } from 'lucide-react';
+import { Plane, Loader2 } from 'lucide-react';
 import { destinations, defaultItinerary, DestinationItinerary, HolidayTypeDetails, Attraction } from '@/data/travelDestinations';
 
 // Import new components
@@ -11,6 +11,7 @@ import { QuizStepEmail } from './quiz/QuizStepEmail';
 import { QuizStepHolidayType } from './quiz/QuizStepHolidayType';
 import { QuizResult } from './quiz/QuizResult';
 import { QuizNavigation } from './quiz/QuizNavigation';
+import { useChatGptResponse } from '@/hooks/useChatGptResponse'; // New hook
 
 type QuizStep = 'name' | 'destination' | 'email' | 'holidayType' | 'result';
 
@@ -26,8 +27,10 @@ export interface DisplayItinerary {
   title: string;
   city: string;
   country: string;
-  vibeDescription: string;
-  attractions: Attraction[];
+  vibeDescription: string; // Original static description
+  aiVibeDescription?: string; // AI-generated description
+  attractions: Attraction[]; // General attractions
+  mustSee: Attraction[]; // Must-see attractions
   estimatedSavings?: string;
   imageEmoji?: string;
   userDescriptionConsidered?: string;
@@ -43,6 +46,9 @@ const TravelQuiz = () => {
     idealTripDescription: '',
   });
   const [displayItinerary, setDisplayItinerary] = useState<DisplayItinerary | null>(null);
+  const [isGeneratingItinerary, setIsGeneratingItinerary] = useState(false);
+
+  const { getPersonalizedDescription, isLoading: isLoadingAiResponse, error: aiError } = useChatGptResponse();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -53,12 +59,22 @@ const TravelQuiz = () => {
     setFormData(prev => ({ ...prev, holidayType: value }));
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step === 'name') setStep('destination');
     else if (step === 'destination') setStep('email');
-    else if (step === 'email') setStep('holidayType');
+    else if (step === 'email') {
+      // Basic email validation
+      if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        // Consider using a toast notification here for better UX
+        alert("Please enter a valid email address.");
+        return;
+      }
+      setStep('holidayType');
+    }
     else if (step === 'holidayType') {
-      generateItinerary();
+      setIsGeneratingItinerary(true);
+      await generateItinerary();
+      setIsGeneratingItinerary(false);
       setStep('result');
     }
   };
@@ -80,17 +96,19 @@ const TravelQuiz = () => {
     });
     setStep('name');
     setDisplayItinerary(null);
+    setIsGeneratingItinerary(false);
   };
 
   const isNextDisabled = () => {
+    if (isGeneratingItinerary) return true;
     if (step === 'name' && !formData.name.trim()) return true;
     if (step === 'destination' && !formData.destination.trim()) return true;
-    if (step === 'email' && !formData.email.trim()) return true; // Add email validation later if needed
+    if (step === 'email' && !formData.email.trim()) return true;
     if (step === 'holidayType' && !formData.holidayType) return true;
     return false;
   };
 
-  const generateItinerary = () => {
+  const generateItinerary = async () => {
     let chosenDestination: DestinationItinerary | undefined;
     let finalCity = formData.destination;
     let finalCountry = "Unknown";
@@ -131,12 +149,33 @@ const TravelQuiz = () => {
 
     const selectedHolidayTypeName = formData.holidayType.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
+    let aiVibeDescription: string | undefined = undefined;
+    try {
+      // Prepare data for AI
+      const aiPromptData = {
+        name: formData.name,
+        city: finalCity,
+        country: finalCountry,
+        holidayType: selectedHolidayTypeName,
+        userDescription: formData.idealTripDescription,
+      };
+      // This will call the Supabase Edge Function
+      const personalizedDesc = await getPersonalizedDescription(aiPromptData);
+      aiVibeDescription = personalizedDesc;
+    } catch (error) {
+      console.error("Failed to get personalized description:", error);
+      // Fallback to static description or show an error message
+      // For now, aiVibeDescription will remain undefined, and QuizResult will use the static one.
+    }
+
     const itineraryResult: DisplayItinerary = {
-      title: `Your ${selectedHolidayTypeName} Trip in ${finalCity}`,
+      title: `Your ${selectedHolidayTypeName} Trip to ${finalCity}`,
       city: finalCity,
       country: finalCountry,
       vibeDescription: holidayDetails.vibeDescription,
+      aiVibeDescription: aiVibeDescription,
       attractions: holidayDetails.attractions,
+      mustSee: holidayDetails.mustSee || [], // Ensure mustSee is always an array
       imageEmoji: chosenDestination?.imageEmoji || "🌍",
       estimatedSavings: holidayDetails.isicSavings 
         ? `${holidayDetails.isicSavings.total} ${holidayDetails.isicSavings.period}`
@@ -172,7 +211,7 @@ const TravelQuiz = () => {
                 textShadow: '0 1px 2px rgba(255,255,255,0.5)'
               }}
             >
-              {step === 'result' ? "Wow, perfect match! ✨" : "Let's find your ideal destination! 🌍"}
+              {step === 'result' ? "Wow, perfect match! ✨" : (isGeneratingItinerary || isLoadingAiResponse) ? "Finding your vibe... ⏳" : "Let's find your ideal destination! 🌍"}
             </div>
           </div>
         </div>
@@ -188,7 +227,15 @@ const TravelQuiz = () => {
         </div>
 
         <Card className="border shadow-xl bg-gradient-to-br from-white to-[#ffeea6]/20">
-          {step === 'name' && (
+          {isGeneratingItinerary || isLoadingAiResponse && step === 'holidayType' && (
+            <div className="flex flex-col items-center justify-center p-10">
+              <Loader2 className="h-12 w-12 animate-spin text-[#fe4c02]" />
+              <p className="mt-4 text-lg font-handwritten text-[#fe4c02]">Crafting your perfect trip...</p>
+              {aiError && <p className="mt-2 text-sm text-red-500">Could not fetch personalized suggestions. Showing default results.</p>}
+            </div>
+          )}
+
+          {!isGeneratingItinerary && !isLoadingAiResponse && step === 'name' && (
             <>
               <QuizStepName formData={formData} handleInputChange={handleInputChange} />
               <QuizNavigation
@@ -201,7 +248,7 @@ const TravelQuiz = () => {
             </>
           )}
 
-          {step === 'destination' && (
+          {!isGeneratingItinerary && !isLoadingAiResponse && step === 'destination' && (
             <>
               <QuizStepDestination formData={formData} handleInputChange={handleInputChange} />
               <QuizNavigation
@@ -212,7 +259,7 @@ const TravelQuiz = () => {
             </>
           )}
 
-          {step === 'email' && (
+          {!isGeneratingItinerary && !isLoadingAiResponse && step === 'email' && (
             <>
               <QuizStepEmail formData={formData} handleInputChange={handleInputChange} />
               <QuizNavigation
@@ -223,7 +270,7 @@ const TravelQuiz = () => {
             </>
           )}
           
-          {step === 'holidayType' && (
+          {!isGeneratingItinerary && !isLoadingAiResponse && step === 'holidayType' && (
             <>
               <QuizStepHolidayType 
                 formData={formData} 

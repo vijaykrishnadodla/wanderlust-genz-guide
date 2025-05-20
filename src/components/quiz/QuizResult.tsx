@@ -1,9 +1,11 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Map, ArrowRight } from 'lucide-react';
-import { DisplayItinerary } from '../TravelQuiz'; // Assuming DisplayItinerary is exported
+import { Map, ArrowRight, AlertTriangle } from 'lucide-react';
+import { DisplayItinerary, FormData } from '../TravelQuiz'; // Assuming DisplayItinerary is exported
+import { attractions } from '@/data/travelDestinations';
 
 interface QuizResultProps {
   displayItinerary: DisplayItinerary;
@@ -11,6 +13,8 @@ interface QuizResultProps {
 }
 
 export const QuizResult: React.FC<QuizResultProps> = ({ displayItinerary, onReset }) => {
+  const descriptionToDisplay = displayItinerary.aiVibeDescription || displayItinerary.vibeDescription;
+
   return (
     <>
       <CardHeader>
@@ -25,19 +29,40 @@ export const QuizResult: React.FC<QuizResultProps> = ({ displayItinerary, onRese
         </div>
         <h3 className="text-2xl font-bold mb-2 text-[#fdad32]">{displayItinerary.city}, {displayItinerary.country}</h3>
         <p className="text-center text-gray-600 mb-6 font-handwritten text-lg">
-          {displayItinerary.vibeDescription}
+          {descriptionToDisplay}
         </p>
+        {displayItinerary.aiVibeDescription === undefined && (
+            <p className="text-xs text-amber-600 mb-4 text-center flex items-center">
+                <AlertTriangle className="w-4 h-4 mr-1" />
+                Personalized description unavailable. Showing default.
+            </p>
+        )}
         {displayItinerary.userDescriptionConsidered && (
           <p className="text-sm text-gray-500 mb-4 italic text-center">
             {displayItinerary.userDescriptionConsidered}
           </p>
         )}
+        
+        {displayItinerary.mustSee && displayItinerary.mustSee.length > 0 && (
+          <div className="bg-[#fff7e0]/70 p-4 rounded-lg w-full mb-6 border border-[#fdad32]/50">
+            <p className="font-medium text-center text-[#fe4c02] font-handwritten text-xl">⭐ Student Must-See Spots:</p>
+            <ul className="mt-2 space-y-2">
+              {displayItinerary.mustSee.map((attraction, index) => (
+                <li key={`mustsee-${index}`} className="flex items-center gap-2 justify-center">
+                  {typeof attraction.icon === 'string' ? <span>{attraction.icon}</span> : React.cloneElement(attraction.icon as React.ReactElement, { className: "w-5 h-5 text-[#fdad32]" })}
+                  <span>{attraction.name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="bg-[#ffeea6]/40 p-4 rounded-lg w-full mb-6 border border-[#fdad32]/30">
-          <p className="font-medium text-center">Unlock your personalized guide with:</p>
+          <p className="font-medium text-center">Your personalized guide could include:</p>
           <ul className="mt-2 space-y-2">
             {displayItinerary.attractions.map((attraction, index) => (
-              <li key={index} className="flex items-center gap-2 justify-center">
-                {typeof attraction.icon === 'string' ? <span>{attraction.icon}</span> : attraction.icon}
+              <li key={`attraction-${index}`} className="flex items-center gap-2 justify-center">
+                {typeof attraction.icon === 'string' ? <span>{attraction.icon}</span> : React.cloneElement(attraction.icon as React.ReactElement, { className: "w-4 h-4"})}
                 {attraction.name}
               </li>
             ))}

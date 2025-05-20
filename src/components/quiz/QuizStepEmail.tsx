@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { FormData } from '../TravelQuiz';
@@ -10,6 +10,20 @@ interface QuizStepEmailProps {
 }
 
 export const QuizStepEmail: React.FC<QuizStepEmailProps> = ({ formData, handleInputChange }) => {
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isTouched, setIsTouched] = useState(false);
+
+  useEffect(() => {
+    if (isTouched) {
+      setIsValidEmail(/\S+@\S+\.\S+/.test(formData.email));
+    }
+  }, [formData.email, isTouched]);
+
+  const handleBlur = () => {
+    setIsTouched(true);
+    setIsValidEmail(/\S+@\S+\.\S+/.test(formData.email));
+  };
+
   return (
     <>
       <CardHeader>
@@ -21,12 +35,18 @@ export const QuizStepEmail: React.FC<QuizStepEmailProps> = ({ formData, handleIn
           <Input
             type="email"
             name="email"
-            placeholder="Your email"
+            placeholder="your.email@example.com"
             value={formData.email}
             onChange={handleInputChange}
-            className="border-[#fdad32] rounded-lg"
+            onBlur={handleBlur}
+            className={`border-[#fdad32] rounded-lg ${!isValidEmail && isTouched ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
             aria-label="Your email"
+            aria-invalid={!isValidEmail && isTouched}
+            aria-describedby={!isValidEmail && isTouched ? "email-error" : undefined}
           />
+          {!isValidEmail && isTouched && (
+            <p id="email-error" className="text-sm text-red-500">Please enter a valid email address.</p>
+          )}
         </div>
       </CardContent>
     </>
