@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -6,8 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ArrowRight, ShieldCheck, Sparkles, Ticket, UserCheck } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
-import { useToast } from '@/components/ui/use-toast'; // Assuming shadcn toast
-import { Link } from 'react-router-dom';
+import { useToast } from '@/components/ui/use-toast';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Initialize Supabase client - replace with your actual URL and Anon key
 // It's better to have a central Supabase client instance if you use it in multiple places
@@ -24,59 +23,14 @@ const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supa
 const CheckoutPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleCheckout = async () => {
-    setIsLoading(true);
-    if (!supabase) {
-      toast({
-        title: "Error",
-        description: "Supabase client is not initialized. Cannot proceed with checkout.",
-        variant: "destructive",
-      });
-      setIsLoading(false);
-      return;
-    }
-
-    try {
-      // const { data: { session } } = await supabase.auth.getSession();
-      // const token = session?.access_token;
-      // if (!token) {
-      //   toast({ title: "Authentication Error", description: "You need to be logged in to proceed.", variant: "destructive" });
-      //   setIsLoading(false);
-      //   // Potentially redirect to login page here
-      //   return;
-      // }
-      // For one-time payments, login might not be strictly required by the edge function if it supports guest checkout.
-      // If login is required, uncomment the above and handle appropriately.
-
-      const { data, error } = await supabase.functions.invoke('create-checkout-session', {
-        // body: {}, // Pass any necessary body if your function expects it
-        // headers: { Authorization: `Bearer ${token}` } // Pass token if function requires auth
-      });
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      if (data.url) {
-        window.location.href = data.url; // Redirect to Stripe Checkout
-      } else {
-        throw new Error("Failed to get checkout URL.");
-      }
-
-    } catch (error) {
-      console.error("Checkout error:", error);
-      toast({
-        title: "Checkout Error",
-        description: (error as Error).message || "Could not initiate checkout. Please try again.",
-        variant: "destructive",
-      });
-      setIsLoading(false);
-    }
+  const handleProceedToDetails = () => {
+    navigate('/checkout/details');
   };
 
   return (
@@ -132,15 +86,10 @@ const CheckoutPage = () => {
               </div>
               
               <Button 
-                onClick={handleCheckout} 
-                disabled={isLoading}
+                onClick={handleProceedToDetails} 
                 className="w-full stb-button text-lg py-3 mt-6"
               >
-                {isLoading ? 'Processing...' : (
-                  <>
-                    Proceed to Payment <ArrowRight className="ml-2 h-5 w-5" />
-                  </>
-                )}
+                Proceed to Payment <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <p className="text-xs text-gray-500 text-center mt-4">
                 You will be redirected to Stripe for secure payment processing.
