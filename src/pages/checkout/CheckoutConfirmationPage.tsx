@@ -127,7 +127,7 @@ const CheckoutConfirmationPage = () => {
             <img src={sunnyMascotImageManualReview} width="200" alt="Sunny waiting" className="max-w-[180px] md:max-w-[250px]" />
             <div className="max-w-md text-midnight">
               <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
-                {submissionMethod === 'upload' && <FileCheck className="h-8 w-8 text-green-500" />}
+                {submissionMethod === 'upload'}
                 {submissionMethod === 'emailLater' && <MailCheck className="h-8 w-8 text-blue-500" />}
                 <h1 className="text-3xl md:text-4xl font-bold leading-tight text-sunny-orange-dark">
                   Hang tight{userName ? `, ${userName}` : ''} – Sunny’s on it! ☀️
