@@ -1,5 +1,5 @@
-
-import { destinations as travelDestinationsData, DestinationItinerary } from "@/data/travelDestinations";
+import { destinations as travelDestinationsData } from "@/data/destinationsList";
+import { DestinationItinerary } from "@/types/travel";
 import { DESTINATIONS, DEFAULT_TRAVEL_IMAGE, SPEND_PROFILES, CATEGORY_WEIGHTS, DISCOUNT_RATES, Q4_CATEGORIES } from "./TravelQuizConstants";
 import { FormData, TravelQuizCalculatedResults } from "./TravelQuizTypes";
 

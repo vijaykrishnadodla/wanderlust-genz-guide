@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import SunnyMascot from "@/components/SunnyMascot";
-import { destinations as travelDestinationsData, DestinationItinerary } from "@/data/travelDestinations";
+import { destinations as travelDestinationsData } from "@/data/destinationsList";
+import { DestinationItinerary } from "@/types/travel";
 
 // ---------- TYPE DEFINITIONS ----------
 export interface FormData {
@@ -15,12 +16,8 @@ export interface FormData {
   idealTripDescription?: string;
 }
 
-// This interface is defined to satisfy imports from src/components/quiz/QuizResult.tsx
-// TravelQuiz.tsx itself does not use this structure for its results.
-interface Attraction {
-  icon: string | React.ReactElement;
-  name: string;
-}
+// Import Attraction type for DisplayItinerary
+import { Attraction as ImportedAttraction } from '@/types/travel';
 
 export interface DisplayItinerary {
   title?: string;
@@ -30,8 +27,8 @@ export interface DisplayItinerary {
   aiVibeDescription?: string;
   vibeDescription?: string;
   userDescriptionConsidered?: string;
-  mustSee?: Attraction[];
-  attractions?: Attraction[];
+  mustSee?: ImportedAttraction[];
+  attractions?: ImportedAttraction[];
   estimatedSavings?: string;
 }
 
@@ -41,7 +38,7 @@ const SUNNY_IMG = "/lovable-uploads/4f7ff15f-54ee-4439-8905-39341b5428d5.png";
 
 // This DESTINATIONS object is still used for Q1_DESTS (dropdown list) and costFactor primarily.
 // The 'img' property here becomes a secondary fallback for images.
-const DESTINATIONS: Record<string, { costFactor: number; img: string }> = {
+const DESTINATIONS_LOCAL: Record<string, { costFactor: number; img: string }> = {
   "Cancún": { costFactor: 0.9, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" },
   "Paris": { costFactor: 1.2, img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80" },
   "London": { costFactor: 1.3, img: "https://images.unsplash.com/photo-1543877087-ebf71bb88de2?auto=format&fit=crop&w=1200&q=80" },
@@ -54,13 +51,13 @@ const DESTINATIONS: Record<string, { costFactor: number; img: string }> = {
   "Los Angeles": { costFactor: 1.2, img: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=1200&q=80" }
 };
 
-const DEFAULT_TRAVEL_IMAGE = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80"; // Generic fallback
+const DEFAULT_TRAVEL_IMAGE_LOCAL = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80"; // Generic fallback
 
 const SPEND_PROFILES: Record<string, number> = { Shoestring: 350, "Mid-range": 550, "Treat Yo’Self": 900 };
 const DISCOUNT_RATES: Record<string, number> = { accommodation: 0.2, transport: 0.15, attractions: 0.5, food: 0.1, nightlife: 0.05, shopping: 0.1 };
 const CATEGORY_WEIGHTS: Record<string, number> = { accommodation: 0.35, transport: 0.15, attractions: 0.2, food: 0.15, nightlife: 0.05, shopping: 0.1 };
 
-const Q1_DESTS = Object.keys(DESTINATIONS);
+const Q1_DESTS = Object.keys(DESTINATIONS_LOCAL);
 const Q2_VIBES = ["Beach/Party", "Culture & Museums", "Foodie Adventures", "Outdoor/Nature", "City Blitz"];
 const Q3_STYLE = Object.keys(SPEND_PROFILES);
 const Q4_CATEGORIES = Object.keys(CATEGORY_WEIGHTS);
@@ -73,6 +70,9 @@ const gradientBtn = "bg-gradient-to-r from-sunny-yellow to-sunny-orange";
 const normalizeString = (str: string): string =>
   str ? str.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
 
+// getDestData is also defined in TravelQuizLogic.ts. We should decide if we need it here or import it.
+// For now, I'll assume it's kept here as per the original structure, but it's a candidate for removal if TravelQuizLogic.getDestData is sufficient.
+// Let's update its usage of DestinationItinerary.
 const getDestData = (city: string): { costFactor: number; img: string } => {
   const normalizedQueryCity = normalizeString(city);
   let imageUrl: string | undefined = undefined;
@@ -87,8 +87,8 @@ const getDestData = (city: string): { costFactor: number; img: string } => {
 
   // 2. Fallback to DESTINATIONS constant for image if not found above
   // Use original city key for DESTINATIONS as it's not necessarily normalized there.
-  if (!imageUrl && city && DESTINATIONS[city]?.img) {
-    imageUrl = DESTINATIONS[city].img;
+  if (!imageUrl && city && DESTINATIONS_LOCAL[city]?.img) {
+    imageUrl = DESTINATIONS_LOCAL[city].img;
   }
 
   // 3. Fallback to Unsplash dynamic query if still no image and city is provided
@@ -98,11 +98,11 @@ const getDestData = (city: string): { costFactor: number; img: string } => {
   
   // 4. Ultimate fallback to default image
   if (!imageUrl) {
-    imageUrl = DEFAULT_TRAVEL_IMAGE;
+    imageUrl = DEFAULT_TRAVEL_IMAGE_LOCAL;
   }
 
   // Get costFactor from DESTINATIONS constant (using original city key), or default
-  const costFactor = (city && DESTINATIONS[city]?.costFactor) ?? 1.1; // Default cost factor if city or its entry not found
+  const costFactor = (city && DESTINATIONS_LOCAL[city]?.costFactor) ?? 1.1; // Default cost factor if city or its entry not found
 
   return { costFactor, img: imageUrl };
 };
@@ -185,7 +185,7 @@ export default function TravelQuiz() {
 
         <motion.button 
           whileHover={{ scale: 1.05 }} 
-          className={`${gradientBtn} text-white px-6 py-3 rounded-2xl text-lg shadow-lg`} // Updated to rounded-2xl
+          className={`${gradientBtn} text-white px-6 py-3 rounded-2xl text-lg shadow-lg`}
           onClick={() => {
             // Scroll to pricing section (assuming an element with id="pricing" exists)
             const pricingSection = document.getElementById('pricing'); // Make sure PricingSection has id="pricing"

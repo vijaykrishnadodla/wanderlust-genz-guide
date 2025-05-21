@@ -1,68 +1,8 @@
-import React from 'react'; // Import React for React.ReactNode
+
+import React from 'react';
 import { Plane, MapPin, Camera, Coffee, Building, BookOpen, Bike, TreePalm, Ticket, Landmark, ShoppingCart, Utensils } from 'lucide-react';
-
-// Type for individual attractions
-export type Attraction = {
-  name: string;
-  icon: React.ReactNode | string; // Can be a Lucide icon component or an emoji string
-  description?: string; // Optional brief description
-};
-
-// Type for ISIC savings details
-export type ISICSavings = {
-  total: string; // e.g., "€50 - €150"
-  period: string; // e.g., "on a 7-day trip"
-  highlights?: string[]; // e.g., ["Up to 20% off museum entries", "10% off selected cafes"]
-};
-
-// Type for details specific to a holiday type within a destination
-export type HolidayTypeDetails = {
-  vibeDescription: string;
-  attractions: Attraction[]; // General attractions for this vibe
-  mustSee: Attraction[]; // Key attractions for students
-  isicSavings?: ISICSavings;
-};
-
-// Main type for a travel destination
-export type DestinationItinerary = {
-  city: string;
-  country: string;
-  imageEmoji: string; // Emoji for quick display
-  imageUrl?: string; // URL for a representative image of the city
-  holidayTypes: {
-    [key: string]: HolidayTypeDetails; // e.g., "cultural", "adventure"
-  };
-};
-
-// Default itinerary / fallback if a specific destination or type isn't found
-export const defaultItinerary: HolidayTypeDetails = {
-  vibeDescription: "An exciting journey awaits! Discover unique spots and make unforgettable memories.",
-  attractions: [
-    { name: "Local Market", icon: <ShoppingCart className="w-4 h-4" />, description: "Experience the local culture and find unique souvenirs." },
-    { name: "City Park", icon: <TreePalm className="w-4 h-4" />, description: "Relax and enjoy the green spaces." },
-  ],
-  mustSee: [
-    { name: "Iconic Landmark", icon: <Landmark className="w-4 h-4" />, description: "A must-visit spot in any city." }
-  ],
-  isicSavings: {
-    total: "Varies",
-    period: "during your trip",
-    highlights: ["Look for ISIC discounts at various attractions and eateries!"],
-  },
-};
-
-const minimalGeneralHolidayType: HolidayTypeDetails = {
-  vibeDescription: "Discover the highlights and unique charm of this amazing city.",
-  attractions: [
-    { name: "City Exploration", icon: <MapPin className="w-4 h-4" />, description: "Wander and discover local spots." },
-    { name: "Local Cuisine", icon: <Utensils className="w-4 h-4" />, description: "Try some authentic local food." }
-  ],
-  mustSee: [
-    { name: "Famous Landmark", icon: <Landmark className="w-4 h-4" />, description: "Visit a well-known site." },
-    { name: "Cultural Hotspot", icon: <Building className="w-4 h-4" />, description: "Experience the local culture." }
-  ],
-};
-
+import { DestinationItinerary } from '@/types/travel';
+import { minimalGeneralHolidayType } from './travelDefaults';
 
 // Sample destinations data
 export const destinations: DestinationItinerary[] = [
@@ -210,3 +150,4 @@ export const destinations: DestinationItinerary[] = [
   },
   // Add more destinations here following the same structure
 ];
+
