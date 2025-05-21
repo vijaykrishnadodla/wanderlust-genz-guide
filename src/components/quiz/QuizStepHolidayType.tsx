@@ -1,9 +1,10 @@
+
 import React from 'react';
 import { CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { FormData } from '../TravelQuizTypes';
+import { FormData } from './TravelQuizTypes'; // Corrected import path
 
 interface QuizStepHolidayTypeProps {
   formData: FormData;
@@ -53,3 +54,4 @@ export const QuizStepHolidayType: React.FC<QuizStepHolidayTypeProps> = ({ formDa
     </>
   );
 };
+

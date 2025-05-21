@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { FormData } from '../TravelQuizTypes';
+import { FormData } from './TravelQuizTypes'; // Corrected import path
 
 interface QuizStepEmailProps {
   formData: FormData;
@@ -51,3 +52,4 @@ export const QuizStepEmail: React.FC<QuizStepEmailProps> = ({ formData, handleIn
     </>
   );
 };
+

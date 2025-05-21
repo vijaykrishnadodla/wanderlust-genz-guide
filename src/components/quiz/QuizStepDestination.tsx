@@ -1,7 +1,8 @@
+
 import React from 'react';
 import { CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { FormData } from '../TravelQuizTypes';
+import { FormData } from './TravelQuizTypes'; // Corrected import path
 
 interface QuizStepDestinationProps {
   formData: FormData;
@@ -31,3 +32,4 @@ export const QuizStepDestination: React.FC<QuizStepDestinationProps> = ({ formDa
     </>
   );
 };
+
