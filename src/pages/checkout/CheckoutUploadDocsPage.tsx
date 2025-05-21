@@ -3,10 +3,11 @@ import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { Button } from '@/components/ui/button';
 import { UploadCloud, FileText, Mail } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { useToast } from '@/hooks/use-toast'; // Corrected import path
+import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import type { BasicDetails, VerificationData } from '@/types/checkout';
 
 type UploadOption = "upload" | "emailLater";
 
@@ -43,16 +44,47 @@ const CheckoutUploadDocsPage = () => {
         return;
       }
       console.log("Uploading file:", selectedFile.name);
-      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate upload delay
-      // Removed toast for document uploaded
-    } else { // emailLater option
-      // Removed toast for order confirmed email later
+      await new Promise(resolve => setTimeout(resolve, 2000)); 
+    } else { 
       await new Promise(resolve => setTimeout(resolve, 500)); 
     }
 
+    // Prepare stbVerificationData
+    const storedDetailsString = sessionStorage.getItem('stbCheckoutDetails');
+    let finalVerificationData: Partial<VerificationData> = {};
+
+    const existingVDataString = sessionStorage.getItem('stbVerificationData');
+    if (existingVDataString) {
+        try {
+            finalVerificationData = JSON.parse(existingVDataString);
+        } catch (e) {
+            console.error("Error parsing existing stbVerificationData in CheckoutUploadDocsPage:", e);
+        }
+    }
+
+    if (storedDetailsString) {
+        try {
+            const storedDetails: BasicDetails = JSON.parse(storedDetailsString);
+            finalVerificationData.firstName = storedDetails.firstName;
+            finalVerificationData.lastName = storedDetails.lastName;
+            finalVerificationData.dateOfBirth = storedDetails.dateOfBirth;
+            // schoolIdentifier would be in finalVerificationData if set by useVerification
+        } catch (e) {
+            console.error("Error processing storedDetailsString in CheckoutUploadDocsPage:", e);
+        }
+    }
+    
+    if (Object.keys(finalVerificationData).length > 0) {
+        sessionStorage.setItem('stbVerificationData', JSON.stringify(finalVerificationData));
+        console.log("CheckoutUploadDocsPage - stbVerificationData set/updated:", finalVerificationData);
+    }
+
+    if (storedDetailsString) {
+        sessionStorage.removeItem('stbCheckoutDetails');
+        console.log("CheckoutUploadDocsPage - stbCheckoutDetails removed.");
+    }
+    
     setIsProcessing(false);
-    sessionStorage.removeItem('stbCheckoutDetails');
-    // Navigate to confirmation page with 'manual_required' status
     navigate('/checkout/confirmation/manual');
   };
 

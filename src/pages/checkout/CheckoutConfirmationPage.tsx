@@ -1,28 +1,51 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { useLocation, Link } from 'react-router-dom';
 import { Heart, Globe, Plane, PartyPopper } from 'lucide-react';
+import type { VerificationData } from '@/types/checkout'; // Import VerificationData
+
 const CheckoutConfirmationPage = () => {
   const location = useLocation();
+  const [userName, setUserName] = useState<string | null>(null);
 
   // The image path provided by user upload - success state
   const sunnyMascotImageSuccess = "/lovable-uploads/e01b4658-0123-4f89-8570-6ac27d5408fa.png";
   // The new image path for manual review state
   const sunnyMascotImageManualReview = "/lovable-uploads/c00b5409-2e1c-406c-bddb-742712f51270.png";
-  let verificationStatus: 'success' | 'manual_required' = 'manual_required'; // Default
+  
+  let verificationStatusPath: 'success' | 'manual_required' = 'manual_required'; // Default
   if (location.pathname.endsWith('/success')) {
-    verificationStatus = 'success';
+    verificationStatusPath = 'success';
   } else if (location.pathname.endsWith('/manual')) {
-    verificationStatus = 'manual_required';
+    verificationStatusPath = 'manual_required';
   }
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []); // Dependency array is empty as location.pathname change will re-render
+    const verificationDataString = sessionStorage.getItem('stbVerificationData');
+    if (verificationDataString) {
+      try {
+        const verificationData: VerificationData = JSON.parse(verificationDataString);
+        if (verificationData.firstName) {
+          setUserName(verificationData.firstName);
+          console.log("CheckoutConfirmationPage - User name set:", verificationData.firstName);
+        } else {
+          console.log("CheckoutConfirmationPage - No firstName found in stbVerificationData.");
+        }
+      } catch (error) {
+        console.error("Error parsing verification data from session storage:", error);
+        setUserName(null); 
+      }
+    } else {
+      console.log("CheckoutConfirmationPage - No stbVerificationData found in session storage.");
+    }
+    // The data in stbVerificationData is kept for potential API calls as per requirements.
+  }, [location.pathname]); 
 
   const confettiPieces = Array.from({
     length: 20
   }).map((_, i) => {
-    const colors = ["#FCE1F1", "#FFDD4D", "#6EE7B7", "#FCA5A5", "#93C5FD"]; // Confetti colors can remain vibrant
+    const colors = ["#FCE1F1", "#FFDD4D", "#6EE7B7", "#FCA5A5", "#93C5FD"];
     return {
       left: `${Math.random() * 90 + 5}%`,
       delay: `${Math.random() * 4}s`,
@@ -30,7 +53,8 @@ const CheckoutConfirmationPage = () => {
       color: colors[i % colors.length]
     };
   });
-  if (verificationStatus === 'success') {
+
+  if (verificationStatusPath === 'success') {
     return <CheckoutLayout currentStep={4} totalSteps={4}>
         <style>{`
           @keyframes fall { 
@@ -65,7 +89,7 @@ const CheckoutConfirmationPage = () => {
               
               <div className="max-w-lg text-midnight">
                 <h1 className="text-2xl md:text-3xl font-bold leading-tight mt-2">
-                  Welcome aboard Student Travel Buddy!
+                  {userName ? `${userName}, w` : 'W'}elcome aboard Student Travel Buddy!
                 </h1>
                 <p className="mt-4 text-md md:text-lg">
                   Sunny is generating your digital ISIC right now.
@@ -94,7 +118,7 @@ const CheckoutConfirmationPage = () => {
             <img src={sunnyMascotImageManualReview} width="200" alt="Sunny waiting" className="max-w-[180px] md:max-w-[250px]" />
             <div className="max-w-md text-midnight">
               <h1 className="text-3xl md:text-4xl font-bold leading-tight text-sunny-orange-dark">
-                Hang tight – Sunny’s on it! ☀️
+                Hang tight{userName ? `, ${userName}` : ''} – Sunny’s on it! ☀️
               </h1>
               <p className="mt-4 text-md md:text-lg">
                 We’re double-checking your student proof. Expect an update within <b>48 hours</b>. 

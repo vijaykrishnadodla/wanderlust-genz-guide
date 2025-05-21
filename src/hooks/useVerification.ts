@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
+import type { BasicDetails, VerificationData } from '@/types/checkout'; // Import new types
 
 export type VerificationStatus = "idle" | "loading" | "success" | "error" | "manual_required";
 
@@ -28,10 +29,33 @@ export const useVerification = () => {
     setVerificationStatus("loading");
     setErrorMessage("");
 
+    // Helper function to create/update stbVerificationData and clear stbCheckoutDetails
+    const finalizeVerificationSession = (currentSchoolIdentifier: string) => {
+      const storedDetailsString = sessionStorage.getItem('stbCheckoutDetails');
+      if (storedDetailsString) {
+        try {
+          const storedDetails: BasicDetails = JSON.parse(storedDetailsString);
+          const verificationDataToStore: VerificationData = {
+            firstName: storedDetails.firstName,
+            lastName: storedDetails.lastName,
+            dateOfBirth: storedDetails.dateOfBirth,
+            schoolIdentifier: currentSchoolIdentifier
+          };
+          sessionStorage.setItem('stbVerificationData', JSON.stringify(verificationDataToStore));
+          console.log("useVerification - stbVerificationData set:", verificationDataToStore);
+        } catch (e) {
+          console.error("Error processing stored details for verification data in useVerification:", e);
+        }
+      }
+      sessionStorage.removeItem('stbCheckoutDetails');
+      console.log("useVerification - stbCheckoutDetails removed after finalizing session.");
+    };
+
     await new Promise(resolve => setTimeout(resolve, 1500)); 
 
     if (isManualEntry) {
       console.log("useVerification - Manual entry detected, setting to manual_required.");
+      finalizeVerificationSession(schoolIdentifier);
       setVerificationStatus("manual_required");
       setErrorMessage("Your school was entered manually. Please proceed to upload your documents for verification.");
       return; 
@@ -39,14 +63,17 @@ export const useVerification = () => {
 
     const isSuccessfullyVerified = Math.random() > 0.3; 
 
+    finalizeVerificationSession(schoolIdentifier); // Called for both success and failure of auto-verification
+
     if (isSuccessfullyVerified) {
       console.log("useVerification - Automatic verification successful.");
       setVerificationStatus("success");
-      sessionStorage.removeItem('stbCheckoutDetails');
+      // sessionStorage.removeItem('stbCheckoutDetails'); // Moved to finalizeVerificationSession
     } else {
       console.log("useVerification - Automatic verification failed, setting to manual_required.");
       setVerificationStatus("manual_required");
       setErrorMessage("We couldn’t verify you automatically. Please proceed to upload your documents.");
+       // sessionStorage.removeItem('stbCheckoutDetails'); // Moved to finalizeVerificationSession
     }
   };
 
