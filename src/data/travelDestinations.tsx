@@ -1,4 +1,3 @@
-
 import React from 'react'; // Import React for React.ReactNode
 import { Plane, MapPin, Camera, Coffee, Building, BookOpen, Bike, TreePalm, Ticket, Landmark, ShoppingCart, Utensils } from 'lucide-react';
 
@@ -52,13 +51,26 @@ export const defaultItinerary: HolidayTypeDetails = {
   },
 };
 
+const minimalGeneralHolidayType: HolidayTypeDetails = {
+  vibeDescription: "Discover the highlights and unique charm of this amazing city.",
+  attractions: [
+    { name: "City Exploration", icon: <MapPin className="w-4 h-4" />, description: "Wander and discover local spots." },
+    { name: "Local Cuisine", icon: <Utensils className="w-4 h-4" />, description: "Try some authentic local food." }
+  ],
+  mustSee: [
+    { name: "Famous Landmark", icon: <Landmark className="w-4 h-4" />, description: "Visit a well-known site." },
+    { name: "Cultural Hotspot", icon: <Building className="w-4 h-4" />, description: "Experience the local culture." }
+  ],
+};
+
+
 // Sample destinations data
 export const destinations: DestinationItinerary[] = [
   {
     city: "Barcelona",
     country: "Spain",
     imageEmoji: "🇪🇸",
-    imageUrl: "/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg", // Example image, replace with actual if available
+    imageUrl: "/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg", // Local upload preferred
     holidayTypes: {
       "cultural": {
         vibeDescription: "Immerse yourself in Barcelona's rich history, stunning architecture, and vibrant arts scene.",
@@ -108,7 +120,7 @@ export const destinations: DestinationItinerary[] = [
     city: "Paris",
     country: "France",
     imageEmoji: "🇫🇷",
-    imageUrl: "/lovable-uploads/6babe884-a973-49d2-9125-fad3e4a98f6e.jpg", // Example image
+    imageUrl: "/lovable-uploads/6babe884-a973-49d2-9125-fad3e4a98f6e.jpg", // Local upload preferred
     holidayTypes: {
       "cultural": {
         vibeDescription: "Experience the romance and artistry of Paris, from iconic landmarks to world-class museums.",
@@ -139,6 +151,62 @@ export const destinations: DestinationItinerary[] = [
       }
     },
   },
+  // --- New Entries ---
+  {
+    city: "Cancún", // Normalizing to Cancun for matching if needed, but display as Cancún
+    country: "Mexico",
+    imageEmoji: "🇲🇽",
+    imageUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+    holidayTypes: { "general": minimalGeneralHolidayType },
+  },
+  {
+    city: "London",
+    country: "United Kingdom",
+    imageEmoji: "🇬🇧",
+    imageUrl: "https://images.unsplash.com/photo-1543877087-ebf71bb88de2?auto=format&fit=crop&w=1200&q=80",
+    holidayTypes: { "general": minimalGeneralHolidayType },
+  },
+  {
+    city: "Rome",
+    country: "Italy",
+    imageEmoji: "🇮🇹",
+    imageUrl: "https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&w=1200&q=80",
+    holidayTypes: { "general": minimalGeneralHolidayType },
+  },
+  {
+    city: "Tokyo",
+    country: "Japan",
+    imageEmoji: "🇯🇵",
+    imageUrl: "https://images.unsplash.com/photo-1505061481992-53fb0f931f5d?auto=format&fit=crop&w=1200&q=80",
+    holidayTypes: { "general": minimalGeneralHolidayType },
+  },
+  {
+    city: "Seoul",
+    country: "South Korea",
+    imageEmoji: "🇰🇷",
+    imageUrl: "https://images.unsplash.com/photo-1580170533783-0c0d9fcc9a19?auto=format&fit=crop&w=1200&q=80",
+    holidayTypes: { "general": minimalGeneralHolidayType },
+  },
+  {
+    city: "Honolulu",
+    country: "USA",
+    imageEmoji: "🇺🇸", // Could also use 🌺 or similar
+    imageUrl: "https://images.unsplash.com/photo-1502786129293-79981df4e689?auto=format&fit=crop&w=1200&q=80",
+    holidayTypes: { "general": minimalGeneralHolidayType },
+  },
+  {
+    city: "New York",
+    country: "USA",
+    imageEmoji: "🇺🇸",
+    imageUrl: "https://images.unsplash.com/photo-1501147830916-ce44a6359892?auto=format&fit=crop&w=1200&q=80",
+    holidayTypes: { "general": minimalGeneralHolidayType },
+  },
+  {
+    city: "Los Angeles",
+    country: "USA",
+    imageEmoji: "🇺🇸",
+    imageUrl: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=1200&q=80",
+    holidayTypes: { "general": minimalGeneralHolidayType },
+  },
   // Add more destinations here following the same structure
 ];
-

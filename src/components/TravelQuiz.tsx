@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import SunnyMascot from "@/components/SunnyMascot";
+import { destinations as travelDestinationsData, DestinationItinerary } from "@/data/travelDestinations";
 
 // ---------- TYPE DEFINITIONS ----------
 export interface FormData {
@@ -38,6 +39,8 @@ export interface DisplayItinerary {
 // Use the uploaded Sunny image
 const SUNNY_IMG = "/lovable-uploads/4f7ff15f-54ee-4439-8905-39341b5428d5.png"; 
 
+// This DESTINATIONS object is still used for Q1_DESTS (dropdown list) and costFactor primarily.
+// The 'img' property here becomes a secondary fallback for images.
 const DESTINATIONS: Record<string, { costFactor: number; img: string }> = {
   "Cancún": { costFactor: 0.9, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" },
   "Paris": { costFactor: 1.2, img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80" },
@@ -50,6 +53,8 @@ const DESTINATIONS: Record<string, { costFactor: number; img: string }> = {
   "New York": { costFactor: 1.35, img: "https://images.unsplash.com/photo-1501147830916-ce44a6359892?auto=format&fit=crop&w=1200&q=80" },
   "Los Angeles": { costFactor: 1.2, img: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=1200&q=80" }
 };
+
+const DEFAULT_TRAVEL_IMAGE = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80"; // Generic fallback
 
 const SPEND_PROFILES: Record<string, number> = { Shoestring: 350, "Mid-range": 550, "Treat Yo’Self": 900 };
 const DISCOUNT_RATES: Record<string, number> = { accommodation: 0.2, transport: 0.15, attractions: 0.5, food: 0.1, nightlife: 0.05, shopping: 0.1 };
@@ -65,11 +70,42 @@ const Q5_GROUP = ["Solo", "1–2", "3–5", "6+"];
 const gradientBtn = "bg-gradient-to-r from-sunny-yellow to-sunny-orange";
 
 // ---------- HELPERS ----------
-const getDestData = (city: string) =>
-  DESTINATIONS[city] ?? {
-    costFactor: 1.1, // Default cost factor
-    img: `https://source.unsplash.com/1200x800/?${encodeURIComponent(city + " travel")}`
-  };
+const normalizeString = (str: string): string =>
+  str ? str.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
+
+const getDestData = (city: string): { costFactor: number; img: string } => {
+  const normalizedQueryCity = normalizeString(city);
+  let imageUrl: string | undefined = undefined;
+
+  // 1. Try to get image from imported travelDestinationsData
+  const destinationEntry = travelDestinationsData.find(
+    (dest: DestinationItinerary) => normalizeString(dest.city) === normalizedQueryCity
+  );
+  if (destinationEntry?.imageUrl) {
+    imageUrl = destinationEntry.imageUrl;
+  }
+
+  // 2. Fallback to DESTINATIONS constant for image if not found above
+  // Use original city key for DESTINATIONS as it's not necessarily normalized there.
+  if (!imageUrl && city && DESTINATIONS[city]?.img) {
+    imageUrl = DESTINATIONS[city].img;
+  }
+
+  // 3. Fallback to Unsplash dynamic query if still no image and city is provided
+  if (!imageUrl && city) {
+    imageUrl = `https://source.unsplash.com/1200x800/?${encodeURIComponent(city + " travel")}`;
+  }
+  
+  // 4. Ultimate fallback to default image
+  if (!imageUrl) {
+    imageUrl = DEFAULT_TRAVEL_IMAGE;
+  }
+
+  // Get costFactor from DESTINATIONS constant (using original city key), or default
+  const costFactor = (city && DESTINATIONS[city]?.costFactor) ?? 1.1; // Default cost factor if city or its entry not found
+
+  return { costFactor, img: imageUrl };
+};
 
 // ---------- COMPONENT ----------
 export default function TravelQuiz() {
@@ -115,7 +151,7 @@ export default function TravelQuiz() {
   // ---------- RESULTS ----------
   if (step === 6) {
     const { base, breakdown, saveTotal } = calc();
-    const heroImg = getDestData(answers.dest).img;
+    const heroImg = getDestData(answers.dest).img; // This will now use the new logic
     return (
       <section className="flex flex-col items-center text-center p-6 max-w-2xl mx-auto">
         <img src={heroImg} alt={answers.dest} className="rounded-2xl shadow-xl mb-4 w-full h-64 object-cover" />
