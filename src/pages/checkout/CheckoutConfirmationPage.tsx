@@ -91,36 +91,38 @@ const CheckoutConfirmationPage = () => {
   // Manual Review or any other status
   return (
     <CheckoutLayout currentStep={4} totalSteps={4}>
-      <section className="bg-gradient-to-br from-[#FFF9E5] to-[#FCE1F1] py-12 md:py-24 relative rounded-lg">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 px-6 text-center md:text-left">
-          <img 
-            src={sunnyMascotImageManualReview} 
-            width="200" // Scaled smaller as per mockup logic
-            alt="Sunny waiting" 
-            className="max-w-[180px] md:max-w-[250px]"
-          />
-          <div className="max-w-md text-midnight">
-            <h1 className="text-3xl md:text-4xl font-bold leading-tight text-sunny-orange-dark">
-              Hang tight – Sunny’s on it! ☀️
-            </h1>
-            <p className="mt-4 text-md md:text-lg">
-              We’re double-checking your student proof. Expect an update within <b>48 hours</b>. 
-              We’ll ping the inbox & phone you used at checkout the second you’re cleared.
-            </p>
-            <ul className="list-disc list-inside md:list-outside ml-0 md:ml-6 space-y-2 mt-6 text-left">
-              <li>No action needed right now.</li>
-              <li>Need it faster? Reply to the confirmation e-mail with “URGENT – FLIGHT”.</li>
-              <li>Messed up your file? Use the link in that e-mail to replace it.</li>
-            </ul>
-            <p className="mt-6 text-sm italic">
-              ISIC sales are final. If a doc fails, we’ll guide you to resubmit until approved.
-            </p>
-             <Link 
-                to="/" 
-                className="mt-8 md:mt-10 inline-block bg-sunny-orange text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-sunny-orange-dark transition-colors"
-              >
-                Okay, Go to Homepage
-              </Link>
+      <section className="py-12 md:py-24 relative"> {/* Removed gradient background from section to apply to inner div */}
+        <div className="bg-gradient-to-br from-[#FFF9E5] to-[#FCE1F1] p-6 md:p-10 rounded-xl shadow-xl border border-sunny-orange-light/50">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 px-2 md:px-6 text-center md:text-left">
+            <img 
+              src={sunnyMascotImageManualReview} 
+              width="200" 
+              alt="Sunny waiting" 
+              className="max-w-[180px] md:max-w-[250px]"
+            />
+            <div className="max-w-md text-midnight">
+              <h1 className="text-3xl md:text-4xl font-bold leading-tight text-sunny-orange-dark">
+                Hang tight – Sunny’s on it! ☀️
+              </h1>
+              <p className="mt-4 text-md md:text-lg">
+                We’re double-checking your student proof. Expect an update within <b>48 hours</b>. 
+                We’ll ping the inbox & phone you used at checkout the second you’re cleared.
+              </p>
+              <ul className="list-disc list-inside md:list-outside ml-0 md:ml-6 space-y-2 mt-6 text-left">
+                <li>No action needed right now.</li>
+                <li>Need it faster? Reply to the confirmation e-mail with “URGENT – FLIGHT”.</li>
+                <li>Messed up your file? Use the link in that e-mail to replace it.</li>
+              </ul>
+              <p className="mt-6 text-sm italic">
+                ISIC sales are final. If a doc fails, we’ll guide you to resubmit until approved.
+              </p>
+               <Link 
+                  to="/" 
+                  className="mt-8 md:mt-10 inline-block bg-sunny-orange text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-sunny-orange-dark transition-colors"
+                >
+                  Okay, Go to Homepage
+                </Link>
+            </div>
           </div>
         </div>
       </section>
