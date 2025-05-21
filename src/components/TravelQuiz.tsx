@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import SunnyMascot from "@/components/SunnyMascot"; // Added import for SunnyMascot
 
 // ---------- TYPE DEFINITIONS ----------
 export interface FormData {
@@ -252,16 +253,30 @@ export default function TravelQuiz() {
     // Updated background gradient to use theme colors: #FFFBEA (sunny-yellow-pale) to #FFF0BF (sunny-yellow-light)
     // Updated rounding to rounded-2xl
     <section className="bg-gradient-to-br from-sunny-yellow-pale to-sunny-yellow-light p-6 rounded-2xl shadow-xl max-w-xl mx-auto text-center">
+      {step < 6 && (
+        <div className="mb-8 text-center">
+          <div className="flex justify-center mb-4">
+            <SunnyMascot size="lg" travelStyle="adventure" />
+          </div>
+          <h1 className="text-3xl font-bold text-sunny-orange-dark mb-2">
+            Ready for an Adventure? 🚀
+          </h1>
+          <p className="text-md text-gray-700">
+            Answer a few Q's to find your perfect trip & unlock sweet ISIC savings! ✨
+          </p>
+        </div>
+      )}
       {renderStep()}
       <div className="flex justify-between mt-6">
         {/* Use theme color #FF8A00 (text-sunny-orange) for back button */}
-        {step > 0 && <button className="text-sunny-orange underline" onClick={back}>← Back</button>}
+        {step > 0 && step < 6 && <button className="text-sunny-orange underline" onClick={back}>← Back</button>}
         {/* Ensure CTA button uses updated gradientBtn and rounded-2xl */}
-        <button disabled={!valid()} onClick={step === 5 ? () => setStep(6) : next} className={`${gradientBtn} text-white px-4 py-2 rounded-2xl disabled:opacity-40 ml-auto`}>
-          {step === 5 ? "Show Me the Savings →" : "Next →"}
-        </button>
+        {step < 6 && (
+          <button disabled={!valid()} onClick={step === 5 ? () => setStep(6) : next} className={`${gradientBtn} text-white px-4 py-2 rounded-2xl disabled:opacity-40 ml-auto`}>
+            {step === 5 ? "Show Me the Savings →" : "Next →"}
+          </button>
+        )}
       </div>
     </section>
   );
 }
-
