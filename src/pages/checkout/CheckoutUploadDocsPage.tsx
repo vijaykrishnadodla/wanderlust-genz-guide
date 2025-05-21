@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { Button } from '@/components/ui/button';
@@ -54,7 +53,7 @@ const CheckoutUploadDocsPage = () => {
     setIsProcessing(false);
     sessionStorage.removeItem('stbCheckoutDetails');
     // Navigate to confirmation page with 'manual_required' status
-    navigate('/checkout/confirmation', { state: { verificationStatus: 'manual_required' } });
+    navigate('/checkout/confirmation/manual');
   };
 
   return (
