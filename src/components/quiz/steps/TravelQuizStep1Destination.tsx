@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { TravelQuizStepSharedProps } from '../TravelQuizTypes';
-import { Q1_DESTS } from '../TravelQuizConstants';
+import { ALL_AVAILABLE_DESTINATIONS } from '../TravelQuizConstants'; // Use the comprehensive list
 
 export const TravelQuizStep1Destination: React.FC<TravelQuizStepSharedProps> = ({ answers, update }) => {
   return (
@@ -16,14 +16,18 @@ export const TravelQuizStep1Destination: React.FC<TravelQuizStepSharedProps> = (
         aria-label="Destination city"
       />
       <datalist id="destList">
-        {Q1_DESTS.map((d) => <option key={d} value={d} />)}
+        {ALL_AVAILABLE_DESTINATIONS.map((d) => <option key={d} value={d} />)}
       </datalist>
       <button 
         className="underline text-sunny-orange text-sm" 
-        onClick={() => update("dest", Q1_DESTS[Math.floor(Math.random() * Q1_DESTS.length)])}
+        onClick={() => {
+          const randomIndex = Math.floor(Math.random() * ALL_AVAILABLE_DESTINATIONS.length);
+          update("dest", ALL_AVAILABLE_DESTINATIONS[randomIndex]);
+        }}
       >
         Surprise me!
       </button>
     </>
   );
 };
+

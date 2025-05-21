@@ -10,27 +10,38 @@ export const getDestData = (city: string): { costFactor: number; img: string } =
   const normalizedQueryCity = normalizeString(city);
   let imageUrl: string | undefined = undefined;
 
+  // 1. Try to get image from imported travelDestinationsData (primary source)
   const destinationEntry = travelDestinationsData.find(
     (dest: DestinationItinerary) => normalizeString(dest.city) === normalizedQueryCity
   );
 
   if (destinationEntry?.imageUrl) {
     imageUrl = destinationEntry.imageUrl;
-  } else if (city && DESTINATIONS[city]?.img) {
+  }
+
+  // 2. Fallback to DESTINATIONS constant for image if not found above and city is in DESTINATIONS
+  // This is useful if travelDestinationsData entry exists but is missing an image URL for some reason.
+  if (!imageUrl && city && DESTINATIONS[city]?.img) {
     imageUrl = DESTINATIONS[city].img;
-  } else if (city) {
-    // Fallback to Unsplash dynamic query if still no image and city is provided
-    // console.log(`Falling back to Unsplash for city: ${city}`);
-    // imageUrl = `https://source.unsplash.com/1200x800/?${encodeURIComponent(city + " travel, cityscape")}`;
-    // Using default if unsplash is too slow or unreliable during generation
-    imageUrl = DEFAULT_TRAVEL_IMAGE;
-  } else {
+  }
+  
+  // 3. Fallback to Unsplash dynamic query if still no image and city is provided
+  if (!imageUrl && city) {
+    console.log(`Falling back to Unsplash for city: ${city}`);
+    imageUrl = `https://source.unsplash.com/1200x800/?${encodeURIComponent(city + " travel, cityscape")}`;
+  }
+
+  // 4. Ultimate fallback to default image
+  if (!imageUrl) {
     imageUrl = DEFAULT_TRAVEL_IMAGE;
   }
   
+  // Get costFactor from DESTINATIONS constant (using original city key), or default
+  // If city is in travelDestinationsData but not DESTINATIONS, it will use default costFactor.
+  // This can be enhanced later if costFactor should also be part of DestinationItinerary type.
   const costFactor = (city && DESTINATIONS[city]?.costFactor) ?? 1.1;
 
-  return { costFactor, img: imageUrl || DEFAULT_TRAVEL_IMAGE };
+  return { costFactor, img: imageUrl };
 };
 
 export const calculateQuizResults = (answers: FormData): TravelQuizCalculatedResults => {

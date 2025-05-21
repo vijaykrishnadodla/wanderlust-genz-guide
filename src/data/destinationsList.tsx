@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Plane, MapPin, Camera, Coffee, Building, BookOpen, Bike, TreePalm, Ticket, Landmark, ShoppingCart, Utensils } from 'lucide-react';
 import { DestinationItinerary } from '@/types/travel';
@@ -148,6 +147,12 @@ export const destinations: DestinationItinerary[] = [
     imageUrl: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=1200&q=80",
     holidayTypes: { "general": minimalGeneralHolidayType },
   },
+  {
+    city: "Venice",
+    country: "Italy",
+    imageEmoji: "🇮🇹",
+    imageUrl: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1200&q=80", // Venice image
+    holidayTypes: { "general": minimalGeneralHolidayType },
+  },
   // Add more destinations here following the same structure
 ];
-
