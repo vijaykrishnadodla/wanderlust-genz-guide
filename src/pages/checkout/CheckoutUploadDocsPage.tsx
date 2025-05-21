@@ -44,8 +44,10 @@ const CheckoutUploadDocsPage = () => {
         return;
       }
       console.log("Uploading file:", selectedFile.name);
+      // Simulate file upload
       await new Promise(resolve => setTimeout(resolve, 2000)); 
-    } else { 
+    } else { // emailLater option
+      // Simulate brief processing for emailLater choice
       await new Promise(resolve => setTimeout(resolve, 500)); 
     }
 
@@ -85,7 +87,8 @@ const CheckoutUploadDocsPage = () => {
     }
     
     setIsProcessing(false);
-    navigate('/checkout/confirmation/manual');
+    // Navigate to manual confirmation page with method as URL parameter
+    navigate(`/checkout/confirmation/manual?method=${uploadOption}`);
   };
 
   return (
