@@ -190,7 +190,7 @@ const SunshineClub = () => {
         {/* Key Benefits - Modern Cards with Orange Icons */}
         
         {/* Membership details section - Only showing FullTimer */}
-        <div className="mb-16">
+        <div id="membership-details-section" className="mb-16"> {/* Added ID here */}
           <div className="text-center mb-12">
             <div className="inline-block bg-gradient-to-r from-[#fdad32] to-[#fe4c02] px-6 py-2 rounded-lg mb-4 flex items-center justify-center">
               <Timer className="h-6 w-6 text-white mr-2" />
@@ -202,6 +202,8 @@ const SunshineClub = () => {
           <div className="max-w-md mx-auto mb-8">
             {/* FullTimer highlighted prominently */}
             <Card className="border-2 border-[#fdad32] shadow-xl relative overflow-hidden">
+              {/* ... keep existing code (BEST VALUE badge, 30% OFF banner) */}
+              
               <div className="absolute top-0 right-0 bg-gradient-to-r from-[#fdad32] to-[#fe4c02] text-white font-bold px-4 py-2 rounded-bl-md">
                 BEST VALUE
               </div>

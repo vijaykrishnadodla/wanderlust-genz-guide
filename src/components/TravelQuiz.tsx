@@ -66,11 +66,11 @@ export default function TravelQuiz() {
   };
   
   const handleSnagMembership = () => {
-    const pricingSection = document.getElementById('pricing');
-    if (pricingSection) {
-      pricingSection.scrollIntoView({ behavior: 'smooth' });
+    const membershipDetailsSection = document.getElementById('membership-details-section');
+    if (membershipDetailsSection) {
+      membershipDetailsSection.scrollIntoView({ behavior: 'smooth' });
     } else {
-      console.warn("Pricing section with ID 'pricing' not found for scroll.");
+      console.warn("Membership details section with ID 'membership-details-section' not found for scroll.");
     }
   };
 
