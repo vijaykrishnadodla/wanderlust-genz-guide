@@ -36,7 +36,7 @@ export interface DisplayItinerary {
 
 // ---------- CONSTANTS ----------
 // Use the uploaded Sunny image
-const SUNNY_IMG = "/lovable-uploads/c8ee8c54-1ae7-490f-bbb8-75978c486431.png"; 
+const SUNNY_IMG = "/lovable-uploads/4f7ff15f-54ee-4439-8905-39341b5428d5.png"; 
 
 const DESTINATIONS: Record<string, { costFactor: number; img: string }> = {
   "Cancún": { costFactor: 0.9, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" },
