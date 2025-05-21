@@ -6,7 +6,6 @@ import SunshineClub from '@/components/SunshineClub';
 import Offering from '@/components/Offering';
 import TravelQuiz from '@/components/TravelQuiz';
 import Testimonials from '@/components/Testimonials';
-import Features from '@/components/Features';
 import BackStory from '@/components/BackStory';
 import HowStarted from '@/components/HowStarted';
 import Ambassador from '@/components/Ambassador';
@@ -93,11 +92,13 @@ const Index = () => {
           <WaveDivider />
         </div>
         
-        {/* Features section */}
+        {/* Features section - This block is now removed as Features is part of HowStarted */}
+        {/* 
         <div className="relative">
           <Features />
           <WaveDivider />
-        </div>
+        </div> 
+        */}
         
         {/* BackStory section */}
         <div id="backstory" className="relative">
@@ -105,7 +106,7 @@ const Index = () => {
           <WaveDivider />
         </div>
         
-        {/* HowStarted section */}
+        {/* HowStarted section (now includes Features) */}
         <div className="relative">
           <HowStarted />
           <WaveDivider />

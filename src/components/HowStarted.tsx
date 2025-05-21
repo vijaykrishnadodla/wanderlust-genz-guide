@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Clock } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
+import Features from '@/components/Features'; // Import the Features component
+
 const HowStarted = () => {
   const [bubbleText, setBubbleText] = useState("Created in cooperation with ISIC — the only globally recognized student ID, trusted by over 120 million students worldwide throughout their studies.");
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -59,7 +61,6 @@ const HowStarted = () => {
             
             <div className="mt-8 flex justify-center">
               <div className="polaroid transform rotate-2 inline-block relative">
-                {/* Adding all flags to the top and bottom of the polaroid frame */}
                 <div className="absolute top-0 w-full flex justify-evenly flex-wrap" style={{
                 transform: 'translateY(-50%)'
               }}>
@@ -89,8 +90,14 @@ const HowStarted = () => {
               </div>
             </div>
           </div>
+        </div> {/* End of max-w-4xl mx-auto text-center */}
+
+        {/* Render the Features component here to show Sunny's traits */}
+        <div className="mt-16"> {/* Added margin-top for spacing */}
+          <Features />
         </div>
-      </div>
+
+      </div> {/* End of container px-4 md:px-6 relative z-10 */}
     </section>;
 };
 export default HowStarted;
