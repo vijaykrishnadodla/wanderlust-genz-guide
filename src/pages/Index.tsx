@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -48,7 +49,7 @@ const Index = () => {
         </div>
         
         {/* New Quiz Header Section */}
-        <div className="py-10 md:py-16 text-center bg-gradient-to-br from-sunny-yellow-pale to-sunny-yellow-light">
+        <div className="py-10 md:py-16 text-center bg-transparent"> {/* Updated background class */}
           <div className="flex justify-center mb-6">
             <SunnyMascot 
               size="lg" 
@@ -144,3 +145,4 @@ const Index = () => {
     </div>;
 };
 export default Index;
+
