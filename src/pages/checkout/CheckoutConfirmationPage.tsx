@@ -1,24 +1,20 @@
-
 import React, { useEffect } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { useLocation, Link } from 'react-router-dom';
 import { Heart, Globe, Plane, PartyPopper } from 'lucide-react';
-
 const CheckoutConfirmationPage = () => {
   const location = useLocation();
-  
+
   // The image path provided by user upload - success state
   const sunnyMascotImageSuccess = "/lovable-uploads/e01b4658-0123-4f89-8570-6ac27d5408fa.png";
   // The new image path for manual review state
   const sunnyMascotImageManualReview = "/lovable-uploads/c00b5409-2e1c-406c-bddb-742712f51270.png";
-
   let verificationStatus: 'success' | 'manual_required' = 'manual_required'; // Default
   if (location.pathname.endsWith('/success')) {
     verificationStatus = 'success';
   } else if (location.pathname.endsWith('/manual')) {
     verificationStatus = 'manual_required';
   }
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []); // Dependency array is empty as location.pathname change will re-render
@@ -34,7 +30,6 @@ const CheckoutConfirmationPage = () => {
       color: colors[i % colors.length]
     };
   });
-
   if (verificationStatus === 'success') {
     return <CheckoutLayout currentStep={4} totalSteps={4}>
         <style>{`
@@ -66,12 +61,7 @@ const CheckoutConfirmationPage = () => {
                 Verified! <PartyPopper className="ml-2 h-10 w-10 text-yellow-400" />
               </div>
 
-              <img 
-                src={sunnyMascotImageSuccess}
-                width="280" 
-                alt="Sunny celebrating" 
-                className="max-w-[200px] md:max-w-[280px] my-3 md:my-4" 
-              />
+              <img src={sunnyMascotImageSuccess} width="280" alt="Sunny celebrating" className="max-w-[200px] md:max-w-[280px] my-3 md:my-4" />
               
               <div className="max-w-lg text-midnight">
                 <h1 className="text-2xl md:text-3xl font-bold leading-tight mt-2">
@@ -86,10 +76,7 @@ const CheckoutConfirmationPage = () => {
                   <Plane size={20} />
                   <Globe size={20} />
                 </div>
-                <Link 
-                  to="/" 
-                  className="mt-8 md:mt-10 inline-block bg-sunny-orange text-white font-semibold px-8 py-3 rounded-lg shadow hover:bg-sunny-orange-dark transition-colors"
-                >
+                <Link to="/" className="mt-8 md:mt-10 inline-block bg-sunny-orange text-white font-semibold px-8 py-3 rounded-lg shadow hover:bg-sunny-orange-dark transition-colors">
                   All set! Go to Homepage
                 </Link>
               </div>
@@ -116,7 +103,7 @@ const CheckoutConfirmationPage = () => {
               <ul className="list-disc list-inside md:list-outside ml-0 md:ml-6 space-y-2 mt-6 text-left">
                 <li>No action needed right now.</li>
                 <li>Need it faster? Reply to the confirmation e-mail with “URGENT – FLIGHT”.</li>
-                <li>Messed up your file? Use the link in that e-mail to replace it.</li>
+                <li>Messed up your file upload? Use the link in that e-mail to replace it.</li>
               </ul>
               <p className="mt-6 text-sm italic">Our sales are final. If a doc fails, we’ll guide you to resubmit until approved.</p>
                <Link to="/" className="mt-8 md:mt-10 inline-block bg-sunny-orange text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-sunny-orange-dark transition-colors">
