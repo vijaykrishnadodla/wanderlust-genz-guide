@@ -1,39 +1,39 @@
 import React, { useEffect } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Heart, Globe, Plane, PartyPopper } from 'lucide-react';
+
 const CheckoutConfirmationPage = () => {
   const location = useLocation();
-  const navigate = useNavigate();
-  // The image path provided by user upload - success state - UPDATED
+  
+  // The image path provided by user upload - success state
   const sunnyMascotImageSuccess = "/lovable-uploads/e01b4658-0123-4f89-8570-6ac27d5408fa.png";
   // The new image path for manual review state
   const sunnyMascotImageManualReview = "/lovable-uploads/c00b5409-2e1c-406c-bddb-742712f51270.png";
 
-  // Default to manual_required if no state is passed, or redirect
-  const verificationStatus = location.state?.verificationStatus || 'manual_required';
+  let verificationStatus: 'success' | 'manual_required' = 'manual_required'; // Default
+  if (location.pathname.endsWith('/success')) {
+    verificationStatus = 'success';
+  } else if (location.pathname.endsWith('/manual')) {
+    verificationStatus = 'manual_required';
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (!location.state?.verificationStatus) {
-      // If no status, maybe redirect to start or show a generic message
-      // For now, let's assume it defaults as above or the flow ensures state is passed
-      console.warn("CheckoutConfirmationPage loaded without verificationStatus in route state.");
-    }
-  }, [location.state]);
+  }, []); // Dependency array is empty as location.pathname change will re-render
+
   const confettiPieces = Array.from({
     length: 20
   }).map((_, i) => {
     const colors = ["#FCE1F1", "#FFDD4D", "#6EE7B7", "#FCA5A5", "#93C5FD"];
     return {
       left: `${Math.random() * 90 + 5}%`,
-      // Random horizontal position (5% to 95%)
       delay: `${Math.random() * 4}s`,
-      // Random delay
       duration: `${Math.random() * 2 + 3}s`,
-      // Random duration (3s to 5s)
       color: colors[i % colors.length]
     };
   });
+
   if (verificationStatus === 'success') {
     return <CheckoutLayout currentStep={4} totalSteps={4}>
         <style>{`
@@ -59,8 +59,8 @@ const CheckoutConfirmationPage = () => {
         } as React.CSSProperties}></div>)}
           
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-6 relative z-10 text-center md:text-left">
-            <img src={sunnyMascotImageSuccess} // This line is updated by changing the variable above
-          width="300" // Adjusted from mockup slightly for responsiveness
+            <img src={sunnyMascotImageSuccess}
+          width="300"
           alt="Sunny celebrating" className="max-w-[250px] md:max-w-[350px]" />
             <div className="max-w-md">
               <h1 className="text-3xl md:text-4xl font-bold leading-tight flex items-center justify-center md:justify-start">
@@ -84,9 +84,9 @@ const CheckoutConfirmationPage = () => {
       </CheckoutLayout>;
   }
 
-  // Manual Review or any other status
+  // Manual Review or any other status (derived from URL path)
   return <CheckoutLayout currentStep={4} totalSteps={4}>
-      <section className="py-12 md:py-24 relative"> {/* Removed gradient background from section to apply to inner div */}
+      <section className="py-12 md:py-24 relative">
         <div className="bg-gradient-to-br from-[#FFF9E5] to-[#FCE1F1] p-6 md:p-10 rounded-xl shadow-xl border border-sunny-orange-light/50">
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 px-2 md:px-6 text-center md:text-left">
             <img src={sunnyMascotImageManualReview} width="200" alt="Sunny waiting" className="max-w-[180px] md:max-w-[250px]" />

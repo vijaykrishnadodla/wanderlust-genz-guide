@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -45,10 +44,12 @@ const App = () => (
             <Route path="/checkout/payment" element={<CheckoutPaymentPage />} />
             <Route path="/checkout/verify" element={<CheckoutVerifyPage />} />
             <Route path="/checkout/upload-docs" element={<CheckoutUploadDocsPage />} />
-            <Route path="/checkout/confirmation" element={<CheckoutConfirmationPage />} />
+            {/* Updated Checkout Confirmation Routes */}
+            <Route path="/checkout/confirmation/success" element={<CheckoutConfirmationPage />} />
+            <Route path="/checkout/confirmation/manual" element={<CheckoutConfirmationPage />} />
             <Route path="/student-verification-consent" element={<StudentVerificationConsentPage />} />
-            <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} /> {/* Added route */}
-            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} /> {/* Added route */}
+            <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/payment-success" element={<PaymentSuccessPage />} />
             <Route path="/payment-cancel" element={<PaymentCancelPage />} />
             <Route path="/ambassador-application" element={<AmbassadorApplicationPage />} />
@@ -61,4 +62,3 @@ const App = () => (
 );
 
 export default App;
-
