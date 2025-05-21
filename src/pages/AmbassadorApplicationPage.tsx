@@ -2,8 +2,8 @@
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import AmbassadorApplicationForm from '@/components/AmbassadorApplicationForm';
-import WaveDivider from '@/components/WaveDivider'; // Optional, for consistency
+import AmbassadorApplicationForm from '@/components/ambassador-application/AmbassadorApplicationForm'; // Updated import path
+import WaveDivider from '@/components/WaveDivider';
 
 const AmbassadorApplicationPage = () => {
   useEffect(() => {
