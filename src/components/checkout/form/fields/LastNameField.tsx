@@ -18,7 +18,7 @@ const LastNameField: React.FC<LastNameFieldProps> = ({ control }) => {
         <FormItem>
           <FormLabel>Last Name *</FormLabel>
           <FormControl>
-            <Input placeholder="Swift" {...field} />
+            <Input placeholder="Doe" {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>

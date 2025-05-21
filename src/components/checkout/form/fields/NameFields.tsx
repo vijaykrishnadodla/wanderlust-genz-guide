@@ -19,7 +19,7 @@ const NameFields: React.FC<NameFieldsProps> = ({ control }) => {
           <FormItem>
             <FormLabel>First Name *</FormLabel>
             <FormControl>
-              <Input placeholder="Taylor" {...field} />
+              <Input placeholder="John" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -32,7 +32,7 @@ const NameFields: React.FC<NameFieldsProps> = ({ control }) => {
           <FormItem>
             <FormLabel>Middle Name</FormLabel>
             <FormControl>
-              <Input placeholder="Alison (Optional)" {...field} />
+              <Input placeholder="Michael (Optional)" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
