@@ -1,257 +1,225 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Plane, Loader2 } from 'lucide-react';
-import { destinations, defaultItinerary, DestinationItinerary, HolidayTypeDetails, Attraction } from '@/data/travelDestinations';
 
-// Import new components
-import { QuizStepName } from './quiz/QuizStepName';
-import { QuizStepDestination } from './quiz/QuizStepDestination';
-import { QuizStepEmail } from './quiz/QuizStepEmail';
-import { QuizStepHolidayType } from './quiz/QuizStepHolidayType';
-import { QuizResult } from './quiz/QuizResult';
-import { QuizNavigation } from './quiz/QuizNavigation';
-import { useChatGptResponse } from '@/hooks/useChatGptResponse';
-import { supabase } from '@/lib/supabaseClient'; // Import supabase to check if it's configured
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
-type QuizStep = 'name' | 'destination' | 'email' | 'holidayType' | 'result';
-export interface FormData {
-  name: string;
-  destination: string;
-  email: string;
-  holidayType: string;
-  idealTripDescription?: string;
-}
-export interface DisplayItinerary {
-  title: string;
-  city: string;
-  country: string;
-  vibeDescription: string; // Original static description
-  aiVibeDescription?: string; // AI-generated description
-  attractions: Attraction[]; // General attractions
-  mustSee: Attraction[]; // Must-see attractions
-  estimatedSavings?: string;
-  imageEmoji?: string;
-  userDescriptionConsidered?: string;
-}
-const TravelQuiz = () => {
-  const [step, setStep] = useState<QuizStep>('name');
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    destination: '',
-    email: '',
-    holidayType: '',
-    idealTripDescription: ''
-  });
-  const [displayItinerary, setDisplayItinerary] = useState<DisplayItinerary | null>(null);
-  const [isGeneratingItinerary, setIsGeneratingItinerary] = useState(false);
-  const [showSupabaseWarning, setShowSupabaseWarning] = useState(false); // New state for warning
+// ---------- CONSTANTS ----------
+// Use the uploaded Sunny image
+const SUNNY_IMG = "/lovable-uploads/c8ee8c54-1ae7-490f-bbb8-75978c486431.png"; 
 
-  const {
-    getPersonalizedDescription,
-    isLoading: isLoadingAiResponse,
-    error: aiError
-  } = useChatGptResponse();
-  useEffect(() => {
-    if (!supabase) {
-      setShowSupabaseWarning(true);
-    }
-  }, []);
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {
-      name,
-      value
-    } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-  const handleRadioChange = (value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      holidayType: value
-    }));
-  };
-  const handleNext = async () => {
-    if (step === 'name') setStep('destination');else if (step === 'destination') setStep('email');else if (step === 'email') {
-      // Basic email validation
-      if (!/\S+@\S+\.\S+/.test(formData.email)) {
-        // Consider using a toast notification here for better UX
-        alert("Please enter a valid email address.");
-        return;
-      }
-      setStep('holidayType');
-    } else if (step === 'holidayType') {
-      setIsGeneratingItinerary(true);
-      await generateItinerary();
-      setIsGeneratingItinerary(false);
-      setStep('result');
-    }
-  };
-  const handlePrevious = () => {
-    if (step === 'destination') setStep('name');else if (step === 'email') setStep('destination');else if (step === 'holidayType') setStep('email');
-    // No previous from result step in this refactored version, reset handles it
-  };
-  const handleReset = () => {
-    setFormData({
-      name: '',
-      destination: '',
-      email: '',
-      holidayType: '',
-      idealTripDescription: ''
-    });
-    setStep('name');
-    setDisplayItinerary(null);
-    setIsGeneratingItinerary(false);
-    // Do not reset showSupabaseWarning as it's an app-load condition
-  };
-  const isNextDisabled = () => {
-    if (isGeneratingItinerary) return true;
-    if (step === 'name' && !formData.name.trim()) return true;
-    if (step === 'destination' && !formData.destination.trim()) return true;
-    if (step === 'email' && !formData.email.trim()) return true;
-    if (step === 'holidayType' && !formData.holidayType) return true;
-    return false;
-  };
-  const generateItinerary = async () => {
-    let chosenDestination: DestinationItinerary | undefined;
-    let finalCity = formData.destination;
-    let finalCountry = "Unknown";
-    if (formData.destination.trim().toUpperCase() === 'SURPRISE ME') {
-      if (destinations.length > 0) {
-        const randomIndex = Math.floor(Math.random() * destinations.length);
-        chosenDestination = destinations[randomIndex];
-        finalCity = chosenDestination.city;
-        finalCountry = chosenDestination.country;
-      } else {
-        chosenDestination = undefined;
-        finalCity = "A Mysterious Place";
-      }
-    } else {
-      chosenDestination = destinations.find(d => d.city.toLowerCase() === formData.destination.trim().toLowerCase());
-      if (chosenDestination) {
-        finalCity = chosenDestination.city;
-        finalCountry = chosenDestination.country;
-      } else {
-        finalCity = formData.destination.trim();
-      }
-    }
-    let holidayDetails: HolidayTypeDetails | undefined = chosenDestination?.holidayTypes[formData.holidayType];
-    if (!holidayDetails) {
-      if (chosenDestination && Object.keys(chosenDestination.holidayTypes).length > 0) {
-        const firstAvailableHolidayTypeKey = Object.keys(chosenDestination.holidayTypes)[0];
-        holidayDetails = chosenDestination.holidayTypes[firstAvailableHolidayTypeKey];
-      } else {
-        holidayDetails = defaultItinerary;
-        if (!chosenDestination) finalCountry = "Your Chosen Land";
-      }
-    }
-    const selectedHolidayTypeName = formData.holidayType.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-    let aiVibeDescription: string | undefined = undefined;
-    // The hook useChatGptResponse now handles the case where supabase is not initialized.
-    // It will return undefined for personalizedDesc if supabase isn't available or an error occurs.
-    // isLoadingAiResponse and aiError from the hook will reflect the status.
-    // No explicit check for `supabase` needed here before calling `getPersonalizedDescription`
-    // because the hook handles it.
-
-    // Prepare data for AI
-    const aiPromptData = {
-      name: formData.name,
-      city: finalCity,
-      country: finalCountry,
-      holidayType: selectedHolidayTypeName,
-      userDescription: formData.idealTripDescription
-    };
-    // This will call the Supabase Edge Function if supabase is configured
-    const personalizedDesc = await getPersonalizedDescription(aiPromptData);
-    aiVibeDescription = personalizedDesc;
-    // aiError from the hook can be used to display a more specific message if needed
-
-    const itineraryResult: DisplayItinerary = {
-      title: `Your ${selectedHolidayTypeName} Trip to ${finalCity}`,
-      city: finalCity,
-      country: finalCountry,
-      vibeDescription: holidayDetails.vibeDescription,
-      aiVibeDescription: aiVibeDescription,
-      // This will be undefined if AI call failed/skipped
-      attractions: holidayDetails.attractions,
-      mustSee: holidayDetails.mustSee || [],
-      imageEmoji: chosenDestination?.imageEmoji || "🌍",
-      estimatedSavings: holidayDetails.isicSavings ? `${holidayDetails.isicSavings.total} ${holidayDetails.isicSavings.period}` : "Significant savings with ISIC!",
-      userDescriptionConsidered: formData.idealTripDescription ? `We've noted your interest: "${formData.idealTripDescription.substring(0, 50)}${formData.idealTripDescription.length > 50 ? '...' : ''}"` : undefined
-    };
-    setDisplayItinerary(itineraryResult);
-  };
-  return <section id="quiz" className="py-16 bg-gradient-to-b from-[#ffeea6]/30 to-white relative">
-      <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-      
-      <div className="container px-4 md:px-6 max-w-4xl relative z-10">
-        <div className="flex justify-center mb-8">
-          <div className="relative">
-            <img src="/lovable-uploads/32c6b682-f72e-4893-b586-0026cc34060d.png" alt="Sunny mascot traveler" className="h-24 md:h-32 w-auto sunny-float" />
-            <div className="absolute font-handwritten text-sunny-orange text-sm md:text-base leading-tight" style={{
-            zIndex: 30,
-            textAlign: 'center',
-            top: '10px',
-            right: '-110px',
-            maxWidth: '120px',
-            textShadow: '0 1px 2px rgba(255,255,255,0.5)'
-          }}>
-              {step === 'result' ? "Wow, perfect match! ✨" : isGeneratingItinerary || isLoadingAiResponse ? "Finding your vibe... ⏳" : "Let's find your ideal destination! 🌍"}
-            </div>
-          </div>
-        </div>
-        
-        <div className="text-center mb-10">
-          <div className="inline-block relative">
-            <h2 className="text-3xl md:text-4xl font-display bg-gradient-to-r from-[#fdad32] to-[#fe4c02] text-white px-6 py-2 rounded-lg">STUDENT TRAVEL STYLE QUIZ</h2>
-            <div className="absolute -top-3 -right-3 bg-[#ffeea6] p-2 rounded-lg shadow-sm">
-              <Plane className="h-4 w-4 text-[#fdad32]" />
-            </div>
-          </div>
-          <p className="text-[#fe4c02] mt-3 font-handwritten text-xl">Discover your travel vibe + unlock exclusive perks!</p>
-        </div>
-
-        {showSupabaseWarning}
-
-        <Card className="border shadow-xl bg-gradient-to-br from-white to-[#ffeea6]/20">
-          {(isGeneratingItinerary || isLoadingAiResponse) && step === 'holidayType' &&
-        // Show loader if generating OR AI is loading
-        <div className="flex flex-col items-center justify-center p-10">
-              <Loader2 className="h-12 w-12 animate-spin text-[#fe4c02]" />
-              <p className="mt-4 text-lg font-handwritten text-[#fe4c02]">Crafting your perfect trip...</p>
-              {aiError && !showSupabaseWarning && <p className="mt-2 text-sm text-red-500">Could not fetch personalized suggestions: {aiError}. Showing default results.</p>}
-            </div>}
-
-          {/* Render steps only if not in the combined loading state for holidayType step */}
-          {!((isGeneratingItinerary || isLoadingAiResponse) && step === 'holidayType') && <>
-              {step === 'name' && <>
-                  <QuizStepName formData={formData} handleInputChange={handleInputChange} />
-                  <QuizNavigation onPrevious={handlePrevious} onNext={handleNext} isPreviousDisabled={true} isNextDisabled={isNextDisabled()} showPreviousButton={false} />
-                </>}
-
-              {step === 'destination' && <>
-                  <QuizStepDestination formData={formData} handleInputChange={handleInputChange} />
-                  <QuizNavigation onPrevious={handlePrevious} onNext={handleNext} isNextDisabled={isNextDisabled()} />
-                </>}
-
-              {step === 'email' && <>
-                  <QuizStepEmail formData={formData} handleInputChange={handleInputChange} />
-                  <QuizNavigation onPrevious={handlePrevious} onNext={handleNext} isNextDisabled={isNextDisabled()} />
-                </>}
-              
-              {step === 'holidayType' &&
-          // This will now only render if not loading
-          <>
-                  <QuizStepHolidayType formData={formData} handleInputChange={handleInputChange} handleRadioChange={handleRadioChange} />
-                  <QuizNavigation onPrevious={handlePrevious} onNext={handleNext} isNextDisabled={isNextDisabled()} nextButtonText="Get Results" />
-                </>}
-
-              {step === 'result' && displayItinerary && <QuizResult displayItinerary={displayItinerary} onReset={handleReset} />}
-            </>}
-        </Card>
-      </div>
-    </section>;
+const DESTINATIONS: Record<string, { costFactor: number; img: string }> = {
+  "Cancún": { costFactor: 0.9, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" },
+  "Paris": { costFactor: 1.2, img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80" },
+  "London": { costFactor: 1.3, img: "https://images.unsplash.com/photo-1543877087-ebf71bb88de2?auto=format&fit=crop&w=1200&q=80" },
+  "Rome": { costFactor: 1.1, img: "https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&w=1200&q=80" },
+  "Barcelona": { costFactor: 1.0, img: "https://images.unsplash.com/photo-1501959915551-4e8d21282f19?auto=format&fit=crop&w=1200&q=80" },
+  "Tokyo": { costFactor: 1.4, img: "https://images.unsplash.com/photo-1505061481992-53fb0f931f5d?auto=format&fit=crop&w=1200&q=80" },
+  "Seoul": { costFactor: 1.1, img: "https://images.unsplash.com/photo-1580170533783-0c0d9fcc9a19?auto=format&fit=crop&w=1200&q=80" },
+  "Honolulu": { costFactor: 1.3, img: "https://images.unsplash.com/photo-1502786129293-79981df4e689?auto=format&fit=crop&w=1200&q=80" },
+  "New York": { costFactor: 1.35, img: "https://images.unsplash.com/photo-1501147830916-ce44a6359892?auto=format&fit=crop&w=1200&q=80" },
+  "Los Angeles": { costFactor: 1.2, img: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=1200&q=80" }
 };
-export default TravelQuiz;
+
+const SPEND_PROFILES: Record<string, number> = { Shoestring: 350, "Mid-range": 550, "Treat Yo’Self": 900 };
+const DISCOUNT_RATES: Record<string, number> = { accommodation: 0.2, transport: 0.15, attractions: 0.5, food: 0.1, nightlife: 0.05, shopping: 0.1 };
+const CATEGORY_WEIGHTS: Record<string, number> = { accommodation: 0.35, transport: 0.15, attractions: 0.2, food: 0.15, nightlife: 0.05, shopping: 0.1 };
+
+const Q1_DESTS = Object.keys(DESTINATIONS);
+const Q2_VIBES = ["Beach/Party", "Culture & Museums", "Foodie Adventures", "Outdoor/Nature", "City Blitz"];
+const Q3_STYLE = Object.keys(SPEND_PROFILES);
+const Q4_CATEGORIES = Object.keys(CATEGORY_WEIGHTS);
+const Q5_GROUP = ["Solo", "1–2", "3–5", "6+"];
+
+// Use theme colors for gradient button: #FFD53F (sunny-yellow) to #FF8A00 (sunny-orange)
+const gradientBtn = "bg-gradient-to-r from-sunny-yellow to-sunny-orange";
+
+// ---------- HELPERS ----------
+const getDestData = (city: string) =>
+  DESTINATIONS[city] ?? {
+    costFactor: 1.1, // Default cost factor
+    img: `https://source.unsplash.com/1200x800/?${encodeURIComponent(city + " travel")}`
+  };
+
+// ---------- COMPONENT ----------
+export default function TravelQuiz() {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState({ name: "", email: "", dest: "", vibe: "", style: "", cats: [] as string[], group: "Solo" });
+
+  const update = (key: string, val: string | string[]) => setAnswers((prev) => ({ ...prev, [key]: val }));
+  const next = () => setStep((s) => s + 1);
+  const back = () => setStep((s) => s - 1);
+
+  // ---------- CALC ----------
+  const calc = () => {
+    const { costFactor } = getDestData(answers.dest);
+    const base = SPEND_PROFILES[answers.style as keyof typeof SPEND_PROFILES] * costFactor;
+    const breakdown: {[key: string]: {spend: string, save: string}} = {};
+    let saveTotal = 0;
+    Q4_CATEGORIES.forEach((c) => {
+      const spend = base * CATEGORY_WEIGHTS[c as keyof typeof CATEGORY_WEIGHTS];
+      const save = spend * DISCOUNT_RATES[c as keyof typeof DISCOUNT_RATES];
+      breakdown[c] = { spend: spend.toFixed(0), save: save.toFixed(0) };
+      saveTotal += save;
+    });
+    return { base: base.toFixed(0), breakdown, saveTotal: saveTotal.toFixed(0) };
+  };
+
+  // ---------- VALID ----------
+  const valid = () => {
+    if (step === 0) return answers.name && /.+@.+\..+/.test(answers.email);
+    if (step === 1) return !!answers.dest;
+    if (step === 2) return !!answers.vibe;
+    if (step === 3) return !!answers.style;
+    // Step 4 (categories) can be empty, Step 5 (group size) has a default
+    return true;
+  };
+
+  // ---------- RESULTS ----------
+  if (step === 6) {
+    const { base, breakdown, saveTotal } = calc();
+    const heroImg = getDestData(answers.dest).img;
+    return (
+      <section className="flex flex-col items-center text-center p-6 max-w-2xl mx-auto">
+        <img src={heroImg} alt={answers.dest} className="rounded-2xl shadow-xl mb-4 w-full h-64 object-cover" />
+        <h2 className="text-3xl font-bold mb-2">🔥 {answers.name || "Traveler"}, {answers.dest} is calling!</h2>
+        <p className="text-lg mb-4">1‑week <span className="font-semibold">{answers.style}</span> budget ≈ <span className="font-semibold">${base}</span></p>
+        {/* Use theme color #FF8A00 (text-sunny-orange) for emphasis */}
+        <p className="text-xl font-bold mb-4">Snag ISIC + STB & save about <span className="text-sunny-orange">${saveTotal}</span> in 7&nbsp;days 🤑</p>
+
+        <div className="grid grid-cols-2 gap-4 text-sm w-full mb-6">
+          {Object.entries(breakdown).map(([c, v]) => (
+            <div key={c} className={`rounded-2xl p-3 shadow ${answers.cats.includes(c) ? "bg-sunny-yellow-light" : "bg-white/50 backdrop-blur-sm"}`}>
+              <p className="font-semibold capitalize">{c}</p>
+              <p>Spend: ${v.spend}</p>
+              {/* Use theme color #FF8A00 (text-sunny-orange) for emphasis */}
+              <p className="text-sunny-orange">Save: -${v.save}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex flex-col items-center bg-white/60 backdrop-blur-sm rounded-2xl p-4 mb-6 shadow">
+          <img src={SUNNY_IMG} alt="Sunny mascot" className="w-24 h-24 mb-2" />
+          <p className="font-semibold mb-2 text-base">Sunny’s got your back:</p>
+          <ul className="text-sm list-disc list-inside text-left space-y-1 max-w-xs">
+            <li>Digital ISIC discounts worldwide</li>
+            <li>Personalised itinerary & hacks</li>
+            <li>Travel‑prep PDF cheat‑sheet</li>
+            <li>24/7 Sunny bot support</li>
+            <li>Member‑only giveaways</li>
+          </ul>
+        </div>
+
+        <motion.button 
+          whileHover={{ scale: 1.05 }} 
+          className={`${gradientBtn} text-white px-6 py-3 rounded-2xl text-lg shadow-lg`} // Updated to rounded-2xl
+          onClick={() => {
+            // Scroll to pricing section (assuming an element with id="pricing" exists)
+            const pricingSection = document.getElementById('pricing'); // Make sure PricingSection has id="pricing"
+            if (pricingSection) {
+              pricingSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              // Fallback or warning if the section isn't found
+              console.warn("Pricing section with ID 'pricing' not found for scroll.");
+              // Potentially scroll to another relevant part or top of page
+            }
+          }}
+        >
+          Snag my ISIC & save big 💸
+        </motion.button>
+      </section>
+    );
+  }
+
+  // ---------- QUESTIONS ----------
+  const renderStep = () => {
+    switch (step) {
+      case 0:
+        return (
+          <>
+            <h2 className="text-2xl font-bold mb-4">👋 First things first</h2>
+            {/* Retain focus styles, update rounding */}
+            <input className="w-full p-3 border border-gray-300 rounded-2xl mb-3 focus:ring-sunny-orange focus:border-sunny-orange" placeholder="First name" value={answers.name} onChange={(e) => update("name", e.target.value)} />
+            <input className="w-full p-3 border border-gray-300 rounded-2xl focus:ring-sunny-orange focus:border-sunny-orange" type="email" placeholder="Email" value={answers.email} onChange={(e) => update("email", e.target.value)} />
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <h2 className="text-2xl font-bold mb-4">1️⃣ Destination?</h2>
+            {/* Retain focus styles, update rounding */}
+            <input className="w-full p-3 border border-gray-300 rounded-2xl mb-3 focus:ring-sunny-orange focus:border-sunny-orange" list="destList" placeholder="Type a city…" value={answers.dest} onChange={(e) => update("dest", e.target.value)} />
+            <datalist id="destList">{Q1_DESTS.map((d) => <option key={d} value={d} />)}</datalist>
+            {/* Use theme color #FF8A00 (text-sunny-orange) */}
+            <button className="underline text-sunny-orange text-sm" onClick={() => update("dest", Q1_DESTS[Math.floor(Math.random() * Q1_DESTS.length)])}>Surprise me!</button>
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <h2 className="text-2xl font-bold mb-4">2️⃣ Pick your vibe</h2>
+            <div className="grid grid-cols-2 gap-4">
+              {Q2_VIBES.map((v) => (
+                // Retain hover styles and border for unselected, update rounding
+                <button key={v} className={`p-3 rounded-2xl border ${answers.vibe === v ? `${gradientBtn} text-white` : "bg-white border-gray-300 hover:bg-gray-50"}`} onClick={() => update("vibe", v)}>{v}</button>
+              ))}
+            </div>
+          </>
+        );
+      case 3:
+        return (
+          <>
+            <h2 className="text-2xl font-bold mb-4">3️⃣ Budget style</h2>
+            <div className="flex flex-col gap-3">
+              {Q3_STYLE.map((s) => (
+                // Retain hover styles and border for unselected, update rounding
+                <button key={s} className={`p-3 rounded-2xl border ${answers.style === s ? `${gradientBtn} text-white` : "bg-white border-gray-300 hover:bg-gray-50"}`} onClick={() => update("style", s)}>{s}</button>
+              ))}
+            </div>
+          </>
+        );
+      case 4:
+        return (
+          <>
+            <h2 className="text-2xl font-bold mb-4">4️⃣ Big spending categories</h2>
+            <p className="text-sm mb-2 text-gray-600">Pick a couple – total savings remain 🔥</p>
+            <div className="grid grid-cols-2 gap-4">
+              {Q4_CATEGORIES.map((c) => (
+                // Retain hover styles and border for unselected, update rounding
+                <button key={c} className={`p-3 rounded-2xl border capitalize ${answers.cats.includes(c) ? `${gradientBtn} text-white` : "bg-white border-gray-300 hover:bg-gray-50"}`} onClick={() => update("cats", answers.cats.includes(c) ? answers.cats.filter((x) => x !== c) : [...answers.cats, c])}>{c}</button>
+              ))}
+            </div>
+          </>
+        );
+      case 5:
+        return (
+          <>
+            <h2 className="text-2xl font-bold mb-4">5️⃣ Squad size</h2>
+            <div className="grid grid-cols-2 gap-4">
+              {Q5_GROUP.map((g) => (
+                // Retain hover styles and border for unselected, update rounding
+                <button key={g} className={`p-3 rounded-2xl border ${answers.group === g ? `${gradientBtn} text-white` : "bg-white border-gray-300 hover:bg-gray-50"}`} onClick={() => update("group", g)}>{g}</button>
+              ))}
+            </div>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    // Updated background gradient to use theme colors: #FFFBEA (sunny-yellow-pale) to #FFF0BF (sunny-yellow-light)
+    // Updated rounding to rounded-2xl
+    <section className="bg-gradient-to-br from-sunny-yellow-pale to-sunny-yellow-light p-6 rounded-2xl shadow-xl max-w-xl mx-auto text-center">
+      {renderStep()}
+      <div className="flex justify-between mt-6">
+        {/* Use theme color #FF8A00 (text-sunny-orange) for back button */}
+        {step > 0 && <button className="text-sunny-orange underline" onClick={back}>← Back</button>}
+        {/* Ensure CTA button uses updated gradientBtn and rounded-2xl */}
+        <button disabled={!valid()} onClick={step === 5 ? () => setStep(6) : next} className={`${gradientBtn} text-white px-4 py-2 rounded-2xl disabled:opacity-40 ml-auto`}>
+          {step === 5 ? "Show Me the Savings →" : "Next →"}
+        </button>
+      </div>
+    </section>
+  );
+}
+
