@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import SunnyMascot from "@/components/SunnyMascot";
@@ -123,7 +122,7 @@ export default function TravelQuiz() {
         <h2 className="text-3xl font-bold mb-2">🔥 {answers.name || "Traveler"}, {answers.dest} is calling!</h2>
         <p className="text-lg mb-4">1‑week <span className="font-semibold">{answers.style}</span> budget ≈ <span className="font-semibold">${base}</span></p>
         {/* Use theme color #FF8A00 (text-sunny-orange) for emphasis */}
-        <p className="text-xl font-bold mb-4">Snag our membership with ISIC + STB & save about <span className="text-sunny-orange">${saveTotal}</span> in 7&nbsp;days 🤑</p>
+        <p className="text-xl font-bold mb-4">Snag our membership with ISIC & save about <span className="text-sunny-orange">${saveTotal}</span> in 7&nbsp;days 🤑</p>
 
         <div className="grid grid-cols-2 gap-4 text-sm w-full mb-6">
           {Object.entries(breakdown).map(([c, v]) => (
@@ -280,4 +279,3 @@ export default function TravelQuiz() {
     </section>
   );
 }
-
