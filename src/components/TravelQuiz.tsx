@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import SunnyMascot from "@/components/SunnyMascot";
 import { destinations as travelDestinationsData } from "@/data/destinationsList";
-import { getDestData, calculateQuizResults } from "./quiz/TravelQuizLogic";
+import { getDestData, calculateQuizResults } from "./quiz/TravelQuizLogic.tsx";
 import { 
   SUNNY_IMG, 
   Q2_VIBES, 
