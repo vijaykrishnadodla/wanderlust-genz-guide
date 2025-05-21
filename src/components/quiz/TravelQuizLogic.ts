@@ -1,24 +1,28 @@
 import { destinations as travelDestinationsData } from "@/data/destinationsList";
-import { DestinationItinerary } from "@/types/travel";
+import { DestinationItinerary, HolidayTypeDetails } from "@/types/travel";
 import { DESTINATIONS, DEFAULT_TRAVEL_IMAGE, SPEND_PROFILES, CATEGORY_WEIGHTS, DISCOUNT_RATES, Q4_CATEGORIES } from "./TravelQuizConstants";
-import { FormData, TravelQuizCalculatedResults } from "./TravelQuizTypes";
+import { FormData, TravelQuizCalculatedResults, DailyItinerary } from "./TravelQuizTypes";
 
 export const normalizeString = (str: string): string =>
   str ? str.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
 
-export const getDestData = (city: string): { costFactor: number; img: string } => {
+export const getDestData = (city: string): { costFactor: number; img: string; details?: DestinationItinerary } => {
   const normalizedQueryCity = normalizeString(city);
   let imageUrl: string | undefined = undefined;
+  let destinationDetails: DestinationItinerary | undefined = undefined;
 
   // 1. Try to get image from imported travelDestinationsData (primary source)
   const destinationEntry = travelDestinationsData.find(
     (dest: DestinationItinerary) => normalizeString(dest.city) === normalizedQueryCity
   );
 
-  if (destinationEntry?.imageUrl) {
-    imageUrl = destinationEntry.imageUrl;
+  if (destinationEntry) {
+    destinationDetails = destinationEntry;
+    if (destinationEntry.imageUrl) {
+      imageUrl = destinationEntry.imageUrl;
+    }
   }
-
+  
   // 2. Fallback to DESTINATIONS constant for image if not found above and city is in DESTINATIONS
   // This is useful if travelDestinationsData entry exists but is missing an image URL for some reason.
   if (!imageUrl && city && DESTINATIONS[city]?.img) {
@@ -36,16 +40,13 @@ export const getDestData = (city: string): { costFactor: number; img: string } =
     imageUrl = DEFAULT_TRAVEL_IMAGE;
   }
   
-  // Get costFactor from DESTINATIONS constant (using original city key), or default
-  // If city is in travelDestinationsData but not DESTINATIONS, it will use default costFactor.
-  // This can be enhanced later if costFactor should also be part of DestinationItinerary type.
   const costFactor = (city && DESTINATIONS[city]?.costFactor) ?? 1.1;
 
-  return { costFactor, img: imageUrl };
+  return { costFactor, img: imageUrl, details: destinationDetails };
 };
 
 export const calculateQuizResults = (answers: FormData): TravelQuizCalculatedResults => {
-  const { costFactor } = getDestData(answers.dest);
+  const { costFactor, details: destinationDetails } = getDestData(answers.dest);
   const styleKey = answers.style as keyof typeof SPEND_PROFILES;
   const baseSpend = SPEND_PROFILES[styleKey] || SPEND_PROFILES["Mid-range"];
   const base = baseSpend * costFactor;
@@ -55,9 +56,32 @@ export const calculateQuizResults = (answers: FormData): TravelQuizCalculatedRes
   Q4_CATEGORIES.forEach((c) => {
     const categoryKey = c as keyof typeof CATEGORY_WEIGHTS & keyof typeof DISCOUNT_RATES;
     const spend = base * (CATEGORY_WEIGHTS[categoryKey] || 0);
-    const save = spend * (DISCOUNT_RATES[categoryKey] || 0) * (answers.cats.includes(c) ? 1 : 0.5); // Example: full save if category selected, half otherwise for demo
+    const save = spend * (DISCOUNT_RATES[categoryKey] || 0) * (answers.cats.includes(c) ? 1 : 0.5);
     breakdown[c] = { spend: spend.toFixed(0), save: save.toFixed(0) };
     saveTotal += save;
   });
-  return { base: base.toFixed(0), breakdown, saveTotal: saveTotal.toFixed(0) };
+
+  let dailyItinerary: DailyItinerary[] | undefined = undefined;
+  let totalItinerarySavings: string | undefined = undefined;
+  let itineraryTitle: string | undefined = undefined;
+
+  // Check if a detailed itinerary exists for the selected destination and a specific holiday type (e.g., "student-itinerary")
+  // For this example, we hardcode checking for London and "student-itinerary"
+  if (answers.dest === "London" && destinationDetails?.holidayTypes["student-itinerary"]) {
+    const studentItineraryDetails = destinationDetails.holidayTypes["student-itinerary"];
+    if (studentItineraryDetails.dailyItinerary && studentItineraryDetails.isicSavings?.total) {
+      dailyItinerary = studentItineraryDetails.dailyItinerary as DailyItinerary[]; // Cast needed due to shared type
+      totalItinerarySavings = studentItineraryDetails.isicSavings.total;
+      itineraryTitle = studentItineraryDetails.itineraryTitle;
+    }
+  }
+
+  return { 
+    base: base.toFixed(0), 
+    breakdown, 
+    saveTotal: saveTotal.toFixed(0),
+    dailyItinerary,
+    totalItinerarySavings,
+    itineraryTitle
+  };
 };

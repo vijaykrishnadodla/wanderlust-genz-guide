@@ -1,56 +1,123 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FormData, TravelQuizResultsViewProps } from './TravelQuizTypes';
+import { FormData, TravelQuizResultsViewProps, DailyItinerary, DailyActivity } from './TravelQuizTypes';
 import { SUNNY_IMG, gradientBtn } from './TravelQuizConstants';
+import { Badge } from '@/components/ui/badge'; // For ISIC/SheerID badges
+import { CheckCircle2, Sparkles } from 'lucide-react';
+
+
+const ActivityItem: React.FC<{activity: DailyActivity}> = ({ activity }) => (
+  <li className="flex items-start space-x-3 py-2">
+    <div className="flex-shrink-0 w-6 h-6 mt-1">{typeof activity.icon === 'string' ? <span className="text-xl">{activity.icon}</span> : activity.icon}</div>
+    <div className="flex-1">
+      <p className="font-semibold">{activity.name}
+        {activity.isicPerk && <Badge variant="outline" className="ml-2 border-blue-500 text-blue-500">ISIC</Badge>}
+        {activity.sheerIdPerk && <Badge variant="outline" className="ml-2 border-green-500 text-green-500">SheerID</Badge>}
+      </p>
+      {activity.description && <p className="text-xs text-gray-600">{activity.description}</p>}
+    </div>
+    {activity.saving && <p className="font-semibold text-sunny-orange whitespace-nowrap">{activity.saving}</p>}
+  </li>
+);
+
+const DailyItineraryCard: React.FC<{dayInfo: DailyItinerary}> = ({ dayInfo }) => (
+  <div className="bg-white/70 backdrop-blur-md shadow-lg rounded-xl p-4 mb-4">
+    <h4 className="text-lg font-bold text-sunny-orange-dark mb-2">Day {dayInfo.day}: {dayInfo.title}</h4>
+    <ul className="divide-y divide-gray-200">
+      {dayInfo.activities.map((activity, index) => (
+        <ActivityItem key={index} activity={activity} />
+      ))}
+    </ul>
+    {dayInfo.dailySavings && (
+      <p className="text-right font-bold mt-2">Daily Savings: <span className="text-sunny-orange">{dayInfo.dailySavings}</span></p>
+    )}
+  </div>
+);
+
 
 export const TravelQuizResultsView: React.FC<TravelQuizResultsViewProps> = ({ answers, calculatedResults, heroImg, onSnagMembership }) => {
-  const { base, breakdown, saveTotal } = calculatedResults;
+  const { base, breakdown, saveTotal, dailyItinerary, totalItinerarySavings, itineraryTitle } = calculatedResults;
 
   return (
-    <section className="flex flex-col items-center text-center p-6 max-w-2xl mx-auto">
+    <section className="flex flex-col items-center text-center p-4 md:p-6 max-w-3xl mx-auto">
+      {/* Hero Image and Basic Info */}
       <img 
         src={heroImg} 
         alt={answers.dest || "Selected Destination"} 
         className="rounded-2xl shadow-xl mb-4 w-full h-64 object-cover" 
         onError={(e) => {
           const target = e.target as HTMLImageElement;
-          target.onerror = null; // prevent infinite loop if default also fails
-          target.src = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80"; // Default fallback
+          target.onerror = null; 
+          target.src = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80";
         }}
       />
       <h2 className="text-3xl font-bold mb-2">
         🔥 {answers.name || "Traveler"}, {answers.dest || "your destination"} is calling!
       </h2>
-      <p className="text-lg mb-4">
-        1‑week <span className="font-semibold">{answers.style || "Mid-range"}</span> budget ≈ <span className="font-semibold">${base}</span>
-      </p>
-      <p className="text-xl font-bold mb-4">
-        Snag our membership with ISIC & save about <span className="text-sunny-orange">${saveTotal}</span> in 7&nbsp;days 🤑
-      </p>
 
-      <div className="grid grid-cols-2 gap-4 text-sm w-full mb-6">
-        {Object.entries(breakdown).map(([c, v]) => (
-          <div 
-            key={c} 
-            className={`rounded-2xl p-3 shadow ${answers.cats.includes(c) ? "bg-sunny-yellow-light" : "bg-white/50 backdrop-blur-sm"}`}
-          >
-            <p className="font-semibold capitalize">{c}</p>
-            <p>Spend: ${v.spend}</p>
-            <p className="text-sunny-orange">Save: -${v.save}</p>
+      {/* Conditional Rendering: Detailed Itinerary or Budget Summary */}
+      {dailyItinerary && totalItinerarySavings ? (
+        // DETAILED ITINERARY VIEW
+        <div className="w-full mt-4">
+          {itineraryTitle && <h3 className="text-2xl font-semibold text-gray-800 mb-4">{itineraryTitle}</h3>}
+          {dailyItinerary.map((dayInfo) => (
+            <DailyItineraryCard key={dayInfo.day} dayInfo={dayInfo} />
+          ))}
+          <div className="mt-6 bg-gradient-to-r from-sunny-yellow to-sunny-orange text-white p-4 rounded-xl shadow-lg">
+            <p className="text-2xl font-bold">
+              Total Estimated Student Savings: <span className="block text-3xl">{totalItinerarySavings}</span>
+            </p>
+            <p className="text-sm">with ISIC & SheerID discounts over {dailyItinerary.length} days!</p>
           </div>
-        ))}
-      </div>
 
-      <div className="flex flex-col items-center bg-white/60 backdrop-blur-sm rounded-2xl p-4 mb-6 shadow">
+          {/* Display original budget summary as well, maybe toned down */}
+          <div className="mt-8 p-4 bg-gray-100 rounded-xl shadow">
+            <h3 className="text-xl font-semibold mb-2 text-gray-700">General Budget Snapshot</h3>
+            <p className="text-md mb-2">
+              Your 1-week <span className="font-semibold">{answers.style || "Mid-range"}</span> budget estimate ≈ <span className="font-semibold">${base}</span>
+            </p>
+            <p className="text-lg font-bold mb-2">
+              Potential general savings with ISIC (on categories) ≈ <span className="text-sunny-orange">${saveTotal}</span>
+            </p>
+          </div>
+
+        </div>
+      ) : (
+        // ORIGINAL BUDGET SUMMARY VIEW
+        <>
+          <p className="text-lg mb-4">
+            1‑week <span className="font-semibold">{answers.style || "Mid-range"}</span> budget ≈ <span className="font-semibold">${base}</span>
+          </p>
+          <p className="text-xl font-bold mb-4">
+            Snag our membership with ISIC & save about <span className="text-sunny-orange">${saveTotal}</span> in 7&nbsp;days 🤑
+          </p>
+
+          <div className="grid grid-cols-2 gap-4 text-sm w-full mb-6">
+            {Object.entries(breakdown).map(([c, v]) => (
+              <div 
+                key={c} 
+                className={`rounded-2xl p-3 shadow ${answers.cats.includes(c) ? "bg-sunny-yellow-light" : "bg-white/50 backdrop-blur-sm"}`}
+              >
+                <p className="font-semibold capitalize">{c}</p>
+                <p>Spend: ${v.spend}</p>
+                <p className="text-sunny-orange">Save: -${v.save}</p>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* Sunny's Pitch and Membership CTA (Common to both views) */}
+      <div className="flex flex-col items-center bg-white/60 backdrop-blur-sm rounded-2xl p-4 my-6 shadow w-full">
         <img src={SUNNY_IMG} alt="Sunny mascot" className="w-24 h-24 mb-2" />
         <p className="font-semibold mb-2 text-base">Sunny’s got your back:</p>
-        <ul className="text-sm list-disc list-inside text-left space-y-1 max-w-xs">
-          <li>Digital ISIC discounts worldwide</li>
-          <li>Personalised itinerary & hacks</li>
-          <li>Travel‑prep PDF cheat‑sheet</li>
-          <li>24/7 Sunny bot support</li>
-          <li>Member‑only giveaways</li>
+        <ul className="text-sm list-none text-left space-y-1 max-w-xs">
+          <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-green-500" />Digital ISIC discounts worldwide</li>
+          <li className="flex items-center"><Sparkles className="w-4 h-4 mr-2 text-yellow-500" />Personalised itinerary & hacks</li>
+          <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-green-500" />Travel‑prep PDF cheat‑sheet</li>
+          <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-green-500" />24/7 Sunny bot support</li>
+          <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-green-500" />Member‑only giveaways</li>
         </ul>
       </div>
 

@@ -1,5 +1,9 @@
 
 import React from 'react'; // Import React for React.ReactNode
+// Import DailyItinerary from the local types to avoid circular dependency if moved later.
+// For now, assuming DailyItinerary from TravelQuizTypes is sufficient for this structure.
+import { DailyItinerary as QuizDailyItinerary } from '@/components/quiz/TravelQuizTypes';
+
 
 // Type for individual attractions
 export type Attraction = {
@@ -21,6 +25,8 @@ export type HolidayTypeDetails = {
   attractions: Attraction[]; // General attractions for this vibe
   mustSee: Attraction[]; // Key attractions for students
   isicSavings?: ISICSavings;
+  dailyItinerary?: QuizDailyItinerary[]; // Optional: For detailed day-by-day plans
+  itineraryTitle?: string; // Optional: Title for the detailed itinerary e.g. "5-Day Student Itinerary"
 };
 
 // Main type for a travel destination
@@ -30,7 +36,6 @@ export type DestinationItinerary = {
   imageEmoji: string; // Emoji for quick display
   imageUrl?: string; // URL for a representative image of the city
   holidayTypes: {
-    [key: string]: HolidayTypeDetails; // e.g., "cultural", "adventure"
+    [key: string]: HolidayTypeDetails; // e.g., "cultural", "adventure", "student-itinerary"
   };
 };
-

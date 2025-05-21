@@ -1,8 +1,78 @@
-
 import React from 'react';
-import { Plane, MapPin, Camera, Coffee, Building, BookOpen, Bike, TreePalm, Ticket, Landmark, ShoppingCart, Utensils } from 'lucide-react';
-import { DestinationItinerary } from '@/types/travel';
+import { Plane, MapPin, Camera, Coffee, Building, BookOpen, Bike, TreePalm, Ticket, Landmark, ShoppingCart, Utensils, Bed, Bus, Euro, Star, Users, Film, Briefcase, ArrowRight } from 'lucide-react'; // Added more icons
+import { DestinationItinerary, HolidayTypeDetails } from '@/types/travel';
 import { minimalGeneralHolidayType } from './travelDefaults';
+
+// --- Detailed London Student Itinerary ---
+const londonStudentItinerary: HolidayTypeDetails = {
+  vibeDescription: "Explore London with this 5-day itinerary packed with student savings!",
+  itineraryTitle: "🗺️ 5-Day Student Travel Itinerary – London from LA (ISIC + SheerID Discounts)",
+  attractions: [], // Can be kept minimal if detailed itinerary is primary
+  mustSee: [],    // Can be kept minimal
+  dailyItinerary: [
+    {
+      day: 1,
+      title: "Arrival & Orientation",
+      activities: [
+        { name: "Flight: Air France or Lufthansa", icon: <Plane className="w-5 h-5 text-blue-500" />, saving: "$100", isicPerk: true, description: "Book via ISIC for discounts." },
+        { name: "Airport transfer: National Express", icon: <Bus className="w-5 h-5 text-red-500" />, saving: "$10", isicPerk: true, description: "Coach service from airports." },
+        { name: "Stay: a&o Hostels London", icon: <Bed className="w-5 h-5 text-green-500" />, saving: "$10/night", isicPerk: true, description: "Budget-friendly student accommodation." },
+        { name: "Dinner: Hard Rock Café", icon: <Utensils className="w-5 h-5 text-yellow-500" />, saving: "$5", isicPerk: true, description: "Enjoy a meal with a discount." },
+      ],
+      dailySavings: "$125",
+    },
+    {
+      day: 2,
+      title: "Cultural Discovery",
+      activities: [
+        { name: "Breakfast: Costa Coffee", icon: <Coffee className="w-5 h-5 text-orange-500" />, saving: "$2", isicPerk: true },
+        { name: "Madame Tussauds London", icon: <Users className="w-5 h-5 text-purple-500" />, saving: "$20", isicPerk: true },
+        { name: "Lunch: Starbucks", icon: <Coffee className="w-5 h-5 text-green-600" />, saving: "$2", isicPerk: true },
+        { name: "London Dungeon", icon: <Building className="w-5 h-5 text-gray-600" />, saving: "$12", isicPerk: true, description: "Spooky historical fun." },
+        { name: "Evening: Spotify Premium", icon: <Ticket className="w-5 h-5 text-green-400" />, saving: "$2", sheerIdPerk: true, description: "Music streaming for students." },
+      ],
+      dailySavings: "$38",
+    },
+    {
+      day: 3,
+      title: "Shopping & Chill",
+      activities: [
+        { name: "Thames Cruise", icon: <Plane className="w-5 h-5 text-blue-400" />, saving: "$14", isicPerk: true, description: "See London from the river." }, // Using Plane as placeholder for boat
+        { name: "Shopping: Zalando/C&A", icon: <ShoppingCart className="w-5 h-5 text-pink-500" />, saving: "$10", isicPerk: true },
+        { name: "Groceries: Tesco", icon: <ShoppingCart className="w-5 h-5 text-blue-600" />, saving: "$5", sheerIdPerk: true, description: "Stock up on essentials." },
+        { name: "Dinner: Domino’s/Vapiano", icon: <Utensils className="w-5 h-5 text-red-600" />, saving: "$6", isicPerk: true },
+      ],
+      dailySavings: "$35",
+    },
+    {
+      day: 4,
+      title: "Adventure & Entertainment",
+      activities: [
+        { name: "Excursion: Harry Potter Studios", icon: <Film className="w-5 h-5 text-yellow-600" />, saving: "$15", description: "Requires Student ID. Magical experience!" },
+        { name: "Lunch: Papa John’s", icon: <Utensils className="w-5 h-5 text-red-700" />, saving: "$8", isicPerk: true },
+        { name: "Chill: Headspace App", icon: <Star className="w-5 h-5 text-teal-500" />, saving: "$9.99/year", sheerIdPerk: true, description: "Meditation and mindfulness." },
+        { name: "Taxi: Free Now app", icon: <Bus className="w-5 h-5 text-black" />, saving: "$12", isicPerk: true, description: "Ride-hailing service." }, // Using Bus as placeholder for Taxi
+      ],
+      dailySavings: "$35", // Note: Headspace saving is annual, but contributes to overall value.
+    },
+    {
+      day: 5,
+      title: "Last Day & Return",
+      activities: [
+        { name: "Museum or gallery (ISIC)", icon: <Landmark className="w-5 h-5 text-indigo-500" />, saving: "$10", isicPerk: true, description: "Many offer student discounts." },
+        { name: "Lunch: Café/Starbucks", icon: <Coffee className="w-5 h-5 text-green-600" />, saving: "$4", isicPerk: true },
+        { name: "Shopping: Amazon UK/local shops", icon: <ShoppingCart className="w-5 h-5 text-orange-600" />, saving: "$6", isicPerk: true },
+        { name: "Return to airport: National Express", icon: <Bus className="w-5 h-5 text-red-500" />, saving: "$10", isicPerk: true },
+      ],
+      dailySavings: "$30",
+    },
+  ],
+  isicSavings: { // Summary for the detailed itinerary
+    total: "$263",
+    period: "over 5 days",
+    highlights: ["Significant savings on flights, accommodation, attractions, and food with ISIC & SheerID."],
+  },
+};
 
 // Sample destinations data
 export const destinations: DestinationItinerary[] = [
@@ -104,7 +174,10 @@ export const destinations: DestinationItinerary[] = [
     country: "United Kingdom",
     imageEmoji: "🇬🇧",
     imageUrl: "https://images.unsplash.com/photo-1543877087-ebf71bb88de2?auto=format&fit=crop&w=1200&q=80",
-    holidayTypes: { "general": minimalGeneralHolidayType },
+    holidayTypes: { 
+      "general": minimalGeneralHolidayType,
+      "student-itinerary": londonStudentItinerary // Added detailed itinerary for London
+    },
   },
   {
     city: "Rome",
