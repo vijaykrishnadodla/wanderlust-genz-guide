@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import SunnyMascot from "@/components/SunnyMascot";
 import { destinations as travelDestinationsData } from "@/data/destinationsList";
-import { getDestData, calculateQuizResults } from "./quiz/TravelQuizLogic.tsx";
+import { calculateQuizResults } from "./quiz/TravelQuizLogic.tsx";
 import { 
   SUNNY_IMG, 
   Q2_VIBES, 
@@ -76,12 +76,12 @@ export default function TravelQuiz() {
 
   // ---------- RESULTS ----------
   if (step === 6 && calculatedResults) {
-    const heroImg = getDestData(answers.dest).img;
+    // const heroImg = getDestData(answers.dest).img; // No longer needed
     return (
       <TravelQuizResultsView 
         answers={answers}
         calculatedResults={calculatedResults}
-        heroImg={heroImg}
+        // heroImg={heroImg} // Prop removed
         onSnagMembership={handleSnagMembership}
       />
     );

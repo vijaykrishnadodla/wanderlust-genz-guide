@@ -44,6 +44,5 @@ export interface TravelQuizCalculatedResults {
 export interface TravelQuizResultsViewProps {
   answers: FormData;
   calculatedResults: TravelQuizCalculatedResults;
-  heroImg: string;
   onSnagMembership: () => void;
 }

@@ -1,11 +1,9 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FormData, TravelQuizResultsViewProps, DailyItinerary, DailyActivity } from './TravelQuizTypes';
 import { SUNNY_IMG, gradientBtn } from './TravelQuizConstants';
 import { Badge } from '@/components/ui/badge'; // For ISIC/SheerID badges
 import { CheckCircle2, Sparkles } from 'lucide-react';
-
 
 const ActivityItem: React.FC<{activity: DailyActivity}> = ({ activity }) => (
   <li className="flex items-start space-x-3 py-2">
@@ -36,24 +34,25 @@ const DailyItineraryCard: React.FC<{dayInfo: DailyItinerary}> = ({ dayInfo }) =>
 );
 
 
-export const TravelQuizResultsView: React.FC<TravelQuizResultsViewProps> = ({ answers, calculatedResults, heroImg, onSnagMembership }) => {
+export const TravelQuizResultsView: React.FC<Omit<TravelQuizResultsViewProps, 'heroImg'>> = ({ answers, calculatedResults, onSnagMembership }) => {
   const { base, breakdown, saveTotal, dailyItinerary, totalItinerarySavings, itineraryTitle } = calculatedResults;
+  const newHeroImageUrl = "/lovable-uploads/62502e44-1347-4dd9-851a-c31a519307bd.png";
 
   return (
     <section className="flex flex-col items-center text-center p-4 md:p-6 max-w-3xl mx-auto">
       {/* Hero Image and Basic Info */}
       <img 
-        src={heroImg} 
-        alt={answers.dest || "Selected Destination"} 
+        src={newHeroImageUrl} 
+        alt="Explore your next destination with Sunny!" 
         className="rounded-2xl shadow-xl mb-4 w-full h-64 object-cover" 
         onError={(e) => {
           const target = e.target as HTMLImageElement;
           target.onerror = null; 
-          target.src = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80";
+          target.src = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80"; // Fallback image
         }}
       />
       <h2 className="text-3xl font-bold mb-2">
-        🔥 {answers.name || "Traveler"}, {answers.dest || "your destination"} is calling!
+        🔥 {answers.name || "Traveler"}, {answers.dest ? `${answers.dest} is calling!` : "your next adventure awaits!"}
       </h2>
 
       {/* Conditional Rendering: Detailed Itinerary or Budget Summary */}
