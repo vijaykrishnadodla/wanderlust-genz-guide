@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
@@ -7,8 +6,8 @@ import { Heart, Globe, Plane, PartyPopper } from 'lucide-react';
 const CheckoutConfirmationPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  // The image path provided by user upload - success state
-  const sunnyMascotImageSuccess = "/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg"; 
+  // The image path provided by user upload - success state - UPDATED
+  const sunnyMascotImageSuccess = "/lovable-uploads/e01b4658-0123-4f89-8570-6ac27d5408fa.png"; 
   // The new image path for manual review state
   const sunnyMascotImageManualReview = "/lovable-uploads/c00b5409-2e1c-406c-bddb-742712f51270.png"; 
 
@@ -58,7 +57,7 @@ const CheckoutConfirmationPage = () => {
           
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-6 relative z-10 text-center md:text-left">
             <img 
-              src={sunnyMascotImageSuccess}
+              src={sunnyMascotImageSuccess} // This line is updated by changing the variable above
               width="300" // Adjusted from mockup slightly for responsiveness
               alt="Sunny celebrating" 
               className="max-w-[250px] md:max-w-[350px]"
@@ -130,4 +129,3 @@ const CheckoutConfirmationPage = () => {
 };
 
 export default CheckoutConfirmationPage;
-
