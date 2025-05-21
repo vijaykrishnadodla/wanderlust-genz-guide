@@ -5,7 +5,8 @@ import { DESTINATIONS, DEFAULT_TRAVEL_IMAGE, SPEND_PROFILES, CATEGORY_WEIGHTS, D
 import { FormData, TravelQuizCalculatedResults, DailyItinerary, DailyActivity } from "./TravelQuizTypes";
 
 // Import Lucide icons for generic itinerary
-import { Bed, Utensils, ShoppingBag, Ticket, Airplane, Bus, Museum, Gift, Coffee, MapPin, Building, Star, Users, Film } from 'lucide-react';
+// Corrected Airplane to airplane and Museum to museum
+import { Bed, Utensils, ShoppingBag, Ticket, airplane, Bus, museum, Gift, Coffee, MapPin, Building, Star, Users, Film } from 'lucide-react';
 
 export const normalizeString = (str: string): string =>
   str ? str.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
@@ -91,7 +92,7 @@ const generateGenericDetailedItinerary = (
   let day1Savings = 0;
   const arrivalAttraction = getAttractionOrDefault(0, 'attractions', destinationDetails, "Explore Nearby Area", <MapPin size={20} className="text-teal-500" />);
   
-  day1Activities.push({ name: `Flight to ${cityName}`, icon: <Airplane size={20} className="text-blue-500" />, saving: `$${genericSavings.flight.toFixed(0)}`, isicPerk: true, description: "Student flight deals via ISIC." });
+  day1Activities.push({ name: `Flight to ${cityName}`, icon: <airplane size={20} className="text-blue-500" />, saving: `$${genericSavings.flight.toFixed(0)}`, isicPerk: true, description: "Student flight deals via ISIC." });
   day1Savings += genericSavings.flight;
   day1Activities.push({ name: "Airport Transfer", icon: <Bus size={20} className="text-red-500" />, saving: `$${genericSavings.transport.toFixed(0)}`, isicPerk: true, description: "Use public transport or student shuttles." });
   day1Savings += genericSavings.transport;
@@ -105,7 +106,7 @@ const generateGenericDetailedItinerary = (
   // --- Day 2: Cultural Discovery ---
   let day2Activities: DailyActivity[] = [];
   let day2Savings = 0;
-  const museumAttraction = getAttractionOrDefault(0, 'mustSee', destinationDetails, "Visit a Top Museum", <Museum size={20} className="text-indigo-500" />);
+  const museumAttraction = getAttractionOrDefault(0, 'mustSee', destinationDetails, "Visit a Top Museum", <museum size={20} className="text-indigo-500" />);
   const foodAttraction = getAttractionOrDefault(1, 'attractions', destinationDetails, "Try Local Cuisine", <Utensils size={20} className="text-orange-500" />);
 
   day2Activities.push({ name: "Morning Coffee & Plan", icon: <Coffee size={20} className="text-yellow-600" />, saving: `$${genericSavings.coffee.toFixed(0)}`, isicPerk: true });
