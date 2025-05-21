@@ -157,10 +157,13 @@ const CheckoutConfirmationPage = () => {
               {submissionMethod === 'emailLater' && (
                 <>
                   <p className="mt-4 text-md md:text-lg">
-                    You've chosen to email your document. Please send it to <strong className="font-semibold">verifications@studenttravelbuddy.com</strong> from the email address you used at checkout. Make sure to include your <strong>full name</strong> and, if possible, your <strong>order number</strong> in the subject line or body of the email. Accepted documents include a student ID (front and back, showing expiry) or an enrollment letter.
+                    You've chosen to email your document. We'll also send you an email shortly with instructions on how to submit your verification documents. You can reply directly to that email with your document attached.
                   </p>
                   <p className="mt-3 text-md md:text-lg">
-                    We’ll process it and ping the inbox & phone you used at checkout the second you’re cleared, typically within <b>48 hours</b> of receiving your email.
+                    Alternatively, if you prefer or if you don't receive our email, please send your document to <strong className="font-semibold">verifications@studenttravelbuddy.com</strong>. Make sure to include your <strong className="font-semibold">full name</strong> in the subject line or body of the email.
+                  </p>
+                  <p className="mt-3 text-md md:text-lg">
+                    Accepted documents include a student ID (front and back, showing expiry) or an enrollment letter. We’ll process it and ping the inbox & phone you used at checkout the second you’re cleared, typically within <b>48 hours</b> of receiving your email.
                   </p>
                   <ul className="list-disc list-inside md:list-outside ml-0 md:ml-6 space-y-2 mt-6 text-left">
                     <li>Remember to send your document within 48 hours to avoid delays.</li>
