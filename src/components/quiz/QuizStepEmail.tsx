@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { FormData } from '../TravelQuiz';
+import { FormData } from '../TravelQuizTypes';
 
 interface QuizStepEmailProps {
   formData: FormData;

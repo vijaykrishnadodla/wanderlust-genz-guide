@@ -1,15 +1,16 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Map, ArrowRight, AlertTriangle } from 'lucide-react';
-import { DisplayItinerary, FormData } from '../TravelQuiz'; // Assuming DisplayItinerary is exported
-// Removed incorrect import: import { attractions } from '@/data/travelDestinations';
+import { DisplayItinerary } from '../TravelQuiz'; // DisplayItinerary is exported from TravelQuiz.tsx
+import { FormData } from './TravelQuizTypes'; // Corrected import for FormData
 
 interface QuizResultProps {
   displayItinerary: DisplayItinerary;
   onReset: () => void;
+  // If formData were needed here, it would be:
+  // formData: FormData; 
 }
 
 export const QuizResult: React.FC<QuizResultProps> = ({ displayItinerary, onReset }) => {

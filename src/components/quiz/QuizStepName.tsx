@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { FormData } from '../TravelQuiz'; // Assuming FormData is exported from TravelQuiz or a types file
+import { FormData } from '../TravelQuizTypes'; // Corrected import path
 
 interface QuizStepNameProps {
   formData: FormData;

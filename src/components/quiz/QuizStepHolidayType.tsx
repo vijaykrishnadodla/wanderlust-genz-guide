@@ -1,10 +1,9 @@
-
 import React from 'react';
 import { CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { FormData } from '../TravelQuiz';
+import { FormData } from '../TravelQuizTypes';
 
 interface QuizStepHolidayTypeProps {
   formData: FormData;

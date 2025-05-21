@@ -95,13 +95,13 @@ export default function TravelQuiz() {
       case 1:
         return <TravelQuizStep1Destination answers={answers} update={update} />;
       case 2:
-        return <TravelQuizStep2Vibe answers={answers} update={update} vibes={Q2_VIBES} gradientBtn={gradientBtn} />;
+        return <TravelQuizStep2Vibe answers={answers} update={update} />;
       case 3:
-        return <TravelQuizStep3Style answers={answers} update={update} styles={Q3_STYLE} gradientBtn={gradientBtn} />;
+        return <TravelQuizStep3Style answers={answers} update={update} />;
       case 4:
-        return <TravelQuizStep4Categories answers={answers} update={update} categories={Q4_CATEGORIES} gradientBtn={gradientBtn} />;
+        return <TravelQuizStep4Categories answers={answers} update={update} />;
       case 5:
-        return <TravelQuizStep5Group answers={answers} update={update} groups={Q5_GROUP} gradientBtn={gradientBtn} />;
+        return <TravelQuizStep5Group answers={answers} update={update} />;
       default:
         return null;
     }
