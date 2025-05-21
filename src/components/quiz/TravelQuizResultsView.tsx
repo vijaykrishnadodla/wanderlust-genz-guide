@@ -54,6 +54,10 @@ export const TravelQuizResultsView: React.FC<TravelQuizResultsViewProps> = ({ an
         </ul>
       </div>
 
+      <p className="text-md text-gray-700 mb-6 px-4">
+        Want to see your <span className="font-semibold text-sunny-orange-dark">specific ISIC discounts</span> and get a <span className="font-semibold text-sunny-orange-dark">fully personalized travel plan</span> from Sunny? Grab your membership!
+      </p>
+
       <motion.button 
         whileHover={{ scale: 1.05 }} 
         className={`${gradientBtn} text-white px-6 py-3 rounded-2xl text-lg shadow-lg`}

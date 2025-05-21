@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Plane, MapPin, Camera, Coffee, Building, BookOpen, Bike, TreePalm, Ticket, Landmark, ShoppingCart, Utensils } from 'lucide-react';
 import { DestinationItinerary } from '@/types/travel';
@@ -9,7 +10,7 @@ export const destinations: DestinationItinerary[] = [
     city: "Barcelona",
     country: "Spain",
     imageEmoji: "🇪🇸",
-    imageUrl: "/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg", // Local upload preferred
+    imageUrl: "https://images.unsplash.com/photo-1587789202069-f57c8a6d52c9?auto=format&fit=crop&w=1200&q=80", // Replaced local upload with Unsplash
     holidayTypes: {
       "cultural": {
         vibeDescription: "Immerse yourself in Barcelona's rich history, stunning architecture, and vibrant arts scene.",
@@ -152,6 +153,13 @@ export const destinations: DestinationItinerary[] = [
     country: "Italy",
     imageEmoji: "🇮🇹",
     imageUrl: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1200&q=80", // Venice image
+    holidayTypes: { "general": minimalGeneralHolidayType },
+  },
+  {
+    city: "Bratislava",
+    country: "Slovakia",
+    imageEmoji: "🇸🇰",
+    imageUrl: "https://images.unsplash.com/photo-1587723954480-849445c9704e?auto=format&fit=crop&w=1200&q=80", // Added Bratislava
     holidayTypes: { "general": minimalGeneralHolidayType },
   },
   // Add more destinations here following the same structure
