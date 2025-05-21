@@ -20,9 +20,9 @@ export const QuizStepDestination: React.FC<QuizStepDestinationProps> = ({ formDa
         <div className="space-y-3">
           <Input
             type="text"
-            name="destination"
+            name="dest" // Changed from "destination"
             placeholder="Destination city or type 'SURPRISE ME'"
-            value={formData.destination}
+            value={formData.dest} // Changed from formData.destination
             onChange={handleInputChange}
             className="border-[#fdad32] rounded-lg"
             aria-label="Destination city"

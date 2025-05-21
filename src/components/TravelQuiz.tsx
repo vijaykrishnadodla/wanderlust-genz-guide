@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import SunnyMascot from "@/components/SunnyMascot"; // Added import for SunnyMascot
+import SunnyMascot from "@/components/SunnyMascot";
 
 // ---------- TYPE DEFINITIONS ----------
 export interface FormData {
@@ -12,6 +11,7 @@ export interface FormData {
   style: string;
   cats: string[];
   group: string;
+  idealTripDescription?: string;
 }
 
 // This interface is defined to satisfy imports from src/components/quiz/QuizResult.tsx
@@ -33,7 +33,6 @@ export interface DisplayItinerary {
   attractions?: Attraction[];
   estimatedSavings?: string;
 }
-
 
 // ---------- CONSTANTS ----------
 // Use the uploaded Sunny image
@@ -76,7 +75,7 @@ const getDestData = (city: string) =>
 export default function TravelQuiz() {
   const [step, setStep] = useState(0);
   // Use the FormData interface for the answers state
-  const [answers, setAnswers] = useState<FormData>({ name: "", email: "", dest: "", vibe: "", style: "", cats: [], group: "Solo" });
+  const [answers, setAnswers] = useState<FormData>({ name: "", email: "", dest: "", vibe: "", style: "", cats: [], group: "Solo", idealTripDescription: "" });
 
   const update = (key: keyof FormData, val: string | string[]) => setAnswers((prev) => ({ ...prev, [key]: val }));
   const next = () => setStep((s) => s + 1);
