@@ -2,6 +2,38 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
+// ---------- TYPE DEFINITIONS ----------
+export interface FormData {
+  name: string;
+  email: string;
+  dest: string;
+  vibe: string;
+  style: string;
+  cats: string[];
+  group: string;
+}
+
+// This interface is defined to satisfy imports from src/components/quiz/QuizResult.tsx
+// TravelQuiz.tsx itself does not use this structure for its results.
+interface Attraction {
+  icon: string | React.ReactElement;
+  name: string;
+}
+
+export interface DisplayItinerary {
+  title?: string;
+  imageEmoji?: string;
+  city?: string;
+  country?: string;
+  aiVibeDescription?: string;
+  vibeDescription?: string;
+  userDescriptionConsidered?: string;
+  mustSee?: Attraction[];
+  attractions?: Attraction[];
+  estimatedSavings?: string;
+}
+
+
 // ---------- CONSTANTS ----------
 // Use the uploaded Sunny image
 const SUNNY_IMG = "/lovable-uploads/c8ee8c54-1ae7-490f-bbb8-75978c486431.png"; 
@@ -42,21 +74,28 @@ const getDestData = (city: string) =>
 // ---------- COMPONENT ----------
 export default function TravelQuiz() {
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState({ name: "", email: "", dest: "", vibe: "", style: "", cats: [] as string[], group: "Solo" });
+  // Use the FormData interface for the answers state
+  const [answers, setAnswers] = useState<FormData>({ name: "", email: "", dest: "", vibe: "", style: "", cats: [], group: "Solo" });
 
-  const update = (key: string, val: string | string[]) => setAnswers((prev) => ({ ...prev, [key]: val }));
+  const update = (key: keyof FormData, val: string | string[]) => setAnswers((prev) => ({ ...prev, [key]: val }));
   const next = () => setStep((s) => s + 1);
   const back = () => setStep((s) => s - 1);
 
   // ---------- CALC ----------
   const calc = () => {
     const { costFactor } = getDestData(answers.dest);
-    const base = SPEND_PROFILES[answers.style as keyof typeof SPEND_PROFILES] * costFactor;
+    // Ensure answers.style is a valid key for SPEND_PROFILES
+    const styleKey = answers.style as keyof typeof SPEND_PROFILES;
+    const baseSpend = SPEND_PROFILES[styleKey] || SPEND_PROFILES["Mid-range"]; // Fallback to Mid-range if style is invalid
+    const base = baseSpend * costFactor;
+    
     const breakdown: {[key: string]: {spend: string, save: string}} = {};
     let saveTotal = 0;
     Q4_CATEGORIES.forEach((c) => {
-      const spend = base * CATEGORY_WEIGHTS[c as keyof typeof CATEGORY_WEIGHTS];
-      const save = spend * DISCOUNT_RATES[c as keyof typeof DISCOUNT_RATES];
+      // Ensure c is a valid key for CATEGORY_WEIGHTS and DISCOUNT_RATES
+      const categoryKey = c as keyof typeof CATEGORY_WEIGHTS & keyof typeof DISCOUNT_RATES;
+      const spend = base * (CATEGORY_WEIGHTS[categoryKey] || 0);
+      const save = spend * (DISCOUNT_RATES[categoryKey] || 0);
       breakdown[c] = { spend: spend.toFixed(0), save: save.toFixed(0) };
       saveTotal += save;
     });
@@ -184,7 +223,10 @@ export default function TravelQuiz() {
             <div className="grid grid-cols-2 gap-4">
               {Q4_CATEGORIES.map((c) => (
                 // Retain hover styles and border for unselected, update rounding
-                <button key={c} className={`p-3 rounded-2xl border capitalize ${answers.cats.includes(c) ? `${gradientBtn} text-white` : "bg-white border-gray-300 hover:bg-gray-50"}`} onClick={() => update("cats", answers.cats.includes(c) ? answers.cats.filter((x) => x !== c) : [...answers.cats, c])}>{c}</button>
+                <button key={c} className={`p-3 rounded-2xl border capitalize ${answers.cats.includes(c) ? `${gradientBtn} text-white` : "bg-white border-gray-300 hover:bg-gray-50"}`} onClick={() => {
+                  const newCats = answers.cats.includes(c) ? answers.cats.filter((x) => x !== c) : [...answers.cats, c];
+                  update("cats", newCats);
+                }}>{c}</button>
               ))}
             </div>
           </>
