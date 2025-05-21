@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { useLocation, Link } from 'react-router-dom';
@@ -59,29 +60,35 @@ const CheckoutConfirmationPage = () => {
         } as React.CSSProperties}></div>)}
           
           <div className="bg-gradient-to-br from-[#FFF9E5] to-[#FCE1F1] p-6 md:p-10 rounded-xl shadow-xl border border-sunny-orange-light/50">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-6 relative z-10 text-center md:text-left">
+            <div className="flex flex-col items-center justify-center gap-4 md:gap-6 px-4 relative z-10 text-center">
+              
+              <div className="text-4xl md:text-5xl font-bold text-[#0EAD69] flex items-center justify-center">
+                Verified! <PartyPopper className="ml-2 h-10 w-10 text-yellow-400" />
+              </div>
+
               <img 
                 src={sunnyMascotImageSuccess}
-                width="300"
+                width="280" 
                 alt="Sunny celebrating" 
-                className="max-w-[250px] md:max-w-[350px]" 
+                className="max-w-[200px] md:max-w-[280px] my-3 md:my-4" 
               />
-              <div className="max-w-md text-midnight">
-                <h1 className="text-3xl md:text-4xl font-bold leading-tight flex items-center justify-center md:justify-start">
-                  <span className="text-[#0EAD69]">Verified!</span> <PartyPopper className="ml-2 h-8 w-8 text-yellow-400" /> Welcome aboard Student Travel Buddy!
+              
+              <div className="max-w-lg text-midnight">
+                <h1 className="text-2xl md:text-3xl font-bold leading-tight mt-2">
+                  Welcome aboard Student Travel Buddy!
                 </h1>
                 <p className="mt-4 text-md md:text-lg">
                   Sunny is generating your digital ISIC right now.
                   Keep an eye on your email — and peek at spam just in case — for login instructions and your welcome letter.
                 </p>
-                <div className="flex items-center justify-center md:justify-start gap-2 mt-3 text-midnight">
+                <div className="flex items-center justify-center gap-3 mt-5 text-midnight">
                   <Heart size={20} />
                   <Plane size={20} />
                   <Globe size={20} />
                 </div>
                 <Link 
                   to="/" 
-                  className="mt-8 md:mt-10 inline-block bg-[#0EAD69] text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-green-700 transition-colors"
+                  className="mt-8 md:mt-10 inline-block bg-sunny-orange text-white font-semibold px-8 py-3 rounded-lg shadow hover:bg-sunny-orange-dark transition-colors"
                 >
                   All set! Go to Homepage
                 </Link>
