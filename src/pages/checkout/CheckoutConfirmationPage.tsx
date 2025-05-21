@@ -3,7 +3,6 @@ import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { useLocation, Link } from 'react-router-dom';
 import { Heart, Globe, Plane, PartyPopper, MailCheck, FileCheck } from 'lucide-react';
 import type { VerificationData } from '@/types/checkout';
-
 const CheckoutConfirmationPage = () => {
   const location = useLocation();
   const [userName, setUserName] = useState<string | null>(null);
@@ -13,14 +12,12 @@ const CheckoutConfirmationPage = () => {
   const sunnyMascotImageSuccess = "/lovable-uploads/e01b4658-0123-4f89-8570-6ac27d5408fa.png";
   // The new image path for manual review state
   const sunnyMascotImageManualReview = "/lovable-uploads/c00b5409-2e1c-406c-bddb-742712f51270.png";
-  
   let verificationStatusPath: 'success' | 'manual_required' = 'manual_required'; // Default
   if (location.pathname.endsWith('/success')) {
     verificationStatusPath = 'success';
   } else if (location.pathname.endsWith('/manual')) {
     verificationStatusPath = 'manual_required';
   }
-
   useEffect(() => {
     window.scrollTo(0, 0);
     const verificationDataString = sessionStorage.getItem('stbVerificationData');
@@ -35,7 +32,7 @@ const CheckoutConfirmationPage = () => {
         }
       } catch (error) {
         console.error("Error parsing verification data from session storage:", error);
-        setUserName(null); 
+        setUserName(null);
       }
     } else {
       console.log("CheckoutConfirmationPage - No stbVerificationData found in session storage.");
@@ -54,8 +51,7 @@ const CheckoutConfirmationPage = () => {
       }
     }
     // The data in stbVerificationData is kept for potential API calls as per requirements.
-  }, [location.pathname, location.search, verificationStatusPath]); 
-
+  }, [location.pathname, location.search, verificationStatusPath]);
   const confettiPieces = Array.from({
     length: 20
   }).map((_, i) => {
@@ -67,7 +63,6 @@ const CheckoutConfirmationPage = () => {
       color: colors[i % colors.length]
     };
   });
-
   if (verificationStatusPath === 'success') {
     return <CheckoutLayout currentStep={4} totalSteps={4}>
         <style>{`
@@ -125,8 +120,7 @@ const CheckoutConfirmationPage = () => {
   }
 
   // Manual Review or any other status (derived from URL path)
-  return (
-    <CheckoutLayout currentStep={4} totalSteps={4}>
+  return <CheckoutLayout currentStep={4} totalSteps={4}>
       <section className="py-12 md:py-24 relative">
         <div className="bg-gradient-to-br from-[#FFF9E5] to-[#FCE1F1] p-6 md:p-10 rounded-xl shadow-xl border border-sunny-orange-light/50">
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 px-2 md:px-6 text-center md:text-left">
@@ -140,8 +134,7 @@ const CheckoutConfirmationPage = () => {
                 </h1>
               </div>
 
-              {submissionMethod === 'upload' && (
-                <>
+              {submissionMethod === 'upload' && <>
                   <p className="mt-4 text-md md:text-lg">
                     We've received your document and are double-checking your student proof. Expect an update within <b>48 hours</b>. 
                     We’ll ping the inbox & phone you used at checkout the second you’re cleared.
@@ -151,14 +144,10 @@ const CheckoutConfirmationPage = () => {
                     <li>Need it faster? Reply to the confirmation e-mail with “URGENT – FLIGHT”.</li>
                     <li>Messed up your file upload? Use the link in that e-mail to replace it.</li>
                   </ul>
-                </>
-              )}
+                </>}
 
-              {submissionMethod === 'emailLater' && (
-                <>
-                  <p className="mt-4 text-md md:text-lg">
-                    You've chosen to email your document. We'll also send you an email shortly with instructions on how to submit your verification documents. You can reply directly to that email with your document attached.
-                  </p>
+              {submissionMethod === 'emailLater' && <>
+                  <p className="mt-4 text-md md:text-lg">You've chosen to email your document. We'll send you an email shortly with instructions on how to submit your verification documents. You can reply directly to that email with your document attached.</p>
                   <p className="mt-3 text-md md:text-lg">
                     Alternatively, if you prefer or if you don't receive our email, please send your document to <strong className="font-semibold">verifications@studenttravelbuddy.com</strong>. Make sure to include your <strong className="font-semibold">full name</strong> in the subject line or body of the email.
                   </p>
@@ -169,8 +158,7 @@ const CheckoutConfirmationPage = () => {
                     <li>Remember to send your document within 48 hours to avoid delays.</li>
                     <li>Need it faster once sent? Reply to the confirmation e-mail with “URGENT – FLIGHT”.</li>
                   </ul>
-                </>
-              )}
+                </>}
               
               <p className="mt-6 text-sm italic">Our sales are final. If a doc fails, we’ll guide you to resubmit until approved.</p>
                <Link to="/" className="mt-8 md:mt-10 inline-block bg-sunny-orange text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-sunny-orange-dark transition-colors">
@@ -180,7 +168,6 @@ const CheckoutConfirmationPage = () => {
           </div>
         </div>
       </section>
-    </CheckoutLayout>
-  );
+    </CheckoutLayout>;
 };
 export default CheckoutConfirmationPage;
