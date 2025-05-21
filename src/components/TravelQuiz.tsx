@@ -20,6 +20,7 @@ import { TravelQuizStep4Categories } from "./quiz/steps/TravelQuizStep4Categorie
 import { TravelQuizStep5Group } from "./quiz/steps/TravelQuizStep5Group";
 import { TravelQuizResultsView } from "./quiz/TravelQuizResultsView";
 import { FormData as TravelQuizFormData, TravelQuizCalculatedResults } from "./quiz/TravelQuizTypes";
+import { Plane } from 'lucide-react'; // Added for the quiz header decoration
 
 // ---------- TYPE DEFINITIONS ----------
 // FormData is now TravelQuizFormData to avoid conflict if any other FormData type is used locally.
@@ -111,13 +112,28 @@ export default function TravelQuiz() {
     <section className="bg-gradient-to-br from-sunny-yellow-pale to-sunny-yellow-light p-6 rounded-2xl shadow-xl max-w-xl mx-auto text-center">
       {step < 6 && (
         <div className="mb-8 text-center">
-          <div className="flex justify-center mb-4">
-            <SunnyMascot size="lg" travelStyle="adventure" />
+          <div className="flex justify-center mb-6">
+            <SunnyMascot 
+              size="lg" 
+              travelStyle="adventure" 
+              withText 
+              message="Let's find your ideal destination! 🌍" 
+            />
           </div>
-          <h1 className="text-3xl font-bold text-sunny-orange-dark mb-2">
-            Ready for an Adventure? 🚀
-          </h1>
-          <p className="text-md text-gray-700">
+          <div className="inline-block relative my-6 md:my-8">
+            <div className="bg-gradient-to-r from-sunny-yellow to-sunny-orange px-6 py-3 md:px-8 md:py-4 rounded-2xl shadow-lg md:rounded-full">
+              <h2 className="text-2xl md:text-4xl font-bold text-white tracking-wide uppercase">
+                Student Travel Style Quiz
+              </h2>
+            </div>
+            <div className="absolute -top-3 -right-3 md:-top-2 md:-right-4 bg-white p-2 rounded-full shadow-md">
+              <Plane className="h-5 w-5 md:h-6 md:w-6 text-sunny-orange" />
+            </div>
+          </div>
+          <p className="text-md md:text-xl text-sunny-orange-dark font-handwritten px-4">
+            Discover your travel vibe + unlock exclusive perks!
+          </p>
+          <p className="text-md text-gray-700 mt-4"> {/* Existing subtitle, adjusted margin */}
             Answer a few Q's to find your perfect trip & unlock sweet ISIC savings! ✨
           </p>
         </div>
