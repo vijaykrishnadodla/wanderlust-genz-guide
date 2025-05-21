@@ -195,7 +195,7 @@ const BasicDetailsForm = () => {
               </FormControl>
               <div className="space-y-1 leading-none">
                 <FormLabel>
-                  I agree to the <Link to="/terms" target="_blank" className="text-sunny-orange hover:underline">Terms & Conditions</Link> and <Link to="/privacy" target="_blank" className="text-sunny-orange hover:underline">Privacy Policy</Link>. *
+                  I agree to the <Link to="/terms-and-conditions" target="_blank" className="text-sunny-orange hover:underline">Terms & Conditions</Link> and <Link to="/privacy-policy" target="_blank" className="text-sunny-orange hover:underline">Privacy Policy</Link>. *
                 </FormLabel>
                 <FormDescription>
                   You must tick the declaration to continue.
