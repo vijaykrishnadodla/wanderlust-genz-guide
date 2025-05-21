@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { useLocation, Link } from 'react-router-dom';
@@ -51,7 +50,7 @@ const CheckoutConfirmationPage = () => {
             animation: fall var(--d, 4s) linear var(--dl, 0s) infinite; 
           }
         `}</style>
-        <section className="py-12 md:py-24 relative"> {/* Changed: Matched manual review section style */}
+        <section className="py-12 md:py-24 relative">
           {confettiPieces.map((p, i) => <div key={i} className="confetti-piece" style={{
           '--x': p.left,
           '--c': p.color,
@@ -59,31 +58,30 @@ const CheckoutConfirmationPage = () => {
           '--dl': p.delay
         } as React.CSSProperties}></div>)}
           
-          {/* Added: Wrapper div to match manual review card style */}
           <div className="bg-gradient-to-br from-[#FFF9E5] to-[#FCE1F1] p-6 md:p-10 rounded-xl shadow-xl border border-sunny-orange-light/50">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-6 relative z-10 text-center md:text-left">
               <img 
                 src={sunnyMascotImageSuccess}
-                width="300" // Keep image size appropriate for success
+                width="300"
                 alt="Sunny celebrating" 
                 className="max-w-[250px] md:max-w-[350px]" 
               />
-              <div className="max-w-md text-midnight"> {/* Changed: text color for the block */}
-                <h1 className="text-3xl md:text-4xl font-bold leading-tight flex items-center justify-center md:justify-start text-[#0EAD69]"> {/* Changed: title text color */}
-                  Verified! <PartyPopper className="ml-2 h-8 w-8 text-yellow-400" /> Welcome aboard Student Travel Buddy! {/* Changed: Icon color */}
+              <div className="max-w-md text-midnight">
+                <h1 className="text-3xl md:text-4xl font-bold leading-tight flex items-center justify-center md:justify-start">
+                  <span className="text-[#0EAD69]">Verified!</span> <PartyPopper className="ml-2 h-8 w-8 text-yellow-400" /> Welcome aboard Student Travel Buddy!
                 </h1>
                 <p className="mt-4 text-md md:text-lg">
                   Sunny is generating your digital ISIC right now.
                   Keep an eye on your email — and peek at spam just in case — for login instructions and your welcome letter.
                 </p>
-                <div className="flex items-center justify-center md:justify-start gap-2 mt-3 text-[#0EAD69]"> {/* Changed: icon colors */}
+                <div className="flex items-center justify-center md:justify-start gap-2 mt-3 text-midnight">
                   <Heart size={20} />
                   <Plane size={20} />
                   <Globe size={20} />
                 </div>
                 <Link 
                   to="/" 
-                  className="mt-8 md:mt-10 inline-block bg-[#0EAD69] text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-green-700 transition-colors" /* Changed: button style */
+                  className="mt-8 md:mt-10 inline-block bg-[#0EAD69] text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-green-700 transition-colors"
                 >
                   All set! Go to Homepage
                 </Link>
@@ -124,4 +122,3 @@ const CheckoutConfirmationPage = () => {
     </CheckoutLayout>;
 };
 export default CheckoutConfirmationPage;
-
