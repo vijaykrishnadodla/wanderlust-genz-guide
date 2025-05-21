@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Added import
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 // Removed Globe, kept other necessary icons
@@ -60,6 +61,13 @@ const Footer = () => {
     },
   ];
 
+  const exploreLinks = [
+    { name: 'Travel Styles', icon: <Compass className="h-4 w-4" />, href: '/#quiz' },
+    { name: 'City Guides', icon: <MapPin className="h-4 w-4" />, href: '/#' }, // Placeholder
+    { name: 'About Us', icon: <Sun className="h-4 w-4" />, href: '/#backstory' },
+    { name: 'Sunshine Club', icon: <Sparkles className="h-4 w-4" />, href: '/#sunshine-club' } // Added Sunshine Club
+  ];
+
   return (
     <footer className="relative overflow-hidden py-12 bg-sunny-gradient text-midnight">
       {/* Grain texture overlay */}
@@ -92,13 +100,9 @@ const Footer = () => {
               EXPLORE
             </h3>
             <ul className="space-y-3">
-              {[
-                { name: 'Travel Styles', icon: <Compass className="h-4 w-4" /> },
-                { name: 'City Guides', icon: <MapPin className="h-4 w-4" /> },
-                { name: 'About Us', icon: <Sun className="h-4 w-4" /> }
-              ].map((item, index) => (
+              {exploreLinks.map((item, index) => (
                 <li key={index}>
-                  <a href="#" className="text-midnight hover:text-sunny-orange transition-colors flex items-center gap-2 group">
+                  <a href={item.href} className="text-midnight hover:text-sunny-orange transition-colors flex items-center gap-2 group">
                     <span className="bg-white/50 p-1.5 rounded-full group-hover:bg-white/70 transition-colors">
                       {item.icon}
                     </span> 
@@ -157,8 +161,8 @@ const Footer = () => {
         <div className="border-t border-sunny-orange-dark/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-midnight opacity-80">© {new Date().getFullYear()} Student Travel Buddy. All rights reserved.</p>
           <div className="flex gap-4">
-            <a href="#" className="text-sm text-midnight opacity-80 hover:text-sunny-orange transition-colors">Terms</a>
-            <a href="#" className="text-sm text-midnight opacity-80 hover:text-sunny-orange transition-colors">Privacy</a>
+            <Link to="/terms-and-conditions" className="text-sm text-midnight opacity-80 hover:text-sunny-orange transition-colors">Terms</Link>
+            <Link to="/privacy-policy" className="text-sm text-midnight opacity-80 hover:text-sunny-orange transition-colors">Privacy</Link>
           </div>
         </div>
         
