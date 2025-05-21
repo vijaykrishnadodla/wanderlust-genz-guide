@@ -86,7 +86,7 @@ const HowStarted = () => {
                 </div>
                 
                 <img alt="Sunny the Travel Buddy" className="w-40 h-40 object-contain retro-filter" src="/lovable-uploads/a7ac83c1-f337-4125-86bc-6e00cd58451d.png" />
-                <p className="text-center font-handwritten mt-1">Sunny was born!</p>
+                <p className="text-center font-handwritten mt-1 text-3xl">Sunny was born!</p>
               </div>
             </div>
           </div>
