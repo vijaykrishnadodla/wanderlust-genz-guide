@@ -112,7 +112,13 @@ export default function TravelQuiz() {
       {step < 6 && (
         <div className="mb-8 text-center">
           <div className="flex justify-center mb-4">
-            <SunnyMascot size="lg" travelStyle="adventure" />
+            {/* Updated SunnyMascot to include withText and message */}
+            <SunnyMascot 
+              size="lg" 
+              travelStyle="adventure" 
+              withText 
+              message="Let's find your ideal destination! 🌍" 
+            />
           </div>
           <h1 className="text-3xl font-bold text-sunny-orange-dark mb-2">
             Ready for an Adventure? 🚀
