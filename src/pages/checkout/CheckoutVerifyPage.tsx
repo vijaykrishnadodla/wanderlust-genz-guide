@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import CheckoutLayout from '@/components/checkout/CheckoutLayout';
 import { Button } from '@/components/ui/button';
@@ -22,7 +21,7 @@ const CheckoutVerifyPage = () => {
     errorMessage,
     handleVerification,
     handleCompleteAndGoHome,
-    handleProceedToManualUpload, // This can still be used if direct verification fails leading to manual
+    handleProceedToManualUpload, 
   } = useVerification();
 
   useEffect(() => {
@@ -113,15 +112,12 @@ const CheckoutVerifyPage = () => {
 
         {verificationStatus === "manual_required" && (
            <>
-            {/* This button might now primarily be triggered if auto-verification (with OPEID) fails,
-                or if user was already in manual_required state from a previous step.
-                The "Can't find school" link in ComboSchoolField directly navigates to upload docs. */}
             <Button 
               onClick={handleProceedToManualUpload} 
               className="w-full stb-button bg-sunny-yellow hover:bg-sunny-yellow-dark text-midnight mt-6"
               size="lg"
             >
-              Proceed to Confirmation (Manual Review)
+              Proceed to Document Upload
             </Button>
            </>
         )}

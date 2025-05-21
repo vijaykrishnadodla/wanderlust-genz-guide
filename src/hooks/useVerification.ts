@@ -82,7 +82,8 @@ export const useVerification = () => {
   };
   
   const handleProceedToManualUpload = () => {
-    navigate('/checkout/confirmation/manual');
+    // Navigate to the document upload page instead of directly to manual confirmation
+    navigate('/checkout/upload-docs'); 
   };
 
   return {
