@@ -243,11 +243,11 @@ const FlyerPage = () => {
             </div>
           </div>
 
-          {/* Sunny Mascot */}
+          {/* Sunny Mascot with repositioned speech bubble */}
           <div className="flex justify-center mb-6">
-            <div className="relative">
+            <div className="flex items-center gap-4">
               <SunnyMascot size="lg" travelStyle="adventure" className="sunny-bounce" />
-              <div className="absolute -top-4 -right-4 bg-sunny-yellow text-sunny-orange-dark px-3 py-1 rounded-full text-sm font-bold transform rotate-12">
+              <div className="bg-sunny-yellow text-sunny-orange-dark px-3 py-1 rounded-full text-sm font-bold transform rotate-12 max-w-[180px]">
                 I'm Sunny, your AI travel buddy! ✨
               </div>
             </div>
