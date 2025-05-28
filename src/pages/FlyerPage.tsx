@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe, Camera } from 'lucide-react';
@@ -264,24 +263,21 @@ const FlyerPage = () => {
 
             {/* Dominika Side */}
             <div className="flex flex-col items-center">
-              <div className="sunny-card transform rotate-1 hover:rotate-0 transition-all">
-                <div className="flex flex-col items-center text-center">
-                  <img 
-                    alt="Dominika - Founder of Student Travel Buddy" 
-                    className="rounded-full shadow-xl w-24 h-24 border-2 border-white object-cover mb-4" 
-                    src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" 
-                  />
+              <div className="flex items-center gap-4 mb-4">
+                <img 
+                  alt="Dominika - Founder of Student Travel Buddy" 
+                  className="rounded-full shadow-xl w-24 h-24 border-2 border-white object-cover" 
+                  src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" 
+                />
+                <div className="flex flex-col items-start">
                   <h3 className="text-lg font-display text-sunny-orange-dark mb-2">
                     MEET <span className="text-sunny-yellow-dark">DOMINIKA</span>
                   </h3>
-                  <p className="text-sm mb-4 text-gray-700">
-                    Expert in finding the best student travel deals. Traveled 30+ countries and studied abroad in Norway, Australia, and USA. Created Student Travel Buddy to help students travel smart and save money like I wish I had!
-                  </p>
-                  <div className="sunny-badge transform rotate-3 inline-block mb-2">
-                    Your travel sister ✨
-                  </div>
-                  <div className="sunny-tag bg-sunny-yellow text-sunny-orange-dark text-center font-handwritten text-xs">
+                  <div className="text-sm text-gray-700 mb-2">
                     Founder & Fellow Student Traveler
+                  </div>
+                  <div className="sunny-badge transform rotate-3">
+                    Your travel sister ✨
                   </div>
                 </div>
               </div>
