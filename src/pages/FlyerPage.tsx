@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart } from 'lucide-react';
+import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe } from 'lucide-react';
 import SunnyMascot from '@/components/SunnyMascot';
 import { Link } from 'react-router-dom';
 
@@ -16,15 +16,32 @@ const FlyerPage = () => {
         </div>
         
         <div className="max-w-6xl mx-auto text-center">
-          {/* Main Headline */}
+          {/* What is Student Travel Buddy */}
           <div className="mb-8">
-            <h1 className="text-4xl md:text-6xl font-display text-sunny-orange-dark mb-4 transform -rotate-1">
-              PLANNING TO <span className="text-sunny-yellow-dark">TRAVEL</span> THIS YEAR AS A STUDENT?
+            <h1 className="text-4xl md:text-6xl font-display text-sunny-orange-dark mb-4">
+              MEET <span className="text-sunny-yellow-dark">STUDENT TRAVEL BUDDY</span>
             </h1>
-            <div className="bg-sunny-orange text-white px-6 py-3 rounded-2xl transform rotate-1 inline-block shadow-xl mb-4">
-              <h2 className="text-2xl md:text-4xl font-display">
-                DO NOT MISS OUT ON THESE DISCOUNTS!
+            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-3xl shadow-xl mb-6 transform -rotate-1">
+              <h2 className="text-2xl font-bold text-sunny-orange-dark mb-4">
+                THE ULTIMATE PLATFORM FOR STUDENT TRAVELERS
               </h2>
+              <p className="text-lg text-gray-700 mb-4">
+                Your AI-powered companion Sunny + Global student community + Official ISIC card with massive discounts
+              </p>
+              <div className="flex justify-center items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <Globe className="w-6 h-6 text-sunny-orange" />
+                  <span className="font-medium">5,000+ Students</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <DollarSign className="w-6 h-6 text-green-500" />
+                  <span className="font-medium">$200+ Savings/Week</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Plane className="w-6 h-6 text-blue-500" />
+                  <span className="font-medium">AI Trip Planning</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -33,20 +50,20 @@ const FlyerPage = () => {
             <div className="relative">
               <SunnyMascot size="lg" travelStyle="adventure" className="sunny-bounce" />
               <div className="absolute -top-4 -right-4 bg-sunny-yellow text-sunny-orange-dark px-3 py-1 rounded-full text-sm font-bold transform rotate-12">
-                I'm here to help! ✨
+                I'm Sunny, your AI travel buddy! ✨
               </div>
             </div>
           </div>
 
           {/* ISIC Spotlight */}
-          <div className="bg-white/80 backdrop-blur-sm p-6 rounded-3xl shadow-xl mb-8 transform -rotate-1">
+          <div className="bg-white/80 backdrop-blur-sm p-6 rounded-3xl shadow-xl mb-8 transform rotate-1">
             <h3 className="text-2xl font-bold text-sunny-orange-dark mb-4">
               GET YOUR <span className="text-sunny-yellow-dark">INTERNATIONAL STUDENT ID</span>
             </h3>
-            <p className="text-lg mb-4">and enjoy ALL the benefits you can get as a student!</p>
+            <p className="text-lg mb-4">Plus access to exclusive student discounts worldwide!</p>
             <div className="flex justify-center items-center gap-4">
               <img src="/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png" alt="ISIC Logo" className="h-12" />
-              <div className="text-2xl font-bold text-sunny-orange">Save up to 50% worldwide!</div>
+              <div className="text-2xl font-bold text-sunny-orange">Save up to 50% on everything!</div>
             </div>
           </div>
         </div>
@@ -55,6 +72,9 @@ const FlyerPage = () => {
       {/* Pain Points Grid */}
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-display text-sunny-orange-dark mb-8 text-center">
+            TIRED OF THESE STUDENT TRAVEL STRUGGLES?
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {/* Planning Headache */}
             <div className="bg-white/90 p-8 rounded-3xl shadow-xl transform rotate-1 hover:rotate-0 transition-all">
@@ -62,9 +82,9 @@ const FlyerPage = () => {
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-red-500" />
                 </div>
-                <h3 className="text-xl font-bold text-red-600 mb-2">PLANNING HEADACHE?</h3>
-                <div className="text-4xl font-bold text-sunny-orange mb-2">WE HELP YOU!</div>
-                <p className="text-gray-700">Custom itineraries, hidden gems, and local tips from real students!</p>
+                <h3 className="text-xl font-bold text-red-600 mb-2">PLANNING OVERWHELM?</h3>
+                <div className="text-2xl font-bold text-sunny-orange mb-2">SUNNY AI SOLVES THIS!</div>
+                <p className="text-gray-700">Personalized itineraries, hidden gems, and insider tips from real students worldwide!</p>
               </div>
             </div>
 
@@ -74,9 +94,9 @@ const FlyerPage = () => {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <DollarSign className="w-8 h-8 text-green-500" />
                 </div>
-                <h3 className="text-xl font-bold text-green-600 mb-2">BUDGET RESTRICTIONS?</h3>
-                <div className="text-4xl font-bold text-sunny-orange mb-2">WE ARE HERE FOR YOU!</div>
-                <p className="text-gray-700">Save $200+ per week with exclusive student discounts!</p>
+                <h3 className="text-xl font-bold text-green-600 mb-2">BROKE STUDENT BUDGET?</h3>
+                <div className="text-2xl font-bold text-sunny-orange mb-2">SAVE $200+ PER WEEK!</div>
+                <p className="text-gray-700">Official ISIC card + exclusive student discounts on everything you need!</p>
               </div>
             </div>
 
@@ -86,60 +106,61 @@ const FlyerPage = () => {
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Heart className="w-8 h-8 text-blue-500" />
                 </div>
-                <h3 className="text-xl font-bold text-blue-600 mb-2">SCARED TO TRAVEL ALONE?</h3>
-                <div className="text-4xl font-bold text-sunny-orange mb-2">WE GOT YOU!</div>
-                <p className="text-gray-700">Join 5,000+ students in our global travel community!</p>
+                <h3 className="text-xl font-bold text-blue-600 mb-2">TRAVELING SOLO & SCARED?</h3>
+                <div className="text-2xl font-bold text-sunny-orange mb-2">JOIN OUR COMMUNITY!</div>
+                <p className="text-gray-700">Connect with 5,000+ verified students in WhatsApp groups worldwide!</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Solutions Checklist */}
+      {/* What You Get Section */}
       <section className="py-12 px-4 bg-white/60 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-display text-sunny-orange-dark mb-8">
-            HERE'S HOW WE SOLVE YOUR TRAVEL PROBLEMS:
+          <h2 className="text-3xl font-display text-sunny-orange-dark mb-4">
+            ONE MEMBERSHIP. EVERYTHING YOU NEED.
           </h2>
+          <div className="bg-gradient-to-r from-sunny-yellow to-sunny-orange text-white p-6 rounded-3xl shadow-xl mb-8">
+            <h3 className="text-2xl font-bold mb-2">INTRODUCING: FULLTIMER</h3>
+            <p className="text-lg">The only student travel membership you'll ever need</p>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {[
-              "✈️ Personalized travel plans by Sunny AI",
-              "💰 Official ISIC card with global discounts",
+              "🤖 Sunny AI: Personalized travel planning",
+              "💳 Official ISIC card with global discounts",
               "🗺️ Hidden gems maps & local recommendations", 
               "👥 City WhatsApp groups & student meetups",
               "📱 24/7 travel support & emergency help",
               "🎒 Travel prep checklists & packing guides",
-              "🌍 Safe accommodation recommendations",
-              "🎉 Group trip opportunities & events"
-            ].map((solution, index) => (
+              "🏠 Verified accommodation recommendations",
+              "🎉 Exclusive events & group trip opportunities"
+            ].map((benefit, index) => (
               <div key={index} className="flex items-center gap-3 bg-white/80 p-4 rounded-2xl shadow-sm">
                 <Check className="w-6 h-6 text-green-500 shrink-0" />
-                <span className="text-left font-medium">{solution}</span>
+                <span className="text-left font-medium">{benefit}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Early Bird Section */}
+      {/* Limited Time Pricing Section */}
       <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="bg-gradient-to-r from-sunny-yellow to-sunny-orange text-white p-8 rounded-3xl shadow-xl mb-8">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Clock className="w-6 h-6" />
-              <span className="font-bold">LIMITED TIME - FOUNDING MEMBERS ONLY!</span>
+              <span className="font-bold">LIMITED TIME LAUNCH OFFER!</span>
             </div>
-            <h2 className="text-3xl font-bold mb-4">BE ONE OF THE FIRST TO JOIN!</h2>
-            <p className="text-xl mb-4">We're launching with only 100 founding member spots</p>
+            <h2 className="text-3xl font-bold mb-4">30% OFF - LAUNCHING PRICE</h2>
             <div className="flex justify-center items-center gap-4 mb-4">
-              <div className="bg-white/20 px-4 py-2 rounded-full">
-                <span className="font-bold">67 spots left!</span>
-              </div>
-              <div className="bg-white/20 px-4 py-2 rounded-full">
-                <span className="font-bold">50% OFF launch price</span>
-              </div>
+              <div className="text-lg line-through opacity-75">$29/year</div>
+              <div className="text-4xl font-bold">$20/year</div>
+              <div className="bg-red-500 px-3 py-1 rounded-full text-sm font-bold">SAVE 30%</div>
             </div>
+            <p className="text-xl">Join while we're launching at this special price!</p>
           </div>
         </div>
       </section>
@@ -149,19 +170,26 @@ const FlyerPage = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="bg-white/90 p-8 rounded-3xl shadow-xl">
             <h2 className="text-4xl font-display text-sunny-orange-dark mb-6 transform -rotate-1">
-              JOIN THE SUNSHINE CLUB TODAY!
+              START YOUR ADVENTURE TODAY!
             </h2>
             
             <div className="mb-8">
-              <div className="text-2xl font-bold text-gray-800 mb-2">Get started for just</div>
-              <div className="text-5xl font-bold text-sunny-orange mb-2">$99</div>
-              <div className="text-lg text-gray-600">One-time payment • Lifetime access</div>
+              <div className="text-2xl font-bold text-gray-800 mb-2">Get FULLTIMER membership for</div>
+              <div className="flex justify-center items-center gap-4 mb-4">
+                <div className="text-2xl text-gray-500 line-through">$29</div>
+                <div className="text-5xl font-bold text-sunny-orange">$20</div>
+                <div className="text-lg text-gray-600">/year</div>
+              </div>
+              <div className="text-lg text-gray-600 mb-4">One payment • Lifetime of adventures</div>
+              <div className="bg-red-100 text-red-600 px-4 py-2 rounded-full inline-block font-bold">
+                🔥 30% OFF Launch Special - Don't Miss Out!
+              </div>
             </div>
 
             <Link to="/checkout">
               <Button className="bg-sunny-gradient text-white text-xl font-bold px-12 py-6 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all mb-6">
                 <Users className="w-6 h-6 mr-2" />
-                SECURE MY SPOT NOW
+                JOIN FULLTIMER NOW
                 <ArrowRight className="w-6 h-6 ml-2" />
               </Button>
             </Link>
@@ -170,7 +198,7 @@ const FlyerPage = () => {
               <div className="text-2xl font-bold text-sunny-orange-dark mb-2">
                 www.studenttravelbuddy.com
               </div>
-              <p className="text-gray-600">Visit our website for more details</p>
+              <p className="text-gray-600">Your gateway to affordable student travel</p>
             </div>
 
             <div className="flex justify-center items-center gap-6 text-sm text-gray-600">
@@ -182,6 +210,10 @@ const FlyerPage = () => {
                 <Check className="w-4 h-4 text-green-500" />
                 <span>Money-back guarantee</span>
               </div>
+              <div className="flex items-center gap-1">
+                <Heart className="w-4 h-4 text-red-500" />
+                <span>Trusted community</span>
+              </div>
             </div>
           </div>
         </div>
@@ -191,6 +223,9 @@ const FlyerPage = () => {
       <footer className="py-8 px-4 text-center text-gray-600">
         <p className="text-sm">
           Don't let budget restrictions, planning stress, or fear hold you back from the adventure of a lifetime!
+        </p>
+        <p className="text-xs mt-2">
+          Limited time 30% discount - regular price $29/year
         </p>
       </footer>
     </div>
