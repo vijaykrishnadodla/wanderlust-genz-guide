@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe, Camera, QrCode } from 'lucide-react';
+import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe, Camera } from 'lucide-react';
 import SunnyMascot from '@/components/SunnyMascot';
 import { Link } from 'react-router-dom';
 import WaveDivider from '@/components/WaveDivider';
@@ -199,10 +199,11 @@ const FlyerPage = () => {
               <div className="flex flex-col items-center gap-2">
                 <div className="bg-white p-4 rounded-lg border-2 border-sunny-orange-light shadow-sm">
                   <div className="flex items-center justify-center w-32 h-32 bg-white rounded border">
-                    <div className="text-center">
-                      <QrCode className="w-20 h-20 mx-auto mb-2 text-gray-800" />
-                      <div className="text-xs text-gray-600">Scan to join</div>
-                    </div>
+                    <img 
+                      src="/lovable-uploads/1f781ab9-025b-4e22-9174-975611b14701.png" 
+                      alt="QR Code to join checkout" 
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                 </div>
                 <div className="text-sm text-gray-600 font-medium">
