@@ -1,14 +1,11 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe, Camera, QrCode } from 'lucide-react';
 import SunnyMascot from '@/components/SunnyMascot';
 import { Link } from 'react-router-dom';
 import WaveDivider from '@/components/WaveDivider';
-
 const FlyerPage = () => {
-  return (
-    <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight overflow-hidden">
+  return <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight overflow-hidden">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
       
@@ -159,12 +156,10 @@ const FlyerPage = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            {["☀️ Personalized travel planning", "💳 Official ISIC card with global discounts", "🗺️ Hidden gems maps & local recommendations", "👥 City community groups & student meetups", "📱 24/7 travel support & emergency help", "🎒 Travel prep checklists & packing guides", "🏠 Verified accommodation recommendations", "🎉 Exclusive events & group trip opportunities"].map((benefit, index) => (
-              <div key={index} className="sunny-card flex items-center gap-3 hover:scale-105 transition-all">
+            {["☀️ Personalized travel planning", "💳 Official ISIC card with global discounts", "🗺️ Hidden gems maps & local recommendations", "👥 City community groups & student meetups", "📱 24/7 travel support & emergency help", "🎒 Travel prep checklists & packing guides", "🏠 Verified accommodation recommendations", "🎉 Exclusive events & group trip opportunities"].map((benefit, index) => <div key={index} className="sunny-card flex items-center gap-3 hover:scale-105 transition-all">
                 <Check className="w-6 h-6 text-sunny-orange shrink-0" />
                 <span className="text-left font-medium">{benefit}</span>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -223,7 +218,7 @@ const FlyerPage = () => {
               </div>
               <div className="flex items-center gap-1">
                 <Check className="w-4 h-4 text-sunny-orange" />
-                <span>Money-back guarantee</span>
+                <span>Amazing discounts</span>
               </div>
               <div className="flex items-center gap-1">
                 <Heart className="w-4 h-4 text-sunny-orange" />
@@ -281,11 +276,7 @@ const FlyerPage = () => {
             {/* Dominika Side */}
             <div className="flex flex-col items-center">
               <div className="flex items-center gap-4 mb-4">
-                <img 
-                  alt="Dominika - Founder of Student Travel Buddy" 
-                  className="rounded-full shadow-xl w-24 h-24 border-2 border-white object-cover" 
-                  src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" 
-                />
+                <img alt="Dominika - Founder of Student Travel Buddy" className="rounded-full shadow-xl w-24 h-24 border-2 border-white object-cover" src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" />
                 <div className="flex flex-col items-start">
                   <h3 className="text-lg font-display text-sunny-orange-dark mb-2">
                     MEET <span className="text-sunny-yellow-dark">DOMINIKA</span>
@@ -354,8 +345,6 @@ const FlyerPage = () => {
           Limited time 30% discount - regular price $29/year
         </p>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default FlyerPage;
