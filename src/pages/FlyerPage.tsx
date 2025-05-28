@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe } from 'lucide-react';
+import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe, Camera } from 'lucide-react';
 import SunnyMascot from '@/components/SunnyMascot';
 import { Link } from 'react-router-dom';
 import WaveDivider from '@/components/WaveDivider';
@@ -171,6 +171,47 @@ const FlyerPage = () => {
 
       <WaveDivider />
 
+      {/* Meet Dominika - Personal Section */}
+      <section className="py-12 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="text-center md:text-left">
+              <h2 className="text-3xl font-display text-sunny-orange-dark mb-4">
+                MEET <span className="text-sunny-yellow-dark">DOMINIKA</span>
+              </h2>
+              <div className="sunny-card transform -rotate-1">
+                <p className="text-lg mb-4 font-handwritten text-gray-700">
+                  "I was that broke student who dreamed of traveling but felt overwhelmed by planning and worried about costs..."
+                </p>
+                <p className="text-base mb-4">
+                  After struggling through my first solo trip to Barcelona and making costly mistakes, I realized students needed a better way to travel smart and save money.
+                </p>
+                <p className="text-base mb-4">
+                  That's why I created Student Travel Buddy - to give every student the insider knowledge and discounts I wish I had!
+                </p>
+                <div className="sunny-badge transform rotate-3 inline-block">
+                  Your travel sister ✨
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="transform rotate-3 hover:rotate-0 transition-all">
+                <img 
+                  alt="Dominika - Founder of Student Travel Buddy" 
+                  className="rounded-lg shadow-xl max-w-sm w-full border-4 border-white" 
+                  src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" 
+                />
+                <div className="sunny-tag bg-sunny-yellow text-sunny-orange-dark mt-2 text-center font-handwritten">
+                  Founder & Fellow Student Traveler
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <WaveDivider />
+
       {/* Strong CTA with Pricing */}
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
@@ -265,6 +306,41 @@ const FlyerPage = () => {
               www.studenttravelbuddy.com
             </div>
             <p className="text-gray-600">Your gateway to affordable student travel</p>
+          </div>
+        </div>
+      </section>
+
+      <WaveDivider />
+
+      {/* Ambassador Program Section */}
+      <section className="py-12 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="sunny-card bg-sunny-yellow-light border-2 border-sunny-orange-light transform rotate-1">
+            <h3 className="text-2xl font-display text-sunny-orange-dark mb-3">
+              BECOME A <span className="text-sunny-yellow-dark">SUNSHINE LEADER!</span>
+            </h3>
+            <p className="text-lg mb-4">
+              Are you passionate about travel and helping fellow students? Join our ambassador program!
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+              <div className="flex items-center gap-2 justify-center">
+                <Star className="w-5 h-5 text-sunny-orange" />
+                <span className="font-medium">Lead your city's community</span>
+              </div>
+              <div className="flex items-center gap-2 justify-center">
+                <Camera className="w-5 h-5 text-sunny-orange" />
+                <span className="font-medium">Get paid & perks</span>
+              </div>
+              <div className="flex items-center gap-2 justify-center">
+                <Users className="w-5 h-5 text-sunny-orange" />
+                <span className="font-medium">Free membership</span>
+              </div>
+            </div>
+            <Link to="/ambassador-application">
+              <Button className="bg-sunny-orange hover:bg-sunny-orange-dark text-white font-bold px-6 py-2 rounded-full transform hover:scale-105 transition-all">
+                Apply Now
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
