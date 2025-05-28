@@ -171,41 +171,6 @@ const FlyerPage = () => {
 
       <WaveDivider />
 
-      {/* Meet Dominika - Personal Section */}
-      <section className="py-6 px-4">
-        <div className="max-w-2xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-            <div className="text-center md:text-left">
-              <h2 className="text-2xl font-display text-sunny-orange-dark mb-4">
-                MEET <span className="text-sunny-yellow-dark">DOMINIKA</span>
-              </h2>
-              <div className="sunny-card transform -rotate-1">
-                <p className="text-sm mb-4">
-                  Expert in finding the best student travel deals. Traveled 30+ countries and studied abroad in Norway, Australia, and USA. Created Student Travel Buddy to help students travel smart and save money like I wish I had!
-                </p>
-                <div className="sunny-badge transform rotate-3 inline-block">
-                  Your travel sister ✨
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <div className="transform rotate-3 hover:rotate-0 transition-all">
-                <img 
-                  alt="Dominika - Founder of Student Travel Buddy" 
-                  className="rounded-full shadow-xl w-24 h-24 border-2 border-white object-cover" 
-                  src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" 
-                />
-                <div className="sunny-tag bg-sunny-yellow text-sunny-orange-dark mt-2 text-center font-handwritten">
-                  Founder & Fellow Student Traveler
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <WaveDivider />
-
       {/* Strong CTA with Pricing */}
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
@@ -255,14 +220,14 @@ const FlyerPage = () => {
 
       <WaveDivider />
 
-      {/* What is Student Travel Buddy - Moved to End */}
+      {/* What is Student Travel Buddy - With Sunny and Dominika */}
       <section className="py-12 px-4 bg-white/80 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-display text-sunny-orange-dark mb-6">
             WHAT IS <span className="text-sunny-yellow-dark">STUDENT TRAVEL BUDDY?</span>
           </h2>
           
-          <div className="sunny-card mb-6">
+          <div className="sunny-card mb-8">
             <h3 className="text-xl font-bold text-sunny-orange-dark mb-4">
               THE ULTIMATE PLATFORM FOR STUDENT TRAVELERS
             </h3>
@@ -285,12 +250,40 @@ const FlyerPage = () => {
             </div>
           </div>
 
-          {/* Sunny Mascot with repositioned speech bubble */}
-          <div className="flex justify-center mb-6">
-            <div className="flex items-center gap-4">
-              <SunnyMascot size="lg" travelStyle="adventure" className="sunny-bounce" />
-              <div className="bg-sunny-yellow text-sunny-orange-dark px-3 py-1 rounded-full text-sm font-bold transform rotate-12 max-w-[180px]">
-                I'm Sunny, your new travel buddy! ✨
+          {/* Sunny and Dominika Side by Side */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            {/* Sunny Side */}
+            <div className="flex flex-col items-center">
+              <div className="flex items-center gap-4 mb-4">
+                <SunnyMascot size="lg" travelStyle="adventure" className="sunny-bounce" />
+                <div className="bg-sunny-yellow text-sunny-orange-dark px-3 py-1 rounded-full text-sm font-bold transform rotate-12 max-w-[180px]">
+                  I'm Sunny, your new travel buddy! ✨
+                </div>
+              </div>
+            </div>
+
+            {/* Dominika Side */}
+            <div className="flex flex-col items-center">
+              <div className="sunny-card transform rotate-1 hover:rotate-0 transition-all">
+                <div className="flex flex-col items-center text-center">
+                  <img 
+                    alt="Dominika - Founder of Student Travel Buddy" 
+                    className="rounded-full shadow-xl w-24 h-24 border-2 border-white object-cover mb-4" 
+                    src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" 
+                  />
+                  <h3 className="text-lg font-display text-sunny-orange-dark mb-2">
+                    MEET <span className="text-sunny-yellow-dark">DOMINIKA</span>
+                  </h3>
+                  <p className="text-sm mb-4 text-gray-700">
+                    Expert in finding the best student travel deals. Traveled 30+ countries and studied abroad in Norway, Australia, and USA. Created Student Travel Buddy to help students travel smart and save money like I wish I had!
+                  </p>
+                  <div className="sunny-badge transform rotate-3 inline-block mb-2">
+                    Your travel sister ✨
+                  </div>
+                  <div className="sunny-tag bg-sunny-yellow text-sunny-orange-dark text-center font-handwritten text-xs">
+                    Founder & Fellow Student Traveler
+                  </div>
+                </div>
               </div>
             </div>
           </div>
