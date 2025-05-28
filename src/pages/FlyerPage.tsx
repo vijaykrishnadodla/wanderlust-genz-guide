@@ -172,37 +172,24 @@ const FlyerPage = () => {
       <WaveDivider />
 
       {/* Meet Dominika - Personal Section */}
-      <section className="py-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="text-center md:text-left">
-              <h2 className="text-3xl font-display text-sunny-orange-dark mb-4">
-                MEET <span className="text-sunny-yellow-dark">DOMINIKA</span>
-              </h2>
-              <div className="sunny-card transform -rotate-1">
-                <p className="text-lg mb-4 font-handwritten text-gray-700">
-                  "I was that broke student who dreamed of traveling but felt overwhelmed by planning and worried about costs..."
-                </p>
-                <p className="text-base mb-4">
-                  After struggling through my first solo trip to Barcelona and making costly mistakes, I realized students needed a better way to travel smart and save money.
-                </p>
-                <p className="text-base mb-4">
-                  That's why I created Student Travel Buddy - to give every student the insider knowledge and discounts I wish I had!
+      <section className="py-6 px-4">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-2xl font-display text-sunny-orange-dark mb-4">
+            MEET <span className="text-sunny-yellow-dark">DOMINIKA</span>
+          </h2>
+          <div className="sunny-card transform -rotate-1">
+            <div className="flex flex-col items-center gap-4">
+              <img 
+                alt="Dominika - Founder of Student Travel Buddy" 
+                className="rounded-lg shadow-xl max-w-xs w-full border-4 border-white transform rotate-3" 
+                src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" 
+              />
+              <div className="text-center">
+                <p className="text-base mb-2 font-handwritten text-gray-700">
+                  "Expert in finding the best student deals! I've traveled 30+ countries and studied abroad in Norway, Australia, and USA."
                 </p>
                 <div className="sunny-badge transform rotate-3 inline-block">
-                  Your travel sister ✨
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <div className="transform rotate-3 hover:rotate-0 transition-all">
-                <img 
-                  alt="Dominika - Founder of Student Travel Buddy" 
-                  className="rounded-lg shadow-xl max-w-sm w-full border-4 border-white" 
-                  src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" 
-                />
-                <div className="sunny-tag bg-sunny-yellow text-sunny-orange-dark mt-2 text-center font-handwritten">
-                  Founder & Fellow Student Traveler
+                  Your deal-finding expert ✨
                 </div>
               </div>
             </div>
