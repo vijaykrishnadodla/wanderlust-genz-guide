@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe } from 'lucide-react';
@@ -158,7 +159,7 @@ const FlyerPage = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            {["🤖 Sunny AI: Personalized travel planning", "💳 Official ISIC card with global discounts", "🗺️ Hidden gems maps & local recommendations", "👥 City community groups & student meetups", "📱 24/7 travel support & emergency help", "🎒 Travel prep checklists & packing guides", "🏠 Verified accommodation recommendations", "🎉 Exclusive events & group trip opportunities"].map((benefit, index) => (
+            {["☀️ Personalized travel planning", "💳 Official ISIC card with global discounts", "🗺️ Hidden gems maps & local recommendations", "👥 City community groups & student meetups", "📱 24/7 travel support & emergency help", "🎒 Travel prep checklists & packing guides", "🏠 Verified accommodation recommendations", "🎉 Exclusive events & group trip opportunities"].map((benefit, index) => (
               <div key={index} className="sunny-card flex items-center gap-3 hover:scale-105 transition-all">
                 <Check className="w-6 h-6 text-sunny-orange shrink-0" />
                 <span className="text-left font-medium">{benefit}</span>
