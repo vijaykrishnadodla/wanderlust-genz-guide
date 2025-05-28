@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe, Camera } from 'lucide-react';
@@ -171,28 +172,24 @@ const FlyerPage = () => {
       <WaveDivider />
 
       {/* Meet Dominika - Personal Section */}
-      <section className="py-4 px-4">
-        <div className="flex justify-center">
-          <div className="w-32 md:w-36"> {/* Approximately 1.5 inches wide */}
-            <div className="sunny-card transform -rotate-1 p-3">
-              <div className="flex flex-col items-center gap-2">
-                <div className="text-center mb-2">
-                  <h3 className="text-sm font-display text-sunny-orange-dark">
-                    MEET <span className="text-sunny-yellow-dark">DOMINIKA</span>
-                  </h3>
-                </div>
-                <img 
-                  alt="Dominika - Founder" 
-                  className="rounded-lg shadow-lg w-16 h-16 border-2 border-white transform rotate-3 object-cover" 
-                  src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" 
-                />
-                <div className="text-center">
-                  <p className="text-xs mb-1 font-handwritten text-gray-700">
-                    "Deal expert! 30+ countries, studied in Norway, Australia & USA"
-                  </p>
-                  <div className="sunny-badge text-xs transform rotate-2 inline-block px-2 py-1">
-                    Your travel sister ✨
-                  </div>
+      <section className="py-6 px-4">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-2xl font-display text-sunny-orange-dark mb-4">
+            MEET <span className="text-sunny-yellow-dark">DOMINIKA</span>
+          </h2>
+          <div className="sunny-card transform -rotate-1">
+            <div className="flex flex-col items-center gap-4">
+              <img 
+                alt="Dominika - Founder of Student Travel Buddy" 
+                className="rounded-lg shadow-xl max-w-xs w-full border-4 border-white transform rotate-3" 
+                src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" 
+              />
+              <div className="text-center">
+                <p className="text-base mb-2 font-handwritten text-gray-700">
+                  "Expert in finding the best student deals! I've traveled 30+ countries and studied abroad in Norway, Australia, and USA."
+                </p>
+                <div className="sunny-badge transform rotate-3 inline-block">
+                  Your deal-finding expert ✨
                 </div>
               </div>
             </div>
