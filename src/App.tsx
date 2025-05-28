@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,8 +20,9 @@ import CheckoutVerifyPage from "./pages/checkout/CheckoutVerifyPage";
 import CheckoutUploadDocsPage from "./pages/checkout/CheckoutUploadDocsPage";
 import CheckoutConfirmationPage from "./pages/checkout/CheckoutConfirmationPage";
 import StudentVerificationConsentPage from "./pages/StudentVerificationConsentPage";
-import TermsAndConditionsPage from "./pages/TermsAndConditionsPage"; // Added import
-import PrivacyPolicyPage from "./pages/PrivacyPolicyPage"; // Added import
+import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import FlyerPage from "./pages/FlyerPage";
 
 const queryClient = new QueryClient();
 
@@ -39,12 +41,12 @@ const App = () => (
             <Route path="/funnel" element={<FunnelLandingPage />} />
             <Route path="/epic-perks" element={<EpicPerksPage />} />
             <Route path="/templates" element={<Templates />} />
+            <Route path="/flyer" element={<FlyerPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/checkout/details" element={<CheckoutDetailsPage />} />
             <Route path="/checkout/payment" element={<CheckoutPaymentPage />} />
             <Route path="/checkout/verify" element={<CheckoutVerifyPage />} />
             <Route path="/checkout/upload-docs" element={<CheckoutUploadDocsPage />} />
-            {/* Updated Checkout Confirmation Routes */}
             <Route path="/checkout/confirmation/success" element={<CheckoutConfirmationPage />} />
             <Route path="/checkout/confirmation/manual" element={<CheckoutConfirmationPage />} />
             <Route path="/student-verification-consent" element={<StudentVerificationConsentPage />} />
