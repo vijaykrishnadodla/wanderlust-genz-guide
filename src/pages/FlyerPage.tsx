@@ -4,8 +4,10 @@ import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane
 import SunnyMascot from '@/components/SunnyMascot';
 import { Link } from 'react-router-dom';
 import WaveDivider from '@/components/WaveDivider';
+
 const FlyerPage = () => {
-  return <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight overflow-hidden">
+  return (
+    <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight overflow-hidden">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
       
@@ -87,7 +89,7 @@ const FlyerPage = () => {
                 </div>
                 <h3 className="text-xl font-bold text-sunny-orange-dark mb-2">TRAVELING SOLO & SCARED?</h3>
                 <div className="text-2xl font-bold text-sunny-orange mb-2">✅ JOIN OUR COMMUNITY!</div>
-                <p className="text-gray-700 mb-4">Connect with 5,000+ verified students in WhatsApp groups worldwide!</p>
+                <p className="text-gray-700 mb-4">Connect with 5,000+ verified students in community groups worldwide!</p>
                 <div className="sunny-badge">
                   Never travel alone again
                 </div>
@@ -156,10 +158,12 @@ const FlyerPage = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            {["🤖 Sunny AI: Personalized travel planning", "💳 Official ISIC card with global discounts", "🗺️ Hidden gems maps & local recommendations", "👥 City WhatsApp groups & student meetups", "📱 24/7 travel support & emergency help", "🎒 Travel prep checklists & packing guides", "🏠 Verified accommodation recommendations", "🎉 Exclusive events & group trip opportunities"].map((benefit, index) => <div key={index} className="sunny-card flex items-center gap-3 hover:scale-105 transition-all">
+            {["🤖 Sunny AI: Personalized travel planning", "💳 Official ISIC card with global discounts", "🗺️ Hidden gems maps & local recommendations", "👥 City community groups & student meetups", "📱 24/7 travel support & emergency help", "🎒 Travel prep checklists & packing guides", "🏠 Verified accommodation recommendations", "🎉 Exclusive events & group trip opportunities"].map((benefit, index) => (
+              <div key={index} className="sunny-card flex items-center gap-3 hover:scale-105 transition-all">
                 <Check className="w-6 h-6 text-sunny-orange shrink-0" />
                 <span className="text-left font-medium">{benefit}</span>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -273,6 +277,8 @@ const FlyerPage = () => {
           Limited time 30% discount - regular price $29/year
         </p>
       </footer>
-    </div>;
+    </div>
+  );
 };
+
 export default FlyerPage;
