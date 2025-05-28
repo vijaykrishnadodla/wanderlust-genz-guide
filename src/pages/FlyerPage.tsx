@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe, Camera } from 'lucide-react';
+import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe, Camera, QrCode } from 'lucide-react';
 import SunnyMascot from '@/components/SunnyMascot';
 import { Link } from 'react-router-dom';
 import WaveDivider from '@/components/WaveDivider';
@@ -175,7 +175,7 @@ const FlyerPage = () => {
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="sunny-card">
-            <h2 className="text-4xl font-display text-sunny-orange-dark mb-6 transform hover:-rotate-1 transition-all">
+            <h2 className="text-4xl font-display text-sunny-orange-dark mb-6 hover:-rotate-1 transition-all">
               START YOUR ADVENTURE TODAY!
             </h2>
             
@@ -192,13 +192,29 @@ const FlyerPage = () => {
               </div>
             </div>
 
-            <Link to="/checkout">
-              <Button className="sunny-button text-xl font-bold px-12 py-6 mb-6 hover:scale-105 transition-all">
-                <Users className="w-6 h-6 mr-2" />
-                JOIN FULLTIMER NOW
-                <ArrowRight className="w-6 h-6 ml-2" />
-              </Button>
-            </Link>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-6">
+              <Link to="/checkout">
+                <Button className="sunny-button text-xl font-bold px-12 py-6 hover:scale-105 transition-all">
+                  <Users className="w-6 h-6 mr-2" />
+                  JOIN FULLTIMER NOW
+                  <ArrowRight className="w-6 h-6 ml-2" />
+                </Button>
+              </Link>
+
+              <div className="flex flex-col items-center gap-2">
+                <div className="bg-white p-4 rounded-lg border-2 border-sunny-orange-light shadow-sm">
+                  <div className="flex items-center justify-center w-32 h-32 bg-white rounded border">
+                    <div className="text-center">
+                      <QrCode className="w-20 h-20 mx-auto mb-2 text-gray-800" />
+                      <div className="text-xs text-gray-600">Scan to join</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-sm text-gray-600 font-medium">
+                  Quick checkout with your phone
+                </div>
+              </div>
+            </div>
 
             <div className="flex justify-center items-center gap-6 text-sm text-gray-600">
               <div className="flex items-center gap-1">
