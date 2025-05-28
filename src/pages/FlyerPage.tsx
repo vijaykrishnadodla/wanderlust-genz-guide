@@ -1,14 +1,11 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe } from 'lucide-react';
 import SunnyMascot from '@/components/SunnyMascot';
 import { Link } from 'react-router-dom';
 import WaveDivider from '@/components/WaveDivider';
-
 const FlyerPage = () => {
-  return (
-    <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight overflow-hidden">
+  return <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight overflow-hidden">
       {/* Film grain texture overlay */}
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
       
@@ -59,7 +56,7 @@ const FlyerPage = () => {
                   <MapPin className="w-8 h-8 text-sunny-orange-dark" />
                 </div>
                 <h3 className="text-xl font-bold text-sunny-orange-dark mb-2">PLANNING OVERWHELM?</h3>
-                <div className="text-2xl font-bold text-sunny-orange mb-2">✅ SUNNY AI SOLVES THIS!</div>
+                <div className="text-2xl font-bold text-sunny-orange mb-2">✅ WE SOLVES THIS!</div>
                 <p className="text-gray-700 mb-4">Personalized itineraries, hidden gems, and insider tips from real students worldwide!</p>
                 <div className="sunny-badge">
                   Save 10+ hours of research
@@ -112,14 +109,16 @@ const FlyerPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div className="sunny-card sunny-bounce">
               <div className="text-center">
-                <img src="/lovable-uploads/fce2b689-f403-4f89-9f79-0091c0c3be6f.png" alt="ISIC Logo" className="h-16 mx-auto mb-4" />
+                <img alt="ISIC Logo" className="h-16 mx-auto mb-4" src="/lovable-uploads/b5a79eba-f98b-4e5f-9717-ff8fce4cc79a.png" />
                 <h3 className="text-2xl font-bold text-sunny-orange-dark mb-2">OFFICIAL ISIC CARD</h3>
                 <div className="text-3xl font-bold text-sunny-orange mb-2">Save up to 50%</div>
                 <p className="text-gray-700">On flights, accommodation, food, museums, and entertainment worldwide!</p>
               </div>
             </div>
             
-            <div className="sunny-card sunny-bounce" style={{ animationDelay: '0.2s' }}>
+            <div className="sunny-card sunny-bounce" style={{
+            animationDelay: '0.2s'
+          }}>
               <div className="text-center">
                 <div className="w-16 h-16 bg-sunny-gradient rounded-full flex items-center justify-center mx-auto mb-4">
                   <Plane className="w-8 h-8 text-white" />
@@ -157,21 +156,10 @@ const FlyerPage = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            {[
-              "🤖 Sunny AI: Personalized travel planning",
-              "💳 Official ISIC card with global discounts",
-              "🗺️ Hidden gems maps & local recommendations", 
-              "👥 City WhatsApp groups & student meetups",
-              "📱 24/7 travel support & emergency help",
-              "🎒 Travel prep checklists & packing guides",
-              "🏠 Verified accommodation recommendations",
-              "🎉 Exclusive events & group trip opportunities"
-            ].map((benefit, index) => (
-              <div key={index} className="sunny-card flex items-center gap-3 hover:scale-105 transition-all">
+            {["🤖 Sunny AI: Personalized travel planning", "💳 Official ISIC card with global discounts", "🗺️ Hidden gems maps & local recommendations", "👥 City WhatsApp groups & student meetups", "📱 24/7 travel support & emergency help", "🎒 Travel prep checklists & packing guides", "🏠 Verified accommodation recommendations", "🎉 Exclusive events & group trip opportunities"].map((benefit, index) => <div key={index} className="sunny-card flex items-center gap-3 hover:scale-105 transition-all">
                 <Check className="w-6 h-6 text-sunny-orange shrink-0" />
                 <span className="text-left font-medium">{benefit}</span>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -285,8 +273,6 @@ const FlyerPage = () => {
           Limited time 30% discount - regular price $29/year
         </p>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default FlyerPage;
