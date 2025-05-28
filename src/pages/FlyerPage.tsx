@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe, Camera } from 'lucide-react';
@@ -12,7 +13,7 @@ const FlyerPage = () => {
       <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
       
       {/* Launch Badge */}
-      <div className="absolute top-4 right-4 sunny-tag bg-sunny-gradient text-white px-4 py-2 rounded-full transform rotate-12 shadow-xl animate-pulse z-20">
+      <div className="absolute top-4 right-4 sunny-tag bg-sunny-gradient text-white px-4 py-2 rounded-full transform hover:rotate-12 transition-all shadow-xl animate-pulse z-20">
         <span className="font-bold text-sm">🚀 WE ARE JUST LAUNCHING!</span>
       </div>
 
@@ -23,7 +24,7 @@ const FlyerPage = () => {
             PLANNING TO TRAVEL THIS YEAR <span className="text-sunny-yellow-dark">AS A STUDENT?</span>
           </h1>
           
-          <div className="sunny-card bg-sunny-gradient text-white p-6 mb-6 transform -rotate-1 sunny-wiggle">
+          <div className="sunny-card bg-sunny-gradient text-white p-6 mb-6 transform hover:-rotate-1 transition-all sunny-wiggle">
             <h2 className="text-3xl font-bold mb-4">
               DO NOT MISS OUT ON THESE MASSIVE DISCOUNTS!
             </h2>
@@ -34,7 +35,7 @@ const FlyerPage = () => {
             </div>
           </div>
 
-          <div className="sunny-card bg-sunny-yellow text-sunny-orange-dark p-4 transform rotate-1">
+          <div className="sunny-card bg-sunny-yellow text-sunny-orange-dark p-4 transform hover:rotate-1 transition-all">
             <h3 className="text-2xl font-bold">
               ⚡ STOP wasting money on tourist traps and overpriced everything!
             </h3>
@@ -52,7 +53,7 @@ const FlyerPage = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {/* Planning Headache */}
-            <div className="sunny-card transform rotate-1 hover:rotate-0 transition-all sunny-wiggle">
+            <div className="sunny-card transform hover:rotate-1 transition-all sunny-wiggle">
               <div className="text-center">
                 <div className="w-16 h-16 bg-sunny-orange-light/40 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-sunny-orange-dark" />
@@ -67,7 +68,7 @@ const FlyerPage = () => {
             </div>
 
             {/* Budget Restrictions */}
-            <div className="sunny-card transform -rotate-1 hover:rotate-0 transition-all sunny-wiggle">
+            <div className="sunny-card transform hover:-rotate-1 transition-all sunny-wiggle">
               <div className="text-center">
                 <div className="w-16 h-16 bg-sunny-yellow-light/40 rounded-full flex items-center justify-center mx-auto mb-4">
                   <DollarSign className="w-8 h-8 text-sunny-orange-dark" />
@@ -82,7 +83,7 @@ const FlyerPage = () => {
             </div>
 
             {/* Solo Travel Fear */}
-            <div className="sunny-card transform rotate-1 hover:rotate-0 transition-all sunny-wiggle">
+            <div className="sunny-card transform hover:rotate-1 transition-all sunny-wiggle">
               <div className="text-center">
                 <div className="w-16 h-16 bg-sunny-yellow-pale rounded-full flex items-center justify-center mx-auto mb-4">
                   <Heart className="w-8 h-8 text-sunny-orange-dark" />
@@ -174,7 +175,7 @@ const FlyerPage = () => {
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="sunny-card">
-            <h2 className="text-4xl font-display text-sunny-orange-dark mb-6 transform -rotate-1">
+            <h2 className="text-4xl font-display text-sunny-orange-dark mb-6 transform hover:-rotate-1 transition-all">
               START YOUR ADVENTURE TODAY!
             </h2>
             
@@ -255,7 +256,7 @@ const FlyerPage = () => {
             <div className="flex flex-col items-center">
               <div className="flex items-center gap-4 mb-4">
                 <SunnyMascot size="lg" travelStyle="adventure" className="sunny-bounce" />
-                <div className="bg-sunny-yellow text-sunny-orange-dark px-3 py-1 rounded-full text-sm font-bold transform rotate-12 max-w-[180px]">
+                <div className="bg-sunny-yellow text-sunny-orange-dark px-3 py-1 rounded-full text-sm font-bold transform hover:rotate-12 transition-all max-w-[180px]">
                   I'm Sunny, your new travel buddy! ✨
                 </div>
               </div>
@@ -276,7 +277,7 @@ const FlyerPage = () => {
                   <div className="text-sm text-gray-700 mb-2">
                     Founder & Fellow Student Traveler
                   </div>
-                  <div className="sunny-badge transform rotate-3">
+                  <div className="sunny-badge transform hover:rotate-3 transition-all">
                     Your travel sister ✨
                   </div>
                 </div>
@@ -298,7 +299,7 @@ const FlyerPage = () => {
       {/* Ambassador Program Section */}
       <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="sunny-card bg-sunny-yellow-light border-2 border-sunny-orange-light transform rotate-1">
+          <div className="sunny-card bg-sunny-yellow-light border-2 border-sunny-orange-light transform hover:rotate-1 transition-all">
             <h3 className="text-2xl font-display text-sunny-orange-dark mb-3">
               BECOME A <span className="text-sunny-yellow-dark">SUNSHINE LEADER!</span>
             </h3>
