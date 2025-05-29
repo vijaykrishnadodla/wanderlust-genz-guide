@@ -13,6 +13,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import PaymentCancelPage from "./pages/PaymentCancelPage";
 import AmbassadorApplicationPage from "./pages/AmbassadorApplicationPage";
+import AmbassadorTermsPage from "./pages/AmbassadorTermsPage";
 import NotFound from "./pages/NotFound";
 import CheckoutDetailsPage from "./pages/checkout/CheckoutDetailsPage";
 import CheckoutPaymentPage from "./pages/checkout/CheckoutPaymentPage";
@@ -55,6 +56,7 @@ const App = () => (
             <Route path="/payment-success" element={<PaymentSuccessPage />} />
             <Route path="/payment-cancel" element={<PaymentCancelPage />} />
             <Route path="/ambassador-application" element={<AmbassadorApplicationPage />} />
+            <Route path="/ambassador-terms" element={<AmbassadorTermsPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
