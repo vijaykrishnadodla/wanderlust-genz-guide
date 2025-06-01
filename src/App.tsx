@@ -24,6 +24,7 @@ import StudentVerificationConsentPage from "./pages/StudentVerificationConsentPa
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import FlyerPage from "./pages/FlyerPage";
+import Flyer2Page from "./pages/Flyer2Page";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ const App = () => (
             <Route path="/epic-perks" element={<EpicPerksPage />} />
             <Route path="/templates" element={<Templates />} />
             <Route path="/flyer" element={<FlyerPage />} />
+            <Route path="/flyer2" element={<Flyer2Page />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/checkout/details" element={<CheckoutDetailsPage />} />
             <Route path="/checkout/payment" element={<CheckoutPaymentPage />} />
