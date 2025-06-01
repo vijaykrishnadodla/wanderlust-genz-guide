@@ -1,9 +1,9 @@
+
 import React from 'react';
-import { Link } from 'react-router-dom'; // Added import
+import { Link } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-// Removed Globe, kept other necessary icons
-import { Compass, Sun, MapPin, ArrowRight, Sparkles, Star, Heart, Instagram, Facebook, Youtube } from 'lucide-react'; 
+import { Compass, Sun, MapPin, ArrowRight, Sparkles, Star, Heart, Instagram, Facebook, Youtube, Phone, Mail } from 'lucide-react';
 import SunnyMascot from './SunnyMascot';
 
 const Footer = () => {
@@ -12,7 +12,7 @@ const Footer = () => {
       platformName: 'Instagram',
       handle: '@studenttravelbuddyofficial',
       href: 'https://www.instagram.com/studenttravelbuddyofficial',
-      icon: <Instagram className="h-5 w-5" />, // Reduced size
+      icon: <Instagram className="h-5 w-5" />,
       bgColor: 'bg-white/50 backdrop-blur-sm',
       textColor: 'text-sunny-orange-dark',
       hoverEffect: 'hover:scale-105 hover:rotate-[-2deg] hover:bg-white/70',
@@ -23,7 +23,7 @@ const Footer = () => {
       platformName: 'Facebook',
       handle: '@studenttravelbuddyofficial',
       href: 'https://www.facebook.com/studenttravelbuddyofficial',
-      icon: <Facebook className="h-5 w-5" />, // Reduced size
+      icon: <Facebook className="h-5 w-5" />,
       bgColor: 'bg-white/50 backdrop-blur-sm',
       textColor: 'text-sunny-orange-dark',
       hoverEffect: 'hover:scale-105 hover:rotate-[2deg] hover:bg-white/70',
@@ -34,7 +34,7 @@ const Footer = () => {
       platformName: 'YouTube',
       handle: '@studenttravelbuddyofficial',
       href: 'https://www.youtube.com/@studenttravelbuddyofficial',
-      icon: <Youtube className="h-5 w-5" />, // Reduced size
+      icon: <Youtube className="h-5 w-5" />,
       bgColor: 'bg-white/50 backdrop-blur-sm',
       textColor: 'text-sunny-orange-dark',
       hoverEffect: 'hover:scale-105 hover:rotate-[-1deg] hover:bg-white/70',
@@ -46,15 +46,14 @@ const Footer = () => {
       handle: '@studenttravelbuddy.com',
       href: 'https://www.tiktok.com/@studenttravelbuddy.com',
       icon: (
-        <span className="flex items-center justify-center h-5 w-5"> {/* Adjusted parent span size */}
-          <svg fill="currentColor" viewBox="0 0 24 24" className="h-5 w-5"> {/* Icon color will be inherited */}
+        <span className="flex items-center justify-center h-5 w-5">
+          <svg fill="currentColor" viewBox="0 0 24 24" className="h-5 w-5">
             <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.5.09 1.53.03 3.08-.12 4.6-.95-.12-1.9-.36-2.79-.71a10.21 10.21 0 01-2.64-1.79c-.99-1.08-1.67-2.47-1.81-3.97-.13-.04-.26-.08-.39-.12zm-2.99 5.88c.13 2.04 1.01 3.94 2.42 5.24 1.4 1.3 3.33 1.96 5.34 1.78v3.81c-.88.12-1.76.17-2.64.17-2.38 0-4.69-1.02-6.33-2.7-1.64-1.67-2.56-3.9-2.56-6.23.01-1.46.02-2.93.01-4.39h3.8Z" />
           </svg>
         </span>
       ),
       bgColor: 'bg-white/50 backdrop-blur-sm',
       textColor: 'text-sunny-orange-dark',
-      accentClasses: '', // Removed TikTok specific shadow
       hoverEffect: 'hover:scale-105 hover:skew-y-[-2deg] hover:bg-white/70',
       iconBgColor: 'bg-sunny-yellow/50 group-hover:bg-sunny-yellow/70',
       emoji: '🎶'
@@ -63,9 +62,9 @@ const Footer = () => {
 
   const exploreLinks = [
     { name: 'Travel Styles', icon: <Compass className="h-4 w-4" />, href: '/#quiz' },
-    { name: 'City Guides', icon: <MapPin className="h-4 w-4" />, href: '/#' }, // Placeholder
+    { name: 'Free Resources', icon: <Star className="h-4 w-4" />, href: '/freebies' },
     { name: 'About Us', icon: <Sun className="h-4 w-4" />, href: '/#backstory' },
-    { name: 'Sunshine Club', icon: <Sparkles className="h-4 w-4" />, href: '/#sunshine-club' } // Added Sunshine Club
+    { name: 'Sunshine Club', icon: <Sparkles className="h-4 w-4" />, href: '/#sunshine-club' }
   ];
 
   return (
@@ -78,8 +77,8 @@ const Footer = () => {
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-sunny-orange/5 rounded-full blur-2xl opacity-70 pointer-events-none"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="flex flex-col gap-4 lg:col-span-2">
             <div className="flex items-center gap-3">
               <SunnyMascot size="sm" />
               <span className="font-display text-xl text-sunny-orange-dark">STUDENT TRAVEL BUDDY</span>
@@ -115,28 +114,33 @@ const Footer = () => {
 
           <div>
             <h3 className="font-display text-lg text-sunny-orange-dark mb-4 transform rotate-1 inline-block bg-white/40 px-3 py-1 rounded-lg backdrop-blur-sm">
-              CONNECT
+              CONTACT US
             </h3>
-            <ul className="space-y-3"> {/* Adjusted spacing */}
-              {socialLinks.map((item, index) => (
-                <li key={index}>
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center gap-2 p-2 rounded-xl transition-all duration-300 ease-in-out group transform hover:-translate-y-1 ${item.bgColor} ${item.textColor} ${item.hoverEffect} ${item.accentClasses || ''}`}
-                  >
-                    <span className={`flex items-center justify-center h-8 w-8 rounded-lg shadow-sm group-hover:scale-110 transition-transform ${item.iconBgColor}`}> {/* Reduced size */}
-                      {item.icon}
-                    </span>
-                    <div className="flex flex-col">
-                      <span className="font-display text-xs uppercase tracking-wider">{item.platformName} {item.emoji}</span> {/* Reduced size */}
-                      <span className="font-handwritten text-sm">{item.handle}</span> {/* Reduced size, changed font style */}
-                    </div>
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 text-midnight">
+                <span className="bg-white/50 p-2 rounded-full">
+                  <Phone className="h-4 w-4" />
+                </span>
+                <div>
+                  <p className="font-medium">Phone</p>
+                  <a href="tel:+12136323638" className="text-sm hover:text-sunny-orange transition-colors">
+                    +1 213 632 3638
                   </a>
-                </li>
-              ))}
-            </ul>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-3 text-midnight">
+                <span className="bg-white/50 p-2 rounded-full">
+                  <Mail className="h-4 w-4" />
+                </span>
+                <div>
+                  <p className="font-medium">Email</p>
+                  <a href="mailto:hello@studenttravelbuddy.com" className="text-sm hover:text-sunny-orange transition-colors">
+                    hello@studenttravelbuddy.com
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div>
@@ -155,6 +159,32 @@ const Footer = () => {
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </form>
+          </div>
+        </div>
+
+        {/* Social Links Section */}
+        <div className="mt-12 pt-8 border-t border-sunny-orange-dark/20">
+          <h4 className="font-display text-lg text-sunny-orange-dark mb-6 text-center">
+            CONNECT WITH US
+          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {socialLinks.map((item, index) => (
+              <a
+                key={index}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-2 p-3 rounded-xl transition-all duration-300 ease-in-out group transform hover:-translate-y-1 ${item.bgColor} ${item.textColor} ${item.hoverEffect}`}
+              >
+                <span className={`flex items-center justify-center h-8 w-8 rounded-lg shadow-sm group-hover:scale-110 transition-transform ${item.iconBgColor}`}>
+                  {item.icon}
+                </span>
+                <div className="flex flex-col">
+                  <span className="font-display text-xs uppercase tracking-wider">{item.platformName} {item.emoji}</span>
+                  <span className="font-handwritten text-sm">{item.handle}</span>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
 
