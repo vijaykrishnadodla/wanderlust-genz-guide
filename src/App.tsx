@@ -25,6 +25,7 @@ import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import FlyerPage from "./pages/FlyerPage";
 import Flyer2Page from "./pages/Flyer2Page";
+import Flyer3Page from "./pages/Flyer3Page";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
             <Route path="/templates" element={<Templates />} />
             <Route path="/flyer" element={<FlyerPage />} />
             <Route path="/flyer2" element={<Flyer2Page />} />
+            <Route path="/flyer3" element={<Flyer3Page />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/checkout/details" element={<CheckoutDetailsPage />} />
             <Route path="/checkout/payment" element={<CheckoutPaymentPage />} />
