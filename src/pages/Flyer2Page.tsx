@@ -1,19 +1,21 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Star, Clock, Users, MapPin, DollarSign, Heart, Plane, Globe, Camera } from 'lucide-react';
 import SunnyMascot from '@/components/SunnyMascot';
 import { Link } from 'react-router-dom';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 const Flyer2Page = () => {
   return (
-    <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight overflow-hidden">
-      {/* Film grain texture overlay */}
-      <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
-      
-      {/* FRONT FLYER SECTION */}
-      <section className="relative min-h-screen py-8 px-4 flex flex-col justify-center">
-        <div className="max-w-4xl mx-auto text-center">
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight overflow-hidden">
+        {/* Film grain texture overlay */}
+        <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
+        
+        {/* FRONT FLYER SECTION */}
+        <section className="relative min-h-screen py-8 px-4 flex flex-col justify-center">
           {/* Main Headline */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-display text-sunny-orange-dark mb-8 leading-tight">
             PLANNING TO TRAVEL THIS YEAR <span className="text-sunny-yellow-dark">AS A STUDENT?</span>
@@ -198,6 +200,7 @@ const Flyer2Page = () => {
         </div>
       </section>
     </div>
+    <Footer />
   );
 };
 
