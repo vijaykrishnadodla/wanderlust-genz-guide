@@ -7,7 +7,6 @@ import { Plus, X, Plane, Calendar, Heart } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SunnyMascot from '@/components/SunnyMascot';
-
 interface DestinationData {
   id: number;
   location: string;
@@ -16,7 +15,6 @@ interface DestinationData {
   vibes: string[];
   wishlist: string;
 }
-
 interface FormData {
   firstName: string;
   middleName: string;
@@ -24,16 +22,25 @@ interface FormData {
   email: string;
   destinations: DestinationData[];
 }
-
-const vibeOptions = [
-  { value: 'sun-beach', label: 'Sun & Beach 🏖️' },
-  { value: 'culture-museums', label: 'Culture & Museums 🏛️' },
-  { value: 'foodie-spots', label: 'Foodie Spots 🍜' },
-  { value: 'nature-hiking', label: 'Nature & Hiking 🌲' },
-  { value: 'nightlife', label: 'Nightlife 🎶' },
-  { value: 'budget-hacks', label: 'Budget Hacks 💸' }
-];
-
+const vibeOptions = [{
+  value: 'sun-beach',
+  label: 'Sun & Beach 🏖️'
+}, {
+  value: 'culture-museums',
+  label: 'Culture & Museums 🏛️'
+}, {
+  value: 'foodie-spots',
+  label: 'Foodie Spots 🍜'
+}, {
+  value: 'nature-hiking',
+  label: 'Nature & Hiking 🌲'
+}, {
+  value: 'nightlife',
+  label: 'Nightlife 🎶'
+}, {
+  value: 'budget-hacks',
+  label: 'Budget Hacks 💸'
+}];
 const PlanMyTripPage = () => {
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
@@ -49,10 +56,8 @@ const PlanMyTripPage = () => {
       wishlist: ''
     }]
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
   const addDestination = () => {
     const newId = Math.max(...formData.destinations.map(d => d.id)) + 1;
     setFormData(prev => ({
@@ -67,7 +72,6 @@ const PlanMyTripPage = () => {
       }]
     }));
   };
-
   const removeDestination = (id: number) => {
     if (formData.destinations.length > 1) {
       setFormData(prev => ({
@@ -76,23 +80,20 @@ const PlanMyTripPage = () => {
       }));
     }
   };
-
   const updateDestination = (id: number, field: keyof DestinationData, value: any) => {
     setFormData(prev => ({
       ...prev,
-      destinations: prev.destinations.map(dest => 
-        dest.id === id ? { ...dest, [field]: value } : dest
-      )
+      destinations: prev.destinations.map(dest => dest.id === id ? {
+        ...dest,
+        [field]: value
+      } : dest)
     }));
   };
-
   const toggleVibe = (destId: number, vibe: string) => {
     const destination = formData.destinations.find(d => d.id === destId);
     if (!destination) return;
-
     const currentVibes = destination.vibes;
     let newVibes;
-
     if (currentVibes.includes(vibe)) {
       newVibes = currentVibes.filter(v => v !== vibe);
     } else if (currentVibes.length < 3) {
@@ -100,24 +101,21 @@ const PlanMyTripPage = () => {
     } else {
       return; // Max 3 vibes reached
     }
-
     updateDestination(destId, 'vibes', newVibes);
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
       // Create form data for submission
       const submitData = new FormData();
-      
+
       // Add traveller info
       submitData.append('first_name', formData.firstName);
       submitData.append('middle_name', formData.middleName);
       submitData.append('last_name', formData.lastName);
       submitData.append('email', formData.email);
-      
+
       // Add destinations
       formData.destinations.forEach((dest, index) => {
         submitData.append(`destination_${index + 1}`, dest.location);
@@ -126,12 +124,10 @@ const PlanMyTripPage = () => {
         submitData.append(`vibe_${index + 1}`, dest.vibes.join(', '));
         submitData.append(`wishlist_${index + 1}`, dest.wishlist);
       });
-
       const response = await fetch('https://forms.studenttravelbuddy.com/submit', {
         method: 'POST',
         body: submitData
       });
-
       if (response.ok) {
         setSubmitted(true);
       }
@@ -141,10 +137,8 @@ const PlanMyTripPage = () => {
       setIsSubmitting(false);
     }
   };
-
   if (submitted) {
-    return (
-      <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight">
+    return <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight">
         <Navbar />
         <div className="min-h-screen flex items-center justify-center px-4 py-8">
           <div className="sunny-card max-w-2xl mx-auto text-center">
@@ -161,12 +155,9 @@ const PlanMyTripPage = () => {
           </div>
         </div>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
-  return (
-    <>
+  return <>
       <Navbar />
       <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight">
         <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
@@ -177,9 +168,7 @@ const PlanMyTripPage = () => {
             <h1 className="text-3xl md:text-5xl font-display text-sunny-orange-dark mb-6 leading-tight">
               Hey bestie! ✈️🌎 One step closer to your BEST trip ever — drop your travel dreams and we'll make magic happen!
             </h1>
-            <p className="text-lg md:text-xl text-midnight mb-8">
-              No cap, we're about to craft you the most fire itinerary that'll have your friends asking 'HOW did you find all these spots?!' 🔥
-            </p>
+            <p className="text-lg md:text-xl text-midnight mb-8">No cap, we're about to craft you the most fire itinerary that'll have your friends asking 'HOW did you find all these spots?!' 🔥🎁 You will receive a personalised student itinerary within 48 hours, packed with hand-picked discounts, events &amp; hotspots that match your vibe.</p>
             <div className="flex justify-center mb-8">
               <SunnyMascot size="lg" travelStyle="fashion" className="sunny-bounce" />
             </div>
@@ -199,53 +188,37 @@ const PlanMyTripPage = () => {
                     <Label htmlFor="firstName" className="text-sunny-orange-dark font-medium">
                       First Name *
                     </Label>
-                    <Input
-                      id="firstName"
-                      name="first_name"
-                      value={formData.firstName}
-                      onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
-                      className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
-                      required
-                    />
+                    <Input id="firstName" name="first_name" value={formData.firstName} onChange={e => setFormData(prev => ({
+                    ...prev,
+                    firstName: e.target.value
+                  }))} className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange" required />
                   </div>
                   <div>
                     <Label htmlFor="middleName" className="text-sunny-orange-dark font-medium">
                       Middle Name
                     </Label>
-                    <Input
-                      id="middleName"
-                      name="middle_name"
-                      value={formData.middleName}
-                      onChange={(e) => setFormData(prev => ({ ...prev, middleName: e.target.value }))}
-                      className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
-                    />
+                    <Input id="middleName" name="middle_name" value={formData.middleName} onChange={e => setFormData(prev => ({
+                    ...prev,
+                    middleName: e.target.value
+                  }))} className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange" />
                   </div>
                   <div>
                     <Label htmlFor="lastName" className="text-sunny-orange-dark font-medium">
                       Last Name *
                     </Label>
-                    <Input
-                      id="lastName"
-                      name="last_name"
-                      value={formData.lastName}
-                      onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
-                      className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
-                      required
-                    />
+                    <Input id="lastName" name="last_name" value={formData.lastName} onChange={e => setFormData(prev => ({
+                    ...prev,
+                    lastName: e.target.value
+                  }))} className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange" required />
                   </div>
                   <div>
                     <Label htmlFor="email" className="text-sunny-orange-dark font-medium">
                       Best Email *
                     </Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                      className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
-                      required
-                    />
+                    <Input id="email" name="email" type="email" value={formData.email} onChange={e => setFormData(prev => ({
+                    ...prev,
+                    email: e.target.value
+                  }))} className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange" required />
                   </div>
                 </div>
               </div>
@@ -258,17 +231,10 @@ const PlanMyTripPage = () => {
                 </h2>
                 
                 <div id="destinations" className="space-y-8">
-                  {formData.destinations.map((destination, index) => (
-                    <div key={destination.id} className="sunny-card bg-sunny-yellow-pale border border-sunny-orange-light/30 relative">
-                      {formData.destinations.length > 1 && (
-                        <button
-                          type="button"
-                          onClick={() => removeDestination(destination.id)}
-                          className="absolute top-4 right-4 p-2 text-sunny-orange-dark hover:text-sunny-orange rounded-full hover:bg-white/50 transition-colors"
-                        >
+                  {formData.destinations.map((destination, index) => <div key={destination.id} className="sunny-card bg-sunny-yellow-pale border border-sunny-orange-light/30 relative">
+                      {formData.destinations.length > 1 && <button type="button" onClick={() => removeDestination(destination.id)} className="absolute top-4 right-4 p-2 text-sunny-orange-dark hover:text-sunny-orange rounded-full hover:bg-white/50 transition-colors">
                           <X className="h-4 w-4" />
-                        </button>
-                      )}
+                        </button>}
                       
                       <h3 className="text-lg font-display text-sunny-orange-dark mb-4">
                         Destination {index + 1}
@@ -280,15 +246,7 @@ const PlanMyTripPage = () => {
                           <Label htmlFor={`location-${destination.id}`} className="text-sunny-orange-dark font-medium">
                             Where to? *
                           </Label>
-                          <Input
-                            id={`location-${destination.id}`}
-                            name={`destination_${index + 1}`}
-                            value={destination.location}
-                            onChange={(e) => updateDestination(destination.id, 'location', e.target.value)}
-                            placeholder="e.g., Tokyo, Japan or Bali, Indonesia"
-                            className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
-                            required
-                          />
+                          <Input id={`location-${destination.id}`} name={`destination_${index + 1}`} value={destination.location} onChange={e => updateDestination(destination.id, 'location', e.target.value)} placeholder="e.g., Tokyo, Japan or Bali, Indonesia" className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange" required />
                         </div>
 
                         {/* Dates */}
@@ -298,30 +256,14 @@ const PlanMyTripPage = () => {
                               <Calendar className="h-4 w-4" />
                               Start Date *
                             </Label>
-                            <Input
-                              id={`startDate-${destination.id}`}
-                              name={`start_date_${index + 1}`}
-                              type="date"
-                              value={destination.startDate}
-                              onChange={(e) => updateDestination(destination.id, 'startDate', e.target.value)}
-                              className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
-                              required
-                            />
+                            <Input id={`startDate-${destination.id}`} name={`start_date_${index + 1}`} type="date" value={destination.startDate} onChange={e => updateDestination(destination.id, 'startDate', e.target.value)} className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange" required />
                           </div>
                           <div>
                             <Label htmlFor={`endDate-${destination.id}`} className="text-sunny-orange-dark font-medium flex items-center gap-1">
                               <Calendar className="h-4 w-4" />
                               End Date *
                             </Label>
-                            <Input
-                              id={`endDate-${destination.id}`}
-                              name={`end_date_${index + 1}`}
-                              type="date"
-                              value={destination.endDate}
-                              onChange={(e) => updateDestination(destination.id, 'endDate', e.target.value)}
-                              className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
-                              required
-                            />
+                            <Input id={`endDate-${destination.id}`} name={`end_date_${index + 1}`} type="date" value={destination.endDate} onChange={e => updateDestination(destination.id, 'endDate', e.target.value)} className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange" required />
                           </div>
                         </div>
 
@@ -331,27 +273,13 @@ const PlanMyTripPage = () => {
                             What kind of experience are you looking for? (Pick up to 3)
                           </Label>
                           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                            {vibeOptions.map((vibe) => (
-                              <button
-                                key={vibe.value}
-                                type="button"
-                                onClick={() => toggleVibe(destination.id, vibe.value)}
-                                className={`p-3 rounded-xl border-2 text-sm font-medium transition-all text-left ${
-                                  destination.vibes.includes(vibe.value)
-                                    ? 'border-sunny-orange bg-sunny-orange text-white'
-                                    : 'border-sunny-orange-light/50 bg-white hover:border-sunny-orange-light hover:bg-sunny-yellow-pale'
-                                } ${destination.vibes.length >= 3 && !destination.vibes.includes(vibe.value) ? 'opacity-50 cursor-not-allowed' : ''}`}
-                                disabled={destination.vibes.length >= 3 && !destination.vibes.includes(vibe.value)}
-                              >
+                            {vibeOptions.map(vibe => <button key={vibe.value} type="button" onClick={() => toggleVibe(destination.id, vibe.value)} className={`p-3 rounded-xl border-2 text-sm font-medium transition-all text-left ${destination.vibes.includes(vibe.value) ? 'border-sunny-orange bg-sunny-orange text-white' : 'border-sunny-orange-light/50 bg-white hover:border-sunny-orange-light hover:bg-sunny-yellow-pale'} ${destination.vibes.length >= 3 && !destination.vibes.includes(vibe.value) ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={destination.vibes.length >= 3 && !destination.vibes.includes(vibe.value)}>
                                 {vibe.label}
-                              </button>
-                            ))}
+                              </button>)}
                           </div>
-                          {destination.vibes.length >= 3 && (
-                            <p className="text-sm text-sunny-orange-dark mt-2">
+                          {destination.vibes.length >= 3 && <p className="text-sm text-sunny-orange-dark mt-2">
                               Max 3 vibes selected! Uncheck one to add another.
-                            </p>
-                          )}
+                            </p>}
                         </div>
 
                         {/* Wishlist */}
@@ -359,26 +287,13 @@ const PlanMyTripPage = () => {
                           <Label htmlFor={`wishlist-${destination.id}`} className="text-sunny-orange-dark font-medium">
                             Your wishlist & must-dos
                           </Label>
-                          <Textarea
-                            id={`wishlist-${destination.id}`}
-                            name={`wishlist_${index + 1}`}
-                            value={destination.wishlist}
-                            onChange={(e) => updateDestination(destination.id, 'wishlist', e.target.value)}
-                            placeholder="e.g., Try authentic ramen, visit temples, experience nightlife, find best Instagram spots..."
-                            rows={3}
-                            className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange resize-none"
-                          />
+                          <Textarea id={`wishlist-${destination.id}`} name={`wishlist_${index + 1}`} value={destination.wishlist} onChange={e => updateDestination(destination.id, 'wishlist', e.target.value)} placeholder="e.g., Try authentic ramen, visit temples, experience nightlife, find best Instagram spots..." rows={3} className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange resize-none" />
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
 
-                <Button
-                  type="button"
-                  onClick={addDestination}
-                  className="w-full mt-6 bg-sunny-yellow hover:bg-sunny-yellow-light text-sunny-orange-dark font-bold rounded-xl flex items-center justify-center gap-2"
-                >
+                <Button type="button" onClick={addDestination} className="w-full mt-6 bg-sunny-yellow hover:bg-sunny-yellow-light text-sunny-orange-dark font-bold rounded-xl flex items-center justify-center gap-2">
                   <Plus className="h-5 w-5" />
                   Add another destination ✈️
                 </Button>
@@ -386,11 +301,7 @@ const PlanMyTripPage = () => {
 
               {/* Submit Button */}
               <div className="space-y-4">
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-sunny-gradient text-white font-bold text-lg py-6 rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                >
+                <Button type="submit" disabled={isSubmitting} className="w-full bg-sunny-gradient text-white font-bold text-lg py-6 rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
                   {isSubmitting ? 'Crafting your adventure...' : '✨ Get My Custom Itinerary'}
                 </Button>
                 
@@ -403,8 +314,6 @@ const PlanMyTripPage = () => {
         </div>
       </div>
       <Footer />
-    </>
-  );
+    </>;
 };
-
 export default PlanMyTripPage;
