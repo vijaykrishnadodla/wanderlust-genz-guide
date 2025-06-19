@@ -1,0 +1,411 @@
+
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Plus, X, MapPin, Calendar, Heart } from 'lucide-react';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import SunnyMascot from '@/components/SunnyMascot';
+
+interface DestinationData {
+  id: number;
+  location: string;
+  startDate: string;
+  endDate: string;
+  vibes: string[];
+  wishlist: string;
+}
+
+interface FormData {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  email: string;
+  destinations: DestinationData[];
+}
+
+const vibeOptions = [
+  { value: 'sun-beach', label: 'Sun & Beach 🏖️' },
+  { value: 'culture-museums', label: 'Culture & Museums 🏛️' },
+  { value: 'foodie-spots', label: 'Foodie Spots 🍜' },
+  { value: 'nature-hiking', label: 'Nature & Hiking 🌲' },
+  { value: 'nightlife', label: 'Nightlife 🎶' },
+  { value: 'budget-hacks', label: 'Budget Hacks 💸' }
+];
+
+const PlanMyTripPage = () => {
+  const [formData, setFormData] = useState<FormData>({
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    email: '',
+    destinations: [{
+      id: 1,
+      location: '',
+      startDate: '',
+      endDate: '',
+      vibes: [],
+      wishlist: ''
+    }]
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const addDestination = () => {
+    const newId = Math.max(...formData.destinations.map(d => d.id)) + 1;
+    setFormData(prev => ({
+      ...prev,
+      destinations: [...prev.destinations, {
+        id: newId,
+        location: '',
+        startDate: '',
+        endDate: '',
+        vibes: [],
+        wishlist: ''
+      }]
+    }));
+  };
+
+  const removeDestination = (id: number) => {
+    if (formData.destinations.length > 1) {
+      setFormData(prev => ({
+        ...prev,
+        destinations: prev.destinations.filter(d => d.id !== id)
+      }));
+    }
+  };
+
+  const updateDestination = (id: number, field: keyof DestinationData, value: any) => {
+    setFormData(prev => ({
+      ...prev,
+      destinations: prev.destinations.map(dest => 
+        dest.id === id ? { ...dest, [field]: value } : dest
+      )
+    }));
+  };
+
+  const toggleVibe = (destId: number, vibe: string) => {
+    const destination = formData.destinations.find(d => d.id === destId);
+    if (!destination) return;
+
+    const currentVibes = destination.vibes;
+    let newVibes;
+
+    if (currentVibes.includes(vibe)) {
+      newVibes = currentVibes.filter(v => v !== vibe);
+    } else if (currentVibes.length < 3) {
+      newVibes = [...currentVibes, vibe];
+    } else {
+      return; // Max 3 vibes reached
+    }
+
+    updateDestination(destId, 'vibes', newVibes);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Create form data for submission
+      const submitData = new FormData();
+      
+      // Add traveller info
+      submitData.append('first_name', formData.firstName);
+      submitData.append('middle_name', formData.middleName);
+      submitData.append('last_name', formData.lastName);
+      submitData.append('email', formData.email);
+      
+      // Add destinations
+      formData.destinations.forEach((dest, index) => {
+        submitData.append(`destination_${index + 1}`, dest.location);
+        submitData.append(`start_date_${index + 1}`, dest.startDate);
+        submitData.append(`end_date_${index + 1}`, dest.endDate);
+        submitData.append(`vibe_${index + 1}`, dest.vibes.join(', '));
+        submitData.append(`wishlist_${index + 1}`, dest.wishlist);
+      });
+
+      const response = await fetch('https://forms.studenttravelbuddy.com/submit', {
+        method: 'POST',
+        body: submitData
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight">
+        <Navbar />
+        <div className="min-h-screen flex items-center justify-center px-4 py-8">
+          <div className="sunny-card max-w-2xl mx-auto text-center">
+            <SunnyMascot size="xl" travelStyle="adventure" className="mx-auto mb-6" />
+            <h1 className="text-3xl md:text-4xl font-display text-sunny-orange-dark mb-4">
+              ✨ Your Trip Plan is On Its Way! ✨
+            </h1>
+            <p className="text-lg font-handwritten text-midnight mb-6">
+              Thanks for trusting us with your dream adventure! Our travel wizards are crafting your personalized itinerary and will email it to you within 48 hours.
+            </p>
+            <p className="text-sm text-sunny-orange-dark">
+              Keep an eye on your inbox (and spam folder, just in case) 📧
+            </p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight">
+        <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
+        
+        <div className="relative z-10 px-4 py-8">
+          {/* Hero Section */}
+          <div className="max-w-4xl mx-auto text-center mb-8">
+            <h1 className="text-3xl md:text-5xl font-display text-sunny-orange-dark mb-6 leading-tight">
+              📌 Tell us where you're going, when, and what you dream of doing — and let us handle the rest for you
+            </h1>
+            <p className="text-lg md:text-xl font-handwritten text-midnight mb-8">
+              Get your personalized travel itinerary crafted by our team of travel experts within 48 hours. No more endless research or FOMO about missing the best spots!
+            </p>
+            <div className="flex justify-center mb-8">
+              <SunnyMascot size="lg" travelStyle="fashion" className="sunny-bounce" />
+            </div>
+          </div>
+
+          {/* Form Card */}
+          <div className="max-w-3xl mx-auto">
+            <form onSubmit={handleSubmit} className="sunny-card space-y-8">
+              {/* Traveller Info Section */}
+              <div>
+                <h2 className="text-2xl font-display text-sunny-orange-dark mb-6 flex items-center gap-2">
+                  <Heart className="h-6 w-6" />
+                  Tell us about yourself
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <Label htmlFor="firstName" className="text-sunny-orange-dark font-medium">
+                      First Name *
+                    </Label>
+                    <Input
+                      id="firstName"
+                      name="first_name"
+                      value={formData.firstName}
+                      onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
+                      className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="middleName" className="text-sunny-orange-dark font-medium">
+                      Middle Name
+                    </Label>
+                    <Input
+                      id="middleName"
+                      name="middle_name"
+                      value={formData.middleName}
+                      onChange={(e) => setFormData(prev => ({ ...prev, middleName: e.target.value }))}
+                      className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="lastName" className="text-sunny-orange-dark font-medium">
+                      Last Name *
+                    </Label>
+                    <Input
+                      id="lastName"
+                      name="last_name"
+                      value={formData.lastName}
+                      onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
+                      className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="email" className="text-sunny-orange-dark font-medium">
+                      Best Email *
+                    </Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                      className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Destinations Section */}
+              <div>
+                <h2 className="text-2xl font-display text-sunny-orange-dark mb-6 flex items-center gap-2">
+                  <MapPin className="h-6 w-6" />
+                  Your dream destinations
+                </h2>
+                
+                <div id="destinations" className="space-y-8">
+                  {formData.destinations.map((destination, index) => (
+                    <div key={destination.id} className="sunny-card bg-sunny-yellow-pale border border-sunny-orange-light/30 relative">
+                      {formData.destinations.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => removeDestination(destination.id)}
+                          className="absolute top-4 right-4 p-2 text-sunny-orange-dark hover:text-sunny-orange rounded-full hover:bg-white/50 transition-colors"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      )}
+                      
+                      <h3 className="text-lg font-display text-sunny-orange-dark mb-4">
+                        Destination {index + 1}
+                      </h3>
+                      
+                      <div className="space-y-6">
+                        {/* Location */}
+                        <div>
+                          <Label htmlFor={`location-${destination.id}`} className="text-sunny-orange-dark font-medium">
+                            Where to? *
+                          </Label>
+                          <Input
+                            id={`location-${destination.id}`}
+                            name={`destination_${index + 1}`}
+                            value={destination.location}
+                            onChange={(e) => updateDestination(destination.id, 'location', e.target.value)}
+                            placeholder="e.g., Tokyo, Japan or Bali, Indonesia"
+                            className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
+                            required
+                          />
+                        </div>
+
+                        {/* Dates */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor={`startDate-${destination.id}`} className="text-sunny-orange-dark font-medium flex items-center gap-1">
+                              <Calendar className="h-4 w-4" />
+                              Start Date *
+                            </Label>
+                            <Input
+                              id={`startDate-${destination.id}`}
+                              name={`start_date_${index + 1}`}
+                              type="date"
+                              value={destination.startDate}
+                              onChange={(e) => updateDestination(destination.id, 'startDate', e.target.value)}
+                              className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor={`endDate-${destination.id}`} className="text-sunny-orange-dark font-medium flex items-center gap-1">
+                              <Calendar className="h-4 w-4" />
+                              End Date *
+                            </Label>
+                            <Input
+                              id={`endDate-${destination.id}`}
+                              name={`end_date_${index + 1}`}
+                              type="date"
+                              value={destination.endDate}
+                              onChange={(e) => updateDestination(destination.id, 'endDate', e.target.value)}
+                              className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        {/* Vibe Check */}
+                        <div>
+                          <Label className="text-sunny-orange-dark font-medium mb-3 block">
+                            Vibe Check (Pick up to 3)
+                          </Label>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                            {vibeOptions.map((vibe) => (
+                              <button
+                                key={vibe.value}
+                                type="button"
+                                onClick={() => toggleVibe(destination.id, vibe.value)}
+                                className={`p-3 rounded-xl border-2 text-sm font-medium transition-all text-left ${
+                                  destination.vibes.includes(vibe.value)
+                                    ? 'border-sunny-orange bg-sunny-orange text-white'
+                                    : 'border-sunny-orange-light/50 bg-white hover:border-sunny-orange-light hover:bg-sunny-yellow-pale'
+                                } ${destination.vibes.length >= 3 && !destination.vibes.includes(vibe.value) ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                disabled={destination.vibes.length >= 3 && !destination.vibes.includes(vibe.value)}
+                              >
+                                {vibe.label}
+                              </button>
+                            ))}
+                          </div>
+                          {destination.vibes.length >= 3 && (
+                            <p className="text-sm text-sunny-orange-dark mt-2">
+                              Max 3 vibes selected! Uncheck one to add another.
+                            </p>
+                          )}
+                        </div>
+
+                        {/* Wishlist */}
+                        <div>
+                          <Label htmlFor={`wishlist-${destination.id}`} className="text-sunny-orange-dark font-medium">
+                            Your wishlist & must-dos
+                          </Label>
+                          <Textarea
+                            id={`wishlist-${destination.id}`}
+                            name={`wishlist_${index + 1}`}
+                            value={destination.wishlist}
+                            onChange={(e) => updateDestination(destination.id, 'wishlist', e.target.value)}
+                            placeholder="e.g., Try authentic ramen, visit temples, experience nightlife, find best Instagram spots..."
+                            rows={3}
+                            className="rounded-xl border-sunny-orange-light/50 focus-visible:ring-sunny-orange resize-none"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <Button
+                  type="button"
+                  onClick={addDestination}
+                  className="w-full mt-6 bg-sunny-yellow hover:bg-sunny-yellow-light text-sunny-orange-dark font-bold rounded-xl flex items-center justify-center gap-2"
+                >
+                  <Plus className="h-5 w-5" />
+                  ➕ Add another destination
+                </Button>
+              </div>
+
+              {/* Submit Button */}
+              <div className="space-y-4">
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-sunny-gradient text-white font-bold text-lg py-6 rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? 'Crafting your adventure...' : '✨ Get My Custom Itinerary'}
+                </Button>
+                
+                <p className="text-sm text-center text-sunny-orange-dark">
+                  Sunny & team value privacy. We'll use your details solely to craft your itinerary and email it back – pinky promise. 💌
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
+};
+
+export default PlanMyTripPage;

@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Sun, Sparkles, Users, Check, Gift } from 'lucide-react';
+import { Menu, X, Sun, Sparkles, Users, Check, Gift, MapPin } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,6 +24,7 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Travel Quiz', path: '#quiz', icon: <Check className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
+    { name: 'Plan My Trip', path: '/plan-my-trip', icon: <MapPin className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
     { name: 'Free Resources', path: '/freebies', icon: <Gift className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
     { name: 'The Sunshine Club', path: '#sunshine-club', icon: <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
     { name: 'Our Story', path: '#backstory', icon: <Sparkles className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
