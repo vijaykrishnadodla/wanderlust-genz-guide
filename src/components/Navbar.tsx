@@ -24,7 +24,6 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Travel Quiz', path: '#quiz', icon: <Check className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
-    { name: 'Plan My Trip', path: '/plan-my-trip', icon: <MapPin className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
     { name: 'Free Resources', path: '/freebies', icon: <Gift className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
     { name: 'The Sunshine Club', path: '#sunshine-club', icon: <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
     { name: 'Our Story', path: '#backstory', icon: <Sparkles className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },

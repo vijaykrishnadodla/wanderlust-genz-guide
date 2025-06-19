@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Plus, X, MapPin, Calendar, Heart } from 'lucide-react';
+import { Plus, X, Plane, Calendar, Heart } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SunnyMascot from '@/components/SunnyMascot';
@@ -151,9 +151,9 @@ const PlanMyTripPage = () => {
           <div className="sunny-card max-w-2xl mx-auto text-center">
             <SunnyMascot size="xl" travelStyle="adventure" className="mx-auto mb-6" />
             <h1 className="text-3xl md:text-4xl font-display text-sunny-orange-dark mb-4">
-              ✨ Your Trip Plan is On Its Way! ✨
+              ✨ Your epic adventure blueprint is loading... ✨
             </h1>
-            <p className="text-lg font-handwritten text-midnight mb-6">
+            <p className="text-lg text-midnight mb-6">
               Thanks for trusting us with your dream adventure! Our travel wizards are crafting your personalized itinerary and will email it to you within 48 hours.
             </p>
             <p className="text-sm text-sunny-orange-dark">
@@ -172,14 +172,14 @@ const PlanMyTripPage = () => {
       <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight">
         <div className="absolute inset-0 opacity-10 mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
         
-        <div className="relative z-10 px-4 py-8">
+        <div className="relative z-10 px-4 pt-24 pb-8">
           {/* Hero Section */}
           <div className="max-w-4xl mx-auto text-center mb-8">
             <h1 className="text-3xl md:text-5xl font-display text-sunny-orange-dark mb-6 leading-tight">
-              📌 Tell us where you're going, when, and what you dream of doing — and let us handle the rest for you
+              Hey! ✈️ Let's plan your next amazing trip
             </h1>
-            <p className="text-lg md:text-xl font-handwritten text-midnight mb-8">
-              Get your personalized travel itinerary crafted by our team of travel experts within 48 hours. No more endless research or FOMO about missing the best spots!
+            <p className="text-lg md:text-xl text-midnight mb-8">
+              Tell us where you want to go and what you love doing. We'll create your personalized itinerary in 48 hours.
             </p>
             <div className="flex justify-center mb-8">
               <SunnyMascot size="lg" travelStyle="fashion" className="sunny-bounce" />
@@ -193,7 +193,7 @@ const PlanMyTripPage = () => {
               <div>
                 <h2 className="text-2xl font-display text-sunny-orange-dark mb-6 flex items-center gap-2">
                   <Heart className="h-6 w-6" />
-                  Tell us about yourself
+                  About you
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -254,8 +254,8 @@ const PlanMyTripPage = () => {
               {/* Destinations Section */}
               <div>
                 <h2 className="text-2xl font-display text-sunny-orange-dark mb-6 flex items-center gap-2">
-                  <MapPin className="h-6 w-6" />
-                  Your dream destinations
+                  <Plane className="h-6 w-6" />
+                  Where are you planning to travel this year?
                 </h2>
                 
                 <div id="destinations" className="space-y-8">
@@ -381,7 +381,7 @@ const PlanMyTripPage = () => {
                   className="w-full mt-6 bg-sunny-yellow hover:bg-sunny-yellow-light text-sunny-orange-dark font-bold rounded-xl flex items-center justify-center gap-2"
                 >
                   <Plus className="h-5 w-5" />
-                  ➕ Add another destination
+                  Add another destination ✈️
                 </Button>
               </div>
 
