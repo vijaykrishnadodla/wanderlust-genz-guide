@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -176,10 +175,10 @@ const PlanMyTripPage = () => {
           {/* Hero Section */}
           <div className="max-w-4xl mx-auto text-center mb-8">
             <h1 className="text-3xl md:text-5xl font-display text-sunny-orange-dark mb-6 leading-tight">
-              Hey! ✈️ Let's plan your next amazing trip
+              Hey bestie! ✈️🌎 One step closer to your BEST trip ever — drop your travel dreams and we'll make magic happen!
             </h1>
             <p className="text-lg md:text-xl text-midnight mb-8">
-              Tell us where you want to go and what you love doing. We'll create your personalized itinerary in 48 hours.
+              No cap, we're about to craft you the most fire itinerary that'll have your friends asking 'HOW did you find all these spots?!' 🔥
             </p>
             <div className="flex justify-center mb-8">
               <SunnyMascot size="lg" travelStyle="fashion" className="sunny-bounce" />
@@ -329,7 +328,7 @@ const PlanMyTripPage = () => {
                         {/* Vibe Check */}
                         <div>
                           <Label className="text-sunny-orange-dark font-medium mb-3 block">
-                            Vibe Check (Pick up to 3)
+                            What kind of experience are you looking for? (Pick up to 3)
                           </Label>
                           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                             {vibeOptions.map((vibe) => (
