@@ -3,10 +3,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Plus, X, Plane, Calendar, Heart } from 'lucide-react';
+import { Plus, X, Plane, Calendar, Heart, Download } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SunnyMascot from '@/components/SunnyMascot';
+import { useToast } from '@/hooks/use-toast';
+import jsPDF from 'jspdf';
+
 interface DestinationData {
   id: number;
   location: string;
@@ -15,6 +18,7 @@ interface DestinationData {
   vibes: string[];
   wishlist: string;
 }
+
 interface FormData {
   firstName: string;
   middleName: string;
@@ -22,6 +26,7 @@ interface FormData {
   email: string;
   destinations: DestinationData[];
 }
+
 const vibeOptions = [{
   value: 'sun-beach',
   label: 'Sun & Beach 🏖️'
@@ -41,6 +46,7 @@ const vibeOptions = [{
   value: 'budget-hacks',
   label: 'Budget Hacks 💸'
 }];
+
 const PlanMyTripPage = () => {
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
@@ -58,6 +64,53 @@ const PlanMyTripPage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const { toast } = useToast();
+
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    
+    // Title
+    doc.setFontSize(20);
+    doc.text('My Travel Plan', 20, 30);
+    
+    // Traveler Info
+    doc.setFontSize(14);
+    doc.text('Traveler Information:', 20, 50);
+    doc.setFontSize(12);
+    doc.text(`Name: ${formData.firstName} ${formData.middleName} ${formData.lastName}`, 20, 60);
+    doc.text(`Email: ${formData.email}`, 20, 70);
+    
+    // Destinations
+    let yPosition = 90;
+    formData.destinations.forEach((dest, index) => {
+      if (yPosition > 250) {
+        doc.addPage();
+        yPosition = 30;
+      }
+      
+      doc.setFontSize(14);
+      doc.text(`Destination ${index + 1}:`, 20, yPosition);
+      yPosition += 10;
+      
+      doc.setFontSize(12);
+      doc.text(`Location: ${dest.location}`, 20, yPosition);
+      yPosition += 10;
+      doc.text(`Dates: ${dest.startDate} to ${dest.endDate}`, 20, yPosition);
+      yPosition += 10;
+      doc.text(`Vibes: ${dest.vibes.map(v => vibeOptions.find(opt => opt.value === v)?.label).join(', ')}`, 20, yPosition);
+      yPosition += 10;
+      
+      if (dest.wishlist) {
+        const wishlistLines = doc.splitTextToSize(`Wishlist: ${dest.wishlist}`, 170);
+        doc.text(wishlistLines, 20, yPosition);
+        yPosition += wishlistLines.length * 5;
+      }
+      yPosition += 10;
+    });
+    
+    doc.save('my-travel-plan.pdf');
+  };
+
   const addDestination = () => {
     const newId = Math.max(...formData.destinations.map(d => d.id)) + 1;
     setFormData(prev => ({
@@ -72,6 +125,7 @@ const PlanMyTripPage = () => {
       }]
     }));
   };
+
   const removeDestination = (id: number) => {
     if (formData.destinations.length > 1) {
       setFormData(prev => ({
@@ -80,6 +134,7 @@ const PlanMyTripPage = () => {
       }));
     }
   };
+
   const updateDestination = (id: number, field: keyof DestinationData, value: any) => {
     setFormData(prev => ({
       ...prev,
@@ -89,34 +144,72 @@ const PlanMyTripPage = () => {
       } : dest)
     }));
   };
+
   const toggleVibe = (destId: number, vibe: string) => {
     const destination = formData.destinations.find(d => d.id === destId);
     if (!destination) return;
+    
     const currentVibes = destination.vibes;
     let newVibes;
     if (currentVibes.includes(vibe)) {
       newVibes = currentVibes.filter(v => v !== vibe);
-    } else if (currentVibes.length < 3) {
-      newVibes = [...currentVibes, vibe];
     } else {
-      return; // Max 3 vibes reached
+      newVibes = [...currentVibes, vibe];
     }
     updateDestination(destId, 'vibes', newVibes);
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    try {
-      // Create form data for submission
-      const submitData = new FormData();
+    
+    // Basic validation
+    if (!formData.firstName || !formData.lastName || !formData.email) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
 
-      // Add traveller info
+    const hasValidDestination = formData.destinations.some(dest => 
+      dest.location && dest.startDate && dest.endDate
+    );
+
+    if (!hasValidDestination) {
+      toast({
+        title: "Missing Destination Info",
+        description: "Please add at least one destination with location and dates.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    // Generate PDF
+    generatePDF();
+    
+    // Show success toast
+    toast({
+      title: "Success! ✨",
+      description: "Your travel plan has been created and downloaded!",
+    });
+    
+    // Always show success page after brief delay
+    setTimeout(() => {
+      setSubmitted(true);
+      setIsSubmitting(false);
+    }, 1000);
+
+    // Background submission (optional)
+    try {
+      const submitData = new FormData();
       submitData.append('first_name', formData.firstName);
       submitData.append('middle_name', formData.middleName);
       submitData.append('last_name', formData.lastName);
       submitData.append('email', formData.email);
 
-      // Add destinations
       formData.destinations.forEach((dest, index) => {
         submitData.append(`destination_${index + 1}`, dest.location);
         submitData.append(`start_date_${index + 1}`, dest.startDate);
@@ -124,19 +217,16 @@ const PlanMyTripPage = () => {
         submitData.append(`vibe_${index + 1}`, dest.vibes.join(', '));
         submitData.append(`wishlist_${index + 1}`, dest.wishlist);
       });
-      const response = await fetch('https://forms.studenttravelbuddy.com/submit', {
+
+      await fetch('https://forms.studenttravelbuddy.com/submit', {
         method: 'POST',
         body: submitData
       });
-      if (response.ok) {
-        setSubmitted(true);
-      }
     } catch (error) {
-      console.error('Form submission error:', error);
-    } finally {
-      setIsSubmitting(false);
+      console.log('Background submission failed:', error);
     }
   };
+
   if (submitted) {
     return <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight">
         <Navbar />
@@ -147,8 +237,15 @@ const PlanMyTripPage = () => {
               ✨ Your epic adventure blueprint is loading... ✨
             </h1>
             <p className="text-lg text-midnight mb-6">
-              Thanks for trusting us with your dream adventure! Our travel wizards are crafting your personalized itinerary and will email it to you within 48 hours.
+              Thanks for trusting us with your dream adventure! Your travel plan has been downloaded as a PDF, and our travel wizards are crafting your personalized itinerary. We'll email it to you within 48 hours.
             </p>
+            <Button 
+              onClick={generatePDF}
+              className="bg-sunny-gradient text-white font-bold rounded-xl mb-4 flex items-center gap-2 mx-auto"
+            >
+              <Download className="h-5 w-5" />
+              Download Your Travel Plan Again
+            </Button>
             <p className="text-sm text-sunny-orange-dark">
               Keep an eye on your inbox (and spam folder, just in case) 📧
             </p>
@@ -157,6 +254,7 @@ const PlanMyTripPage = () => {
         <Footer />
       </div>;
   }
+
   return <>
       <Navbar />
       <div className="min-h-screen bg-fixed bg-radialSunny from-[#FFD447] via-[#FFEFE2] to-white bg-grain text-midnight">
@@ -270,16 +368,13 @@ const PlanMyTripPage = () => {
                         {/* Vibe Check */}
                         <div>
                           <Label className="text-sunny-orange-dark font-medium mb-3 block">
-                            What kind of experience are you looking for? (Pick up to 3)
+                            What kind of experience are you looking for? (Choose all that apply)
                           </Label>
                           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                            {vibeOptions.map(vibe => <button key={vibe.value} type="button" onClick={() => toggleVibe(destination.id, vibe.value)} className={`p-3 rounded-xl border-2 text-sm font-medium transition-all text-left ${destination.vibes.includes(vibe.value) ? 'border-sunny-orange bg-sunny-orange text-white' : 'border-sunny-orange-light/50 bg-white hover:border-sunny-orange-light hover:bg-sunny-yellow-pale'} ${destination.vibes.length >= 3 && !destination.vibes.includes(vibe.value) ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={destination.vibes.length >= 3 && !destination.vibes.includes(vibe.value)}>
+                            {vibeOptions.map(vibe => <button key={vibe.value} type="button" onClick={() => toggleVibe(destination.id, vibe.value)} className={`p-3 rounded-xl border-2 text-sm font-medium transition-all text-left ${destination.vibes.includes(vibe.value) ? 'border-sunny-orange bg-sunny-orange text-white' : 'border-sunny-orange-light/50 bg-white hover:border-sunny-orange-light hover:bg-sunny-yellow-pale'}`}>
                                 {vibe.label}
                               </button>)}
                           </div>
-                          {destination.vibes.length >= 3 && <p className="text-sm text-sunny-orange-dark mt-2">
-                              Max 3 vibes selected! Uncheck one to add another.
-                            </p>}
                         </div>
 
                         {/* Wishlist */}
@@ -316,4 +411,5 @@ const PlanMyTripPage = () => {
       <Footer />
     </>;
 };
+
 export default PlanMyTripPage;
