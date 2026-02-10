@@ -23,7 +23,7 @@ const JoinProblemSection = () => {
     <section className="py-16 md:py-24">
       <div className="inner">
         <h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-center text-foreground mb-12">
-          Planning your first trip abroad shouldn't feel this hard.
+          Planning your trip abroad shouldn't feel this hard.
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
