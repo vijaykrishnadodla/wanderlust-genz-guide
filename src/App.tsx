@@ -28,6 +28,7 @@ import Flyer2Page from "./pages/Flyer2Page";
 import Flyer3Page from "./pages/Flyer3Page";
 import FreebiesPage from "./pages/FreebiesPage";
 import PlanMyTripPage from "./pages/PlanMyTripPage";
+import JoinPage from "./pages/JoinPage";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/join" element={<JoinPage />} />
             <Route path="/sales" element={<SalesPage />} />
             <Route path="/funnel" element={<FunnelLandingPage />} />
             <Route path="/epic-perks" element={<EpicPerksPage />} />
