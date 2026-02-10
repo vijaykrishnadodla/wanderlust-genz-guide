@@ -55,9 +55,9 @@ const JoinSolutionSection = () => {
                   <div className="sunny-card flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <Icon className="h-5 w-5 text-primary" />
-                      <h3 className="font-display text-lg text-foreground">{s.title}</h3>
+                      <h3 className="font-display text-xl text-foreground">{s.title}</h3>
                     </div>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{s.text}</p>
+                    <p className="text-muted-foreground text-base leading-relaxed">{s.text}</p>
                   </div>
                 </div>
               );
