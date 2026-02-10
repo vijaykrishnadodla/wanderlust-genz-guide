@@ -1,4 +1,3 @@
-
 import { serve } from 'https://deno.land/std@0.177.0/http/server.ts';
 import { corsHeaders } from '../_shared/cors.ts';
 
@@ -6,24 +5,100 @@ interface ChatGptPromptData {
   name: string;
   city: string;
   country: string;
-  holidayType: string; // e.g., "Cultural Exploration"
+  holidayType: string;
   userDescription?: string;
 }
 
+// Simple in-memory rate limiting by IP
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
+const RATE_LIMIT_MAX = 10; // max requests per window per IP
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+
+  if (!entry || now > entry.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+
+  entry.count++;
+  if (entry.count > RATE_LIMIT_MAX) {
+    return true;
+  }
+  return false;
+}
+
+function validateInput(data: any): { valid: boolean; error?: string } {
+  if (!data || typeof data !== 'object') {
+    return { valid: false, error: 'Invalid request body.' };
+  }
+
+  const { name, city, country, holidayType, userDescription } = data;
+
+  if (!name || typeof name !== 'string' || name.length > 100) {
+    return { valid: false, error: 'Invalid or missing name (max 100 chars).' };
+  }
+  if (!city || typeof city !== 'string' || city.length > 100) {
+    return { valid: false, error: 'Invalid or missing city (max 100 chars).' };
+  }
+  if (!country || typeof country !== 'string' || country.length > 100) {
+    return { valid: false, error: 'Invalid or missing country (max 100 chars).' };
+  }
+  if (!holidayType || typeof holidayType !== 'string' || holidayType.length > 100) {
+    return { valid: false, error: 'Invalid or missing holidayType (max 100 chars).' };
+  }
+  if (userDescription !== undefined && userDescription !== null) {
+    if (typeof userDescription !== 'string' || userDescription.length > 500) {
+      return { valid: false, error: 'userDescription must be a string (max 500 chars).' };
+    }
+  }
+
+  return { valid: true };
+}
+
 serve(async (req: Request) => {
-  // This is needed if you're planning to invoke your function from a browser.
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders });
   }
 
   try {
-    const { name, city, country, holidayType, userDescription }: ChatGptPromptData = await req.json();
+    // Rate limiting
+    const clientIp = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    if (isRateLimited(clientIp)) {
+      return new Response(
+        JSON.stringify({ error: 'Too many requests. Please try again later.' }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 429 }
+      );
+    }
+
+    // Parse and validate input
+    let body: any;
+    try {
+      body = await req.json();
+    } catch {
+      return new Response(
+        JSON.stringify({ error: 'Invalid JSON body.' }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 400 }
+      );
+    }
+
+    const validation = validateInput(body);
+    if (!validation.valid) {
+      return new Response(
+        JSON.stringify({ error: validation.error }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 400 }
+      );
+    }
+
+    const { name, city, country, holidayType, userDescription }: ChatGptPromptData = body;
     const openAiApiKey = Deno.env.get('OPENAI_API_KEY');
 
     if (!openAiApiKey) {
       console.error('OPENAI_API_KEY is not set in Supabase secrets.');
       return new Response(
-        JSON.stringify({ error: 'OpenAI API key not configured on the server. Personalized description unavailable.' }),
+        JSON.stringify({ error: 'OpenAI API key not configured on the server.' }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
       );
     }
@@ -45,8 +120,8 @@ They are interested in a ${holidayType} style trip to ${city}, ${country}.`;
       { role: 'user', content: prompt },
     ];
 
-    const body = JSON.stringify({
-      model: 'gpt-4o-mini', // Using a cost-effective and capable model
+    const requestBody = JSON.stringify({
+      model: 'gpt-4o-mini',
       messages: messages,
       temperature: 0.7,
       max_tokens: 150,
@@ -58,7 +133,7 @@ They are interested in a ${holidayType} style trip to ${city}, ${country}.`;
         'Authorization': `Bearer ${openAiApiKey}`,
         'Content-Type': 'application/json',
       },
-      body: body,
+      body: requestBody,
     });
 
     if (!response.ok) {
@@ -83,8 +158,8 @@ They are interested in a ${holidayType} style trip to ${city}, ${country}.`;
   } catch (error) {
     console.error('Error in Supabase function:', error);
     return new Response(
-        JSON.stringify({ error: error.message || 'An internal server error occurred.' }), 
-        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
+      JSON.stringify({ error: 'An internal server error occurred.' }), 
+      { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
     );
   }
 });
