@@ -9,9 +9,9 @@ const proofPoints = [
 ];
 
 const testimonials = [
-  { quote: "I finally booked my trip because everything felt clear.", name: "Student, NYU" },
-  { quote: "I saved more than $200 in my first week.", name: "Student, UCLA" },
-  { quote: "This made traveling feel doable, not scary.", name: "Student, UF" },
+  { quote: "I finally booked my trip because everything felt clear.", name: "Matthew S., UIUC" },
+  { quote: "I saved more than $200 in my first week.", name: "Emily R., U-M" },
+  { quote: "This made traveling feel doable, not scary.", name: "Michael B., Penn" },
 ];
 
 const JoinSocialProofSection = () => {
