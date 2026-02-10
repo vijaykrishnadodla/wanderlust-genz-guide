@@ -23,7 +23,7 @@ const JoinHeroSection = () => {
               <span className="text-gradient">stress, overspending, or guesswork.</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-8">
+            <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-8">
               Student Travel Buddy is a <strong className="text-primary">$20/year</strong> membership that turns overwhelmed students into confident travelers — with real discounts, a custom trip plan, and support when you need it.
             </p>
 
