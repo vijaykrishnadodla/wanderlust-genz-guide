@@ -29,6 +29,7 @@ import Flyer3Page from "./pages/Flyer3Page";
 import FreebiesPage from "./pages/FreebiesPage";
 import PlanMyTripPage from "./pages/PlanMyTripPage";
 import JoinPage from "./pages/JoinPage";
+import Join2Page from "./pages/Join2Page";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/join" element={<JoinPage />} />
+            <Route path="/join2" element={<Join2Page />} />
             <Route path="/sales" element={<SalesPage />} />
             <Route path="/funnel" element={<FunnelLandingPage />} />
             <Route path="/epic-perks" element={<EpicPerksPage />} />
