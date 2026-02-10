@@ -9,7 +9,7 @@ import {
 const faqs = [
   {
     q: "Who is this for?",
-    a: "U.S. full-time students (18+ or 17 with consent) planning to travel abroad — study abroad, gap year, or personal trips.",
+    a: "U.S. full-time students planning to travel abroad — study abroad, gap year, or personal trips.",
   },
   {
     q: "What exactly do I get for $20?",
