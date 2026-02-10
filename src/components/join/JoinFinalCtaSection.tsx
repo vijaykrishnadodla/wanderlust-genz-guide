@@ -16,7 +16,7 @@ const JoinFinalCtaSection = () => {
           {["One small step", "One simple system", "One year of student travel perks"].map((b, i) => (
             <div key={i} className="flex items-center gap-2">
               <span className="w-5 h-5 rounded-full bg-sunny-gradient flex items-center justify-center text-primary-foreground text-xs font-bold">✓</span>
-              <span className="text-foreground font-medium">{b}</span>
+              <span className="text-lg text-foreground font-medium">{b}</span>
             </div>
           ))}
         </div>
