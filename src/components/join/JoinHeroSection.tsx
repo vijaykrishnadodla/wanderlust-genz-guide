@@ -18,7 +18,7 @@ const JoinHeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           {/* Text content */}
           <div className="flex-1 text-center lg:text-left">
-            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight mb-6">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-foreground leading-tight mb-6">
               Travel abroad without the{' '}
               <span className="text-gradient">stress, overspending, or guesswork.</span>
             </h1>
