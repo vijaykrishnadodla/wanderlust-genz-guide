@@ -27,7 +27,7 @@ const JoinFinalCtaSection = () => {
           </Button>
         </Link>
 
-        <p className="mt-5 text-sm text-muted-foreground font-handwritten text-lg">
+        <p className="mt-5 text-muted-foreground font-handwritten text-xl sm:text-2xl">
           Most students spend $20 on one airport meal. This lasts all year.
         </p>
       </div>

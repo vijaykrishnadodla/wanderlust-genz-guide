@@ -70,7 +70,7 @@ const JoinSocialProofSection = () => {
           {testimonials.map((t, i) => (
             <div key={i} className="sunny-card p-6 text-center">
               <Quote className="h-6 w-6 text-primary/40 mx-auto mb-3" />
-              <p className="text-foreground font-medium mb-3 italic">"{t.quote}"</p>
+              <p className="text-lg text-foreground font-medium mb-3 italic">"{t.quote}"</p>
               <p className="text-sm text-muted-foreground">— {t.name}</p>
             </div>
           ))}

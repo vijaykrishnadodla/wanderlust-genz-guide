@@ -41,7 +41,7 @@ const JoinProblemSection = () => {
 
         {/* Transition punchline */}
         <div className="bg-primary/10 border border-primary/20 rounded-2xl px-6 py-5 max-w-3xl mx-auto text-center">
-          <p className="font-handwritten text-xl sm:text-2xl text-foreground">
+          <p className="font-handwritten text-2xl sm:text-3xl text-foreground">
             Most students don't fail to travel because they don't want to.{' '}
             <span className="text-primary font-bold">They fail because they don't have a simple system.</span>
           </p>

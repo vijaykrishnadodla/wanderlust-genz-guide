@@ -67,7 +67,7 @@ const JoinSolutionSection = () => {
 
         {/* Value callout — sticky-note style */}
         <div className="mt-14 max-w-xl mx-auto bg-sunny-yellow-light/60 border-l-4 border-primary rounded-xl px-6 py-5 transform rotate-1 shadow-sm">
-          <p className="font-handwritten text-xl sm:text-2xl text-foreground text-center">
+          <p className="font-handwritten text-2xl sm:text-3xl text-foreground text-center">
             💡 Most students save more in one day than the entire membership costs.
           </p>
         </div>

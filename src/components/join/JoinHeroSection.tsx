@@ -32,7 +32,7 @@ const JoinHeroSection = () => {
               {bullets.map((b, i) => (
                 <div key={i} className="flex items-start gap-2 text-left">
                   <span className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-sunny-gradient flex items-center justify-center text-primary-foreground text-xs font-bold">✓</span>
-                  <span className="text-sm text-foreground">{b}</span>
+                  <span className="text-base text-foreground">{b}</span>
                 </div>
               ))}
             </div>
