@@ -31,7 +31,7 @@ const JoinSocialProofSection = () => {
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                   <Icon className="h-5 w-5 text-primary" />
                 </div>
-                <p className="text-sm text-foreground">{p.text}</p>
+                <p className="text-base text-foreground">{p.text}</p>
               </div>
             );
           })}
