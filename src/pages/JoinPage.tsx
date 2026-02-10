@@ -7,6 +7,7 @@ import JoinSolutionSection from '@/components/join/JoinSolutionSection';
 import JoinSocialProofSection from '@/components/join/JoinSocialProofSection';
 import JoinFaqSection from '@/components/join/JoinFaqSection';
 import JoinFinalCtaSection from '@/components/join/JoinFinalCtaSection';
+import JoinMeetTheTeamSection from '@/components/join/JoinMeetTheTeamSection';
 import StickyCtaBar from '@/components/join/StickyCtaBar';
 
 const JoinPage = () => {
@@ -19,6 +20,7 @@ const JoinPage = () => {
         <JoinProblemSection />
         <JoinSolutionSection />
         <JoinSocialProofSection />
+        <JoinMeetTheTeamSection />
         <JoinFaqSection />
         <JoinFinalCtaSection />
       </main>

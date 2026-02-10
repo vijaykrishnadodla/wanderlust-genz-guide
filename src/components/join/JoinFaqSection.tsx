@@ -37,7 +37,7 @@ const JoinFaqSection = () => {
   return (
     <section className="py-16 md:py-24">
       <div className="inner max-w-3xl mx-auto">
-        <p className="text-center text-muted-foreground mb-4 font-handwritten text-lg">
+        <p className="text-center text-muted-foreground mb-4 font-handwritten text-xl sm:text-2xl">
           Still deciding? Here's what students usually ask before they join.
         </p>
         <h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-center text-foreground mb-10">

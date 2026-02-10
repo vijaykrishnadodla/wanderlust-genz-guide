@@ -32,8 +32,8 @@ const JoinProblemSection = () => {
               key={i}
               className="sunny-card flex flex-col items-center text-center p-8"
             >
-              <span className="text-5xl mb-4">{p.emoji}</span>
-              <h3 className="font-display text-lg text-foreground mb-3">{p.title}</h3>
+              <span className="text-6xl mb-4">{p.emoji}</span>
+              <h3 className="font-display text-xl text-foreground mb-3">{p.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{p.text}</p>
             </div>
           ))}
@@ -41,7 +41,7 @@ const JoinProblemSection = () => {
 
         {/* Transition punchline */}
         <div className="bg-primary/10 border border-primary/20 rounded-2xl px-6 py-5 max-w-3xl mx-auto text-center">
-          <p className="font-handwritten text-xl sm:text-2xl text-foreground">
+          <p className="font-handwritten text-2xl sm:text-3xl text-foreground">
             Most students don't fail to travel because they don't want to.{' '}
             <span className="text-primary font-bold">They fail because they don't have a simple system.</span>
           </p>

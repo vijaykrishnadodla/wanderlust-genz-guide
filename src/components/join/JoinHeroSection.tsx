@@ -18,12 +18,12 @@ const JoinHeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           {/* Text content */}
           <div className="flex-1 text-center lg:text-left">
-            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight mb-6">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-foreground leading-tight mb-6">
               Travel abroad without the{' '}
               <span className="text-gradient">stress, overspending, or guesswork.</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-8">
+            <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-8">
               Student Travel Buddy is a <strong className="text-primary">$20/year</strong> membership that turns overwhelmed students into confident travelers — with real discounts, a custom trip plan, and support when you need it.
             </p>
 
@@ -32,7 +32,7 @@ const JoinHeroSection = () => {
               {bullets.map((b, i) => (
                 <div key={i} className="flex items-start gap-2 text-left">
                   <span className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-sunny-gradient flex items-center justify-center text-primary-foreground text-xs font-bold">✓</span>
-                  <span className="text-sm text-foreground">{b}</span>
+                  <span className="text-base text-foreground">{b}</span>
                 </div>
               ))}
             </div>
