@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Sun, Sparkles, Users, Check, Gift, MapPin } from 'lucide-react';
+import { Menu, X, Sun, Sparkles, Users, Check, Gift, MapPin, Plane } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,7 +27,9 @@ const Navbar = () => {
     { name: 'Free Resources', path: '/freebies', icon: <Gift className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
     { name: 'The Sunshine Club', path: '#sunshine-club', icon: <Sun className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
     { name: 'Our Story', path: '#backstory', icon: <Sparkles className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
-    { name: 'Ambassadors', path: '#ambassador', icon: <Users className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> }
+    { name: 'Ambassadors', path: '#ambassador', icon: <Users className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
+    { name: 'Join', path: '/join', icon: <MapPin className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> },
+    { name: 'Join V3', path: '/join3', icon: <Plane className="h-4 w-4 mr-2 text-sunny-yellow-dark" /> }
   ];
 
   const commonLinkClasses = "px-3 py-2 text-sunny-orange-dark hover:text-sunny-orange-DEFAULT font-medium transition-colors rounded-lg hover:bg-sunny-yellow-pale";
