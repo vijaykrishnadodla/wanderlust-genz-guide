@@ -43,18 +43,18 @@ const Join3TestimonialsSection = () => {
         </h2>
 
         {/* Founder story block */}
-        <div className="sunny-card max-w-4xl mx-auto p-8 md:p-12 mb-16">
-          <div className="flex flex-col md:flex-row gap-8 items-start">
+        <div className="sunny-card max-w-4xl mx-auto p-5 md:p-12 mb-16">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
             {/* Polaroid photo */}
             <div className="flex-shrink-0 mx-auto md:mx-0">
               <div className="bg-white p-3 rounded-lg shadow-lg transform -rotate-2 hover:rotate-0 transition-transform">
-                <img src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" alt="Dominika, Founder" className="w-48 h-56 object-cover rounded" />
+                <img src="/lovable-uploads/c38cdfa9-d9f7-4717-89e4-6cce94569408.jpg" alt="Dominika, Founder" className="w-36 h-44 md:w-48 md:h-56 object-cover rounded" />
                 <p className="text-center text-xs text-muted-foreground mt-2 font-medium">Founder & student traveler</p>
               </div>
             </div>
 
             {/* Bio text */}
-            <div className="flex-1 space-y-4">
+            <div className="flex-1 space-y-3 md:space-y-4">
               <h3 className="font-display text-2xl text-foreground">HEY THERE, I AM DOMINIKA!</h3>
 
               <p className="text-muted-foreground leading-relaxed">
@@ -103,7 +103,7 @@ const Join3TestimonialsSection = () => {
 
         {/* University logos */}
         <div className="flex flex-wrap items-center justify-center gap-6">
-          {universities.map((uni, i) => <img key={i} src={uni.logo} alt={`${uni.name} University`} className="h-10 w-10 object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />)}
+          {universities.map((uni, i) => <img key={i} src={uni.logo} alt={`${uni.name} University`} className="h-8 w-8 md:h-12 md:w-12 object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />)}
         </div>
       </div>
     </section>;

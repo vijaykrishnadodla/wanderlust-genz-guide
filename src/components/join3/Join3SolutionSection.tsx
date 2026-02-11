@@ -36,7 +36,7 @@ const Join3SolutionSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
           {solutions.map((s, i) => (
-            <div key={i} className="sunny-card p-8 flex flex-col items-start">
+            <div key={i} className="sunny-card p-5 md:p-8 flex flex-col items-start">
               <span className="text-4xl mb-4">{s.emoji}</span>
               <h3 className="font-display text-xl text-foreground mb-2">{s.title}</h3>
               <p className="text-muted-foreground text-base leading-relaxed">{s.text}</p>
@@ -46,7 +46,7 @@ const Join3SolutionSection = () => {
 
         <div className="text-center">
           <Link to="/checkout">
-            <Button className="bg-sunny-gradient text-primary-foreground rounded-full px-8 py-6 text-base sm:text-lg font-semibold shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+            <Button className="w-full sm:w-auto bg-sunny-gradient text-primary-foreground rounded-full px-8 py-6 text-base sm:text-lg font-semibold shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
               Unlock student perks <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>

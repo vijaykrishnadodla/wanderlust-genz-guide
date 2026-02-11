@@ -22,7 +22,7 @@ const StickyCtaBar = () => {
       }`}
     >
       <div className="inner flex items-center justify-between py-2.5">
-        <span className="text-primary-foreground font-display text-sm sm:text-base">
+        <span className="text-primary-foreground font-display text-xs sm:text-base">
           Student Travel Buddy
         </span>
         <Link to="/checkout">

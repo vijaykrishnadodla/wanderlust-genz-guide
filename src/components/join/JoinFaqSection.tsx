@@ -49,7 +49,7 @@ const JoinFaqSection = () => {
             <AccordionItem
               key={i}
               value={`faq-${i}`}
-              className="sunny-card border-none px-6"
+              className="sunny-card border-none px-4 md:px-6"
             >
               <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline">
                 {f.q}
