@@ -41,13 +41,13 @@ const JoinSolutionSection = () => {
           {/* Vertical line (desktop only) */}
           <div className="hidden md:block absolute left-8 top-0 bottom-0 w-0.5 bg-border" />
 
-          <div className="space-y-8 md:space-y-12">
+          <div className="space-y-6 md:space-y-12">
             {steps.map((s, i) => {
               const Icon = s.icon;
               return (
                 <div key={i} className="flex gap-6 items-start relative">
                   {/* Number circle */}
-                  <div className="flex-shrink-0 w-16 h-16 rounded-full bg-sunny-gradient flex items-center justify-center text-primary-foreground font-display text-2xl shadow-md z-10">
+                  <div className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-full bg-sunny-gradient flex items-center justify-center text-primary-foreground font-display text-xl md:text-2xl shadow-md z-10">
                     {s.num}
                   </div>
 

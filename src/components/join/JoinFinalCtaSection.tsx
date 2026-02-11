@@ -21,8 +21,8 @@ const JoinFinalCtaSection = () => {
           ))}
         </div>
 
-        <Link to="/checkout">
-          <Button className="bg-sunny-gradient text-primary-foreground rounded-full px-10 py-6 text-lg font-semibold shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+        <Link to="/checkout" className="w-full sm:w-auto inline-block">
+          <Button className="w-full sm:w-auto bg-sunny-gradient text-primary-foreground rounded-full px-10 py-6 text-lg font-semibold shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
             Join Student Travel Buddy for $20 <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </Link>

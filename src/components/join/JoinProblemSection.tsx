@@ -30,9 +30,9 @@ const JoinProblemSection = () => {
           {problems.map((p, i) => (
             <div
               key={i}
-              className="sunny-card flex flex-col items-center text-center p-8"
+              className="sunny-card flex flex-col items-center text-center p-5 md:p-8"
             >
-              <span className="text-6xl mb-4">{p.emoji}</span>
+              <span className="text-4xl md:text-6xl mb-4">{p.emoji}</span>
               <h3 className="font-display text-xl text-foreground mb-3">{p.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{p.text}</p>
             </div>

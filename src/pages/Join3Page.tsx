@@ -16,10 +16,16 @@ const Join3Page = () => {
       <StickyCtaBar />
       <main>
         <Join3HeroSection />
-        <Join3ProblemSection />
+        <div className="bg-white/50">
+          <Join3ProblemSection />
+        </div>
         <Join3SolutionSection />
-        <Join3TestimonialsSection />
-        <Join3FaqSection />
+        <div className="bg-white/50">
+          <Join3TestimonialsSection />
+        </div>
+        <div className="bg-primary/5">
+          <Join3FaqSection />
+        </div>
         <Join3FinalCtaSection />
       </main>
       <Footer />

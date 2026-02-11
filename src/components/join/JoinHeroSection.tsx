@@ -43,9 +43,11 @@ const JoinHeroSection = () => {
 
             {/* CTA + price badge */}
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-4">
-              <Link to="/checkout">
-                <Button className="bg-sunny-gradient text-primary-foreground rounded-full px-8 py-6 text-base sm:text-lg font-semibold shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
-                  Get your Student Travel Buddy membership <ArrowRight className="ml-2 h-5 w-5" />
+              <Link to="/checkout" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto bg-sunny-gradient text-primary-foreground rounded-full px-8 py-6 text-base sm:text-lg font-semibold shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+                  <span className="sm:hidden">Get your membership</span>
+                  <span className="hidden sm:inline">Get your Student Travel Buddy membership</span>
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <span className="bg-primary/10 text-primary font-display text-lg px-4 py-2 rounded-full border-2 border-primary/30">
@@ -73,7 +75,7 @@ const JoinHeroSection = () => {
           </div>
 
           {/* Mascot */}
-          <div className="flex-shrink-0 sunny-float">
+          <div className="hidden md:block flex-shrink-0 sunny-float">
             <SunnyMascot size="xl" />
           </div>
         </div>

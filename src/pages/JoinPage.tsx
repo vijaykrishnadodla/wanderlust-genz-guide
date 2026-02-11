@@ -17,11 +17,17 @@ const JoinPage = () => {
       <StickyCtaBar />
       <main>
         <JoinHeroSection />
-        <JoinProblemSection />
+        <div className="bg-white/50">
+          <JoinProblemSection />
+        </div>
         <JoinSolutionSection />
-        <JoinSocialProofSection />
+        <div className="bg-white/50">
+          <JoinSocialProofSection />
+        </div>
         <JoinMeetTheTeamSection />
-        <JoinFaqSection />
+        <div className="bg-primary/5">
+          <JoinFaqSection />
+        </div>
         <JoinFinalCtaSection />
       </main>
       <Footer />

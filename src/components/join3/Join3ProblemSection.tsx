@@ -21,7 +21,7 @@ const Join3ProblemSection = () => {
 
         <div className="space-y-4">
           {painPoints.map((point, i) => (
-            <div key={i} className="flex items-start gap-3 sunny-card p-5">
+            <div key={i} className="flex items-start gap-3 sunny-card p-4 md:p-5">
               <span className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-full bg-destructive/15 flex items-center justify-center text-destructive text-sm font-bold">✕</span>
               <p className="text-base text-foreground leading-relaxed">{point}</p>
             </div>

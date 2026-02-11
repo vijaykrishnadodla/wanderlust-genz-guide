@@ -73,7 +73,7 @@ const JoinSocialProofSection = () => {
         }, {
           name: "Cornell",
           logo: "/lovable-uploads/5c2d377d-29d1-42e0-bd60-bd389a75fe7d.png"
-        }].map((uni, i) => <img key={i} src={uni.logo} alt={`${uni.name} University`} className="h-10 w-10 object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />)}
+        }].map((uni, i) => <img key={i} src={uni.logo} alt={`${uni.name} University`} className="h-8 w-8 md:h-12 md:w-12 object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />)}
         </div>
 
         {/* Testimonials */}

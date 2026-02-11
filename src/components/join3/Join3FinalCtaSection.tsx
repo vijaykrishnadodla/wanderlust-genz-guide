@@ -29,8 +29,8 @@ const Join3FinalCtaSection = () => {
           <p className="text-base sm:text-lg text-muted-foreground mb-8">
             Join thousands of students saving money, traveling confidently, and exploring the world together!
           </p>
-          <Link to="/checkout">
-            <Button className="bg-sunny-gradient text-primary-foreground rounded-full px-10 py-6 text-lg font-semibold shadow-md hover:shadow-xl hover:-translate-y-1 transition-all mb-4">
+          <Link to="/checkout" className="w-full sm:w-auto inline-block">
+            <Button className="w-full sm:w-auto bg-sunny-gradient text-primary-foreground rounded-full px-10 py-6 text-lg font-semibold shadow-md hover:shadow-xl hover:-translate-y-1 transition-all mb-4">
               Join Student Travel Buddy now <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
@@ -43,7 +43,7 @@ const Join3FinalCtaSection = () => {
         <div className="flex flex-col lg:flex-row gap-8 max-w-5xl mx-auto items-start">
           {/* FULLTIMER card */}
           <div className="lg:w-1/2 w-full">
-            <div className="sunny-card p-8 relative overflow-hidden">
+            <div className="sunny-card p-5 md:p-8 relative overflow-hidden">
               {/* Badge */}
               <div className="bg-primary text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full inline-block mb-6 uppercase tracking-wide">
                 30% OFF FOR LIMITED TIME
@@ -55,7 +55,7 @@ const Join3FinalCtaSection = () => {
               </p>
 
               <div className="flex items-baseline gap-3 mb-2">
-                <span className="font-display text-5xl text-foreground">$20</span>
+                <span className="font-display text-4xl md:text-5xl text-foreground">$20</span>
                 <span className="text-xl text-muted-foreground line-through">$29</span>
               </div>
               <p className="text-sm text-muted-foreground mb-6">
@@ -71,7 +71,7 @@ const Join3FinalCtaSection = () => {
 
             {/* Sunny mascot */}
             <div className="mt-6 flex justify-center">
-              <SunnyMascot size="lg" withText message="Best choice for most students traveling this year!" />
+              <SunnyMascot size="md" withText message="Best choice for most students traveling this year!" />
             </div>
           </div>
 
@@ -81,7 +81,7 @@ const Join3FinalCtaSection = () => {
               Unlock ALL student travel perks plus exclusive access to special events & VIP support.
             </p>
 
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               {features.map((f, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <span className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-sunny-gradient flex items-center justify-center">
